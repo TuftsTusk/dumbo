@@ -77,7 +77,9 @@ dumboApp.controller('SellerListCtrl', function ($scope, $http) {
                 price: $scope.price,
                 user: $scope.user,
                 image: $scope.photo_link
-            });
+            }).success(function() {
+                window.history.back();
+        };
         
 };
 
