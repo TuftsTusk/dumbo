@@ -5,3 +5,12 @@
 #border{
     border: 2px solid black;   
 }
+ul{
+    list-style-type: none;
+}
+
+.square{
+    height: 200px;
+    width: 200px;
+    background: 50% 50% no-repeat;
+}

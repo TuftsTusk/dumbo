@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="dumboApp">
 
 <head>
-    <title>Tusk Bitches</title>
+    <title>Tusk Marketplace</title>
     <meta charset="utf8" />
     <link rel=stylesheet href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -14,10 +16,11 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="controllers.js"></script>
 </head>
 
-<body>
+<body ng-controller="SellerListCtrl">
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -29,66 +32,54 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Tusk</a>
+                <a class="navbar-brand" href="#">Tusk marketplace</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                
+
                 <ul class="nav nav-pills nav-justified" id="content-border">
-                    <li><a href="#">BUY</a></li>
-                    <li><a href="#">SELL</a></li>
-                    <li><a href="#">SUBLET</a></li>
-                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">BUY</a>
+                    </li>
+                    <li><a href="#">SELL</a>
+                    </li>
+                    <li><a href="#">SUBLET</a>
+                    </li>
+                    <li><a href="#">ABOUT</a>
+                    </li>
                 </ul>
-                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
     </nav>
 
 
     <div class="fluid-container" id="content-border">
 
         <div class="col-md-2" id="border">filters</div>
-        <div class="col-md-10" id="border">results
-
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/0b3/0a5/32ed221.jpg">
-                        <div class="caption">
-                            <h3>Wadda Hunk</h3>
-                            <p>I'd tap that</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Sex?</a> <a href="#" class="btn btn-default" role="button">No Thanks</a>
-                            </p>
+        <div class="col-md-10" id="border">
+            <ul>
+                <li ng-repeat="listing in listings">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img ng-src={{listing.image}} class="square">
+                                <div class="caption">
+                                    <h3>{{listing.name}}</h3>
+                                    <p>${{listing.price}}</p>
+                                    <p>{{listing.description}}</p>
+                                    <p>{{listing.user}}</p>
+                                    <p>{{listing.created_at}}</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Contact</a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/07d/152/316428a.jpg">
-                        <div class="caption">
-                            <h3>Wadda Hunk</h3>
-                            <p>I'd tap that</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Sex?</a> <a href="#" class="btn btn-default" role="button">No Thanks</a>
-                            </p>
-                        </div>
                     </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="https://www.kieve.org/counselor_photos/Batchelder,_Jeremy_89.jpg">
-                        <div class="caption">
-                            <h3>Wadda Hunk</h3>
-                            <p>I'd tap that</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Sex?</a> <a href="#" class="btn btn-default" role="button">No Thanks</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
 
 
