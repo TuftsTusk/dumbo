@@ -72,15 +72,13 @@ dumboApp.controller('SellerListCtrl', function ($scope, $http) {
 
     $scope.submit = function () {
         $http.post('http://130.64.184.174:8080/addListing', {
-                name: $scope.title,
-                description: $scope.description,
-                price: $scope.price,
-                user: $scope.user,
-                image: $scope.photo_link
-            }).success(function() {
-                window.history.back();
-        };
-        
-};
+            name: $scope.title,
+            description: $scope.description,
+            price: $scope.price,
+            user: $scope.user,
+            image: $scope.photo_link
+        });
+
+    };
 
 });
