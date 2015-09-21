@@ -79,7 +79,7 @@ dumboApp.controller('SellerListCtrl', function ($scope, $http) {
                 image: $scope.photo_link
             }).success(function() {
                 window.history.back();
-        };
+        )};
 
 };
 
