@@ -3,13 +3,13 @@ var dumboApp = angular.module('dumboApp', []);
 
 
 dumboApp.controller('SellerListCtrl', function ($scope, $http) {
+    var server = "http://tuftstusk.herokuapp.com/"
     $scope.$on('$viewContentLoaded', function () {
-        console.log("HEY!");
         $scope.getListings();
     });
 
     $scope.getListings = function () {
-        $http.get('http://130.64.184.174:8080/getListings')
+        $http.get(server + '/getListings')
             .success(function (response) {
                 $scope.listings = response
             });
@@ -71,14 +71,16 @@ dumboApp.controller('SellerListCtrl', function ($scope, $http) {
     post_form();
 
     $scope.submit = function () {
-        $http.post('http://130.64.184.174:8080/addListing', {
+        $http.post(server + '/addListing', {
                 name: $scope.title,
                 description: $scope.description,
                 price: $scope.price,
                 user: $scope.user,
                 image: $scope.photo_link
-            });
-        
+            }).success(function() {
+                window.history.back();
+        };
+
 };
 
 });
