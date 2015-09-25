@@ -1,16 +1,23 @@
-#content-border{
+#content-border {
     margin-left: 100px;
 }
 
-#border{
-    border: 2px solid black;   
+#border {
+    border: 2px solid black;
 }
-ul{
+
+ul {
     list-style-type: none;
 }
 
-.square{
+.square {
     height: 200px;
     width: 200px;
     background: 50% 50% no-repeat;
 }
+
+#map {
+    height: 200px;
+    width: 250px;
+}
+
