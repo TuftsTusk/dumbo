@@ -2,23 +2,29 @@
 <html>
 
 <head>
-    <script type="text/javascript">
-        var map;
+    <script>
+        $(document).ready(function () {
+            var map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
 
-                <!-- Tufts coordinates @42.4069168,-71.1148216,15z -->
-                center: {
-                    lat: 42.4069168,
-                    lng: -71.1148216
-                },
-                zoom: 15
-            });
-        }
+                    <!-- Tufts coordinates @42.4069168,-71.1148216,15z -->
+                    center: {
+                        lat: 42.4069168,
+                        lng: -71.1148216
+                    },
+                    zoom: 15
+                });
+            }
+        });
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbE61N0YNMjsRVh6SpJjlRVcnVGfE3YM4&callback=initMap">
     </script>
+
+
+
+    });
 
 </head>
 
