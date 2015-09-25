@@ -18,76 +18,131 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="controllers.js"></script>
-</head>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
 
-<body ng-controller="SellerListCtrl">
+    <!-- script for google maps from mmap assignment - mchow, comp20 -->
+    <script>
+			var myLat = 0;
+			var myLng = 0;
+            var myLogin = "GlendaMaletic";
+			var request = new XMLHttpRequest();
+			var me = new google.maps.LatLng(myLat, myLng);
+			var myOptions = {
+						zoom: 16, // The larger the zoom number, the bigger the zoom
+						center: me,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+			var map;
+			var marker;
+			var infowindow = new google.maps.InfoWindow();
+			
+			function init()
+			{
+				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+				getMyLocation();
+			}
+			
+			function getMyLocation() {
+				if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
+					navigator.geolocation.getCurrentPosition(function(position) {
+						myLat = position.coords.latitude;
+						myLng = position.coords.longitude;
+                        renderMap();
+                    
+                        var request2 = new XMLHttpRequest();
+            
+                        request2.open("POST", "https://secret-badlands-5595.herokuapp.com/sendLocation", true);
+                        request2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        request2.onreadystatechange = parseData;
+                        request2.send("login=GlendaMaletic&lat="+myLat+"&lng="+myLng)
+                        
+                        function parseData() {
+                            if (request2.readyState == 4) {
+                                converted = JSON.parse(request2.responseText);
+                                for (i = 0; i<converted.length; i++){
+                                    createMarker(converted[i]);
+                                }
+                            } 
+                        }  
+					});
+				}
+				else {
+					alert("Geolocation is not supported by your web browser.  What a shame!");
+				}
+			}
+			function renderMap()
+			{
+				me = new google.maps.LatLng(myLat, myLng);
+				
+				// Update map and go there...
+				map.panTo(me);
+	
+				// Create a marker
+				marker = new google.maps.Marker({
+					position: me,
+					title: "GlendaMaletic",
+                    icon: "final_icon.jpg"
+				});
+				marker.setMap(map);
+					
+				// Open info window on click of marker
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.setContent("You are here!");
+					infowindow.open(map, this);
+				});
+				
+				// Calling Google Places API
+				var request = {
+					location: me,
+					radius: '500',
+				};
+                
+                
+			}
+			
+						
+			function createMarker(content)
+			{
+                var pos = new google.maps.LatLng(content.lat, content.lng);
+                var dist = calcDistance(content.lat, content.lng);
+                
+                marker = new google.maps.Marker({
+					position: pos,
+					title: content.login
+				});
+				   
+                    google.maps.event.addListener(marker, 'click', function() {
+					infowindow.close();
+					infowindow.setContent(content.login + "<p>" + dist.toFixed(2) + " miles away");
+					infowindow.open(map, this);
+				}); 
+                
+                marker.setMap(map);
+            }
+            function calcDistance(lat, long)
+            {
+                
+                var R = 3959; // km 
+                var x1 = lat-myLat;
+                var dLat = x1 * (Math.PI / 180);  
+                var x2 = long-myLng;
+                var dLon = x2 * (Math.PI / 180);  
+                var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                    Math.cos(myLat * (Math.PI / 180)) * Math.cos(lat * (Math.PI / 180)) * 
+                    Math.sin(dLon/2) * Math.sin(dLon/2);  
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                var d = R * c; 
+                     
+                return d;
+            }
+            
+		</script>
+    
+    </head>
+    
+    
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img src="Tusk.png" height="30px"></a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                <ul class="nav navbar-nav" id="content-border">
-                    <li><a href="#">BUY</a>
-                    </li>
-                    <li><a href="/dumbo/createpost.html">SELL</a>
-                    </li>
-                    <li><a href="#">SUBLET</a>
-                    </li>
-                    <li><a href="#">ABOUT</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-
-    <div class="fluid-container">
-
-        <div class="col-md-2"></div>
-        <div class="col-md-10">
-            <ul>
-                <li ng-repeat="listing in listings">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img ng-src={{listing.image}} class="square">
-                                <div class="caption">
-                                    <h3>{{listing.name}}</h3>
-                                    <p>${{listing.price}}</p>
-                                    <p>{{listing.description}}</p>
-                                    <p>{{listing.user}}</p>
-                                    <p>{{listing.created_at}}</p>
-                                    <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Contact</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-
-
-
-    </div>
-
+<body>
 </body>
 
 </html>
