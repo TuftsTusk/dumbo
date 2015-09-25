@@ -2,12 +2,22 @@
 <html>
 
 <head>
-    <style type="text/css">
-        #map{
-            height: 250px;
-            width: 200px;
-        }
-    </style>
+    <title>Tusk Marketplace</title>
+    <meta charset="utf8" />
+    <link rel=stylesheet href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="controllers.js"></script>
+
 </head>
 
 <body>
@@ -18,7 +28,7 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                
+
                 <!-- Tufts coordinates @42.4069168,-71.1148216,15z -->
                 center: {
                     lat: 42.4069168,
