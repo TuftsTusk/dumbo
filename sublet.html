@@ -1,148 +1,26 @@
 <!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script type="text/javascript">
 
-<html ng-app="dumboApp">
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
 
-<head>
-    <title>Tusk Marketplace</title>
-    <meta charset="utf8" />
-    <link rel=stylesheet href="style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="controllers.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
-
-    <!-- script for google maps from mmap assignment - mchow, comp20 -->
-    <script>
-			var myLat = 0;
-			var myLng = 0;
-            var myLogin = "GlendaMaletic";
-			var request = new XMLHttpRequest();
-			var me = new google.maps.LatLng(myLat, myLng);
-			var myOptions = {
-						zoom: 16, // The larger the zoom number, the bigger the zoom
-						center: me,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					};
-			var map;
-			var marker;
-			var infowindow = new google.maps.InfoWindow();
-			
-			function init()
-			{
-				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-				getMyLocation();
-			}
-			
-			function getMyLocation() {
-				if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
-					navigator.geolocation.getCurrentPosition(function(position) {
-						myLat = position.coords.latitude;
-						myLng = position.coords.longitude;
-                        renderMap();
-                    
-                        var request2 = new XMLHttpRequest();
-            
-                        request2.open("POST", "https://secret-badlands-5595.herokuapp.com/sendLocation", true);
-                        request2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        request2.onreadystatechange = parseData;
-                        request2.send("login=GlendaMaletic&lat="+myLat+"&lng="+myLng)
-                        
-                        function parseData() {
-                            if (request2.readyState == 4) {
-                                converted = JSON.parse(request2.responseText);
-                                for (i = 0; i<converted.length; i++){
-                                    createMarker(converted[i]);
-                                }
-                            } 
-                        }  
-					});
-				}
-				else {
-					alert("Geolocation is not supported by your web browser.  What a shame!");
-				}
-			}
-			function renderMap()
-			{
-				me = new google.maps.LatLng(myLat, myLng);
-				
-				// Update map and go there...
-				map.panTo(me);
-	
-				// Create a marker
-				marker = new google.maps.Marker({
-					position: me,
-					title: "GlendaMaletic",
-                    icon: "final_icon.jpg"
-				});
-				marker.setMap(map);
-					
-				// Open info window on click of marker
-				google.maps.event.addListener(marker, 'click', function() {
-					infowindow.setContent("You are here!");
-					infowindow.open(map, this);
-				});
-				
-				// Calling Google Places API
-				var request = {
-					location: me,
-					radius: '500',
-				};
-                
-                
-			}
-			
-						
-			function createMarker(content)
-			{
-                var pos = new google.maps.LatLng(content.lat, content.lng);
-                var dist = calcDistance(content.lat, content.lng);
-                
-                marker = new google.maps.Marker({
-					position: pos,
-					title: content.login
-				});
-				   
-                    google.maps.event.addListener(marker, 'click', function() {
-					infowindow.close();
-					infowindow.setContent(content.login + "<p>" + dist.toFixed(2) + " miles away");
-					infowindow.open(map, this);
-				}); 
-                
-                marker.setMap(map);
-            }
-            function calcDistance(lat, long)
-            {
-                
-                var R = 3959; // km 
-                var x1 = lat-myLat;
-                var dLat = x1 * (Math.PI / 180);  
-                var x2 = long-myLng;
-                var dLon = x2 * (Math.PI / 180);  
-                var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
-                    Math.cos(myLat * (Math.PI / 180)) * Math.cos(lat * (Math.PI / 180)) * 
-                    Math.sin(dLon/2) * Math.sin(dLon/2);  
-                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-                var d = R * c; 
-                     
-                return d;
-            }
-            
-		</script>
-    
-    </head>
-    
-    
-
-<body>
-</body>
-
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap">
+    </script>
+  </body>
 </html>
