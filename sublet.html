@@ -11,7 +11,9 @@
         }
         
         #map {
-            height: 100%;
+            height: 50%;
+            width: 50%;
+            float: right;
         }
     </style>
 </head>
@@ -23,11 +25,13 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
+                
+                <!-- Tufts coordinates @42.4069168,-71.1148216,15z -->
                 center: {
-                    lat: -34.397,
-                    lng: 150.644
+                    lat: 42.4069168,
+                    lng: -71.1148216
                 },
-                zoom: 8
+                zoom: 15
             });
         }
     </script>
