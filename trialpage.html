@@ -5,94 +5,144 @@
 <head>
     <title>Tusk Marketplace</title>
     <!-- favicon -->
-    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon"> 
-	<link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
-  
+    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon">
+    <link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
+
     <meta charset="utf8" />
     <link rel=stylesheet href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">-->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Important: you'll only need one of the Bootcards CSS files below for every platform -->
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!-- Bootcards CSS for iOS: -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/css/bootcards-ios.min.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="controllers.js"></script>
+    <!-- Bootcards CSS for Android: -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/css/bootcards-android.min.css">
+
+    <!-- Bootcards CSS for desktop: -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/css/bootcards-desktop.min.css">
+
+    <!-- Bootstrap and Bootcards JS -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/js/bootcards.min.js"></script>
 </head>
 
-<body ng-controller="SellerListCtrl">
-
-    <nav class="navbar navbar-default">
+<body>
+    <div class="navbar navbar-default bootcards-navbar-double" role="navigation">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="Tusk.png" height="30px">
-                </a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <a class="navbar-brand" title="Bootcards Starter" href="#">Bootcards Starter</a>
 
-                <ul class="nav navbar-nav" id="content-border">
-                    <li><a href="#">BUY</a>
+            <!--navbar menu options: shown on desktop only -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right bootcards-nav-secondary">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-globe"></i> Languages <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Deutsch</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-fw fa-check pull-right"></i>English</a>
+                            </li>
+                            <li><a href="#">Espanol</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li><a href="createpost.html">SELL</a>
-                    </li>
-                    <li><a href="#">SUBLET</a>
-                    </li>
-                    <li><a href="#">ABOUT</a>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-fw fa-lock"></i> Login
+                        </a>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right bootcards-nav-primary">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-fw fa-dashboard"></i> Home <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><i class="fa fa-fw fa-envelope-o"></i> Action</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-fw fa-film"></i> Another action</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-fw fa-file-o"></i> Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Separated link</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-fw fa-briefcase"></i> Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-fw fa-bullhorn"></i> Blog
+                        </a>
+                    </li>
+
+                </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
-    </nav>
+        <!--container-fluid-->
+    </div>
+    <!-- navbar -->
 
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 bootcards-list">
 
-    <div class="fluid-container">
+                    ...your Bootcards List goes here...
 
-        <div class="col-md-2"></div>
-        <div class="col-md-10">
-            <ul>
-                <li ng-repeat="listing in listings">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img ng-src={{listing.image}} class="square">
-                                <div class="caption">
-                                    <h3>{{listing.name}}</h3>
-                                    <p>${{listing.price}}</p>
-                                    <p>{{listing.description}}</p>
-                                    <p>{{listing.user}}</p>
-                                    <p>{{listing.created_at}}</p>
-                                    <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Contact</a>
-                                    </p>
-                                </div>
+                </div>
+                <div class="col-sm-7 bootcards-cards">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title pull-left">Base Card Title</h3>
+                            <a class="btn btn-primary pull-right" href="#">
+                                <i class="fa fa-pencil"></i> Edit
+                            </a>
+                        </div>
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <p class="list-group-item-text">Name</p>
+                                <h4 class="list-group-item-heading">John Smith</h4>
+                            </div>
+                            <div class="list-group-item">
+                                <p class="list-group-item-text">Occupation</p>
+                                <h4 class="list-group-item-heading">Web Developer</h4>
+                            </div>
+                            <div class="list-group-item">
+                                <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mauris tellus, vehicula ut tellus id, suscipit dapibus tortor. Integer viverra turpis ac fringilla hendrerit. Sed faucibus posuere felis et pellentesque. Cras varius tortor vitae molestie tempor. Proin ut viverra elit, ac gravida tortor.</p>
                             </div>
                         </div>
-
+                        <div class="panel-footer">
+                            <small>Built with Bootcards - Base Card</small>
+                        </div>
                     </div>
-                </li>
-            </ul>
+
+
+                </div>
+            </div>
         </div>
+    </body>
 
-
-
-
-
-    </div>
 
 </body>
 
