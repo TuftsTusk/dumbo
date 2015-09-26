@@ -21,3 +21,6 @@ ul {
     width: 600px;
 }
 
+#editModal {
+    z-index: -1;
+}
