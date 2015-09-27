@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- taken from the bootcards online documentation
+<!-- used bower install bootcards to download the file-->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google" value="notranslate">
+    <!-- changed title and favicon -->
     <title>TUSK BITCH</title>
+    <!-- favicon -->
+    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon">
+    <link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
+    <!--end meta data stuff-->
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- jquery -->
 
     <!-- Bootcards CSS files for desktop, iOS and Android -->
     <!-- You'll only need to load one of these (depending on the device you're using) in production -->
@@ -22,6 +31,8 @@
 
 <body>
 
+
+    <!-- bootcards -->
     <!-- fixed top navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -41,11 +52,16 @@
             <button type="button" class="btn btn-default btn-menu navbar-left pull-left" data-toggle="offcanvas">
                 <i class="fa fa-lg fa-bars"></i><span>Menu</span>
             </button>
-
+            <!-- changed refresh button to Tusk logo -->
             <a class="navbar-brand" title="Bootcards Starter" href="#">Tusk Marketplace</a>
 
-            <!--right aligned button-->
+            <!--right aligned button *changed to logo *-->
             <img src="Tusk.png" style="height: 40px; margin-top:5px" class="navbar-right" />
+
+            <!-- end logo changes-->
+
+
+            <!-- bootcard nav-bar -->
 
             <!--navbar menu options: shown on desktop only -->
             <div class="navbar-collapse collapse">
@@ -68,7 +84,9 @@
                 </ul>
             </div>
         </div>
+        <!-- container -->
     </div>
+    <!-- nav-bar -->
 
     <!-- slide in off canvas menu (mobile only) -->
     <nav class="navmenu offcanvas offcanvas-left">
@@ -118,6 +136,7 @@
 
     </nav>
     <!--nav-->
+    <!-- mobile off-canvas menu -->
 
     <div class="container bootcards-container push-right">
 
@@ -419,9 +438,11 @@
 
 
     </div>
+    <!-- THIS IS THE WHOLE SECOND ROW CONTAINER -->
     <!--container-->
 
     <!-- fixed tabbed footer -->
+    <!-- FOOTER FOR SITE MAP -->
     <div class="navbar navbar-default navbar-fixed-bottom">
 
         <div class="container">
@@ -446,78 +467,6 @@
     </div>
     <!--footer-->
 
-    <!--edit contact modal-->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <form class="form-horizontal" method="POST" action="/contacts/{{contact.id}}" data-pjax="#main">
-
-                    <div class="modal-header">
-
-                        <div class="btn-group pull-left">
-                            <button class="btn btn-danger" data-dismiss="modal">
-                                Cancel
-                            </button>
-                        </div>
-
-                        <div class="btn-group pull-right">
-                            <button class="btn btn-success" data-dismiss="modal">
-                                <i class="fa fa-check"></i>Save
-                            </button>
-                        </div>
-
-                        <h4 class="modal-title">Edit Contact</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <input type="hidden" name="companyId" value="{{contact.companyId}}">
-                        <input type="hidden" name="_method" value="put">
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">First Name</label>
-                            <div class="col-xs-8">
-                                <input type="text" name="firstName" class="form-control" placeholder="First Name" value="Sofia">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Last Name</label>
-                            <div class="col-xs-8">
-                                <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="Acey">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Company</label>
-                            <div class="col-xs-8">
-                                <input type="text" name="department" class="form-control" placeholder="Department" value="Masung Corp.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Phone</label>
-                            <div class="col-xs-8">
-                                <input type="text" name="phone" class="form-control" placeholder="Phone" value="+1 650-555-0055">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Email</label>
-                            <div class="col-xs-8">
-                                <input type="email" name="email" class="form-control" placeholder="Email" value="Sofia.Acey@masung.com">
-                            </div>
-                        </div>
-
-                    </div>
-                </form>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-block" onclick="bootcards.confirmDelete('contact'); return false;">
-                        <i class="fa fa-trash-o"></i> Delete Contact
-                    </button>
-                </div>
-
-            </div>
-            <!--modal-content-->
-        </div>
-    </div>
-    <!--modal-->
 
     <!-- Bootstrap & jQuery core JavaScript
     ================================================== -->
@@ -533,17 +482,17 @@
 
     <script type="text/javascript">
         /*
-                                       * Initialize Bootcards.
-                                       * 
-                                       * Parameters:
-                                       * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
-                                       * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
-                                       * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
-                                       * - disableRubberBanding (boolean): disable the iOS rubber banding effect
-                                       * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
-                                                            jQuery selector to target links for which a fix should be added to not
-                                                            allow those links to break out of fullscreen mode.
-                                       */
+                                                               * Initialize Bootcards.
+                                                               * 
+                                                               * Parameters:
+                                                               * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
+                                                               * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
+                                                               * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
+                                                               * - disableRubberBanding (boolean): disable the iOS rubber banding effect
+                                                               * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
+                                                                                    jQuery selector to target links for which a fix should be added to not
+                                                                                    allow those links to break out of fullscreen mode.
+                                                               */
 
         bootcards.init({
             offCanvasBackdrop: true,
