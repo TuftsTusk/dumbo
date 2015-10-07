@@ -24,3 +24,64 @@ ul {
 #editModal {
     z-index: 1030;
 }
+
+
+/***************** view_listings.html ******************/
+.body {
+	padding-top: 60px;
+}
+
+/*
+.desktop {
+	max-width: 1280px;
+    padding: 0 4.1667%;
+}
+*/
+
+
+#sidebar {
+	/*
+	float: left;
+	width: 19%;
+	*/
+	height: 400px;
+}
+
+.all-filters {
+	padding-top: 15px;
+}
+
+.panel-body.filter {
+	padding-top: 0px;
+}
+
+
+
+.filter ul {
+	list-style-type: none;
+	padding-left: 20px;
+}
+
+.filter-header {
+	border-bottom: 1px solid #9a9a9a;
+}
+.filter-header h4 {
+	margin-top: 0px;
+}
+
+.listings-posts {
+	/*
+	float: right;
+	width: 75%!important;
+	display: block;
+	*/
+
+	height: 400px;
+}
+
+.listing {
+	height: 40px;
+	background-color: #F1F1F1;
+}
+
+/***************** createpost2.html ******************/
