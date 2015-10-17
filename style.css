@@ -25,6 +25,15 @@ ul {
     z-index: 1030;
 }
 
+#logo {
+	background-color: #D8D8D8;
+	width: 150px;
+}
+
+.btn:focus {
+  outline: none !important;
+}
+
 
 /***************** view_listings.html ******************/
 .body {
@@ -84,4 +93,61 @@ ul {
 	background-color: #F1F1F1;
 }
 
-/***************** createpost2.html ******************/
+/***************** view_listings.html ******************/
+
+/********************** home.html **********************/
+
+.spacer {
+	width: 100%;
+	height: 20px;
+}
+
+#homebody .form-group {
+	margin-left: -15px;
+}
+
+.centered-input {
+	text-align: center;
+}
+
+.semester {
+	height: 56px;
+	width: 200px;
+ 	font: normal normal 700 1em/4em Arial,sans-serif;
+ 	overflow: hidden;
+ 	white-space:nowrap;
+ 	background-color: #3b5998;
+
+ 	color: white;
+    text-decoration:none;
+    text-align: center;
+}
+
+.semester ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.semester li {
+	
+	display: inline-block;
+	width: 200px;
+}
+
+.semester .slide-left {
+	-webkit-transition: 0.3s;
+ 	-moz-transition: 0.3s;
+ 	-ms-transition: 0.3s;
+ 	-o-transition: 0.3s;
+ 	transition: 0.3s; 
+
+ 	margin-left: 0px;
+}
+
+.semester:hover .slide-left {
+	margin-left: -200px;
+}
+
+
+
+/********************** home.html **********************/
