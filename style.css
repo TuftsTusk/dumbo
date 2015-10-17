@@ -110,7 +110,7 @@ ul {
 	text-align: center;
 }
 
-.semester {
+#sem_selector {
 	height: 56px;
 	width: 200px;
  	font: normal normal 700 1em/4em Arial,sans-serif;
@@ -123,18 +123,18 @@ ul {
     text-align: center;
 }
 
-.semester ul {
+#sem_selector ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
-.semester li {
-	
+#sem_selector li {
+
 	display: inline-block;
 	width: 200px;
 }
 
-.semester .slide-left {
+#sem_selector .slide_left {
 	-webkit-transition: 0.3s;
  	-moz-transition: 0.3s;
  	-ms-transition: 0.3s;
@@ -144,10 +144,10 @@ ul {
  	margin-left: 0px;
 }
 
-.semester:hover .slide-left {
-	margin-left: -200px;
-}
 
+#sem_selector:hover .slide_left {
+   background-color: #003D99;
+}
 
 
 /********************** home.html **********************/
