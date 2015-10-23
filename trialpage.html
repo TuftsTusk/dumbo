@@ -183,12 +183,7 @@
                                         <i class="fa fa-search"></i>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <a class="btn btn-primary btn-block" href="#" onclick="bootcards.hideOffCanvasMenu()">
-                                        <i class="fa fa-plus"></i>
-                                        <span>Add</span>
-                                    </a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -196,105 +191,13 @@
 
                     <div class="list-group">
 
-                        <!-- list of sample data -->
-
-                        <a class="list-group-item" href="#">
-                            <img src="img/Joseph Barish.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Barish, Joseph</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item active" href="#">
-                            <img src="img/Sofia Acey.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Acey, Sofia</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Jerry Bess.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Bess, Jerry</h4>
-                            <p class="list-group-item-text">ZetaComm</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Jamie Biddy.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Biddy, Jamie</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Mark Booth.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Booth, Mark</h4>
-                            <p class="list-group-item-text">Burning Core</p>
-                        </a>
-
-                        <a class="list-group-item" href="#">
-                            <img src="img/Sofia Acey.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Acey, Sofia</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Joseph Barish.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Barish, Joseph</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Jerry Bess.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Bess, Jerry</h4>
-                            <p class="list-group-item-text">ZetaComm</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Jamie Biddy.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Biddy, Jamie</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Mark Booth.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Booth, Mark</h4>
-                            <p class="list-group-item-text">Burning Core</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Sofia Acey.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Acey, Sofia</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Joseph Barish.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Barish, Joseph</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Jerry Bess.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Bess, Jerry</h4>
-                            <p class="list-group-item-text">ZetaComm</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Jamie Biddy.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Biddy, Jamie</h4>
-                            <p class="list-group-item-text">Masung Corp.</p>
-                        </a>
-
-                        <a class="list-group-item " href="#">
-                            <img src="img/Mark Booth.jpg" class="img-rounded pull-left">
-                            <h4 class="list-group-item-heading">Booth, Mark</h4>
-                            <p class="list-group-item-text">Burning Core</p>
-                        </a>
+                       <h5>this will be our filters</h5>
 
                     </div>
                     <!--list-group-->
 
                     <div class="panel-footer">
-                        <small class="pull-left">Built with Bootcards - List</small>
-                        <a class="btn btn-link btn-xs pull-right" href="#">
-              Footer link</a>
+                        <small class="pull-left">Tusk Marketplace</small>
                     </div>
                 </div>
                 <!--panel-->
@@ -307,11 +210,9 @@
                 <ul style="list-style-type:none; padding:0">
                     <li ng-repeat="listing in listings">
                         <div class="panel panel-default bootcards-richtext">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{listing.description}}</h3>
-                            </div>
+                            
                             <div class="panel-body">
-                                <ul style="list-style-type: none">
+                                <ul style="list-style-type:none">
                                     <li ng-repeat="listing in listings">
                                         <img ng-src={{listing.image}} class="square">
                                         <div class="caption">
@@ -326,6 +227,7 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="panel-footer"></div>
 
                         </div>
                     </li>
@@ -335,27 +237,7 @@
 
                 <!--end panel-->
 
-                <div class="panel panel-default bootcards-richtext">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Theme Switcher</h3>
-                    </div>
-                    <div class="panel-body">
-
-                        <!--theme switcher-->
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary active">
-                                <input type="radio" name="themeSwitcher" value="ios" autocomplete="off" checked> iOS
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="themeSwitcher" value="android" autocomplete="off"> Android
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="themeSwitcher" value="desktop" autocomplete="off"> Desktop
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
+                
 
                 <!--contact details -->
                 <div id="contactCard">
