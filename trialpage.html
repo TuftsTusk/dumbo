@@ -312,9 +312,10 @@
 
                 <div class="panel panel-default bootcards-richtext">
                     <div class="panel-heading">
-                        <h3 class="panel-title">About this page</h3>
+                        <h3 class="panel-title">{{listing.description}}</h3>
                     </div>
                     <div class="panel-body">
+
                         <div class="fluid-container">
                             <ul style="list-style-type: none">
                                 <li ng-repeat="listing in listings">
@@ -336,6 +337,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <!--end rich text card-->
 
@@ -542,6 +544,7 @@
 
     <script type="text/javascript">
         /*
+<<<<<<< HEAD
                                                                                                                                            * Initialize Bootcards.
                                                                                                                                            * 
                                                                                                                                            * Parameters:
@@ -553,6 +556,19 @@
                                                                                                                                                                 jQuery selector to target links for which a fix should be added to not
                                                                                                                                                                 allow those links to break out of fullscreen mode.
                                                                                                                                            */
+=======
+                                                                                                                       * Initialize Bootcards.
+                                                                                                                       * 
+                                                                                                                       * Parameters:
+                                                                                                                       * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
+                                                                                                                       * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
+                                                                                                                       * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
+                                                                                                                       * - disableRubberBanding (boolean): disable the iOS rubber banding effect
+                                                                                                                       * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
+                                                                                                                                            jQuery selector to target links for which a fix should be added to not
+                                                                                                                                            allow those links to break out of fullscreen mode.
+                                                                                                                       */
+>>>>>>> master
 
         bootcards.init({
             offCanvasBackdrop: true,
