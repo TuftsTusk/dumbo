@@ -31,11 +31,8 @@
     <!-- the js files from index html" -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-
-
-    <script src="sample_data.js"></script>
+    <script src="controllers.js"></script>
 </head>
-
 
 <body ng-controller="SellerListCtrl">
     <!-- bootstrap modal -->
@@ -60,7 +57,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
 
     <!-- bootcards -->
     <!-- fixed top navbar -->
@@ -308,18 +304,15 @@
 
             <!--list details column-->
             <div class="col-sm-7 bootcards-cards hidden-xs">
-
-
-                <div class="panel panel-default bootcards-richtext">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{listing.description}}</h3>
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="fluid-container">
-                            <ul style="list-style-type: none">
-                                <li ng-repeat="listing in listings">
-                                    <div class="thumbnail">
+                <ul style="list-style-type:none; padding:0">
+                    <li ng-repeat="listing in listings">
+                        <div class="panel panel-default bootcards-richtext">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{listing.description}}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul style="list-style-type: none">
+                                    <li ng-repeat="listing in listings">
                                         <img ng-src={{listing.image}} class="square">
                                         <div class="caption">
                                             <h3>{{listing.name}}</h3>
@@ -330,16 +323,17 @@
                                             <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Contact</a>
                                             </p>
                                         </div>
-                                    </div>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                </li>
-                            </ul>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
 
 
-                <!--end rich text card-->
+
+                <!--end panel-->
 
                 <div class="panel panel-default bootcards-richtext">
                     <div class="panel-heading">
@@ -481,28 +475,6 @@
     <!-- THIS IS THE WHOLE SECOND ROW CONTAINER -->
     <!--container-->
 
-    <!-- bootstrap modal -->
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p>One fine body&hellip;</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
     <!-- fixed tabbed footer -->
     <!-- FOOTER FOR SITE MAP -->
     <div class="navbar navbar-default navbar-fixed-bottom">
@@ -544,31 +516,17 @@
 
     <script type="text/javascript">
         /*
-<<<<<<< HEAD
-                                                                                                                                           * Initialize Bootcards.
-                                                                                                                                           * 
-                                                                                                                                           * Parameters:
-                                                                                                                                           * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
-                                                                                                                                           * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
-                                                                                                                                           * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
-                                                                                                                                           * - disableRubberBanding (boolean): disable the iOS rubber banding effect
-                                                                                                                                           * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
-                                                                                                                                                                jQuery selector to target links for which a fix should be added to not
-                                                                                                                                                                allow those links to break out of fullscreen mode.
-                                                                                                                                           */
-=======
-                                                                                                                       * Initialize Bootcards.
-                                                                                                                       * 
-                                                                                                                       * Parameters:
-                                                                                                                       * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
-                                                                                                                       * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
-                                                                                                                       * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
-                                                                                                                       * - disableRubberBanding (boolean): disable the iOS rubber banding effect
-                                                                                                                       * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
-                                                                                                                                            jQuery selector to target links for which a fix should be added to not
-                                                                                                                                            allow those links to break out of fullscreen mode.
-                                                                                                                       */
->>>>>>> master
+                                                                                                                                       * Initialize Bootcards.
+                                                                                                                                       * 
+                                                                                                                                       * Parameters:
+                                                                                                                                       * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
+                                                                                                                                       * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
+                                                                                                                                       * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
+                                                                                                                                       * - disableRubberBanding (boolean): disable the iOS rubber banding effect
+                                                                                                                                       * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
+                                                                                                                                                            jQuery selector to target links for which a fix should be added to not
+                                                                                                                                                            allow those links to break out of fullscreen mode.
+                                                                                                                                       */
 
         bootcards.init({
             offCanvasBackdrop: true,
