@@ -1,96 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Agora</title>
-    <!-- favicon -->
-    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon"> 
-	<link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
-  
-    <meta charset="utf8" />
-    <link rel=stylesheet href="style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google" value="notranslate">
+    <!-- changed title and favicon -->
+    <title>tusk marketplace</title>
+    <!-- favicon -->
+    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon">
+    <link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
+    <!--end meta data stuff-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- jquery -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Bootcards CSS files for desktop, iOS and Android -->
+    <!-- You'll only need to load one of these (depending on the device you're using) in production -->
+    <!---<link href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.1/css/bootcards-ios.min.css" rel="stylesheet">-->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.1/css/bootcards-desktop.min.css" rel="stylesheet">
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.1/css/bootcards-android.min.css" rel="stylesheet">-->
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="bootcards.js"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
+    <!-- the js files from index html" -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="controllers.js"></script>
-    <script src="script.js"></script>
+
 
 </head>
+
 <body>
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- bootcards -->
+    <!-- fixed top navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="fluid-container" style="padding-left:50px">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" id="logo" href="#">
-                </a>
             </div>
+            <button type="button" class="btn btn-default btn-back navbar-left pull-left hidden" onclick="history.back()">
+                <i class="fa fa-lg fa-chevron-left"></i>
+                <span>Back</span>
+            </button>
+            <!-- menu button to show/ hide the off canvas menu -->
+            <button type="button" class="btn btn-default btn-menu navbar-left pull-left" data-toggle="offcanvas">
+                <i class="fa fa-lg fa-bars"></i><span>Menu</span>
+            </button>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <ul class="nav navbar-nav" id="content-border">
-                    <li><a href="#">Buy</a>
-                    </li>
-                    <li><a href="createpost.html">Sell</a>
-                    </li>
-                    <li><a href="#">Sublets</a>
+            <!--left aligned brand *changed to logo *-->
+            <a href="/dumbo/index.html"><img src="Tusk.png" style="height: 40px; margin-top:5px; margin-right:20px" class="navbar-left" />
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="navbar-right" style="margin-right:50px">
+                            Log In
+                        </a>
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
 
-    <div class="container" id="homebody">
-        <div class="spacer">
-        </div>
-        <div>
-            <h1>Sublets</h1>
-            <div class="form-inline">
-                <div class="form-group col-xs-12 col-md-3">
-                    <label class="sr-only" for="exampleTimeframe">Semester</label>
-                    <div class="input-group fixed_field col-xs-12 col-md-3">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default slide_left" type="button">
-                                <span class="glyphicon glyphicon-menu-left"><span>
-                            </button>
-                        </div>
-                        <div class="fixed_box">
-                            <ul class="slide_element">
-                                <li>Spring 2015</li><li>Summer 2015</li><li>Fall 2015</li>
-                            </ul>
-                        </div>
-                        <div class="input-group-btn">
-                            <button class="btn btn-default slide_right" type="button">
-                                <span class="glyphicon glyphicon-menu-right"><span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
+
+            <!-- end logo changes-->
+
+
+            <!-- bootcard nav-bar -->
+
+            <!--navbar menu options: shown on desktop only -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/dumbo/createpost.html">
+                            <i class="fa fa-pencil"></i> Create New Post
+                        </a>
+                    </li>
+                    <li href="/dumbo/index.html">
+                        <a href="#">
+                            <i class="fa fa-tags"></i> View Listings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-info"></i> About
+                        </a>
+                    </li>
+
+                </ul>
             </div>
-
-
+        </div>
+        <!-- container -->
+    </div>
+    <!-- nav-bar -->
+    <div class="fluid-container" style="padding:50px">
+        <div class="jumbotron" id="homebody" style="text-align:center">
+            <div style="margin-bottom:75px">
+                <h1>Welcome</h1>
+                <h4><a href="#">Join the Tusk Community today!</a></h4>
+            </div>
+            <div class="col-md-6">
+                <h4><a href="/dumbo/index.html">View Current Listings</a></h4>
+            </div>
+            <div class="col-md-6">
+                <h4><a href="/dumbo/createpost.html">Post New Listing</a></h4>
+            </div>
 
         </div>
     </div>
 
 
-    
+
 </body>
+
 </html>
