@@ -32,31 +32,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="controllers.js"></script>
-</head>
+
+
+    </head>
 
 <body ng-controller="SellerListCtrl">
-    <!-- bootstrap modal -->
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p>One fine body&hellip;</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+
 
     <!-- bootcards -->
     <!-- fixed top navbar -->
@@ -282,7 +263,8 @@
                                     <p>{{listing.description}}</p>
                                     <p>{{listing.user}}</p>
                                     <p>{{listing.created_at}}</p>
-                                    <p><a href="#" class="btn btn-primary" role="button">View</a> <a href="/dumbo/sublet.html" class="btn btn-default" role="button">Contact</a>
+                                    <p><a href="/dumbo/sublet.html" class="btn btn-primary" role="button">View</a>
+                                        <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">Contact</button><a href="#" class="btn btn-default" role="button">Contact</a>
                                     </p>
                                 </div>
 
@@ -413,7 +395,25 @@
 
         </div>
         <!--row-->
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- THIS IS THE WHOLE SECOND ROW CONTAINER -->
@@ -460,17 +460,17 @@
 
     <script type="text/javascript">
         /*
-                                                                                                                                                                                               * Initialize Bootcards.
-                                                                                                                                                                                               * 
-                                                                                                                                                                                               * Parameters:
-                                                                                                                                                                                               * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
-                                                                                                                                                                                               * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
-                                                                                                                                                                                               * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
-                                                                                                                                                                                               * - disableRubberBanding (boolean): disable the iOS rubber banding effect
-                                                                                                                                                                                               * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
-                                                                                                                                                                                                                    jQuery selector to target links for which a fix should be added to not
-                                                                                                                                                                                                                    allow those links to break out of fullscreen mode.
-                                                                                                                                                                                               */
+                                                                                                                                                                                                               * Initialize Bootcards.
+                                                                                                                                                                                                               * 
+                                                                                                                                                                                                               * Parameters:
+                                                                                                                                                                                                               * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
+                                                                                                                                                                                                               * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
+                                                                                                                                                                                                               * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
+                                                                                                                                                                                                               * - disableRubberBanding (boolean): disable the iOS rubber banding effect
+                                                                                                                                                                                                               * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
+                                                                                                                                                                                                                                    jQuery selector to target links for which a fix should be added to not
+                                                                                                                                                                                                                                    allow those links to break out of fullscreen mode.
+                                                                                                                                                                                                               */
 
         bootcards.init({
             offCanvasBackdrop: true,
