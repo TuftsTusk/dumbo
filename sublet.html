@@ -116,10 +116,39 @@
         <!-- container -->
     </div>
     <!-- nav-bar -->
-    
-    
+
+
     <!-- column with map -->
-    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <ul style="list-style-type:none; padding:0">
+            <li ng-repeat="listing in listings">
+                <div class="panel panel-default bootcards-richtext">
+
+
+                    <div class="panel-body">
+
+                        <img ng-src={{listing.image}} class="square">
+                        <div class="caption">
+                            <h3>{{listing.name}}</h3>
+                            <p>${{listing.price}}</p>
+                            <p>{{listing.description}}</p>
+                            <p>{{listing.user}}</p>
+                            <p>{{listing.created_at}}</p>
+                            <p><a href="/dumbo/sublet.html" class="btn btn-primary" role="button">View</a>
+                                <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">Contact</button><a href="#" class="btn btn-default" role="button">Contact</a>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="panel-footer"></div>
+
+
+                </div>
+            </li>
+        </ul>
+
+    </div>
     <div id="map" class="col-md-6"></div>
     <script type="text/javascript">
         var map;
@@ -138,7 +167,7 @@
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbE61N0YNMjsRVh6SpJjlRVcnVGfE3YM4&callback=initMap">
     </script>
-    
+
     <!-- end of map -->
 
 </body>
