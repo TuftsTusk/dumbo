@@ -3,26 +3,31 @@
 <html ng-app="dumboApp">
 
 <head>
-    <title>Tusk Marketplace</title>
-    <!-- favicon -->
-    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon"> 
-	<link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
-  
-    <meta charset="utf8" />
-    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google" value="notranslate">
+    <!-- changed title and favicon -->
+    <title>TUSK BITCH</title>
+    <!-- favicon -->
+    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon">
+    <link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
+    <!--end meta data stuff-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- jquery -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Bootcards CSS files for desktop, iOS and Android -->
+    <!-- You'll only need to load one of these (depending on the device you're using) in production -->
+    <!---<link href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.1/css/bootcards-ios.min.css" rel="stylesheet">-->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.1/css/bootcards-desktop.min.css" rel="stylesheet">
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.1/css/bootcards-android.min.css" rel="stylesheet">-->
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="bootcards.js"></script>
 
-    <!-- general css -->
-    <link rel=stylesheet href="style.css">
-
-    <!-- Latest compiled and minified JavaScript -->
+    <!-- the js files from index html" -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="controllers.js"></script>
@@ -30,7 +35,7 @@
 
 <body ng-controller="SellerListCtrl">
 
-      <!-- bootcards -->
+    <!-- bootcards -->
     <!-- fixed top navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="fluid-container" style="padding-left:50px">
@@ -50,10 +55,11 @@
             <button type="button" class="btn btn-default btn-menu navbar-left pull-left" data-toggle="offcanvas">
                 <i class="fa fa-lg fa-bars"></i><span>Menu</span>
             </button>
-            
+
 
             <!--left aligned brand *changed to logo *-->
-            <a href="/dumbo/index.html" ><img src="Tusk.png" style="height: 40px; margin-top:5px; margin-right:20px" class="navbar-left" /></a>
+            <a href="/dumbo/index.html"><img src="Tusk.png" style="height: 40px; margin-top:5px; margin-right:20px" class="navbar-left" />
+            </a>
             <a href="#" class="navbar-right" style="margin-top:10px">Log In</a>
 
             <!-- end logo changes-->
