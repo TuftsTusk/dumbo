@@ -78,11 +78,22 @@
             <button type="button" class="btn btn-default btn-menu navbar-left pull-left" data-toggle="offcanvas">
                 <i class="fa fa-lg fa-bars"></i><span>Menu</span>
             </button>
-            
+
 
             <!--left aligned brand *changed to logo *-->
-            <a href="/dumbo/index.html" ><img src="Tusk.png" style="height: 40px; margin-top:5px; margin-right:20px" class="navbar-left" /></a>
-            <a href="#" class="navbar-right" style="margin-top:10px">Log In</a>
+            <a href="/dumbo/index.html"><img src="Tusk.png" style="height: 40px; margin-top:5px; margin-right:20px" class="navbar-left" />
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="navbar-right" style="margin-right:50px">
+                            Log In
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
 
             <!-- end logo changes-->
 
@@ -97,16 +108,17 @@
                             <i class="fa fa-pencil"></i> Create New Post
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="#">
                             <i class="fa fa-tags"></i> View Listings
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="#">
                             <i class="fa fa-info"></i> About
                         </a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -451,17 +463,17 @@
 
     <script type="text/javascript">
         /*
-                                                                                                                                                       * Initialize Bootcards.
-                                                                                                                                                       * 
-                                                                                                                                                       * Parameters:
-                                                                                                                                                       * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
-                                                                                                                                                       * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
-                                                                                                                                                       * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
-                                                                                                                                                       * - disableRubberBanding (boolean): disable the iOS rubber banding effect
-                                                                                                                                                       * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
-                                                                                                                                                                            jQuery selector to target links for which a fix should be added to not
-                                                                                                                                                                            allow those links to break out of fullscreen mode.
-                                                                                                                                                       */
+                                                                                                                                                                                       * Initialize Bootcards.
+                                                                                                                                                                                       * 
+                                                                                                                                                                                       * Parameters:
+                                                                                                                                                                                       * - offCanvasBackdrop (boolean): show a backdrop when the offcanvas is shown
+                                                                                                                                                                                       * - offCanvasHideOnMainClick (boolean): hide the offcanvas menu on clicking outside the off canvas
+                                                                                                                                                                                       * - enableTabletPortraitMode (boolean): enable single pane mode for tablets in portraitmode
+                                                                                                                                                                                       * - disableRubberBanding (boolean): disable the iOS rubber banding effect
+                                                                                                                                                                                       * - disableBreakoutSelector (string) : for iOS apps that are added to the home screen:
+                                                                                                                                                                                                            jQuery selector to target links for which a fix should be added to not
+                                                                                                                                                                                                            allow those links to break out of fullscreen mode.
+                                                                                                                                                                                       */
 
         bootcards.init({
             offCanvasBackdrop: true,
