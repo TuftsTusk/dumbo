@@ -2,26 +2,7 @@
 <html lang="en" ng-app="dumboApp">
 
 <head>
-    <title>Tusk Marketplace</title>
-    <meta charset="utf8" />
-    <link rel=stylesheet href="style.css">
-
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="tusk%20favicon-01.png" type="image/x-icon">
-    <link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
-
-
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google" value="notranslate">
@@ -32,7 +13,7 @@
     <link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
     <!--end meta data stuff-->
 
-
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- jquery -->
 
@@ -44,7 +25,12 @@
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="bootcards.js"></script>
+
+    <!-- the js files from index html" -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
     <script src="controllers.js"></script>
+
 
 </head>
 
@@ -120,8 +106,17 @@
     <!-- nav-bar -->
 
 
+
     <!-- column with map -->
     <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body clearfix">
+                <button type="button" class="btn btn-primary"><i class="fa fa-arrow-left"></i>Return</button>
+            </div>
+        </div>
+
+
+
         <ul style="list-style-type:none; padding:0">
             <li ng-repeat="listing in listings">
                 <div class="panel panel-default bootcards-richtext">
