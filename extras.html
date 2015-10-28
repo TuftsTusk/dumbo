@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="tusk%20favicon-01.png" type="image/x-icon">
     <!--end meta data stuff-->
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- jquery -->
@@ -34,11 +34,25 @@
 
 </head>
 <body>
-
-    <div class="fixed_box">
-        <ul class="slide_element">
-            <li>Spring 2015</li><li>Summer 2015</li><li>Fall 2015</li><li>Spring 2016</li>
-        </ul>
-    </div>
+	<div class="container" id="homebody">
+	    <div class="spacer"></div>
+	    <div class="input-group fixed_field col-xs-12 col-md-3">
+	        <div class="input-group-btn">
+	            <button class="btn btn-default slide_left" type="button">
+	                <span class="glyphicon glyphicon-menu-left"><span>
+	            </button>
+	        </div>
+	        <div class="fixed_box">
+	            <ul class="slide_element">
+	                <li>Spring 2015</li><li>Summer 2015</li><li>Fall 2015</li>
+	            </ul>
+	        </div>
+	        <div class="input-group-btn">
+	            <button class="btn btn-default slide_right" type="button">
+	                <span class="glyphicon glyphicon-menu-right"><span>
+	            </button>
+	        </div>
+	    </div>
+	</div>
 </body>
 </html>
