@@ -3,7 +3,7 @@ var dumboApp = angular.module('dumboApp', []);
 
 
 dumboApp.controller('SellerListCtrl', function ($scope, $http) {
-    var server = "http://tuftstusk.herokuapp.com:3000"
+    var server = "http://tuftstusk.herokuapp.com"
     $scope.$on('$viewContentLoaded', function () {
         $scope.getListings();
     });
