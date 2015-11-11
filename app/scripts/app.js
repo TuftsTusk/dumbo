@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('dumboApp', [
+    .module('dumboApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -19,24 +19,29 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/create_post', {
-        templateUrl: 'views/create_post.html',
-        controller: 'CreatePostCtrl',
-        controllerAs: 'createPost'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl',
+                controllerAs: 'main'
+            })
+            .when('/create_post', {
+                templateUrl: 'views/create_post.html',
+                controller: 'CreatePostCtrl',
+                controllerAs: 'createPost'
+            })
+            .when('/about', {
+                templateUrl: 'views/about.html',
+                controller: 'AboutCtrl',
+                controllerAs: 'about'
+            })
+            .when('/listings', {
+                templateUrl: 'views/listings.html',
+                controller: 'ListingsCtrl',
+                controllerAs: 'listings'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    });
