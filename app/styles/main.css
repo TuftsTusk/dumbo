@@ -193,3 +193,8 @@ body {
 
   margin-left: 0px;
 }
+
+#map{
+    height: 400px;
+    width: 400px;
+}
