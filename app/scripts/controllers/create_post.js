@@ -15,7 +15,7 @@ angular.module('dumboApp')
     });
 
     $scope.getListings = function () {
-        $http.get(server + '/getListings')
+        $http.get(server + '/listing')
             .success(function (response) {
                 $scope.listings = response
             });
@@ -69,7 +69,7 @@ angular.module('dumboApp')
     post_form();
 
     $scope.submit = function () {
-        $http.post(server + '/addListing', {
+        $http.post(server + '/listing', {
                 name: $scope.title,
                 description: $scope.description,
                 price: $scope.price,
