@@ -81,3 +81,10 @@ body {
     border-bottom: 0;
   }
 }
+
+.navbar-a-btn {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: white !important;
+  padding: 6px 12px !important;
+}
