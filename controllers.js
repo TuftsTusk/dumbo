@@ -13,14 +13,6 @@ dumboApp.controller('SellerListCtrl', function ($scope, $http) {
             .success(function (response) {
                 $scope.listings = response
             });
-        //        $.ajax({
-        //                type: "GET",
-        //                url: '130.64.184.174:3000/getListings'
-        //            })
-        //            .done(function (data, status) {
-        //                $scope.listings = data;
-        //            })
-
     };
     $scope.getListings();
 

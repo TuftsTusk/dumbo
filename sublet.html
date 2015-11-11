@@ -87,7 +87,7 @@
                             <i class="fa fa-pencil"></i> Create New Post
                         </a>
                     </li>
-                    <li class="active" >
+                    <li class="active">
                         <a href="/dumbo/index.html">
                             <i class="fa fa-tags"></i> View Listings
                         </a>
@@ -146,22 +146,23 @@
         </ul>
 
     </div>
-    <div id="map" class="col-md-6"></div>
-    <script type="text/javascript">
-        var map;
+    <div id="map" class="col-md-6">
+        <script type="text/javascript">
+            var map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
 
-                <!-- Tufts coordinates @42.4055605,-71.1223567,15z -->
-                center: {
-                    lat: 42.4055605,
-                    lng: -71.1223567
-                },
-                zoom: 15
-            });
-        }
-    </script>
+                    <!-- Tufts coordinates @42.4055605,-71.1223567,15z -->
+                    center: {
+                        lat: 42.4055605,
+                        lng: -71.1223567
+                    },
+                    zoom: 15
+                });
+            }
+        </script>
+    </div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbE61N0YNMjsRVh6SpJjlRVcnVGfE3YM4&callback=initMap">
     </script>
 
