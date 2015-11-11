@@ -26,6 +26,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/create_post', {
+        templateUrl: 'views/create_post.html',
+        controller: 'CreatePostCtrl',
+        controllerAs: 'createPost'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',

@@ -1,0 +1,39 @@
+<div class="fluid-container" id="content-border">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+
+        <form ng-submit="submit()" ng-controller="CreatePostCtrl">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Title of Post</label>
+                <input type="input" ng-model="title" class="form-control" id="post_title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <input type="input" ng-model="price" class="form-control" id="price" placeholder="Price">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Description</label>
+                <input type="input" ng-model="description" class="form-control" id="description" placeholder="Description">
+            </div>
+            <div class="form-group">
+                <label for="Price">Seller Name</label>
+                <input type="input" ng-model="user" class="form-control" id="user" placeholder="John Smith">
+            </div>
+            <div class="form-group">
+                <label for="Price">Image Link</label>
+                <input type="input" ng-model="photo_link" class="form-control" id="user" placeholder="http://">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
