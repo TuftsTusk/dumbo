@@ -1,3 +1,26 @@
+/* fonts for local use */
+@font-face {
+	font-family: Proxima Nova Regular;
+	src: url(ProximaNovaSoft/ProximaNovaSoft-Regular.otf);
+}
+
+@font-face {
+	font-family: Proxima Nova Medium;
+	src: url(ProximaNovaSoft/ProximaNovaSoft-Medium.otf);
+}
+
+@font-face {
+	font-family: Proxima Nova Semibold;
+	src: url(ProximaNovaSoft/ProximaNovaSoft-Semibold.otf);
+}
+
+@font-face {
+	font-family: Proxima Nova Bold;
+	src: url(ProximaNovaSoft/ProximaNovaSoft-Bold.otf);
+}
+
+
+
 #content-border {
     margin-left: 100px;
 }
@@ -95,7 +118,7 @@ ul {
 
 /***************** view_listings.html ******************/
 
-/********************** home.html **********************/
+/********************** extras.html **********************/
 
 .spacer {
 	width: 100%;
@@ -110,6 +133,81 @@ ul {
 	text-align: center;
 }
 
+/*.navbar.navbar-default .navbar-brand {
+	padding-right: 30px;
+}*/
+
+.navbar.navbar-default {
+	font-family: Proxima Nova Semibold, sans-serif;
+	font-size: 16px;
+	border-radius: 0px;
+	background-color: white;
+}
+
+.navbar.navbar-default .navbar-nav > li > a {
+	-webkit-transition: 0.1s;
+ 	-moz-transition: 0.1s;
+ 	-ms-transition: 0.1s;
+ 	-o-transition: 0.1s;
+ 	transition: 0.1s;
+	color: grey;
+}
+
+.navbar.navbar-default .navbar-nav > li > a:hover {
+	-webkit-transition: 0.1s;
+ 	-moz-transition: 0.1s;
+ 	-ms-transition: 0.1s;
+ 	-o-transition: 0.1s;
+ 	transition: 0.1s;
+	color: black;
+}
+
+
+.navbar.navbar-default .navbar-nav > .active > a {
+	background-color: transparent;
+	color: black;
+
+}
+
+.navbar.navbar-default .navbar-form {
+	margin-left: 60px;
+}
+
+.navbar.navbar-default .navbar-form .input-field {
+	border: none;
+	background-color: transparent;
+	padding: 7px 12px 6px 2px;
+}
+
+.navbar.navbar-default .navbar-form .input-field:focus {
+	outline: none;
+}
+
+.navbar.navbar-default .btn-primary {
+	font-size: 16px;
+	-webkit-transition: 0.1s;
+ 	-moz-transition: 0.1s;
+ 	-ms-transition: 0.1s;
+ 	-o-transition: 0.1s;
+ 	transition: 0.1s;
+	background-color: transparent;
+	border-radius: 0px;
+	font-weight: bold;
+	color: blue;
+	border: 3px blue solid;
+	padding: 3px 12px 2px 12px;
+}
+
+.navbar.navbar-default .btn-primary:hover {
+	-webkit-transition: 0.1s;
+ 	-moz-transition: 0.1s;
+ 	-ms-transition: 0.1s;
+ 	-o-transition: 0.1s;
+ 	transition: 0.1s;
+	background-color: blue;
+	color: white;
+	/*border-color: white;*/
+}
 
 .fixed_box {
 	display: inline-block;
@@ -146,4 +244,4 @@ ul {
  	margin-left: 0px;
 }
 
-/********************** home.html **********************/
+/********************** extras.html **********************/
