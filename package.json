@@ -38,8 +38,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test",
-    "postinstall": "gulp production"
+    "test": "grunt test"
   },
   "dependencies": {
     "browser-sync": "^2.10.0",
