@@ -1,9 +1,5 @@
 var gulp = require('gulp'),
-  connect = require('gulp-connect'),
-  history = require('connect-history-api-fallback'),
-  middleware = history({
-    index: '/app/index.html'
-  });
+  connect = require('gulp-connect');
 
 gulp.task('express', function(){
   var express = require('express');
@@ -18,6 +14,10 @@ gulp.task('serve', ['express'], function() {
     livereload: true,
     open:true
   });
+});
+
+gulp.tesk('production', ['serve], function(){
+
 });
 
 gulp.task('default', ['webserver']);
