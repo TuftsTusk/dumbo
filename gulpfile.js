@@ -16,7 +16,7 @@ gulp.task('serve', ['express'], function() {
   });
 });
 
-gulp.tesk('production', ['serve], function(){
+gulp.task('production', ['serve'], function(){
 
 });
 
