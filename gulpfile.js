@@ -6,7 +6,7 @@ gulp.task('express', function(){
   var app = express();
   app.use(require('connect-livereload')({port: 35729}));
   app.use(express.static(__dirname));
-  app.listen(9000);
+  app.listen(process.env.PORT || 9000);
 });
 gulp.task('serve', ['express'], function() {
   connect
