@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
-  connect = require('gulp-connect');
+    sass = require('gulp-ruby-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
+    connect = require('gulp-connect');
 
 gulp.task('express', function(){
   var express = require('express');
@@ -14,6 +16,18 @@ gulp.task('serve', ['express'], function() {
     livereload: true,
     open:true
   });
+});
+
+gulp.task('sass', function () {
+    return sass('process/sass/style.scss', {
+      sourcemap: true,
+      style: 'expanded'
+    })
+    .on('error', function (err) {
+        console.error('Error!', err.message);
+    })
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('builds/dumbo/styles'));
 });
 
 gulp.task('production', ['express'], function(){

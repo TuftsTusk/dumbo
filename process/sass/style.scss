@@ -1,12 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800|Lato:400,900italic,900|Roboto+Slab:400,700);
+
+$offwhite:	#EEE8D6;
+$darkblue:	#022933;
+$red:		#D14348;
+
+$color-main: $darkblue;
+$color-backgrounds: $offwhite;
+$color-headlines: $red;
+
+$font-main: "Open Sans", Helvetica, sans-serif;
+$font-highlight: "Roboto Slab", Helvetica, sans-serif;
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
-}
-
-body {
-  padding: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -85,10 +95,21 @@ body {
 
 
 .navbar.navbar-default {
-  font-family: Proxima Nova Semibold, sans-serif;
   font-size: 16px;
   border-radius: 0px;
   background-color: white;
+}
+
+.navbar.navbar-default.navbar-brand {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-right: 1px #e7e7e7 solid;
+  margin-right: 5px;
+}
+
+#signIn {
+  border-left: 1px #e7e7e7 solid;
+  padding-left: 5px;
 }
 
 .navbar.navbar-default .navbar-nav > li > a {
@@ -140,6 +161,7 @@ body {
   margin-top: 8px;
   /*margin-bottom: 8px;*/
   padding: 6px 12px !important;
+  margin-right: 20px;
   background-color: transparent;
   border-radius: 0px;
   font-weight: bold;
