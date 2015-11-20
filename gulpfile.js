@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
-    sourcemaps = require('gulp-sourcemaps'),
+    sass = require('gulp-sass'),
     connect = require('gulp-connect');
+
 
 gulp.task('express', function(){
   var express = require('express');
@@ -10,28 +10,55 @@ gulp.task('express', function(){
   app.use(express.static(__dirname));
   app.listen(process.env.PORT || 9000);
 });
-gulp.task('serve', ['express'], function() {
-  connect
-    .server({
-    livereload: true,
-    open:true
-  });
+
+gulp.task('html', function () {
+  gulp.src('builds/dumbo/*.html')
+    .pipe(connect.reload());
+});
+
+gulp.task('views', function () {
+  gulp.src('builds/dumbo/views/*')
+    .pipe(connect.reload());
+});
+
+gulp.task('js', function() {
+  gulp.src('builds/dumbo/scripts/**/*')
+    .pipe(connect.reload());
+    // .pipe(jshint('./.jshintrc'))
+    // .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('sass', function () {
-    return sass('process/sass/style.scss', {
-      sourcemap: true,
-      style: 'expanded'
-    })
-    .on('error', function (err) {
-        console.error('Error!', err.message);
-    })
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('builds/dumbo/styles'));
+    gulp.src('process/sass/style.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest('builds/dumbo/styles'))
+      .pipe(connect.reload());
+
 });
+
+gulp.task('watch', function() {
+  gulp.watch('builds/dumbo/*.html', ['html']);
+  gulp.watch('builds/dumbo/views/*.html', ['views']);
+  gulp.watch('builds/dumbo/scripts/**/*', ['js']);
+  gulp.watch(['process/sass/**/*'], ['sass']);
+});
+
+gulp.task('serve', ['express'], function() {
+  connect.server({
+    livereload: true
+  });
+});
+
+// gulp.task('webserver', function() {
+//     gulp.src('')
+//         .pipe(webserver({
+//             livereload: true,
+//             open: true
+//         }));
+// });
 
 gulp.task('production', ['express'], function(){
 
 });
 
-gulp.task('default', ['webserver']);
+gulp.task('default', ['sass', 'watch', 'serve']);
