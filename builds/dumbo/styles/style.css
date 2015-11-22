@@ -1,0 +1,173 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800|Lato:400,900italic,900|Roboto+Slab:400,700);
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px; }
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px; }
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5; }
+
+.container-narrow > hr {
+  margin: 30px 0; }
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5; }
+
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px; }
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0; }
+
+.marketing p + h4 {
+  margin-top: 28px; }
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px; }
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0; }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px; }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0; } }
+
+.navbar.navbar-default {
+  font-size: 16px;
+  border-radius: 0px;
+  background-color: white; }
+
+.navbar.navbar-default .navbar-brand {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-right: 1px #e7e7e7 solid;
+  margin-right: 5px; }
+
+#signIn {
+  border-left: 1px #e7e7e7 solid;
+  padding-left: 5px; }
+
+.navbar.navbar-default .navbar-nav > li > a {
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
+  transition: 0.1s;
+  color: grey; }
+
+.navbar.navbar-default .navbar-nav > li > a:hover {
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
+  transition: 0.1s;
+  color: black; }
+
+.navbar.navbar-default .navbar-nav > .active > a {
+  background-color: transparent;
+  color: black; }
+
+.navbar.navbar-default .navbar-form {
+  margin-left: 60px; }
+
+.navbar.navbar-default .navbar-form .input-field {
+  border: none;
+  background-color: transparent;
+  padding: 7px 12px 6px 2px; }
+
+.navbar.navbar-default .navbar-form .input-field:focus {
+  outline: none; }
+
+.navbar.navbar-default .btn-primary {
+  font-size: 16px;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
+  transition: 0.1s;
+  margin-top: 8px;
+  /*margin-bottom: 8px;*/
+  padding: 6px 12px !important;
+  margin-right: 20px;
+  background-color: transparent;
+  border-radius: 0px;
+  font-weight: bold;
+  color: blue !important;
+  border: 3px blue solid;
+  padding: 3px 12px 2px 12px !important; }
+
+.navbar.navbar-default .btn-primary:hover {
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
+  transition: 0.1s;
+  background-color: blue;
+  color: white !important;
+  /*border-color: white;*/ }
+
+.fixed_box {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 220px; }
+
+.fixed_box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.fixed_box li {
+  display: inline-block;
+  width: 200px; }
+
+.fixed_box .slide_element {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  margin-left: 0px; }
+
+#map {
+  height: 500px;
+  width: 600px; }
