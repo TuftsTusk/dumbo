@@ -66,6 +66,9 @@
   .jumbotron {
     border-bottom: 0; } }
 
+.btn:focus {
+  outline: none !important; }
+
 .navbar.navbar-default {
   font-size: 16px;
   border-radius: 0px;

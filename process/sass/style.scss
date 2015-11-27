@@ -92,7 +92,9 @@ $font-highlight: "Roboto Slab", Helvetica, sans-serif;
   }
 }
 
-
+.btn:focus {
+  outline: none !important;
+}
 
 .navbar.navbar-default {
   font-size: 16px;

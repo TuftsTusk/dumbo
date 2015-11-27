@@ -1,11 +1,28 @@
+<div ng-controller="ListingsCtrl">
 <div class="col-md-6">
-
-    left side
-
+    <div id="filters">
+        <div class="input-group fixed_field col-xs-12 col-md-3">
+            <div class="input-group-btn">
+                <button class="btn btn-default slide_left" type="button">
+                    <span class="glyphicon glyphicon-menu-left"><span>
+                </button>
+            </div>
+            <div class="fixed_box">
+                <ul class="slide_element">
+                    <li ng-repeat="sem in semesters">{{sem}}</li>
+                </ul>
+            </div>
+            <div class="input-group-btn">
+                <button class="btn btn-default slide_right" type="button">
+                    <span class="glyphicon glyphicon-menu-right"><span>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="col-md-6">
 
-    <div id="map"></div>
+    <!-- <div id="map"></div> 
     <script>
         var map;
 
@@ -20,5 +37,7 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbE61N0YNMjsRVh6SpJjlRVcnVGfE3YM4&callback=initMap" async defer></script>
+    -->
 
+</div>
 </div>
