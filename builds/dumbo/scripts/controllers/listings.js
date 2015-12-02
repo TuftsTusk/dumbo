@@ -17,8 +17,13 @@ angular.module('dumboApp')
   		if (direction == 'right') return index < $scope.semesters.length - 1;
   	}
 
-	$(document).ready(function(semIndex) {
-		$(".fixed_field .slide_left").click(function(semIndex) {
+	$(document).ready(function() {
+		var sem = $('.semesters'),
+			semComponents = {};
+		// semComponents['navigation'] = 
+		var btn_left = sem.find('.left');
+		var btn_right = sem.find('.right');
+		btn_left.click(function() {
 			console.log(semIndex);
 			if (can_move('left', semIndex)) {
 				semIndex++;
@@ -29,7 +34,7 @@ angular.module('dumboApp')
 			
 		});
 
-		$(".fixed_field .slide_right").click(function() {
+		btn_right.click(function() {
 			console.log(semIndex);
 			if (can_move('right', semIndex)) {
 				semIndex++;

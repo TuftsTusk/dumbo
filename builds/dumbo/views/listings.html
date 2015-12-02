@@ -1,26 +1,30 @@
 <div ng-controller="ListingsCtrl">
 <div class="col-md-6">
     <div id="filters">
-        <div class="input-group fixed_field col-xs-12 col-md-3">
+        <div class="semesters input-group col-xs-12 col-md-3">
             <div class="input-group-btn">
-                <button class="btn btn-default slide_left" type="button">
-                    <span class="glyphicon glyphicon-menu-left"><span>
+                <button class="btn btn-default left" type="button">
+                    <span class="glyphicon glyphicon-menu-left"></span>
                 </button>
             </div>
-            <div class="semesters">
-                <div class="semesters-wrapper">
-                    <ul class="slide_element">
-                        <li ng-repeat="sem in semesters">{{sem}}</li>
-                    </ul>
-                </div>
+
+            <div class="semWrapper">
+                <ul class="slide_element">
+                    <li class="selected">Spring 2016</li>
+                    <li>Summer 2016</li>
+                    <li>Fall 2016</li>
+                    <li>Spring 2017</li>
+                    <!-- <li ng-repeat="sem in semesters">{{sem}}</li> -->
+                </ul>
             </div>
+
             <div class="input-group-btn">
-                <button class="btn btn-default slide_right" type="button">
-                    <span class="glyphicon glyphicon-menu-right"><span>
+                <button class="btn btn-default right" type="button">
+                    <span class="glyphicon glyphicon-menu-right"></span>
                 </button>
             </div>
-        </div>
-    </div>
+        </div> <!-- .semesters -->
+    </div> <!-- .filters -->
 </div>
 <div class="col-md-6">
 

@@ -1,7 +1,5 @@
 @import 'bourbon/bourbon'; // http://bourbon.io/
-
-@import 'partials/variables'; // colors, fonts etc...
-
+@import 'partials/variables'; // colors, fonts etc
 @import 'partials/mixins'; // custom mixins
 
 .browsehappy {
@@ -175,26 +173,16 @@
   /*border-color: white;*/
 }
 
+/* -------------------------------- 
 
+Main Components 
 
-
-
-/* -------------------------------
-
-Filters
-
-------------------------------- */
+-------------------------------- */
 
 .semesters {
-  @include transition(opacity .2s);
-  height: 34px;
-  width: 220px;
-  .semesters-wrapper {
-    position: relative;
-    width: 100%;
-    //max-width: 
-    margin: 0 auto;
 
+
+  .semWrapper {
     display: inline-block;
     padding: 6px 12px;
     border: 1px solid #ccc;
@@ -203,32 +191,31 @@ Filters
     vertical-align: middle;
     overflow: hidden;
     white-space:nowrap;
-    
+    width: 220px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      display: inline-block;
+      width: 200px;
+    }
+    .slide_element {
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s; 
+
+      margin-left: 0px;
+    }
   }
 }
 
 
-
-.semesters-wrapper ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.semesters-wrapper li {
-
-  display: inline-block;
-  width: 200px;
-}
-
-.semesters-wrapper .slide_element {
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s; 
-
-  margin-left: 0px;
-}
 
 #map{
     height: 500px;
