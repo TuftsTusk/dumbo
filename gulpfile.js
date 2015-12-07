@@ -33,8 +33,14 @@ gulp.task('sass', function () {
       .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('builds/dumbo/styles'))
       .pipe(connect.reload());
-
 });
+
+// gulp.task('partials', function () {
+//     gulp.src('process/partials/*')
+//       .pipe(sass().on('error', sass.logError))
+//       .pipe(gulp.dest('builds/dumbo/styles'))
+//       .pipe(connect.reload());
+// });
 
 gulp.task('watch', function() {
   gulp.watch('builds/dumbo/*.html', ['html']);

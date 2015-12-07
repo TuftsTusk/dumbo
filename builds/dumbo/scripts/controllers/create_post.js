@@ -13,7 +13,7 @@ angular.module('dumboApp')
     $scope.$on('$viewContentLoaded', function () {
         $scope.getListings();
     });
-
+    console.log('CreatePostCtrl');
     $scope.getListings = function () {
         $http.get(server + '/listing')
             .success(function (response) {

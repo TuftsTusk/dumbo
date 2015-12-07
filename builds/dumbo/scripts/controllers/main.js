@@ -8,10 +8,6 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  	.controller('MainCtrl', function ($scope) {
+  		console.log('MainCtrl');
+  	});
