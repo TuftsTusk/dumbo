@@ -8,6 +8,6 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  .controller('MainCtrl', function ($scope) {
-  	
-  });
+  	.controller('MainCtrl', function ($scope) {
+  		console.log('MainCtrl');
+  	});

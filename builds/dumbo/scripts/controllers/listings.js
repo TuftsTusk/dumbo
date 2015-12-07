@@ -11,37 +11,57 @@ angular.module('dumboApp')
   .controller('ListingsCtrl', function ($scope) {
   	$scope.semesters = ["Spring 2015", "Summer 2015", "Fall 2015"];
   	var semIndex = 0;
-  	
-  	var can_move = function(direction, index) {
-  		if (direction == 'left') return index > 0;
-  		if (direction == 'right') return index < $scope.semesters.length - 1;
-  	}
+  	console.log('ListingsCtrl');
+
 
 	$(document).ready(function() {
-		var sem = $('.semesters'),
-			semComponents = {};
-		// semComponents['navigation'] = 
-		var btn_left = sem.find('.left');
-		var btn_right = sem.find('.right');
-		btn_left.click(function() {
-			console.log(semIndex);
-			if (can_move('left', semIndex)) {
-				semIndex++;
-				var width = $(".slide_element > li").width();
-				console.log(width);
-				$(".fixed_field .slide_element").css("margin-left", "+=" + width);
-			}
-			
-		});
+		var filters = {};
+		filters['semester'] = $('.semesters');
 
-		btn_right.click(function() {
-			console.log(semIndex);
-			if (can_move('right', semIndex)) {
-				semIndex++;
-				var width = $(".slide_element > li").width();
-				console.log(width);
-				$(".fixed_field .slide_element").css("margin-left", "-=" + width);
+		initFilters(filters);
+
+		function initFilters(filters) {
+			var sem = filters['semester'],
+				semComponents = {};
+			semComponents['btn_left'] = sem.find('.left');
+			semComponents['btn_right'] = sem.find('.right');
+			semComponents['semWrapper'] = sem.find('.semWrapper');
+			semComponents['slide_element'] = sem.find('.slide_element');
+			//var filterTotWidth = setFilterWidth(semComponents);
+			
+			semComponents['btn_left'].click(function() {
+				updateSlide(semComponents, 'left');
+			});
+
+			semComponents['btn_right'].click(function() {
+				updateSlide(semComponents, 'right');
+			});
+		}
+		
+		
+
+		function updateSlide(semComponents, string) {
+			console.log(string);
+			var semIndex = 0;
+			if (can_move(string, semIndex)) {
+				//semIndex++;
+				var wrapperWidth = semComponents['semWrapper'].width();
+				var operation;
+				if (string =='left') {
+					operation = '+=';
+				} else if (string == 'right') {
+					operation = '-=';
+				}
+
+				semComponents['slide_element'].css('margin-left', operation + (wrapperWidth+10));
 			}
-		});
+		}
+
+
+		function can_move(direction, index) {
+	  		// if (direction == 'left') return index > 0;
+	  		// if (direction == 'right') return index < $scope.semesters.length - 1;
+	  		return true;
+	  	}
 	});
   });
