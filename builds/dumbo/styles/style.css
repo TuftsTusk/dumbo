@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800|Lato:400,900italic,900|Roboto+Slab:400,700);
+body {
+  font-family: "Open Sans", Helvetica, sans-serif; }
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -173,6 +176,43 @@ Main Components
     transition: 0.3s;
     margin-left: 0px; }
 
+.wrapper {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
 #map {
   height: 500px;
   width: 600px; }
+
+/********************************************/
+#welcome {
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  background-color: green; }
+  #welcome .welcomeModal {
+    display: table; }
+  #welcome .promo {
+    display: table-cell;
+    width: 40%;
+    text-align: center;
+    background-color: #133470;
+    color: white; }
+    #welcome .promo .logo {
+      height: 120px;
+      width: auto; }
+    #welcome .promo h2 {
+      margin-top: 8px;
+      font-weight: 600; }
+    #welcome .promo ul {
+      margin-top: 40px;
+      margin-left: 20px;
+      text-align: left; }
+  #welcome .signup {
+    display: table-cell;
+    width: 60%;
+    background-color: white; }
+    #welcome .signup .input-group {
+      margin-bottom: 15px; }

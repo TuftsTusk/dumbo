@@ -2,6 +2,10 @@
 @import 'partials/variables'; // colors, fonts etc
 @import 'partials/mixins'; // custom mixins
 
+body {
+  font-family: $font-main;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -180,8 +184,6 @@ Main Components
 -------------------------------- */
 
 .semesters {
-
-
   .semWrapper {
     display: inline-block;
     padding: 6px 12px;
@@ -215,9 +217,61 @@ Main Components
   }
 }
 
-
+.wrapper {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 
 #map{
     height: 500px;
     width: 600px;
+}
+
+
+/********************************************/
+
+#welcome {
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    background-color: green;
+
+    .welcomeModal {
+      display: table;
+    }
+    .promo {
+      display: table-cell;
+      width: 40%;
+      text-align: center;
+      background-color: $color-main;
+      color: white;
+
+      .logo {
+        height: 120px;
+        width: auto;
+      }
+      h2 {
+        margin-top: 8px;
+        font-weight: 600;
+      }
+      ul {
+        margin-top: 40px;
+        margin-left: 20px;
+        text-align: left;
+      }
+    }
+
+
+
+    .signup {
+      display: table-cell;
+      width: 60%;
+      background-color: white;
+
+      .input-group {
+        margin-bottom: 15px;
+      }
+    }
 }

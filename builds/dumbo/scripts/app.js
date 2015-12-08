@@ -22,6 +22,9 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
+                redirectTo: '/welcome'
+            })
+            .when('/main' , {
                 templateUrl: 'views/main.html'
             })
             .when('/create_post', {
@@ -33,6 +36,10 @@ angular
             .when('/listings', {
                 templateUrl: 'views/listings.html'
             })
+            .when('/welcome' , {
+                templateUrl: 'views/welcome.html'
+            })
+
             .otherwise({
                 redirectTo: '/'
             });
