@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800|Lato:400,900italic,900|Roboto+Slab:400,700);
 body {
-  font-family: "Open Sans", Helvetica, sans-serif; }
+  font-family: "Lato", Helvetica, sans-serif; }
 
 .browsehappy {
   margin: 0.2em 0;
@@ -191,25 +191,29 @@ Main Components
   width: 100%;
   height: auto;
   position: fixed;
-  background-color: green; }
+  background-color: #133470; }
   #welcome .welcomeModal {
-    display: table; }
-  #welcome .promo {
-    display: table-cell;
-    width: 40%;
+    margin-top: 100px;
     text-align: center;
-    background-color: #133470;
     color: white; }
-    #welcome .promo .logo {
+    #welcome .welcomeModal .logo {
       height: 120px;
       width: auto; }
-    #welcome .promo h2 {
+    #welcome .welcomeModal h2 {
       margin-top: 8px;
-      font-weight: 600; }
-    #welcome .promo ul {
+      font-weight: 900; }
+    #welcome .welcomeModal ul {
       margin-top: 40px;
       margin-left: 20px;
       text-align: left; }
+    #welcome .welcomeModal .input-group input {
+      border-right: 0px; }
+    #welcome .welcomeModal .input-group .input-group-addon {
+      background-color: white; }
+    #welcome .welcomeModal .message {
+      margin-top: 40px;
+      opacity: 0.6;
+      font-size: 1em; }
   #welcome .signup {
     display: table-cell;
     width: 60%;

@@ -236,30 +236,39 @@ Main Components
     width: 100%;
     height: auto;
     position: fixed;
-    background-color: green;
+    background-color: $color-main;
 
     .welcomeModal {
-      display: table;
-    }
-    .promo {
-      display: table-cell;
-      width: 40%;
+      margin-top: 100px;
       text-align: center;
-      background-color: $color-main;
       color: white;
-
       .logo {
         height: 120px;
         width: auto;
       }
       h2 {
         margin-top: 8px;
-        font-weight: 600;
+        font-weight: 900;
       }
       ul {
         margin-top: 40px;
         margin-left: 20px;
         text-align: left;
+      }
+
+      .input-group {
+        input {
+          border-right: 0px;
+        }
+        .input-group-addon {
+          background-color: white;
+        }
+      }
+
+      .message {
+        margin-top: 40px;
+        opacity: 0.6;
+        font-size: 1em;
       }
     }
 
