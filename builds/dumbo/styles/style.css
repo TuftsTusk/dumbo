@@ -206,14 +206,25 @@ Main Components
       margin-top: 40px;
       margin-left: 20px;
       text-align: left; }
-    #welcome .welcomeModal .input-group input {
-      border-right: 0px; }
-    #welcome .welcomeModal .input-group .input-group-addon {
-      background-color: white; }
+    #welcome .welcomeModal .input-group {
+      margin-top: 40px; }
+      #welcome .welcomeModal .input-group input {
+        border-right: 0px; }
+      #welcome .welcomeModal .input-group .input-group-addon {
+        background-color: white; }
+    #welcome .welcomeModal .btn {
+      width: 100%;
+      margin-top: 15px; }
+    #welcome .welcomeModal .checkbox {
+      text-align: left; }
     #welcome .welcomeModal .message {
-      margin-top: 40px;
+      margin-top: 15px;
       opacity: 0.6;
-      font-size: 1em; }
+      font-size: 1.2em; }
+    #welcome .welcomeModal .foot {
+      font-size: 0.7em;
+      margin-top: 140px;
+      opacity: 0.6; }
   #welcome .signup {
     display: table-cell;
     width: 60%;

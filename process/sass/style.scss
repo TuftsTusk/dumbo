@@ -257,6 +257,7 @@ Main Components
       }
 
       .input-group {
+        margin-top: 40px;
         input {
           border-right: 0px;
         }
@@ -265,10 +266,25 @@ Main Components
         }
       }
 
+      .btn {
+        width: 100%;
+        margin-top: 15px;
+      }
+      .checkbox {
+        text-align: left;
+      }
+
       .message {
-        margin-top: 40px;
+        margin-top: 15px;
         opacity: 0.6;
-        font-size: 1em;
+        font-size: 1.2em;
+      }
+
+      .foot {
+        font-size: 0.7em;
+        margin-top: 140px;
+        opacity: 0.6;
+
       }
     }
 
