@@ -189,7 +189,8 @@ Main Components
       width: auto; }
     #welcome .welcomeModal h2 {
       margin-top: 8px;
-      font-weight: 900; }
+      font-weight: 900;
+      margin-bottom: 15px; }
     #welcome .welcomeModal ul {
       margin-top: 40px;
       margin-left: 20px;
@@ -206,7 +207,7 @@ Main Components
     #welcome .welcomeModal .checkbox {
       text-align: left; }
     #welcome .welcomeModal .message {
-      margin-top: 15px;
+      margin-bottom: 0px;
       opacity: 0.6;
       font-size: 1.2em; }
     #welcome .welcomeModal .foot {
