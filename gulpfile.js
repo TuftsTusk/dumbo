@@ -64,7 +64,7 @@ gulp.task('serve', ['express'], function() {
 //         }));
 // });
 
-gulp.task('production', ['express'], function(){
+gulp.task('production', ['serve'], function(){
 
 });
 
