@@ -67,7 +67,7 @@ gulp.task('serve', ['express'], function() {
 gulp.task('production','', function(){
   var express = require('express');
   var app = express();
-  app.use(express.static('builds/dumbo'));
+  app.use(express.static('welcome'));
   app.listen(process.env.PORT || 8080);
 });
 
