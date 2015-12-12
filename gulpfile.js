@@ -64,7 +64,11 @@ gulp.task('serve', ['express'], function() {
 //         }));
 // });
 
-gulp.task('production', ['express'], function(){
+gulp.task('production','', function(){
+  var express = require('express');
+  var app = express();
+  app.use(express.static(__dirname));
+  app.listen(process.env.PORT || 9000);
   connect.server({
     root: 'builds/dumbo'
   });
