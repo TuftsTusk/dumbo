@@ -231,22 +231,41 @@ Main Components
 /********************************************/
 
 #welcome {
-    min-height: 100%;
-    //min-width: 1024px;
+    height: 100%;
     width: 100%;
-    height: auto;
+    // height: auto;
     position: fixed;
     background-color: $color-main;
 
-  #big-logo {
-    position: absolute;
-    opacity: 0.2;
-    left: -300px;
-    height: 120%;
+  .splashWrap {
+    width: 100%;
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -70px; 
+
+  }
+  .splashWrap:after {
+    content: "";
+    display: block;
+  }
+  .splashFooter, .splashWrap:after {
+    /* footer height */
+    height: 70px;
+  }
+  .splashFooter {
+    text-align: center;
+    color: white;
+    font-size: 0.7em;
+    opacity: 0.6;
   }
 
+  .splashWrap {
+    padding-top: 100px;
+    @media screen and (max-width: $break-small) {
+      padding-top: 40px;
+    }
+    
     .welcomeModal {
-      margin-top: 100px;
       text-align: center;
       color: white;
       .logo {
@@ -258,18 +277,14 @@ Main Components
         font-weight: 900;
         margin-bottom: 15px;
       }
-      ul {
-        margin-top: 40px;
-        margin-left: 20px;
-        text-align: left;
-      }
 
       .input-group {
         margin-top: 40px;
         input {
-          border-right: 0px;
+          border: 0px;
         }
         .input-group-addon {
+          border: 0px;
           background-color: white;
         }
       }
@@ -287,24 +302,6 @@ Main Components
         opacity: 0.6;
         font-size: 1.2em;
       }
-
-      .foot {
-        font-size: 0.7em;
-        margin-top: 140px;
-        opacity: 0.6;
-
-      }
     }
-
-
-
-    .signup {
-      display: table-cell;
-      width: 60%;
-      background-color: white;
-
-      .input-group {
-        margin-bottom: 15px;
-      }
-    }
+  }
 }
