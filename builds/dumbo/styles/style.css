@@ -205,15 +205,12 @@ Main Components
         margin-top: 8px;
         font-weight: 900;
         margin-bottom: 15px; }
-      #welcome .splashWrap .welcomeModal ul {
-        margin-top: 40px;
-        margin-left: 20px;
-        text-align: left; }
       #welcome .splashWrap .welcomeModal .input-group {
         margin-top: 40px; }
         #welcome .splashWrap .welcomeModal .input-group input {
-          border-right: 0px; }
+          border: 0px; }
         #welcome .splashWrap .welcomeModal .input-group .input-group-addon {
+          border: 0px;
           background-color: white; }
       #welcome .splashWrap .welcomeModal .btn {
         width: 100%;

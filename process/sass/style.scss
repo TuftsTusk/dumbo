@@ -277,18 +277,14 @@ Main Components
         font-weight: 900;
         margin-bottom: 15px;
       }
-      ul {
-        margin-top: 40px;
-        margin-left: 20px;
-        text-align: left;
-      }
 
       .input-group {
         margin-top: 40px;
         input {
-          border-right: 0px;
+          border: 0px;
         }
         .input-group-addon {
+          border: 0px;
           background-color: white;
         }
       }
