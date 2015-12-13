@@ -220,9 +220,3 @@ Main Components
       margin-bottom: 0px;
       opacity: 0.6;
       font-size: 1.2em; }
-  #welcome .signup {
-    display: table-cell;
-    width: 60%;
-    background-color: white; }
-    #welcome .signup .input-group {
-      margin-bottom: 15px; }
