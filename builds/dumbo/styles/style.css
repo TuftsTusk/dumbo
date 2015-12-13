@@ -174,49 +174,53 @@ Main Components
   width: 100%;
   position: fixed;
   background-color: #133470; }
-  #welcome #big-logo {
-    position: absolute;
-    opacity: 0.2;
-    left: -300px;
-    height: 120%; }
   #welcome .splashWrap {
+    width: 100%;
     min-height: 100%;
     /* equal to footer height */
-    margin-bottom: -142px; }
+    margin-bottom: -70px; }
   #welcome .splashWrap:after {
     content: "";
     display: block; }
   #welcome .splashFooter, #welcome .splashWrap:after {
-    height: 142px; }
+    /* footer height */
+    height: 70px; }
   #welcome .splashFooter {
-    margin-top: 140px; }
-  #welcome .splashWrap .welcomeModal {
-    margin-top: 100px;
     text-align: center;
-    color: white; }
-    #welcome .splashWrap .welcomeModal .logo {
-      height: 120px;
-      width: auto; }
-    #welcome .splashWrap .welcomeModal h2 {
-      margin-top: 8px;
-      font-weight: 900;
-      margin-bottom: 15px; }
-    #welcome .splashWrap .welcomeModal ul {
-      margin-top: 40px;
-      margin-left: 20px;
-      text-align: left; }
-    #welcome .splashWrap .welcomeModal .input-group {
-      margin-top: 40px; }
-      #welcome .splashWrap .welcomeModal .input-group input {
-        border-right: 0px; }
-      #welcome .splashWrap .welcomeModal .input-group .input-group-addon {
-        background-color: white; }
-    #welcome .splashWrap .welcomeModal .btn {
-      width: 100%;
-      margin-top: 15px; }
-    #welcome .splashWrap .welcomeModal .checkbox {
-      text-align: left; }
-    #welcome .splashWrap .welcomeModal .message {
-      margin-bottom: 0px;
-      opacity: 0.6;
-      font-size: 1.2em; }
+    color: white;
+    font-size: 0.7em;
+    opacity: 0.6; }
+  #welcome .splashWrap {
+    padding-top: 100px; }
+    @media screen and (max-width: 480px) {
+      #welcome .splashWrap {
+        padding-top: 40px; } }
+    #welcome .splashWrap .welcomeModal {
+      text-align: center;
+      color: white; }
+      #welcome .splashWrap .welcomeModal .logo {
+        height: 120px;
+        width: auto; }
+      #welcome .splashWrap .welcomeModal h2 {
+        margin-top: 8px;
+        font-weight: 900;
+        margin-bottom: 15px; }
+      #welcome .splashWrap .welcomeModal ul {
+        margin-top: 40px;
+        margin-left: 20px;
+        text-align: left; }
+      #welcome .splashWrap .welcomeModal .input-group {
+        margin-top: 40px; }
+        #welcome .splashWrap .welcomeModal .input-group input {
+          border-right: 0px; }
+        #welcome .splashWrap .welcomeModal .input-group .input-group-addon {
+          background-color: white; }
+      #welcome .splashWrap .welcomeModal .btn {
+        width: 100%;
+        margin-top: 15px; }
+      #welcome .splashWrap .welcomeModal .checkbox {
+        text-align: left; }
+      #welcome .splashWrap .welcomeModal .message {
+        margin-bottom: 0px;
+        opacity: 0.6;
+        font-size: 1.2em; }

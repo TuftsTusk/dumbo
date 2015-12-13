@@ -237,16 +237,11 @@ Main Components
     position: fixed;
     background-color: $color-main;
 
-  #big-logo {
-    position: absolute;
-    opacity: 0.2;
-    left: -300px;
-    height: 120%;
-  }
   .splashWrap {
+    width: 100%;
     min-height: 100%;
     /* equal to footer height */
-    margin-bottom: -142px; 
+    margin-bottom: -70px; 
 
   }
   .splashWrap:after {
@@ -254,18 +249,23 @@ Main Components
     display: block;
   }
   .splashFooter, .splashWrap:after {
-    height: 142px;
+    /* footer height */
+    height: 70px;
   }
   .splashFooter {
-    
-    //font-size: 0.7em;
-    margin-top: 140px;
-    //opacity: 0.6;
-
+    text-align: center;
+    color: white;
+    font-size: 0.7em;
+    opacity: 0.6;
   }
+
   .splashWrap {
+    padding-top: 100px;
+    @media screen and (max-width: $break-small) {
+      padding-top: 40px;
+    }
+    
     .welcomeModal {
-      margin-top: 100px;
       text-align: center;
       color: white;
       .logo {
