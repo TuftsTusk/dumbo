@@ -241,7 +241,7 @@ Main Components
     width: 100%;
     min-height: 100%;
     /* equal to footer height */
-    margin-bottom: -70px; 
+    margin-bottom: -90px; 
 
   }
   .splashWrap:after {
@@ -250,9 +250,10 @@ Main Components
   }
   .splashFooter, .splashWrap:after {
     /* footer height */
-    height: 70px;
+    height: 90px;
   }
   .splashFooter {
+    padding-top: 20px;
     text-align: center;
     color: white;
     font-size: 0.7em;
@@ -283,13 +284,13 @@ Main Components
       }
 
       .input-group {
-        margin-top: 40px;
         input {
           border: 0px;
         }
         .input-group-addon {
           border: 0px;
           background-color: white;
+          color: $color-main;
         }
       }
 
@@ -302,15 +303,17 @@ Main Components
       }
 
       .slogan {
-        margin-top: 10px;
-        margin-bottom: 5px;
-        opacity: 0.6;
-        font-size: 1.2em;
+        //margin-top: 10px;
+        margin-bottom: 40px;
+        //opacity: 0.6;
+        font-size: 1.9em;
       }
 
       .message {
         font-family: $font-highlight;
         font-size: 3.2em;
+        margin-bottom: 50px;
+
         @media screen and (max-width: $break-small) {
           font-size: 2.5em;
         }
