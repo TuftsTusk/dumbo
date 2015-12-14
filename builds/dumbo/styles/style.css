@@ -172,7 +172,7 @@ Main Components
 #welcome {
   height: 100%;
   width: 100%;
-  position: fixed;
+  position: absolute;
   background-color: #133470; }
   #welcome .splashWrap {
     width: 100%;
