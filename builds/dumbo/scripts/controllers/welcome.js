@@ -4,7 +4,7 @@ angular.module('dumboApp')
   	.controller('WelcomeCtrl', function ($scope) {
   		$(document).ready(function() {
   			$('.navbar').hide();
-  			$('.footer').hide();
+  			$('#footer').hide();
 
   			
   			window.fnames = new Array();

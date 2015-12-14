@@ -2,6 +2,11 @@
 @import 'partials/variables'; // colors, fonts etc
 @import 'partials/mixins'; // custom mixins
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
   font-family: $font-main;
 }
@@ -231,33 +236,41 @@ Main Components
 /********************************************/
 
 #welcome {
-    height: 100%;
-    width: 100%;
-    // height: auto;
-    // position: absolute;
+    //height: 100%;
+    //width: 100%;
+
     background-color: $color-main;
+   
+
+  .splashContainer {
+    margin-bottom: 90px;
+  }
 
   .splashWrap {
-    width: 100%;
-    min-height: 100%;
+    width: auto;
+    // width: 100%;
+    // min-height: 100%;
     /* equal to footer height */
-    margin-bottom: -90px; 
+    //margin-bottom: 90px; 
 
   }
-  .splashWrap:after {
-    content: "";
-    display: block;
-  }
-  .splashFooter, .splashWrap:after {
-    /* footer height */
+  // .splashWrap:after {
+  //   content: "";
+  //   display: block;
+  // }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     height: 90px;
-  }
-  .splashFooter {
     padding-top: 20px;
     text-align: center;
     color: white;
     font-size: 0.7em;
-    opacity: 0.6;
+    //opacity: 0.6;
+    background-color: $color-main;
+    border: 0px;
   }
 
   .splashWrap {

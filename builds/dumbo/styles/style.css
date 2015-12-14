@@ -1,4 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script);
+html {
+  min-height: 100%;
+  position: relative; }
+
 body {
   font-family: "Lato", Helvetica, sans-serif; }
 
@@ -170,26 +174,23 @@ Main Components
 
 /********************************************/
 #welcome {
-  height: 100%;
-  width: 100%;
   background-color: #133470; }
+  #welcome .splashContainer {
+    margin-bottom: 90px; }
   #welcome .splashWrap {
+    width: auto;
+    /* equal to footer height */ }
+  #welcome .footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    min-height: 100%;
-    /* equal to footer height */
-    margin-bottom: -90px; }
-  #welcome .splashWrap:after {
-    content: "";
-    display: block; }
-  #welcome .splashFooter, #welcome .splashWrap:after {
-    /* footer height */
-    height: 90px; }
-  #welcome .splashFooter {
+    height: 90px;
     padding-top: 20px;
     text-align: center;
     color: white;
     font-size: 0.7em;
-    opacity: 0.6; }
+    background-color: #133470;
+    border: 0px; }
   #welcome .splashWrap {
     padding-top: 100px; }
     @media screen and (max-width: 480px) {
