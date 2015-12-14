@@ -222,8 +222,14 @@ Main Components
       #welcome .splashWrap .welcomeModal .checkbox {
         text-align: left; }
       #welcome .splashWrap .welcomeModal .slogan {
+        margin-top: 2px;
         margin-bottom: 40px;
-        font-size: 1.9em; }
+        font-size: 2.1em; }
+        @media screen and (max-width: 480px) {
+          #welcome .splashWrap .welcomeModal .slogan {
+            font-size: 1.7em; } }
+        #welcome .splashWrap .welcomeModal .slogan p {
+          margin-bottom: 0px; }
       #welcome .splashWrap .welcomeModal .message {
         font-family: "Kaushan Script", Helvetica, sans-serif;
         font-size: 3.2em;
