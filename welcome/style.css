@@ -130,9 +130,9 @@ body {
   color: white !important;
   /*border-color: white;*/ }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .semesters .semWrapper {
@@ -167,13 +167,13 @@ Main Components
 #map {
   height: 500px;
   width: 600px; }
-
 /********************************************/
+body {
+    background-color: #133470;
+}
 #welcome {
   height: 100%;
-  width: 100%;
-  position: fixed;
-  background-color: #133470; }
+  width: 100%; }
   #welcome .splashWrap {
     width: 100%;
     min-height: 100%;
