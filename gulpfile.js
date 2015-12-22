@@ -1,6 +1,9 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    http = require('http'),
+    https = require('https'),
+    fs = require('fs');
 
 
 gulp.task('express', function(){
@@ -65,10 +68,19 @@ gulp.task('serve', ['express'], function() {
 // });
 
 gulp.task('production','', function(){
+  var options = {
+    key: fs.readFileSync('./ssl/server.key'),
+    cert: fs.readFileSync('./ssl/tuskmarketplace_com.crt'),
+  };
+  var port = process.env.PORT || 80;
+  var httpsPort = process.env.HTTPSPORT || 443;
   var express = require('express');
   var app = express();
   app.use(express.static('welcome'));
-  app.listen(process.env.PORT || 8080);
+  var server = https.createServer(options, app).listen(httpsPort, function(){
+    console.log("Express server listening on port " + port);
+  });
+  app.listen(port);
 });
 
 gulp.task('default', ['sass', 'watch', 'serve']);
