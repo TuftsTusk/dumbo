@@ -1,6 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script|Varela+Round);
 body {
-  font-family: "Lato", Helvetica, sans-serif; }
+  font-family: "Varela Round", Helvetica, sans-serif; }
 
 .browsehappy {
   margin: 0.2em 0;
@@ -63,11 +63,14 @@ body {
 
 .navbar.navbar-default .navbar-brand {
   padding-left: 20px;
-  padding-right: 20px;
-  border-right: 1px #e7e7e7 solid;
+  padding-top: 8px;
+  padding-right: 80px;
   margin-right: 5px; }
 
-#signIn {
+#logo {
+  height: 34px; }
+
+#register {
   border-left: 1px #e7e7e7 solid;
   padding-left: 5px; }
 
@@ -92,12 +95,18 @@ body {
   color: black; }
 
 .navbar.navbar-default .navbar-form {
-  margin-left: 60px; }
+  margin: 0px;
+  margin-left: 60px;
+  padding: 0px; }
+
+.navbar.navbar-default .navbar-form .form-group {
+  padding-top: 15px;
+  padding-bottom: 15px; }
 
 .navbar.navbar-default .navbar-form .input-field {
   border: none;
   background-color: transparent;
-  padding: 7px 12px 6px 2px; }
+  padding: 0px 12px 0px 2px; }
 
 .navbar.navbar-default .navbar-form .input-field:focus {
   outline: none; }
@@ -115,10 +124,10 @@ body {
   margin-right: 20px;
   background-color: transparent;
   border-radius: 0px;
-  font-weight: bold;
-  color: blue !important;
-  border: 3px blue solid;
-  padding: 3px 12px 2px 12px !important; }
+  background-color: #133470;
+  color: white !important;
+  border-radius: 3px;
+  padding: 6px 12px 6px 12px !important; }
 
 .navbar.navbar-default .btn-primary:hover {
   -webkit-transition: 0.1s;
