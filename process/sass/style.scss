@@ -92,40 +92,33 @@ body {
 
 .navbar.navbar-default {
 	font-size: 16px;
+	background-color: $blue;
 	border-radius: 0px;
-	background-color: white;
-}
+	border: 0px;
+	color: $navTextColor;
 
-.navbar.navbar-default .navbar-brand {
-	padding-left: 20px;
-	padding-top: 8px;
-	padding-right: 80px;
-  	// border-right: 1px #e7e7e7 solid;
-  	margin-right: 5px;
-}
+	.navbar-brand {
+		padding-left: 20px;
+		padding-top: 8px;
+		padding-right: 80px;
+	  	margin-right: 5px;
+	}
 
-#logo {
-	height: 34px;
-}
+	#logo {
+		height: 34px;
+	}
 
-#register {
-	border-left: 1px #e7e7e7 solid;
-	padding-left: 5px;
-}
-
-.navbar.navbar-default {
 	.navbar-nav {
 		li > a {
 			@include transition(0.1s);
-			color: grey;
-
+			color: $navTextColor;
 			&:hover {
-				color: black;
+				color: white;
 			}
 		}
 		.active a {
 			background: transparent;
-			color: black;
+			color: white;
 		}
   	} //.navbar-nav
 
@@ -135,11 +128,12 @@ body {
 	  	padding: 0px;
 
 	  	.form-group {
-	  		padding-top: 15px;
-	  		padding-bottom: 15px;
+	  		padding-top: 14px;
+	  		padding-bottom: 14px;
 	  	}
 
 	  	.input-field {
+	  		@include placeholder {color: $navTextColor};
 	  		border: none;
 			background-color: transparent;
 			padding: 0px 12px 0px 2px;
@@ -154,21 +148,28 @@ body {
   		font-size: 16px;
   		@include transition(0.1s);
   		margin-top: 8px;
-	  	padding: 6px 12px !important;
 		margin-right: 20px;
-		background-color: transparent;
-		border-radius: 0px;
-		background-color: $color-main;
-		color: white !important;
+
+		background-color: $lightblue;
+		color: $blue !important;
+		border: 0px;
 		border-radius: 3px;
 		padding: 6px 12px 6px 12px !important;
 
 		&:hover {
 			background-color: $blue;
-			color: white !important;
+			color: white;
 		}
   	}
+
+  	.navbar-right > li > a {
+  		color: white;
+  	}
 }
+
+// #register {
+// 	color: white !important;
+// }
 
 
 /* -------------------------------- 
