@@ -96,13 +96,41 @@ body {
 	border-radius: 0px;
 	border: 0px;
 	color: $navTextColor;
+	.navbar-header {
+		.navbar-toggle {
 
-	.navbar-brand {
-		padding-left: 20px;
-		padding-top: 8px;
-		padding-right: 80px;
-	  	margin-right: 5px;
+			background-color: $blue;
+			.icon-bar {
+				background-color: white;
+			}
+			&.collapsed {
+				background-color: transparent;
+			}
+		}
+
+		// <img id="logo" alt="Brand" src="images/combination-mark-white.svg">
+
+		.navbar-brand {
+			width: 102px;
+			height: 36px;
+			display: block;
+			position: relative;
+			background: url(../images/combination-mark-white.svg) 0px 0px;
+			background-size: auto 100%;
+			background-repeat: no-repeat;
+			background-position: left;
+
+			margin-left: 8px;
+			margin-top: 8px;
+		  	margin-right: 40px;
+
+		  	@media screen and (max-width: $break-small) {
+		  		margin-right: 5px;
+		  		width: 20px;
+		  	}
+		}
 	}
+
 
 	#logo {
 		height: 34px;
@@ -122,10 +150,16 @@ body {
 		}
   	} //.navbar-nav
 
+  	// search field
   	.navbar-form {
 	  	margin: 0px;
 	  	margin-left: 60px;
 	  	padding: 0px;
+
+        @media screen and (max-width: $break-small) {
+        	margin-left: 0px;
+        	border: 0px;
+        }
 
 	  	.form-group {
 	  		padding-top: 15px;

@@ -34,7 +34,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ng-href="#/main"><img id="logo" alt="Brand" src="images/combination-mark-white.svg"></a>
+                <!-- logo: linked in css -->
+                <a class="navbar-brand" ng-href="#/main"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,6 +47,8 @@
                     </li>
                     <li><a href="#">Furniture</a>
                     </li>
+                    <li><a href="#">All the rest</a>
+                    </li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
@@ -55,7 +58,7 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li><a ng-href="#/create_post" class="btn btn-primary" role="button">New Post</a>
+                    <li><a id= "newPost" ng-href="#/create_post" class="btn btn-primary" role="button">New Post</a>
                     </li>
                     <li id="register"><a href="#">Register</a>
                     </li>
@@ -81,6 +84,8 @@
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    
+    <!--
     <script>
         ! function (A, n, g, u, l, a, r) {
             A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
@@ -92,6 +97,7 @@
         ga('create', 'UA-XXXXX-X');
         ga('send', 'pageview');
     </script>
+    -->
 
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
