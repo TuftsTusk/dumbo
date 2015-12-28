@@ -1,14 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script|Varela+Round);
 
 $darkblue:	#133470;
-$lightblue: #5BC0DE;
+$blue: #337ab7;
+$lightblue: #82DEF9;
 $tan: #EEF4D4;
 
 $color-main: $darkblue;
 $color-secondary: $lightblue;
 $light-background: $tan;
+$navTextColor: white;
 
-$font-main: "Lato", Helvetica, sans-serif;
+$font-main: "Varela Round", Helvetica, sans-serif;
 $font-highlight: "Kaushan Script", Helvetica, sans-serif;
 
 $break-small: 480px;
