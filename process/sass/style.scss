@@ -91,8 +91,8 @@ body {
 }
 
 .navbar.navbar-default {
-	font-size: 16px;
-	background-color: $blue;
+	font-size: 14px;
+	background-color: $darkblue;
 	border-radius: 0px;
 	border: 0px;
 	color: $navTextColor;
@@ -113,12 +113,12 @@ body {
 			@include transition(0.1s);
 			color: $navTextColor;
 			&:hover {
-				color: white;
+				color: $lightblue;
 			}
 		}
 		.active a {
 			background: transparent;
-			color: white;
+			color: $lightblue;
 		}
   	} //.navbar-nav
 
@@ -128,8 +128,8 @@ body {
 	  	padding: 0px;
 
 	  	.form-group {
-	  		padding-top: 14px;
-	  		padding-bottom: 14px;
+	  		padding-top: 15px;
+	  		padding-bottom: 15px;
 	  	}
 
 	  	.input-field {
@@ -145,13 +145,13 @@ body {
   	}
 
   	.btn-primary {
-  		font-size: 16px;
+  		font-size: 14px;
   		@include transition(0.1s);
   		margin-top: 8px;
 		margin-right: 20px;
 
-		background-color: $lightblue;
-		color: $blue !important;
+		background-color: $blue;
+		color: white !important;
 		border: 0px;
 		border-radius: 3px;
 		padding: 6px 12px 6px 12px !important;

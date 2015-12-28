@@ -57,11 +57,11 @@ body {
   outline: none !important; }
 
 .navbar.navbar-default {
-  font-size: 16px;
-  background-color: #337ab7;
+  font-size: 14px;
+  background-color: #133470;
   border-radius: 0px;
   border: 0px;
-  color: #82DEF9; }
+  color: white; }
   .navbar.navbar-default .navbar-brand {
     padding-left: 20px;
     padding-top: 8px;
@@ -73,42 +73,42 @@ body {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
     transition: 0.1s;
-    color: #82DEF9; }
+    color: white; }
     .navbar.navbar-default .navbar-nav li > a:hover {
-      color: white; }
+      color: #82DEF9; }
   .navbar.navbar-default .navbar-nav .active a {
     background: transparent;
-    color: white; }
+    color: #82DEF9; }
   .navbar.navbar-default .navbar-form {
     margin: 0px;
     margin-left: 60px;
     padding: 0px; }
     .navbar.navbar-default .navbar-form .form-group {
-      padding-top: 14px;
-      padding-bottom: 14px; }
+      padding-top: 15px;
+      padding-bottom: 15px; }
     .navbar.navbar-default .navbar-form .input-field {
       border: none;
       background-color: transparent;
       padding: 0px 12px 0px 2px; }
       .navbar.navbar-default .navbar-form .input-field::-webkit-input-placeholder {
-        color: #82DEF9; }
+        color: white; }
       .navbar.navbar-default .navbar-form .input-field::-moz-placeholder {
-        color: #82DEF9; }
+        color: white; }
       .navbar.navbar-default .navbar-form .input-field:-moz-placeholder {
-        color: #82DEF9; }
+        color: white; }
       .navbar.navbar-default .navbar-form .input-field:-ms-input-placeholder {
-        color: #82DEF9; }
+        color: white; }
       .navbar.navbar-default .navbar-form .input-field:focus {
         outline: none; }
   .navbar.navbar-default .btn-primary {
-    font-size: 16px;
+    font-size: 14px;
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
     transition: 0.1s;
     margin-top: 8px;
     margin-right: 20px;
-    background-color: #82DEF9;
-    color: #337ab7 !important;
+    background-color: #337ab7;
+    color: white !important;
     border: 0px;
     border-radius: 3px;
     padding: 6px 12px 6px 12px !important; }
