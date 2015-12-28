@@ -13,19 +13,27 @@ angular.module('dumboApp')
 
   		$(document).ready(function() {
 
-  			updateMenu();
+  			updateNav();
   			$(window).resize(function() {
-  				updateMenu();
+  				updateNav();
   			})
 
-  			function updateMenu() {
+  			function updateNav() {
   				if ($(window).width() <= 768) {
-  					console.log('inside if');
-  					$('#newPost').removeClass('btn btn-primary');
-  					$()
+  					$('.navbar-right #newPostButton').removeClass('btn btn-primary');
+  					if ($('.navbar-collapse .searchbar').length) {
+  						console.log('true');
+  						$('.searchbar').appendTo('.navbar-header');
+  					} else {
+  						console.log('false');
+  					}
+  				} else {
+  					if (! $('.navbar-collapse .searchbar').length) {
+  						$('.searchbar').insertAfter('.navbarShop');
+  					}
   				}
   			}
 
-  			
+
   		});
   	});

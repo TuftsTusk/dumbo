@@ -82,7 +82,6 @@ body {
     margin-right: 40px; }
     @media screen and (max-width: 768px) {
       .navbar.navbar-default .navbar-header .navbar-brand {
-        margin-right: 5px;
         width: 20px; } }
   .navbar.navbar-default #logo {
     height: 34px; }
