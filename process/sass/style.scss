@@ -157,8 +157,7 @@ body {
 		padding: 6px 12px 6px 12px !important;
 
 		&:hover {
-			background-color: $blue;
-			color: white;
+			background-color: lighten($blue, 10%);
 		}
   	}
 
