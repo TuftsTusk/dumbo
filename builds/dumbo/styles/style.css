@@ -85,19 +85,20 @@ body {
         width: 20px; } }
   .navbar.navbar-default #logo {
     height: 34px; }
-  .navbar.navbar-default .navbar-nav li > a {
+  .navbar.navbar-default .navbarMain li > a {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
     transition: 0.1s;
     color: white; }
-    .navbar.navbar-default .navbar-nav li > a:hover {
+    .navbar.navbar-default .navbarMain li > a:hover {
       color: #82DEF9; }
-  .navbar.navbar-default .navbar-nav .active a {
+  .navbar.navbar-default .navbarMain .active a {
     background: transparent;
     color: #82DEF9; }
+  .navbar.navbar-default .navbarMain .navbarShop {
+    margin-right: 45px; }
   .navbar.navbar-default .navbar-form {
     margin: 0px;
-    margin-left: 60px;
     padding: 0px; }
     @media screen and (max-width: 768px) {
       .navbar.navbar-default .navbar-form {

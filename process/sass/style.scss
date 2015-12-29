@@ -135,7 +135,7 @@ body {
 		height: 34px;
 	}
 
-	.navbar-nav {
+	.navbarMain {
 		li > a {
 			@include transition(0.1s);
 			color: $navTextColor;
@@ -147,12 +147,15 @@ body {
 			background: transparent;
 			color: $lightblue;
 		}
-  	} //.navbar-nav
+
+		.navbarShop {
+			margin-right: 45px;
+		}
+  	}
 
   	// search field
   	.navbar-form {
 	  	margin: 0px;
-	  	margin-left: 60px;
 	  	padding: 0px;
 
         @media screen and (max-width: $break-small) {
