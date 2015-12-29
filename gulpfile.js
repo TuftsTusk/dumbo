@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     connect = require('gulp-connect'),
-    http = require('http')
+    http = require('http'),
+    jasmine = require('gulp-jasmine-phantom');
 
 
 gulp.task('express', function(){
@@ -34,6 +35,11 @@ gulp.task('sass', function () {
       .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('builds/dumbo/styles'))
       .pipe(connect.reload());
+});
+
+gulp.task('test:unit', function() {
+  return gulp.src('spec/*/*.js')
+          .pipe(jasmine());
 });
 
 // gulp.task('partials', function () {
