@@ -10,4 +10,5 @@
 angular.module('dumboApp')
   	.controller('MainCtrl', function ($scope) {
   		console.log('MainCtrl');
+
   	});

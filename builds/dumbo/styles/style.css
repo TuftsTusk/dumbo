@@ -62,27 +62,70 @@ body {
   border-radius: 0px;
   border: 0px;
   color: white; }
-  .navbar.navbar-default .navbar-brand {
-    padding-left: 20px;
-    padding-top: 8px;
-    padding-right: 80px;
-    margin-right: 5px; }
+  .navbar.navbar-default .navbar-header .navbar-toggle {
+    background-color: #337ab7; }
+    .navbar.navbar-default .navbar-header .navbar-toggle .icon-bar {
+      background-color: white; }
+    .navbar.navbar-default .navbar-header .navbar-toggle.collapsed {
+      background-color: transparent; }
+  .navbar.navbar-default .navbar-header .navbar-brand {
+    width: 102px;
+    height: 36px;
+    display: block;
+    position: relative;
+    background: url(../images/combination-mark-white.svg) 0px 0px;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-right: 40px; }
+    @media screen and (max-width: 768px) {
+      .navbar.navbar-default .navbar-header .navbar-brand {
+        width: 20px; } }
   .navbar.navbar-default #logo {
     height: 34px; }
-  .navbar.navbar-default .navbar-nav li > a {
+  .navbar.navbar-default .navbarMain li > a {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
     transition: 0.1s;
     color: white; }
-    .navbar.navbar-default .navbar-nav li > a:hover {
+    .navbar.navbar-default .navbarMain li > a:hover {
       color: #82DEF9; }
-  .navbar.navbar-default .navbar-nav .active a {
-    background: transparent;
-    color: #82DEF9; }
+  .navbar.navbar-default .navbarMain .active a {
+    background: #337ab7;
+    color: white; }
+    .navbar.navbar-default .navbarMain .active a:hover {
+      color: white; }
+  .navbar.navbar-default .navbarMain .navbarShop {
+    margin-right: 45px; }
+    .navbar.navbar-default .navbarMain .navbarShop.open .dropdown-toggle {
+      background: #337ab7;
+      color: white; }
+      @media screen and (max-width: 768px) {
+        .navbar.navbar-default .navbarMain .navbarShop.open .dropdown-toggle {
+          background: transparent !important; } }
+    .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a {
+      color: black; }
+      @media screen and (max-width: 768px) {
+        .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a {
+          color: white; } }
+      .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a:hover {
+        color: #82DEF9; }
+    @media screen and (max-width: 768px) {
+      .navbar.navbar-default .navbarMain .navbarShop .active a {
+        background: transparent;
+        color: #82DEF9; }
+        .navbar.navbar-default .navbarMain .navbarShop .active a:hover {
+          background: transparent;
+          color: #82DEF9; } }
   .navbar.navbar-default .navbar-form {
     margin: 0px;
-    margin-left: 60px;
     padding: 0px; }
+    @media screen and (max-width: 768px) {
+      .navbar.navbar-default .navbar-form {
+        margin-left: 0px;
+        border: 0px; } }
     .navbar.navbar-default .navbar-form .form-group {
       padding-top: 15px;
       padding-bottom: 15px; }
@@ -112,10 +155,17 @@ body {
     border: 0px;
     border-radius: 3px;
     padding: 6px 12px 6px 12px !important; }
+    .navbar.navbar-default .btn-primary:focus {
+      background-color: #337ab7; }
     .navbar.navbar-default .btn-primary:hover {
       background-color: #4f93ce; }
   .navbar.navbar-default .navbar-right > li > a {
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    transition: 0.1s;
     color: white; }
+    .navbar.navbar-default .navbar-right > li > a:hover {
+      color: #82DEF9; }
 
 /* -------------------------------- 
 
@@ -180,7 +230,7 @@ Main Components
     opacity: 0.6; }
   #welcome .splashWrap {
     padding-top: 100px; }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 768px) {
       #welcome .splashWrap {
         padding-top: 40px; } }
   #welcome .splashWrap .welcomeModal {
@@ -189,7 +239,7 @@ Main Components
     #welcome .splashWrap .welcomeModal .logo {
       width: 300px;
       height: auto; }
-      @media screen and (max-width: 480px) {
+      @media screen and (max-width: 768px) {
         #welcome .splashWrap .welcomeModal .logo {
           width: 250px; } }
     #welcome .splashWrap .welcomeModal h1 {
@@ -212,7 +262,7 @@ Main Components
       margin-top: 2px;
       margin-bottom: 40px;
       font-size: 2.1em; }
-      @media screen and (max-width: 480px) {
+      @media screen and (max-width: 768px) {
         #welcome .splashWrap .welcomeModal .slogan {
           font-size: 1.7em; } }
       #welcome .splashWrap .welcomeModal .slogan p {
@@ -221,6 +271,6 @@ Main Components
       font-family: "Kaushan Script", Helvetica, sans-serif;
       font-size: 3.2em;
       margin-bottom: 50px; }
-      @media screen and (max-width: 480px) {
+      @media screen and (max-width: 768px) {
         #welcome .splashWrap .welcomeModal .message {
           font-size: 2.5em; } }
