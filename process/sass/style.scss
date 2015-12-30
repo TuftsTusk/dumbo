@@ -169,9 +169,9 @@ body {
 
 				@media screen and (max-width: $break-small) {
 		        	color: white;
-		        	&:hover {
-			        	color: $lightblue;
-			        }
+		        }
+		        &:hover {
+		        	color: $lightblue;
 		        }
 			}
 
@@ -228,9 +228,14 @@ body {
 		border-radius: 3px;
 		padding: 6px 12px 6px 12px !important;
 
+		&:focus {
+			background-color: $blue;
+		}
+
 		&:hover {
 			background-color: lighten($blue, 10%);
 		}
+
   	}
 
   	.navbar-right > li > a {

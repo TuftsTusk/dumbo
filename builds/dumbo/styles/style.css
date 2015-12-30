@@ -109,9 +109,9 @@ body {
       color: black; }
       @media screen and (max-width: 768px) {
         .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a {
-          color: white; }
-          .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a:hover {
-            color: #82DEF9; } }
+          color: white; } }
+      .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a:hover {
+        color: #82DEF9; }
     @media screen and (max-width: 768px) {
       .navbar.navbar-default .navbarMain .navbarShop .active a {
         background: transparent;
@@ -155,6 +155,8 @@ body {
     border: 0px;
     border-radius: 3px;
     padding: 6px 12px 6px 12px !important; }
+    .navbar.navbar-default .btn-primary:focus {
+      background-color: #337ab7; }
     .navbar.navbar-default .btn-primary:hover {
       background-color: #4f93ce; }
   .navbar.navbar-default .navbar-right > li > a {
