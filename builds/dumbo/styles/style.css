@@ -93,10 +93,32 @@ body {
     .navbar.navbar-default .navbarMain li > a:hover {
       color: #82DEF9; }
   .navbar.navbar-default .navbarMain .active a {
-    background: transparent;
-    color: #82DEF9; }
+    background: #337ab7;
+    color: white; }
+    .navbar.navbar-default .navbarMain .active a:hover {
+      color: white; }
   .navbar.navbar-default .navbarMain .navbarShop {
     margin-right: 45px; }
+    .navbar.navbar-default .navbarMain .navbarShop.open .dropdown-toggle {
+      background: #337ab7;
+      color: white; }
+      @media screen and (max-width: 768px) {
+        .navbar.navbar-default .navbarMain .navbarShop.open .dropdown-toggle {
+          background: transparent !important; } }
+    .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a {
+      color: black; }
+      @media screen and (max-width: 768px) {
+        .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a {
+          color: white; } }
+      .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a:hover {
+        color: #82DEF9; }
+    @media screen and (max-width: 768px) {
+      .navbar.navbar-default .navbarMain .navbarShop .active a {
+        background: transparent;
+        color: #82DEF9; }
+        .navbar.navbar-default .navbarMain .navbarShop .active a:hover {
+          background: transparent;
+          color: #82DEF9; } }
   .navbar.navbar-default .navbar-form {
     margin: 0px;
     padding: 0px; }
@@ -136,7 +158,12 @@ body {
     .navbar.navbar-default .btn-primary:hover {
       background-color: #4f93ce; }
   .navbar.navbar-default .navbar-right > li > a {
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    transition: 0.1s;
     color: white; }
+    .navbar.navbar-default .navbar-right > li > a:hover {
+      color: #82DEF9; }
 
 /* -------------------------------- 
 

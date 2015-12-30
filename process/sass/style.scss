@@ -108,8 +108,6 @@ body {
 			}
 		}
 
-		// <img id="logo" alt="Brand" src="images/combination-mark-white.svg">
-
 		.navbar-brand {
 			width: 102px;
 			height: 36px;
@@ -144,12 +142,50 @@ body {
 			}
 		}
 		.active a {
-			background: transparent;
-			color: $lightblue;
+			background: $blue;
+			color: white;
+			&:hover {
+				color: $navTextColor;
+			}
 		}
 
 		.navbarShop {
 			margin-right: 45px;
+
+			&.open .dropdown-toggle {
+				background: $blue;
+				color: white;
+
+				@media screen and (max-width: $break-small) {
+		        	background: transparent !important;
+		        }
+
+
+
+			}
+
+			.dropdown-menu :not(.active) a {
+				color: black;
+
+				@media screen and (max-width: $break-small) {
+		        	color: white;
+		        }
+		        &:hover {
+		        	color: $lightblue;
+		        }
+			}
+
+			.active a {
+				@media screen and (max-width: $break-small) {
+		        	background: transparent;
+		        	color: $lightblue;
+		        	&:hover {
+		        		background: transparent;
+		        		color: $lightblue;
+		        	}
+		        }
+			}
+
 		}
   	}
 
@@ -198,7 +234,11 @@ body {
   	}
 
   	.navbar-right > li > a {
+  		@include transition(0.1s);
   		color: white;
+  		&:hover {
+  			color: $lightblue;
+  		}
   	}
 }
 
