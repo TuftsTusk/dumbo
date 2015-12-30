@@ -1,6 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script|Varela+Round);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script);
 body {
-  font-family: "Varela Round", Helvetica, sans-serif; }
+  font-family: "proxima-nova-soft", Helvetica, sans-serif; }
 
 .browsehappy {
   margin: 0.2em 0;
@@ -58,6 +58,7 @@ body {
 
 .navbar.navbar-default {
   font-size: 14px;
+  font-weight: 400;
   background-color: #133470;
   border-radius: 0px;
   border: 0px;
