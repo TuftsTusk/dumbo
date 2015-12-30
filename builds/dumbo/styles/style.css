@@ -109,9 +109,9 @@ body {
       color: black; }
       @media screen and (max-width: 768px) {
         .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a {
-          color: white; } }
-      .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a:hover {
-        color: #82DEF9; }
+          color: white; }
+          .navbar.navbar-default .navbarMain .navbarShop .dropdown-menu :not(.active) a:hover {
+            color: #82DEF9; } }
     @media screen and (max-width: 768px) {
       .navbar.navbar-default .navbarMain .navbarShop .active a {
         background: transparent;
