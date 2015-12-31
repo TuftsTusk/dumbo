@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    http = require('http'),
+    jasmine = require('gulp-jasmine-phantom');
 
 
 gulp.task('express', function(){
@@ -35,6 +37,11 @@ gulp.task('sass', function () {
       .pipe(connect.reload());
 });
 
+gulp.task('test:unit', function() {
+  return gulp.src('spec/*/*.js')
+          .pipe(jasmine());
+});
+
 // gulp.task('partials', function () {
 //     gulp.src('process/partials/*')
 //       .pipe(sass().on('error', sass.logError))
@@ -65,10 +72,11 @@ gulp.task('serve', ['express'], function() {
 // });
 
 gulp.task('production','', function(){
+  var port = process.env.PORT || 8080;
   var express = require('express');
   var app = express();
   app.use(express.static('welcome'));
-  app.listen(process.env.PORT || 8080);
+  app.listen(port);
 });
 
 gulp.task('default', ['sass', 'watch', 'serve']);

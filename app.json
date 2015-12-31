@@ -1,0 +1,13 @@
+{
+  "name": "dumbo",
+  "scripts": {
+  },
+  "env": {
+    "PRODUCTION": {
+      "required": true
+    }
+  },
+  "addons": [
+
+  ]
+}
