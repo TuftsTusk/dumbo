@@ -35,7 +35,7 @@ angular.module('dumboApp')
                     // change shop links (sublets, furniture, etc) into a dropdown menu
 					$('.navbarShop ul').removeClass('nav navbar-nav');
 					$('.navbarShop ul').addClass('dropdown-menu');
-				
+
 				} else {
                     // reverse
  					$('.navbarShop .dropdown-toggle').hide();

@@ -21,11 +21,14 @@ angular
   ])
     .config(function ($routeProvider) {
         $routeProvider
-            .when('/', {
-                redirectTo: '/welcome'
-            })
             .when('/main' , {
                 templateUrl: 'views/main.html'
+            })
+            .when('/login' , {
+                templateUrl: 'views/login.html'
+            })
+            .when('/register' , {
+                templateUrl: 'views/register.html'
             })
             .when('/create_post', {
                 templateUrl: 'views/create_post.html'
