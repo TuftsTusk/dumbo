@@ -17,9 +17,10 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'oitozero.ngSweetAlert'
   ])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $httpProvider) {
         $routeProvider
             .when('/main' , {
                 templateUrl: 'views/main.html'
@@ -46,4 +47,5 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
+        $httpProvider.defaults.withCredentials = true;
     });
