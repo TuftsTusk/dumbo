@@ -11,7 +11,11 @@ angular.module('dumboApp')
       },
       function failure(res){
         $scope.dataLoading = false;
-        SweetAlert.swal("One little thing", res.data.message, "error");
+        if (res.status === -1) {
+          SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+        } else {
+          SweetAlert.swal("One little thing", res.data.message, "error");
+        }
       });
       };
   });

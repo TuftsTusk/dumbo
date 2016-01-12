@@ -10,7 +10,12 @@ angular.module('dumboApp')
       },
       function failure(res){
         $scope.dataLoading = false;
-        SweetAlert.swal("I'm sorry I can't do that", res.data.message, "error");
+        console.log(res);
+        if (res.status === -1) {
+          SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+        } else {
+          SweetAlert.swal("I'm sorry I can't do that", res.data.message, "error");
+        }
       });
       };
   });
