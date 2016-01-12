@@ -22,6 +22,9 @@ angular
   ])
     .config(function ($routeProvider, $httpProvider) {
         $routeProvider
+            .when('/' , {
+                templateUrl: 'views/main.html'
+            })
             .when('/main' , {
                 templateUrl: 'views/main.html'
             })
