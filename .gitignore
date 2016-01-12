@@ -1,6 +1,6 @@
-/node_modules
+node_modules
 /dist
 /.tmp
 /.sass-cache
-/builds/dumbo/bower_components
-/bower_components
+builds/dumbo/bower_components
+bower_components
