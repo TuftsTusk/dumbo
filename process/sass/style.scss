@@ -220,7 +220,7 @@ body {
   	.btn-primary {
   		font-size: 14px;
   		@include transition(0.1s);
-  		margin-top: 8px;
+  		margin-top: 9px;
 		margin-right: 20px;
 
 		background-color: $blue;
@@ -421,7 +421,7 @@ $flyArrowHeight: 11px;
     box-shadow: 1px 1px rgba(128, 128, 128, 0.42);
     width: 372px;
     right: 0;
-    top: 39px + $flyArrowHeight;
+    top: 41px + $flyArrowHeight;
 
 
     .flyArrowWrapper {

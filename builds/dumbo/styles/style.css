@@ -149,7 +149,7 @@ body {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
     transition: 0.1s;
-    margin-top: 8px;
+    margin-top: 9px;
     margin-right: 20px;
     background-color: #337ab7;
     color: white !important;
@@ -286,7 +286,7 @@ Main Components
   box-shadow: 1px 1px rgba(128, 128, 128, 0.42);
   width: 372px;
   right: 0;
-  top: 50px; }
+  top: 52px; }
   .toggleFlyout .flyArrowWrapper {
     position: relative; }
     .toggleFlyout .flyArrowWrapper .flyArrow {
