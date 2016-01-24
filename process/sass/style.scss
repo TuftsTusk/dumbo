@@ -406,3 +406,77 @@ Main Components
 	    }
 	}
 }
+
+
+/********************************************/
+
+$flyArrowHeight: 11px;
+
+.toggleFlyout {
+    position: absolute;
+    border-radius: 4px;
+    background: whitesmoke;
+    border: 1px solid #D2D2D2;
+    box-shadow: 1px 1px rgba(128, 128, 128, 0.42);
+    width: 372px;
+    right: 0;
+    top: 39px + $flyArrowHeight;
+
+
+    .flyArrowWrapper {
+    	position: relative;
+
+    	.flyArrow {
+    		background-image: url(../images/flyArrow-01.svg);
+    		background-repeat: no-repeat;
+    	    position: absolute;
+		    right: 51px;
+		    height: $flyArrowHeight;
+		    // background: blue;
+		    width: 20px;
+		    top: -$flyArrowHeight;
+    	}
+    }
+
+
+    .flyHeader {
+    	width: 100%;
+	    text-align: center;
+	    font-size: 1.3em;
+	    background: white;
+	    color: black;
+	    border-top-left-radius: 4px;
+	    border-top-right-radius: 4px;
+	    padding: 4px;
+	    border-bottom: 1px solid #D2D2D2;
+    }
+    .flyContent {
+    	overflow: hidden;
+    	padding: 5px;
+
+    	.flyButton {
+    		color: black;
+	    	float: left;
+		  	width: 80px;
+		    // background: red;
+		    margin: 5px;
+		    text-align: center;
+		    box-sizing: border-box;
+		    padding: 10px;
+		    border: 1px solid #D2D2D2;
+		    border-radius: 4px;
+
+		    > img {
+		    	height: 50px;
+			    width: 50px;
+			    // background: blue;
+			    margin: 0 auto;
+		    }
+	    }
+
+    }
+
+
+}
+
+
