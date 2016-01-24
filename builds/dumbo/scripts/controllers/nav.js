@@ -11,6 +11,10 @@ angular.module('dumboApp')
 				updateNav();
 			})
 
+			$('#newPostButton').click(function() {
+				$(this).parent().find('.toggleFlyout').toggleClass('hidden');
+			});
+
 			function updateNav() {
 				var b_small = 768,
 					b_medium = 992;

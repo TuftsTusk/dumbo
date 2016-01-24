@@ -413,6 +413,7 @@ Main Components
 $flyArrowHeight: 11px;
 
 .toggleFlyout {
+	z-index: 100;
     position: absolute;
     border-radius: 4px;
     background: whitesmoke;
@@ -469,6 +470,7 @@ $flyArrowHeight: 11px;
 			    width: 50px;
 			    // background: blue;
 			    margin: 0 auto;
+			    margin-bottom: 5px;
 		    }
 	    }
 

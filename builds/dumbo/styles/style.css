@@ -278,6 +278,7 @@ Main Components
 
 /********************************************/
 .toggleFlyout {
+  z-index: 100;
   position: absolute;
   border-radius: 4px;
   background: whitesmoke;
@@ -322,4 +323,5 @@ Main Components
       .toggleFlyout .flyContent .flyButton > img {
         height: 50px;
         width: 50px;
-        margin: 0 auto; }
+        margin: 0 auto;
+        margin-bottom: 5px; }
