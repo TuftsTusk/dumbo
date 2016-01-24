@@ -311,6 +311,8 @@ Main Components
     overflow: hidden;
     padding: 5px; }
     .toggleFlyout .flyContent .flyButton {
+      background: white;
+      text-decoration: none;
       color: black;
       float: left;
       width: 80px;
