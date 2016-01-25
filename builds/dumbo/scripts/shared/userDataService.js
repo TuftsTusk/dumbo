@@ -1,7 +1,7 @@
 angular.module('dumboApp')
-    .service('userDataService', function($http,$q) {
+    .service('userDataService', function($http,$q, EnvironmentConfig) {
 
-  var host = 'http://localhost';
+  var host = EnvironmentConfig.api;
   var registration = '/user/register';
   var login = '/user/login';
   var logout = '/user/logout';

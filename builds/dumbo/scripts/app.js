@@ -18,7 +18,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'oitozero.ngSweetAlert'
+    'oitozero.ngSweetAlert',
+    'dumboApp.config'
   ])
     .config(function ($routeProvider, $httpProvider) {
         $routeProvider
