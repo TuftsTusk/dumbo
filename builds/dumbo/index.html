@@ -68,7 +68,36 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li><a id="newPostButton" ng-href="#/create_post" class="btn btn-primary" role="button">New Post</a>
+                    <li>
+                        <a id="newPostButton" ng-href="" class="btn btn-primary" role="button">New Post</a>
+                        <div class="toggleFlyout hidden">
+                            <div>
+                                <div class="flyArrowWrapper">
+                                    <div class="flyArrow">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flyHeader">What are you posting?
+                            </div>
+                            <div class="flyContent">
+                                <a href="" class="flyButton">
+                                    <img src="../images/sublet.svg" alt="sublet">
+                                    Sublet
+                                </a>
+                                <a href="" class="flyButton">
+                                    <img src="../images/books.svg" alt="books">
+                                    Book
+                                </a>
+                                <a href="" class="flyButton">
+                                    <img src="../images/furniture.svg" alt="furniture">
+                                    Furniture
+                                </a>
+                                <a href="#/create_post" class="flyButton">
+                                    <img src="../images/everything_else2.svg" alt="furniture">
+                                    Other
+                                </a>
+                            </div>
+                        </div>
                     </li>
                     <li id="register"><a href="#" onClick="return false;">Register</a>
                     </li>
@@ -135,3 +164,7 @@
 </body>
 
 </html>
+
+
+
+

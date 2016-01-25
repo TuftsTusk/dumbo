@@ -220,7 +220,7 @@ body {
   	.btn-primary {
   		font-size: 14px;
   		@include transition(0.1s);
-  		margin-top: 8px;
+  		margin-top: 9px;
 		margin-right: 20px;
 
 		background-color: $blue;
@@ -406,3 +406,79 @@ Main Components
 	    }
 	}
 }
+
+
+/********************************************/
+
+$flyArrowHeight: 11px;
+
+.toggleFlyout {
+	z-index: 100;
+    position: absolute;
+    border-radius: 4px;
+    background: whitesmoke;
+    border: 1px solid $border-color;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .25);
+    width: 372px;
+    right: 0;
+    top: 41px + $flyArrowHeight;
+
+
+    .flyArrowWrapper {
+    	position: relative;
+
+    	.flyArrow {
+    		background-image: url(../images/flyArrow-01.svg);
+    		background-repeat: no-repeat;
+    	    position: absolute;
+		    right: 51px;
+		    height: $flyArrowHeight;
+		    width: 20px;
+		    top: -$flyArrowHeight;
+    	}
+    }
+
+    .flyHeader {
+    	width: 100%;
+	    text-align: center;
+	    font-size: 1.3em;
+	    background: white;
+	    color: black;
+	    border-top-left-radius: 4px;
+	    border-top-right-radius: 4px;
+	    padding: 4px;
+	    border-bottom: 1px solid $divider-color;
+    }
+    .flyContent {
+    	overflow: hidden;
+    	padding: 5px;
+
+    	.flyButton {
+    		background: white;
+    		text-decoration: none;
+    		color: black;
+	    	float: left;
+		  	width: 80px;
+		    // background: red;
+		    margin: 5px;
+		    text-align: center;
+		    box-sizing: border-box;
+		    padding: 10px;
+		    border: 1px solid $divider-color;
+		    border-radius: 4px;
+
+		    > img {
+		    	height: 50px;
+			    width: 50px;
+			    // background: blue;
+			    margin: 0 auto;
+			    margin-bottom: 5px;
+		    }
+	    }
+
+    }
+
+
+}
+
+
