@@ -17,15 +17,23 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'oitozero.ngSweetAlert',
+    'dumboApp.config'
   ])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $httpProvider) {
         $routeProvider
-            .when('/', {
-                redirectTo: '/welcome'
+            .when('/' , {
+                templateUrl: 'views/main.html'
             })
             .when('/main' , {
                 templateUrl: 'views/main.html'
+            })
+            .when('/login' , {
+                templateUrl: 'views/login.html'
+            })
+            .when('/register' , {
+                templateUrl: 'views/register.html'
             })
             .when('/create_post', {
                 templateUrl: 'views/create_post.html'
@@ -41,6 +49,7 @@ angular
             })
 
             .otherwise({
-                redirectTo: '/'
+                templateUrl: '404.html'
             });
+        $httpProvider.defaults.withCredentials = true;
     });

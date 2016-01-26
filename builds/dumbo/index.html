@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css">
 
     <link rel="stylesheet" href="styles/style.css">
 
@@ -99,12 +100,15 @@
                             </div>
                         </div>
                     </li>
-                    <li id="register"><a href="#" onClick="return false;">Register</a>
+                    <li ng-show = "isLoggedin() == false" ng-cloak id="register"><a href="#" ng-href="#/register">Register</a>
                     </li>
-                    <li id="signIn"><a href="#" onClick="return false;">Sign in</a>
+                    <li ng-show = "isLoggedin() == false" ng-cloak id="signIn"><a href="#" ng-href="#/login">Sign in</a>
                     </li>
-                    
-
+                    <li ng-show = "isLoggedin() != false" ng-cloak id="email" >
+                      <a href="#" ng-href="#/login">{{requestEmail()}}</a>
+                    </li>
+                    <li ng-show = "isLoggedin() != false" ng-cloak id="logout"><a href="#" ng-click="logout()">Sign Out</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -124,7 +128,7 @@
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    
+
     <!--
     <script>
         ! function (A, n, g, u, l, a, r) {
@@ -151,7 +155,10 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
 
+    <script src="scripts/config.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/nav.js"></script>
     <script src="scripts/controllers/main.js"></script>
@@ -159,6 +166,10 @@
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/listings.js"></script>
     <script src="scripts/controllers/welcome.js"></script>
+    <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/shared/userDataService.js"></script>
+    <script src="scripts/shared/userService.js"></script>
 
 
 </body>
