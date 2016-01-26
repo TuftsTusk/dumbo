@@ -4,3 +4,4 @@ node_modules
 /.sass-cache
 builds/dumbo/bower_components
 bower_components
+builds/dumbo/scripts/config.js
