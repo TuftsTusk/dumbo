@@ -6,12 +6,12 @@
   },
   "staging": {
     "EnvironmentConfig": {
-      "api": "http://ringmasterstaging.herokuapp.com"
+      "api": "https://ringmasterstaging.herokuapp.com"
     }
   },
   "production": {
     "EnvironmentConfig": {
-      "api": "http://tuftstusk.herokuapp.com"
+      "api": "https://tuftstusk.herokuapp.com"
     }
   }
 }
