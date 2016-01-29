@@ -1,3 +1,5 @@
+/* This is mixins.scss: used for functions for entire site */
+
 // center vertically and/or horizontally an absolute positioned element
 
 @mixin center($xy:xy) {
@@ -19,3 +21,4 @@
     @include transform(translateY(-50%));
   }
 }
+/* end mixins.scss */
