@@ -1,3 +1,5 @@
+/* This is mixins.scss: used for functions for entire site */
+
 // center vertically and/or horizontally an absolute positioned element
 
 @mixin center($xy:xy) {
@@ -73,3 +75,5 @@ $margin) {
     margin: 0;
     padding: 0;
 }
+
+/* end mixins.scss */

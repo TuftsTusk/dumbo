@@ -1,0 +1,104 @@
+/* this is welcome.scss: used for the welcome page*/
+
+#welcome {
+	height: 100%;
+	width: 100%;
+    // height: auto;
+    position: absolute;
+    background-color: $color-main;
+
+    .splashWrap {
+    	width: 100%;
+    	min-height: 100%;
+    	/* equal to footer height */
+    	margin-bottom: -90px; 
+
+    }
+    .splashWrap:after {
+    	content: "";
+    	display: block;
+    }
+    .splashFooter, .splashWrap:after {
+    	/* footer height */
+    	height: 90px;
+    }
+    .splashFooter {
+    	padding-top: 20px;
+    	text-align: center;
+    	color: white;
+    	font-size: 0.7em;
+    	opacity: 0.6;
+    }
+
+
+    .splashWrap {
+    	padding-top: 100px;
+    	@media screen and (max-width: $break-small) {
+    		padding-top: 40px;
+    	}
+	}
+
+	.splashWrap .welcomeModal {
+		text-align: center;
+		color: white;
+		.logo {
+			width: 300px;
+			height: auto;
+			@media screen and (max-width: $break-small) {
+				width: 250px;
+			}
+		}
+		h1 {
+			margin-top: 8px;
+			font-size: 4em;
+			font-weight: 900;
+			margin-bottom: 15px;
+		}
+
+		.input-group {
+			input {
+				border: 0px;
+			}
+			.input-group-addon {
+				border: 0px;
+				background-color: white;
+				color: $color-main;
+			}
+		}
+
+		.btn {
+			width: 100%;
+			margin-top: 15px;
+		}
+		.checkbox {
+			text-align: left;
+		}
+
+		.slogan {
+			margin-top: 2px;
+			margin-bottom: 40px;
+        //opacity: 0.6;
+        font-size: 2.1em;
+
+	        @media screen and (max-width: $break-small) {
+	        	font-size: 1.7em;
+	        }
+
+	        p {
+	        	margin-bottom: 0px;
+	        }
+   		}
+
+	    .message {
+	    	font-family: $font-highlight;
+	    	font-size: 3.2em;
+	    	margin-bottom: 50px;
+
+	    	@media screen and (max-width: $break-small) {
+	    		font-size: 2.5em;
+	    	}
+	    }
+	}
+}
+
+/* end of welcome.scss */
