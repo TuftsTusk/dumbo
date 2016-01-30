@@ -23,13 +23,7 @@ angular.module('dumboApp')
 
 			$('#newPostButton').click(function() {
 				var flyout = $(this).parent().find('.toggleFlyout');
-				if ($(window).width() > b_small) {
-					flyout.toggleClass('hidden');
-				} else {
-					$('.navbar-toggle').click();
-					window.location.href = '#/create_post';
-				}
-				
+				flyout.toggleClass('hidden');
 			});
 
 			function updateNav(b_small, b_medium) {
