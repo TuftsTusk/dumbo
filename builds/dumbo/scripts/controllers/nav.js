@@ -22,8 +22,27 @@ angular.module('dumboApp')
 			})
 
 			$('#newPostButton').click(function() {
-				var flyout = $(this).parent().find('.toggleFlyout');
+				var flyout = $('#newPost').find('.toggleFlyout');
 				flyout.toggleClass('hidden');
+			});
+
+			$(document).mouseup(function (e) {
+			    var container = $('#newPost .toggleFlyout');
+			    var button = $('#newPostButton');
+			    if (!container.hasClass('hidden') &&
+			    	!container.is(e.target) &&
+			    	!button.is(e.target) &&
+			    	container.has(e.target).length === 0)
+			    {
+			        container.addClass('hidden');
+			    }
+			});
+
+			$('#newPost .toggleFlyout a').click(function() {
+				$('#newPost .toggleFlyout').addClass('hidden');
+				if ($(window).width() <= b_small) {
+					$('.navbar-toggle').click();
+				}
 			});
 
 			function updateNav(b_small, b_medium) {
