@@ -98,7 +98,7 @@ gulp.task('serve', ['express'], function() {
 //         }));
 // });
 
-gulp.task('production',['productionEnv'], function(){
+gulp.task('production',['productionEnv', 'sass'], function(){
   var port = process.env.PORT || 8080;
   var express = require('express');
   var app = express();
@@ -106,7 +106,7 @@ gulp.task('production',['productionEnv'], function(){
   app.listen(port);
 });
 
-gulp.task('staging',['stagingEnv'], function(){
+gulp.task('staging',['stagingEnv', 'sass'], function(){
   var port = process.env.PORT || 8080;
   var express = require('express');
   var app = express();
