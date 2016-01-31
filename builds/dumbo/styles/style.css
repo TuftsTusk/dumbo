@@ -327,14 +327,3 @@ Main Components
         width: 50px;
         margin: 0 auto;
         margin-bottom: 5px; }
-  @media screen and (max-width: 768px) {
-    .toggleFlyout {
-      right: initial;
-      left: 15px;
-      top: initial; }
-      .toggleFlyout .flyArrow {
-        right: initial;
-        left: 18px; } }
-
-.collapse.in {
-  overflow-y: initial; }
