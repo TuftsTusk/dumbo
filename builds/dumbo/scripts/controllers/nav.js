@@ -14,19 +14,38 @@ angular.module('dumboApp')
 		}
 
 		$(document).ready(function() {
-
-			updateNav();
+			var b_small = 768,
+				b_medium = 992;
+			updateNav(b_small, b_medium);
 			$(window).resize(function() {
-				updateNav();
+				updateNav(b_small, b_medium);
 			})
 
 			$('#newPostButton').click(function() {
-				$(this).parent().find('.toggleFlyout').toggleClass('hidden');
+				var flyout = $('#newPost').find('.toggleFlyout');
+				flyout.toggleClass('hidden');
 			});
 
-			function updateNav() {
-				var b_small = 768,
-					b_medium = 992;
+			$(document).mouseup(function (e) {
+			    var container = $('#newPost .toggleFlyout');
+			    var button = $('#newPostButton');
+			    if (!container.hasClass('hidden') &&
+			    	!container.is(e.target) &&
+			    	!button.is(e.target) &&
+			    	container.has(e.target).length === 0)
+			    {
+			        container.addClass('hidden');
+			    }
+			});
+
+			$('#newPost .toggleFlyout a').click(function() {
+				$('#newPost .toggleFlyout').addClass('hidden');
+				if ($(window).width() <= b_small) {
+					$('.navbar-toggle').click();
+				}
+			});
+
+			function updateNav(b_small, b_medium) {
 				if ($(window).width() <= b_small) {
 					$('.navbar-right #newPostButton').removeClass('btn btn-primary');
 					if ($('.navbar-collapse .searchbar').length) {
