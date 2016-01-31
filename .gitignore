@@ -5,3 +5,4 @@ node_modules
 builds/dumbo/bower_components
 bower_components
 builds/dumbo/scripts/config.js
+builds/dumbo/styles/style.css
