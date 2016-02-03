@@ -8,7 +8,7 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  	.controller('MainCtrl', function ($scope) {
-  		console.log('MainCtrl');
+  	.controller('HomeCtrl', function ($scope) {
+  		console.log('HomeCtrl');
 
   	});

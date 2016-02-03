@@ -9,6 +9,36 @@
  */
 angular.module('dumboApp')
   .controller('CreatePostCtrl', function ($scope, $http) {
+
+    console.log(window.location.hash);
+    var url = window.location.hash;
+    var type = url.split('#')[2];
+    var text;
+
+    var map = {
+        'sublet': function(str) {
+            return toTitleCase(str);
+        },
+        'book': function(str) {
+            return toTitleCase(str);
+        },
+        'furniture': function(str) {
+            return toTitleCase(str);
+        },
+        'other': function(str) {
+            return 'Generic';
+        },
+    };
+
+    if(map[type]) {
+        text = map[type](type);
+        $('#create_post h1').text(text + ' Listing');
+    } else {
+        alert('Bad url!');
+    }
+
+    
+
     var server = "http://tuftstusk.herokuapp.com"
     $scope.$on('$viewContentLoaded', function () {
         $scope.getListings();
@@ -82,3 +112,7 @@ angular.module('dumboApp')
 };
 
 });
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}

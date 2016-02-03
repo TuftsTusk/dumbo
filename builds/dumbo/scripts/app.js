@@ -24,10 +24,10 @@ angular
     .config(function ($routeProvider, $httpProvider) {
         $routeProvider
             .when('/' , {
-                templateUrl: 'views/main.html'
+                templateUrl: 'views/home.html'
             })
-            .when('/main' , {
-                templateUrl: 'views/main.html'
+            .when('/home' , {
+                templateUrl: 'views/home.html'
             })
             .when('/login' , {
                 templateUrl: 'views/login.html'
