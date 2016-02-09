@@ -8,7 +8,7 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  .controller('NewListingCtrl', function ($scope, $http, listingDataService) {
+  .controller('NewListingCtrl', function ($scope, $http, listingDataService, SweetAlert) {
     $scope.listing = {};
     $scope.newListingFormData = [
       {
@@ -59,7 +59,20 @@ angular.module('dumboApp')
 
     $scope.submit = function() {
       $scope.dataLoading = true;
-      listingDataService.newListing($scope.listing);
+      listingDataService.newListing($scope.listing).then(
+      function success(res){
+        $scope.dataLoading = false;
+        SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
+      },
+      function failure(res){
+        $scope.dataLoading = false;
+        console.log(res);
+        if (res.status === -1) {
+          SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+        } else {
+          SweetAlert.swal("I'm sorry I can't do that", res.data.message.message, "error");
+        }
+      });
     }
 
 });
