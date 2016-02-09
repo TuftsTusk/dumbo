@@ -35,8 +35,8 @@ angular
             .when('/register' , {
                 templateUrl: 'views/register.html'
             })
-            .when('/create_post', {
-                templateUrl: 'views/create_post.html'
+            .when('/newListing', {
+                templateUrl: 'views/newListing.html'
             })
             .when('/about', {
                 templateUrl: 'views/about.html'
