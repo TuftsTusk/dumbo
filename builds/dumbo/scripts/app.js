@@ -8,6 +8,13 @@
  *
  * Main module of the application.
  */
+
+ var underscore = angular.module('underscore', []);
+       underscore.factory('_', function() {
+           return window._; //Underscore should be loaded on the page
+       });
+
+
 angular
     .module('dumboApp', [
     'ngAnimate',
@@ -19,9 +26,11 @@ angular
     'ngSanitize',
     'ngTouch',
     'oitozero.ngSweetAlert',
-    'dumboApp.config'
+    'dumboApp.config',
+    'LocalStorageModule',
+    'underscore'
   ])
-    .config(function ($routeProvider, $httpProvider) {
+  .config(function ($routeProvider, $httpProvider) {
         $routeProvider
             .when('/' , {
                 templateUrl: 'views/home.html'
