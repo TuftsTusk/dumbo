@@ -1,7 +1,8 @@
 #!/bin/bash
 
 npm install;
-(cd builds/dumbo && ../../node_modules/bower/lib/bin/bower install)
+npm install -g bower
+(cd builds/dumbo && bower install)
 
 if $PROD;
 then gulp production;
