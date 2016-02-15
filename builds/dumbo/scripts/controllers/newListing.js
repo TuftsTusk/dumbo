@@ -12,7 +12,7 @@ angular.module('dumboApp')
     console.log(window.location.hash);
     var localStorageKey = 'listingform';
     var url = window.location.hash;
-    var type = url.split('#')[2];
+    $scope.type = url.split('#')[2];
     var text;
 
     var map = {
@@ -80,17 +80,30 @@ angular.module('dumboApp')
             return toTitleCase(str);
         },
         'other': function(str) {
-            return 'Generic';
+          $scope.newListingFormData = [
+            {
+              name:'Title',
+              required:'true',
+              type:'text',
+              class:'form-control'
+            },
+            {
+              name:'Description',
+              required:'true',
+              type:'textarea',
+              class:'form-control'
+            }
+          ];
         },
     };
 
-    if(map[type]) {
-        text = map[type](type);
+    if(map[$scope.type]) {
+        text = map[$scope.type]($scope.type);
         $('#newListing h1').text(text + ' Listing');
     } else {
-        alert('Bad url!');
+        $scope.type = 'other';
+        text = map['other']('other');
     }
-
     console.log('CreatePostCtrl');
 
     function toTitleCase(str) {
@@ -99,14 +112,15 @@ angular.module('dumboApp')
 
     $scope.submit = function() {
       $scope.dataLoading = true;
+      $scope.listing.type = $scope.type;
       listingDataService.newListing($scope.listing).then(
       function success(res){
         $scope.dataLoading = false;
         SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
+        localStorageService.remove(localStorageKey);
       },
       function failure(res){
         $scope.dataLoading = false;
-        console.log(res);
         if (res.status === -1) {
           SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
         } else {
@@ -127,9 +141,11 @@ angular.module('dumboApp')
                       confirmButtonColor: "#DD6B55",
                       confirmButtonText: "Yes, start over!",
                       closeOnConfirm: true },
-                      function(){
-                        localStorageService.remove(localStorageKey);
-                        $scope.listing = {};
+                      function(isConfirm){
+                        if (isConfirm){
+                          localStorageService.remove(localStorageKey);
+                          $scope.listing = {};
+                        }
                       });
     }
     $scope.isDataEmpty = function(){
