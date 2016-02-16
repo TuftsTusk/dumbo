@@ -92,7 +92,13 @@ angular.module('dumboApp')
               required:'true',
               type:'textarea',
               class:'form-control'
-            }
+            },
+            {
+              name:'Price',
+              required:'true',
+              type:'number',
+              class:'form-control'
+            },
           ];
         },
     };
