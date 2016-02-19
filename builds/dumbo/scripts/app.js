@@ -56,6 +56,9 @@ angular
             .when('/welcome' , {
                 templateUrl: 'views/welcome.html'
             })
+            .when('/settings' , {
+                templateUrl: 'views/settings.html'
+            })
 
             .otherwise({
                 templateUrl: '404.html'

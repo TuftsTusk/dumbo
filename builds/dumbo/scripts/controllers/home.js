@@ -9,6 +9,5 @@
  */
 angular.module('dumboApp')
   	.controller('HomeCtrl', function ($scope) {
-  		console.log('HomeCtrl');
 
   	});
