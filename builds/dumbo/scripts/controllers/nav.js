@@ -1,19 +1,51 @@
 'use strict';
 
 angular.module('dumboApp')
-	.controller('NavCtrl', function ($scope) {
-		console.log('NavCtrl');
+	.controller('NavCtrl', function ($scope, userService, userDataService) {
+		$scope.isLoggedin = function(){
+		 	return userService.isLoggedin();
+		}
+		$scope.logout = function(){
+			userService.setLoggedOut();
+			userDataService.logout();
+		}
+		$scope.requestEmail = function(){
+			return userService.requestEmail();
+		}
 
 		$(document).ready(function() {
-
-			updateNav();
+			var b_small = 768,
+				b_medium = 992;
+			updateNav(b_small, b_medium);
 			$(window).resize(function() {
-				updateNav();
+				updateNav(b_small, b_medium);
 			})
 
-			function updateNav() {
-				var b_small = 768,
-					b_medium = 992;
+			$('#newPostButton').click(function() {
+				var flyout = $('#newPost').find('.toggleFlyout');
+				flyout.toggleClass('hidden');
+			});
+
+			$(document).mouseup(function (e) {
+			    var container = $('#newPost .toggleFlyout');
+			    var button = $('#newPostButton');
+			    if (!container.hasClass('hidden') &&
+			    	!container.is(e.target) &&
+			    	!button.is(e.target) &&
+			    	container.has(e.target).length === 0)
+			    {
+			        container.addClass('hidden');
+			    }
+			});
+
+			$('#newPost .toggleFlyout a').click(function() {
+				$('#newPost .toggleFlyout').addClass('hidden');
+				if ($(window).width() <= b_small) {
+					$('.navbar-toggle').click();
+				}
+			});
+
+			function updateNav(b_small, b_medium) {
 				if ($(window).width() <= b_small) {
 					$('.navbar-right #newPostButton').removeClass('btn btn-primary');
 					if ($('.navbar-collapse .searchbar').length) {
@@ -35,7 +67,7 @@ angular.module('dumboApp')
                     // change shop links (sublets, furniture, etc) into a dropdown menu
 					$('.navbarShop ul').removeClass('nav navbar-nav');
 					$('.navbarShop ul').addClass('dropdown-menu');
-				
+
 				} else {
                     // reverse
  					$('.navbarShop .dropdown-toggle').hide();

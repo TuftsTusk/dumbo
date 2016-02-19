@@ -8,6 +8,13 @@
  *
  * Main module of the application.
  */
+
+ var underscore = angular.module('underscore', []);
+       underscore.factory('_', function() {
+           return window._; //Underscore should be loaded on the page
+       });
+
+
 angular
     .module('dumboApp', [
     'ngAnimate',
@@ -17,18 +24,28 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'oitozero.ngSweetAlert',
+    'dumboApp.config',
+    'LocalStorageModule',
+    'underscore'
   ])
-    .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
         $routeProvider
-            .when('/', {
-                redirectTo: '/welcome'
+            .when('/' , {
+                templateUrl: 'views/home.html'
             })
-            .when('/main' , {
-                templateUrl: 'views/main.html'
+            .when('/home' , {
+                templateUrl: 'views/home.html'
             })
-            .when('/create_post', {
-                templateUrl: 'views/create_post.html'
+            .when('/login' , {
+                templateUrl: 'views/login.html'
+            })
+            .when('/register' , {
+                templateUrl: 'views/register.html'
+            })
+            .when('/newListing', {
+                templateUrl: 'views/newListing.html'
             })
             .when('/about', {
                 templateUrl: 'views/about.html'
@@ -41,6 +58,7 @@ angular
             })
 
             .otherwise({
-                redirectTo: '/'
+                templateUrl: '404.html'
             });
+        $httpProvider.defaults.withCredentials = true;
     });

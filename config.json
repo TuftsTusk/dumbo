@@ -1,0 +1,17 @@
+{
+  "development": {
+    "EnvironmentConfig": {
+      "api": "http://localhost"
+    }
+  },
+  "staging": {
+    "EnvironmentConfig": {
+      "api": "https://ringmasterstaging.herokuapp.com"
+    }
+  },
+  "production": {
+    "EnvironmentConfig": {
+      "api": "https://tuftstusk.herokuapp.com"
+    }
+  }
+}

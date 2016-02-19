@@ -1,0 +1,246 @@
+/********* _nav.scss *********/
+/* elements in the navbar */
+
+.navbar.navbar-default {
+	font-size: 14px;
+	font-weight: 400;
+	background-color: $darkblue;
+	border-radius: 0px;
+	border: 0px;
+	color: $navTextColor;
+	.navbar-header {
+		.navbar-toggle {
+
+			background-color: $blue;
+			.icon-bar {
+				background-color: white;
+			}
+			&.collapsed {
+				background-color: transparent;
+			}
+		}
+
+		.navbar-brand {
+			width: 102px;
+			height: 36px;
+			display: block;
+			position: relative;
+			background: url(../images/combination-mark-white.svg) 0px 0px;
+			background-size: auto 100%;
+			background-repeat: no-repeat;
+			background-position: left;
+
+			margin-left: 8px;
+			margin-top: 8px;
+		  	margin-right: 40px;
+
+		  	@media screen and (max-width: $break-small) {
+		  		width: 20px;
+		  	}
+		}
+	}
+
+
+	#logo {
+		height: 34px;
+	}
+
+	.navbarMain {
+		li > a {
+			@include transition(0.1s);
+			color: $navTextColor;
+			&:hover {
+				color: $lightblue;
+			}
+		}
+		.active a {
+			background: $blue;
+			color: white;
+			&:hover {
+				color: $navTextColor;
+			}
+		}
+
+		.navbarShop {
+			margin-right: 45px;
+
+			&.open .dropdown-toggle {
+				background: $blue;
+				color: white;
+
+				@media screen and (max-width: $break-small) {
+		        	background: transparent !important;
+		        }
+
+
+
+			}
+
+			.dropdown-menu :not(.active) a {
+				color: black;
+
+				@media screen and (max-width: $break-small) {
+		        	color: white;
+		        }
+		        &:hover {
+		        	color: $lightblue;
+		        }
+			}
+
+			.active a {
+				@media screen and (max-width: $break-small) {
+		        	background: transparent;
+		        	color: $lightblue;
+		        	&:hover {
+		        		background: transparent;
+		        		color: $lightblue;
+		        	}
+		        }
+			}
+
+		}
+  	}
+
+  	// search field
+  	.navbar-form {
+	  	margin: 0px;
+	  	padding: 0px;
+
+        @media screen and (max-width: $break-small) {
+        	margin-left: 0px;
+        	border: 0px;
+        }
+
+	  	.form-group {
+	  		padding-top: 15px;
+	  		padding-bottom: 15px;
+	  	}
+
+	  	.input-field {
+	  		@include placeholder {color: $navTextColor};
+	  		border: none;
+			background-color: transparent;
+			padding: 0px 12px 0px 2px;
+
+			&:focus {
+				outline: none;
+			}
+	  	}
+  	}
+
+  	.collapse.in {
+		overflow-y: initial;
+	}
+
+  	.btn-primary {
+  		font-size: 14px;
+  		@include transition(0.1s);
+  		margin-top: 9px;
+		margin-right: 20px;
+
+		background-color: $blue;
+		color: white !important;
+		border: 0px;
+		border-radius: 3px;
+		padding: 6px 12px 6px 12px !important;
+
+		&:focus {
+			background-color: $blue;
+		}
+
+		&:hover {
+			background-color: lighten($blue, 10%);
+		}
+
+  	}
+
+  	.navbar-right > li > a {
+  		@include transition(0.1s);
+  		color: white;
+  		&:hover {
+  			color: $lightblue;
+  		}
+  	}
+}
+
+
+$flyArrowHeight: 11px;
+
+.toggleFlyout {
+	z-index: 100;
+    position: absolute;
+    border-radius: 4px;
+    background: whitesmoke;
+    border: 1px solid $border-color;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .25);
+    width: 372px;
+    right: 0;
+    top: 41px + $flyArrowHeight;
+
+
+    .flyArrowWrapper {
+    	position: relative;
+
+    	.flyArrow {
+    		background-image: url(../images/flyArrow-01.svg);
+    		background-repeat: no-repeat;
+    	    position: absolute;
+		    right: 51px;
+		    height: $flyArrowHeight;
+		    width: 20px;
+		    top: -$flyArrowHeight;
+    	}
+    }
+
+    .flyHeader {
+    	width: 100%;
+	    text-align: center;
+	    font-size: 1.3em;
+	    background: white;
+	    color: black;
+	    border-top-left-radius: 4px;
+	    border-top-right-radius: 4px;
+	    padding: 4px;
+	    border-bottom: 1px solid $divider-color;
+    }
+    .flyContent {
+    	overflow: hidden;
+    	padding: 5px;
+
+    	.flyButton {
+    		background: white;
+    		text-decoration: none;
+    		color: black;
+	    	float: left;
+		  	width: 80px;
+		    // background: red;
+		    margin: 5px;
+		    text-align: center;
+		    box-sizing: border-box;
+		    padding: 10px;
+		    border: 1px solid $divider-color;
+		    border-radius: 4px;
+
+		    > img {
+		    	height: 50px;
+			    width: 50px;
+			    // background: blue;
+			    margin: 0 auto;
+			    margin-bottom: 5px;
+		    }
+	    }
+    }
+    @media screen and (max-width: $break-small) {
+		right: initial;
+		left: 15px;
+		top: initial;
+    	
+    	.flyArrow {
+        	right: initial;
+        	left: 18px;
+        }
+    }
+}
+
+
+/* end nav.scss */

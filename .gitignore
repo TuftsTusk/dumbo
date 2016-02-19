@@ -1,4 +1,8 @@
-/node_modules
+node_modules
 /dist
 /.tmp
 /.sass-cache
+builds/dumbo/bower_components
+bower_components
+builds/dumbo/scripts/config.js
+builds/dumbo/styles/style.css

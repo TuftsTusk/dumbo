@@ -1,3 +1,6 @@
+/********* _variables.scss *********/
+/* set global variables such as font, primary colors, background colors */
+
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900|Kaushan+Script);
 
 $darkblue:	#133470;
@@ -10,7 +13,12 @@ $color-secondary: $lightblue;
 $light-background: $tan;
 $navTextColor: white;
 
+$border-color: rgba(100, 100, 100, .4);
+$divider-color: #ddd;
+
 $font-main: "proxima-nova-soft", Helvetica, sans-serif;
 $font-highlight: "Kaushan Script", Helvetica, sans-serif;
 
 $break-small: 768px;
+
+/* end variables.scss */

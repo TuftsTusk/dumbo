@@ -2,7 +2,8 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     connect = require('gulp-connect'),
     http = require('http'),
-    jasmine = require('gulp-jasmine-phantom');
+    jasmine = require('gulp-jasmine-phantom'),
+    gulpNgConfig = require('gulp-ng-config');
 
 
 gulp.task('express', function(){
@@ -17,6 +18,32 @@ gulp.task('html', function () {
   gulp.src('builds/dumbo/*.html')
     .pipe(connect.reload());
 });
+
+gulp.task('productionEnv', function () {
+  gulp.src('config.json')
+  .pipe(gulpNgConfig('dumboApp.config', {
+  environment: 'production'
+}))
+  .pipe(gulp.dest('builds/dumbo/scripts/'))
+});
+
+gulp.task('stagingEnv', function () {
+  gulp.src('config.json')
+  .pipe(gulpNgConfig('dumboApp.config', {
+  environment: 'staging'
+}))
+  .pipe(gulp.dest('builds/dumbo/scripts/'))
+});
+
+gulp.task('developmentEnv', function () {
+  gulp.src('config.json')
+  .pipe(gulpNgConfig('dumboApp.config', {
+  environment: 'development'
+}))
+  .pipe(gulp.dest('builds/dumbo/scripts/'))
+});
+
+
 
 gulp.task('views', function () {
   gulp.src('builds/dumbo/views/*')
@@ -71,7 +98,7 @@ gulp.task('serve', ['express'], function() {
 //         }));
 // });
 
-gulp.task('production','', function(){
+gulp.task('production',['productionEnv', 'sass'], function(){
   var port = process.env.PORT || 8080;
   var express = require('express');
   var app = express();
@@ -79,4 +106,13 @@ gulp.task('production','', function(){
   app.listen(port);
 });
 
-gulp.task('default', ['sass', 'watch', 'serve']);
+gulp.task('staging',['stagingEnv', 'sass'], function(){
+  var port = process.env.PORT || 8080;
+  var express = require('express');
+  var app = express();
+  app.use(express.static('builds/dumbo'));
+  app.listen(port);
+
+});
+
+gulp.task('default', ['sass', 'watch', 'serve', 'developmentEnv']);
