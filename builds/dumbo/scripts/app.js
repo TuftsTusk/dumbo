@@ -61,4 +61,6 @@ angular
                 templateUrl: '404.html'
             });
         $httpProvider.defaults.withCredentials = true;
-    });
+        $httpProvider.interceptors.push('authInterceptor');
+    })
+  });

@@ -1,13 +1,13 @@
-<div class="container-fluid" id="content-border" ng-controller="NewListingCtrl" ng-init=loadSavedData()>
-    <div class="col-md-2"></div>
+<div class="container-fluid" id="content-border" ng-controller="NewListingCtrl" ng-init=init()>
+    <div class="col-md-3"></div>
     <div class="col-md-6" id="newListing">
       <button ng-if="!isDataEmpty()" ng-click="deleteSavedData()" class="btn btn-primary pull-right"> Clear Form </button>
       <form name="newListing" ng-submit="submit()" role="form">
           <div class="form-group" ng-repeat="field in newListingFormData" ng-class="{ 'has-error': newListing.description.$dirty && newListing.description.$error.required }">
             <ng-form name="modularField">
-                <label>{{ field.name }}</label>
+                <label>{{ field.displayName }}</label>
                 <input type="{{ field.type }}" ng-class="field.class" name="data" ng-model="listing[field.name]" ng-required='field.required' ng-change="dataChanged()">
-                <p class="help-block" ng-show="modularField.data.$invalid">{{field.name}} Required</p>
+                <p class="help-block" ng-show="modularField.data.$invalid">{{field.displayName}} Required</p>
             </ng-form>
           </div>
               <button type="submit" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-primary">Create</button>

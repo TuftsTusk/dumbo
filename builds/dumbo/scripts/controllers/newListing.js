@@ -16,85 +16,96 @@ angular.module('dumboApp')
     var text;
 
     var map = {
-        'sublet': function(str) {
+        'SubletListing': function(str) {
           $scope.newListingFormData = [
             {
-              name:'Title',
+              displayName: 'Title',
+              name:'title',
               required:'true',
               type:'text',
               class:'form-control'
             },
             {
-              name:'Address',
+              displayName: 'Address',
+              name:'address',
               required:'true',
               type:'text',
               class:'form-control'
             },
             {
-              name:'Description',
+              displayName: 'Description',
+              name:'description',
               required:'true',
               type:'textarea',
               class:'form-control'
             },
             {
-              name:'Utilities',
+              displayName: 'Utilities',
+              name:'utilities',
               type:'text',
               class:'form-control'
             },
             {
-              name:'Parking',
-              required:true,
+              displayName: 'Parking',
+              name:'parking',
               type:'checkbox'
             },
             {
-              name:'Move in Date',
+              displayName:'Move in Date',
+              name:'movein',
               required:true,
               type:'datetime-local',
               class:'form-control'
             }
           ];
         },
-        'book': function(str) {
+        'BookListing': function(str) {
           $scope.newListingFormData = [
             {
-              name:'Title',
+              displayName: 'Title',
+              name:'title',
               required:'true',
               type:'text',
               class:'form-control'
             },
             {
-              name:'ISBN',
+              displayName:'ISBN',
+              name:'isbn',
               required:'true',
               type:'text',
               class:'form-control'
             },
             {
-              name:'Class Name',
+              displayName:'Class Name',
+              name:'classname',
               required:'false',
               type:'text',
               class:'form-control'
             }
           ];
         },
-        'furniture': function(str) {
+        'FurnitureListing': function(str) {
             return toTitleCase(str);
         },
-        'other': function(str) {
+        'MiscListing': function(str) {
           $scope.newListingFormData = [
             {
-              name:'Title',
+              displayName:'Title',
+              name:'title',
               required:'true',
               type:'text',
               class:'form-control'
             },
             {
-              name:'Description',
+              displayName: 'Description',
+              name:'description',
               required:'true',
               type:'textarea',
               class:'form-control'
             },
             {
-              name:'Price',
+              displayName: 'Price',
+              name:'price',
               required:'true',
               type:'number',
               class:'form-control'
@@ -103,14 +114,16 @@ angular.module('dumboApp')
         },
     };
 
-    if(map[$scope.type]) {
-        text = map[$scope.type]($scope.type);
-        $('#newListing h1').text(text + ' Listing');
-    } else {
-        $scope.type = 'other';
-        text = map['other']('other');
+    $scope.init = function(){
+      console.log('CreatePostCtrl');
+      if(!map[$scope.type]) {
+        $scope.type = 'MiscListing';
+      }
+      $('#newListing h1').text(text + ' Listing');
+      text = map[$scope.type]($scope.type);
+      $scope.loadSavedData();
     }
-    console.log('CreatePostCtrl');
+
 
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -130,7 +143,8 @@ angular.module('dumboApp')
         if (res.status === -1) {
           SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
         } else {
-          SweetAlert.swal("I'm sorry I can't do that", res.data.message.message, "error");
+          var errorMessage = res.data.message.message || "Unknown Error";
+          SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
         }
       });
     };
