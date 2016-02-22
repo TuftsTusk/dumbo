@@ -143,8 +143,11 @@ angular.module('dumboApp')
         if (res.status === -1) {
           SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
         } else {
-          var errorMessage = res.data.message.message || "Unknown Error";
-          SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+          var errorMessage;
+          if (!res.data && res.data.message && res.data.message.message) {
+            errorMessage = res.data.message.message;
+            SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+          } 
         }
       });
     };
