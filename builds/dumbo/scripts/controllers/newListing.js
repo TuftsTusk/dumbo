@@ -9,7 +9,6 @@
  */
 angular.module('dumboApp')
   .controller('NewListingCtrl', function ($scope, $http, listingDataService, SweetAlert, localStorageService, _) {
-    console.log(window.location.hash);
     var localStorageKey = 'listingform';
     var url = window.location.hash;
     $scope.type = url.split('#')[2];
@@ -115,7 +114,6 @@ angular.module('dumboApp')
     };
 
     $scope.init = function(){
-      console.log('CreatePostCtrl');
       if(!map[$scope.type]) {
         $scope.type = 'MiscListing';
       }
@@ -147,7 +145,7 @@ angular.module('dumboApp')
           if (!res.data && res.data.message && res.data.message.message) {
             errorMessage = res.data.message.message;
             SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
-          } 
+          }
         }
       });
     };
