@@ -8,123 +8,17 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  .controller('NewListingCtrl', function ($scope, $http, listingDataService, SweetAlert, localStorageService, _) {
+  .controller('NewListingCtrl', function ($scope, $http, listingMap, listingDataService, SweetAlert, localStorageService, _) {
     var localStorageKey = 'listingform';
     var url = window.location.hash;
     $scope.type = url.split('#')[2];
     var text;
 
-    var map = {
-        'SubletListing': function(str) {
-          $scope.newListingFormData = [
-            {
-              displayName: 'Title',
-              name:'title',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              displayName: 'Address',
-              name:'address',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              displayName: 'Description',
-              name:'description',
-              required:'true',
-              type:'textarea',
-              class:'form-control'
-            },
-            {
-              displayName: 'Utilities',
-              name:'utilities',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              displayName: 'Parking',
-              name:'parking',
-              type:'checkbox'
-            },
-            {
-              displayName:'Move in Date',
-              name:'movein',
-              required:true,
-              type:'datetime-local',
-              class:'form-control'
-            }
-          ];
-        },
-        'BookListing': function(str) {
-          $scope.newListingFormData = [
-            {
-              displayName: 'Title',
-              name:'title',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              displayName:'ISBN',
-              name:'isbn',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              displayName:'Class Name',
-              name:'classname',
-              required:'false',
-              type:'text',
-              class:'form-control'
-            }
-          ];
-        },
-        'FurnitureListing': function(str) {
-            return toTitleCase(str);
-        },
-        'MiscListing': function(str) {
-          $scope.newListingFormData = [
-            {
-              displayName:'Title',
-              name:'title',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              displayName: 'Description',
-              name:'description',
-              required:'true',
-              type:'textarea',
-              class:'form-control'
-            },
-            {
-              displayName: 'Price',
-              name:'price',
-              required:'true',
-              type:'number',
-              class:'form-control'
-            },
-          ];
-        },
-    };
-
     $scope.init = function(){
-      if(!map[$scope.type]) {
-        $scope.type = 'MiscListing';
-      }
-      $('#newListing h1').text(text + ' Listing');
-      text = map[$scope.type]($scope.type);
+      $scope.newListingFormData = listingMap.getFieldsByType($scope.type);
+      $scope.newListingFormData.type = listingMap.getListingTypeByType($scope.type);
+      console.log($scope.listing);
       $scope.loadSavedData();
-    }
-
-
-    function toTitleCase(str) {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
     $scope.submit = function() {
