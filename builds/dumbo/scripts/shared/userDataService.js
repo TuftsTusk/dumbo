@@ -2,9 +2,9 @@ angular.module('dumboApp')
     .service('userDataService', function($http,$q, EnvironmentConfig) {
 
   var host = EnvironmentConfig.api;
-  var registration = '/user/register';
-  var login = '/user/login';
-  var logout = '/user/logout';
+  var registration = '/me/register';
+  var login = '/me/login';
+  var logout = '/me/logout';
   delete $http.defaults.headers.common['X-Requested-With'];
   this.register = function(user) {
     return $http.post(host + registration, user);
