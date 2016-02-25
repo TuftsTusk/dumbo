@@ -9,10 +9,10 @@
  * Main module of the application.
  */
 
- var underscore = angular.module('underscore', []);
-       underscore.factory('_', function() {
-           return window._; //Underscore should be loaded on the page
-       });
+var underscore = angular.module('underscore', []);
+underscore.factory('_', function () {
+    return window._; //Underscore should be loaded on the page
+});
 
 
 angular
@@ -30,18 +30,18 @@ angular
     'LocalStorageModule',
     'underscore'
   ])
-  .config(function ($routeProvider, $httpProvider) {
+    .config(function ($routeProvider, $httpProvider) {
         $routeProvider
-            .when('/' , {
+            .when('/', {
                 templateUrl: 'views/home.html'
             })
-            .when('/home' , {
+            .when('/home', {
                 templateUrl: 'views/home.html'
             })
-            .when('/login' , {
+            .when('/login', {
                 templateUrl: 'views/login.html'
             })
-            .when('/register' , {
+            .when('/register', {
                 templateUrl: 'views/register.html'
             })
             .when('/newListing', {
@@ -53,17 +53,17 @@ angular
             .when('/listings', {
                 templateUrl: 'views/listings.html'
             })
-            .when('/welcome' , {
+            .when('/welcome', {
                 templateUrl: 'views/welcome.html'
             })
-        
-        .when('/grid' , {
+
+            .when('/grid', {
                 templateUrl: 'views/grid_view.html'
             })
 
-            .otherwise({
-                templateUrl: '404.html'
-            });
+        .otherwise({
+            templateUrl: '404.html'
+        });
         $httpProvider.defaults.withCredentials = true;
         $httpProvider.interceptors.push('authInterceptor');
     });
