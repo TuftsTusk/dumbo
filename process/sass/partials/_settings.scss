@@ -1,0 +1,26 @@
+/********* _settings.scss *********/
+/* styles for the settings page */
+#settings {
+	.settingsNav {
+		// border: 1px solid black;
+
+		.profile {
+			padding: 40px;
+			// border-bottom: 1px solid black;
+
+			.profileBox {
+				margin: 0 auto;
+				text-align: center;
+
+				.profileImg {
+					margin: 0 auto;
+					width: 60px;
+					height: 60px;
+					background: grey;
+					margin-bottom: 5px;
+				}
+			}
+		}
+
+	}
+}

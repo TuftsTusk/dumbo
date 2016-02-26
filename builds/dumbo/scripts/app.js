@@ -57,8 +57,11 @@ angular
                 templateUrl: 'views/welcome.html'
             })
             .when('/settings' , {
-                templateUrl: 'views/settings.html'
+				redirectTo: '/settings/account'
             })
+			.when('/settings/:page' , {
+				templateUrl: 'views/settings.html'
+			})
 
             .otherwise({
                 templateUrl: '404.html'

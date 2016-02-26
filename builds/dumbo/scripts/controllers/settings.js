@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-  	.controller('SettingsCtrl', function ($scope) {
+  	.controller('SettingsCtrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
 		$(document).ready(function() {
 			updateSettingsNav();
 
@@ -10,8 +10,9 @@ angular.module('dumboApp')
 			});
 
 			function updateSettingsNav() {
-				var curr = $('#settings .settingsNav').find('[href^="' + window.location.hash + '"]').addClass('active');
+				var page = $routeParams.page;
+				var curr = $('#settings .settingsNav').find('[href="' + window.location.hash + '"]').addClass('active');
 			}
 		});
 
-  	});
+  	}]);
