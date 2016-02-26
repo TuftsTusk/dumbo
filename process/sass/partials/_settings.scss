@@ -23,4 +23,24 @@
 		}
 
 	}
+
+	.settingsBody {
+		.title {
+			margin: 0;
+			text-transform: capitalize;
+		}
+
+		.subtitle {
+			color: $lightgrey;
+			font-size: 16px;
+		}
+		.list-group-item:nth-child(2) {
+			padding-top: 40px;
+		}
+		.form-control-label {
+			text-align: right;
+			margin-top: 7px;
+		}
+
+	}
 }
