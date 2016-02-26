@@ -8,112 +8,17 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  .controller('NewListingCtrl', function ($scope, $http, listingDataService, SweetAlert, localStorageService, _) {
-    console.log(window.location.hash);
+  .controller('NewListingCtrl', function ($scope, $http, listingMap, listingDataService, SweetAlert, localStorageService, _) {
     var localStorageKey = 'listingform';
     var url = window.location.hash;
     $scope.type = url.split('#')[2];
     var text;
 
-    var map = {
-        'sublet': function(str) {
-          $scope.newListingFormData = [
-            {
-              name:'Title',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              name:'Address',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              name:'Description',
-              required:'true',
-              type:'textarea',
-              class:'form-control'
-            },
-            {
-              name:'Utilities',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              name:'Parking',
-              required:true,
-              type:'checkbox'
-            },
-            {
-              name:'Move in Date',
-              required:true,
-              type:'datetime-local',
-              class:'form-control'
-            }
-          ];
-        },
-        'book': function(str) {
-          $scope.newListingFormData = [
-            {
-              name:'Title',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              name:'ISBN',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              name:'Class Name',
-              required:'false',
-              type:'text',
-              class:'form-control'
-            }
-          ];
-        },
-        'furniture': function(str) {
-            return toTitleCase(str);
-        },
-        'other': function(str) {
-          $scope.newListingFormData = [
-            {
-              name:'Title',
-              required:'true',
-              type:'text',
-              class:'form-control'
-            },
-            {
-              name:'Description',
-              required:'true',
-              type:'textarea',
-              class:'form-control'
-            },
-            {
-              name:'Price',
-              required:'true',
-              type:'number',
-              class:'form-control'
-            },
-          ];
-        },
-    };
-
-    if(map[$scope.type]) {
-        text = map[$scope.type]($scope.type);
-        $('#newListing h1').text(text + ' Listing');
-    } else {
-        $scope.type = 'other';
-        text = map['other']('other');
-    }
-    console.log('CreatePostCtrl');
-
-    function toTitleCase(str) {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    $scope.init = function(){
+      $scope.newListingFormData = listingMap.getFieldsByType($scope.type);
+      $scope.newListingFormData.type = listingMap.getListingTypeByType($scope.type);
+      console.log($scope.listing);
+      $scope.loadSavedData();
     }
 
     $scope.submit = function() {
@@ -130,7 +35,11 @@ angular.module('dumboApp')
         if (res.status === -1) {
           SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
         } else {
-          SweetAlert.swal("I'm sorry I can't do that", res.data.message.message, "error");
+          var errorMessage;
+          if (!res.data && res.data.message && res.data.message.message) {
+            errorMessage = res.data.message.message;
+            SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+          }
         }
       });
     };
