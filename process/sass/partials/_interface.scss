@@ -32,11 +32,101 @@
 			-moz-transition: 0.3s;
 			-ms-transition: 0.3s;
 			-o-transition: 0.3s;
-			transition: 0.3s; 
+			transition: 0.3s;
 
 			margin-left: 0px;
 		}
 	}
 }
+
+.headerbar {
+	background: $grey2;
+	margin-bottom: 20px;
+	h2 {
+		font-weight: bold;
+	}
+}
+
+.splitNav {
+	padding-left: 0;
+	.splitNavItem {
+		display: block;
+		padding: 5px 0;
+		color: $grey4;
+		text-decoration: none;
+
+		&:hover {
+			color: $grey3;
+		}
+
+		&.active {
+			color: $blue;
+		}
+	}
+
+}
+
+.splitContent {
+	.panel {
+		position: relative;
+		background: $grey1;
+		.panel-heading {
+			background: white;
+
+			.panel-title {
+				text-align: center;
+			}
+		}
+
+		.panel-body {
+			padding: 0;
+		}
+
+	}
+}
+
+.spacer {
+	height: 300px;
+}
+
+.iconLink {
+	text-decoration: none;
+	color: black;
+
+	&:hover {
+		color: $grey5;
+	}
+}
+
+.backIcon {
+	position: absolute;
+	font-size: 1.7em;
+}
+
+.isizeMed {
+	height: 20px;
+	margin-top: -4px;
+}
+
+.tForm {
+	.formGroup {
+		padding: 7px 15px;
+		border-top: 1px solid $grey2;
+		label {
+			display: block;
+			color: $grey4;
+		}
+	}
+	.formInput {
+		width: 100%;
+		background: transparent;
+		border: none;
+		font-size: 1.2em;
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
 
 /* end interface.scss */

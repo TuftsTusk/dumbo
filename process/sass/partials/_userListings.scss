@@ -1,0 +1,19 @@
+#userListings {
+	.splitContent {
+		.panel-body {
+			.photoUpload {
+				$height: 200px;
+				height: $height;
+
+				.photoUploadTitle {
+					text-align: center;
+					height: $height;
+  					line-height: $height;
+					img {
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+}
