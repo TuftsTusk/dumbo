@@ -12,12 +12,15 @@ angular.module('dumboApp')
         console.log('ViewCtrl');
         $http.get('../../get_listing.json').then(function (result) {
             $scope.listings = result.data;
+            $scope.source = result.data.image_gallery_link[0];
             console.log(result.data);
 
         });
 
 
-
+    $scope.switch_source= function(array_place){
+        $scope.source = $scope.listings.image_gallery_link[array_place];
+    };
 
 
     });
