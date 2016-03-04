@@ -56,6 +56,9 @@ angular
             .when('/welcome' , {
                 templateUrl: 'views/welcome.html'
             })
+            .when('/view' , {
+                templateUrl: 'views/view_post.html'
+            })
             .when('/settings' , {
 				redirectTo: '/settings/account'
             })
