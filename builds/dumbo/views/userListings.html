@@ -1,6 +1,6 @@
 <div ng-controller="UserListingsCtrl" class="container-fluid" id="userListings">
 	<div class="row headerbar">
-		<h2 class="container">New Listing</h2>
+		<h3 class="container">303 Boston Ave, Medford, MA</h3>
 	</div>
 	<div class="container">
 		<ul class="splitNav col-md-3">
@@ -11,10 +11,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<a href="" class="iconLink"><i class="backIcon fa fa-angle-left fa-lg"></i></a>
-					<h2 class="panel-title">Conor's Room</h2>
+					<h2 class="panel-title" ng-model="title">{{title}}</h2>
 				</div>
 				<div class="panel-body">
-					<form class="tForm">
+					<form class="tForm" novalidate>
 						<a href="" class="photoUpload">
 							<div class="photoUploadTitle">
 								<img src="images/skinnyplus.svg" class="isizeMed">
@@ -23,20 +23,28 @@
 						</a>
 						<fieldset class="formGroup">
 							<label>Title</label>
-							<input class="formInput" placeholder="Room 1">
+							<input class="formInput" name="title" type="text" ng-model="roomForm.title" ng-keyup="checkEmpty($event, 'title')" >
 						</fieldset>
 						<fieldset class="formGroup">
 							<label>Rent per month</label>
-							<input class="formInput">
+							<span style="font-size: 1.2em">$</span><input class="formInput fixedWidth" name="rent" type="number" ng-model="roomForm.rent">
 						</fieldset>
 						<fieldset class="double last">
 							<div class="formGroup bRight">
 								<label>Date available</label>
-								<input class="formInput">
+								<input class="formInput" name="dateAvailable" type="date" ng-model="roomForm.dateAvailable">
+								<div class="formCheckbox">
+									<input name="DAFlexible" type="checkbox" ng-model="roomForm.DAFlexible">
+									Date is flexible
+								</div>
 							</div>
 							<div class="formGroup">
 								<label>Date unavailable</label>
-								<input class="formInput">
+								<input class="formInput" name="dateUnavailable" type="date" ng-model="roomForm.dateUnavailable">
+								<div class="formCheckbox">
+									<input name="DUFlexible" type="checkbox" ng-model="roomForm.DUFlexible">
+									Date is flexible
+								</div>
 							</div>
 						</fieldset>
 					</form>
@@ -45,6 +53,7 @@
 					</div>
 
 				</div>
+				<!-- <pre>room = {{roomForm | json}}</pre> -->
 			</div>
 		</div>
 	</div>

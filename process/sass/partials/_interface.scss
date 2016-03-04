@@ -82,7 +82,7 @@
 		background: $grey1;
 		.panel-heading {
 			background: white;
-
+			height: 38px;
 			.panel-title {
 				text-align: center;
 			}
@@ -134,10 +134,26 @@
 		background: transparent;
 		border: none;
 		font-size: 1.2em;
+
+		&.fixedWidth {
+			width: 100px;
+		}
+		
+		&.ng-empty {
+
+		}
+
 		&:focus {
 			outline: none;
 		}
 	}
+
+	.formCheckbox {
+		margin-top: 10px;
+		color: $grey4;
+		font-size: .85em;
+	}
+
 	fieldset {
 		&.double {
 			.formGroup {
