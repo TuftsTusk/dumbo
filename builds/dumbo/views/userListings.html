@@ -32,7 +32,7 @@
 						<fieldset class="double last">
 							<div class="formGroup bRight">
 								<label>Date available</label>
-								<input class="formInput" name="dateAvailable" type="date" ng-model="roomForm.dateAvailable">
+								<input class="formInput" name="dateAvailable" type="date" min={{dateMin}} ng-model="roomForm.dateAvailable" ng-change="checkDate($event)">
 								<div class="formCheckbox">
 									<input name="DAFlexible" type="checkbox" ng-model="roomForm.DAFlexible">
 									Date is flexible
@@ -40,7 +40,7 @@
 							</div>
 							<div class="formGroup">
 								<label>Date unavailable</label>
-								<input class="formInput" name="dateUnavailable" type="date" ng-model="roomForm.dateUnavailable">
+								<input class="formInput" name="dateUnavailable" type="date" min={{roomForm.dateAvailable}} max={{dateMax}} ng-model="roomForm.dateUnavailable" ng-change="checkDate($event)">
 								<div class="formCheckbox">
 									<input name="DUFlexible" type="checkbox" ng-model="roomForm.DUFlexible">
 									Date is flexible
@@ -53,7 +53,7 @@
 					</div>
 
 				</div>
-				<!-- <pre>room = {{roomForm | json}}</pre> -->
+				<pre>room = {{roomForm | json}}</pre>
 			</div>
 		</div>
 	</div>

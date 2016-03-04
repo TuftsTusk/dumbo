@@ -138,9 +138,9 @@
 		&.fixedWidth {
 			width: 100px;
 		}
-		
-		&.ng-empty {
 
+		&.ng-invalid.ng-touched {
+			background: red;
 		}
 
 		&:focus {
