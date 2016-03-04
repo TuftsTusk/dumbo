@@ -1,0 +1,14 @@
+.grid {
+    @include clearfix;
+    .item {
+        float: left;
+        @include imageGrid(5, 1%);
+    }
+    img {
+        display: block;
+        border-radius: $roundness;
+        max-width: 100%;
+    }
+}
+
+
