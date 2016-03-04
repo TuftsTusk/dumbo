@@ -1,0 +1,32 @@
+    [
+        {
+            "id": "0000001",
+            "approximate_address": "Sunset Road, Somerville MA 02144",
+            "date_range": "2016-06-01,2017-06-1",
+            "rent": 700,
+            "bathrooms": 1,
+            "bedrooms_available": 3,
+            "last_updated": "2015-12-21T08:30:42",
+            "seller_email": "some.jerk@gmail.com",
+            "image_gallery_link": "http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg",
+            "est_utilities": 30,
+            "pre_furnished": false,
+            "notes": ""
+    },
+
+        {
+            "id": "0000002",
+            "approximate_address": "Pinkham Road, Medford MA 02155",
+            "date_range": "2016-06-01,2017-06-1",
+            "rent": 600,
+            "bathrooms": 2,
+            "bedrooms_available": 5,
+            "last_updated": "2015-2-21T08:30:42",
+            "seller_email": "some.asshole@gmail.com",
+            "image_gallery_link": "http://www.kayfabenews.com/wp-content/uploads/2015/02/puppy4.jpg",
+            "est_utilities": 300,
+            "pre_furnished": true,
+            "notes": ""
+    }
+
+    ]

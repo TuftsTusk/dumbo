@@ -8,11 +8,16 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  .controller('ViewCtrl', function () {
-  	console.log('ViewCtrl');
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('ViewCtrl', function ($scope, $http) {
+        console.log('ViewCtrl');
+        $http.get('../../get_listing.json').then(function (result) {
+            $scope.listings = result.data;
+            console.log(result.data);
+
+        });
+
+
+
+
+
+    });
