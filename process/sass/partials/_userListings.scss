@@ -4,13 +4,34 @@
 			.photoUpload {
 				$height: 200px;
 				height: $height;
+				background: white;
+				display: block;
+				color: black;
+				text-decoration: none;
 
+				&:hover {
+					color: black;
+				}
 				.photoUploadTitle {
 					text-align: center;
 					height: $height;
   					line-height: $height;
 					img {
 						margin-right: 10px;
+					}
+				}
+			}
+			.detailsBox {
+				padding: 70px 0;
+				width: 100%;
+				.btn {
+					padding-left: 60px;
+					display: block;
+					margin: 0 auto;
+					border: 1px solid $grey2;
+
+					.fa {
+						margin-left: 40px;
 					}
 				}
 			}

@@ -5,6 +5,16 @@
 	outline: none !important;
 }
 
+.btn {
+	&.btn-tertiary {
+		background: white;
+	}
+	.fa-angle-right {
+		margin-left: 10px;
+	}
+}
+
+
 .semesters {
 	.semWrapper {
 		display: inline-block;
@@ -109,12 +119,14 @@
 }
 
 .tForm {
+	$border: 1px solid $grey2;
 	.formGroup {
 		padding: 7px 15px;
-		border-top: 1px solid $grey2;
+		border-top: $border;
+
 		label {
 			display: block;
-			color: $grey4;
+			color: $grey6;
 		}
 	}
 	.formInput {
@@ -126,6 +138,22 @@
 			outline: none;
 		}
 	}
+	fieldset {
+		&.double {
+			.formGroup {
+				width: 50%;
+				float: left;
+
+				&.bRight {
+					border-right: $border;
+				}
+			}
+		}
+		&.last {
+			border-bottom: $border;
+		}
+	}
+
 }
 
 
