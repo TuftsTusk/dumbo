@@ -6,15 +6,7 @@ angular.module('dumboApp')
 	$scope.title = 'Room 1';
 	$scope.listingData = {
 		address: '303 Boston Ave, Medford, MA',
-		rooms: [
-			//   {
-			// 	  placeholder: $scope.title,
-			// 	  title: $scope.title,
-			// 	  rent: '',
-			// 	  dateAvailable: '',
-			// 	  dateUnavailable: '',
-			//   }
-		]
+		bedrooms: []
 	}
 
 	$scope.roomForm = {
@@ -27,6 +19,13 @@ angular.module('dumboApp')
 		DUFlexible: false
 	};
 
+	$scope.save = function(room) {
+		var r = angular.copy(room);
+		$scope.listingData.bedrooms.push(r);
+		console.log('saving');
+		console.log($scope.listingData.bedrooms);
+	}
+
 	$scope.checkEmpty = function(e, value) {
 		//console.log(e, value);
 		//console.log($scope.roomForm[value]);
@@ -38,12 +37,6 @@ angular.module('dumboApp')
 				$scope.title = $scope.roomForm[value];
 			}
 		}
-
-		//   if (e.keyCode == 8 && $scope.listingData.rooms[0][value] == '') {
-		// 	  e.preventDefault();
-		// 	  console.log('empty');
-		// 	  //$scope.model[value] = '';
-		//   }
 	};
 	var dmin = new Date(),
 		dmax = new Date();
@@ -52,20 +45,25 @@ angular.module('dumboApp')
 	// $scope.dateMin = d;
 	$scope.dateMax = dmax.toISOString().split('T')[0];
 
+	var tForm = $('.tForm');
+	// var inputs = tForm.find('.formInput');
+
+	// $scope.DAValid = true;
+	// $scope.DUValid = true;
 	$scope.checkDate = function(e) {
-		console.log('checkDate');
-		var dateString1 = $scope.roomForm['dateAvailable'],
-			dateString2 = $scope.roomForm['dateUnavailable'];
-		console.log(dateString1);
-		console.log(dateString2);
-
-		if (dateString1 != "" && dateString2 != "") {
-
-			console.log('check here');
-			var d1 = new Date(dateString1),
-				d2 = new Date(dateString2);
-
-		}
+		// console.log('checkDate');
+		// var dateString1 = $scope.roomForm['dateAvailable'],
+		// 	dateString2 = $scope.roomForm['dateUnavailable'];
+		// console.log(dateString1);
+		// console.log(dateString2);
+		// $('.tForm .formInput.ng-invalid.ng-touched').parent().addClass('fieldInvalid');
+		//
+		// if (dateString1 != "" && dateString2 != "") {
+		//
+		// 	console.log('check here');
+		// 	var d1 = new Date(dateString1),
+		// 		d2 = new Date(dateString2);
+		// }
 	}
 
 	console.log($scope.listingData);

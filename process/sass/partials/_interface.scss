@@ -109,8 +109,15 @@
 }
 
 .backIcon {
+	padding: 0;
+	background: transparent;
+	border: 0;
 	position: absolute;
 	font-size: 1.7em;
+
+	&:focus {
+		outline: none;
+	}
 }
 
 .isizeMed {
@@ -123,11 +130,18 @@
 	.formGroup {
 		padding: 7px 15px;
 		border-top: $border;
-
+		&.fieldInvalid {
+			border: 0 !important;
+		    outline: 1px solid $errorRed;
+			margin-top: 1px;
+		    -webkit-box-shadow: 0 0 4px $errorRed;
+		    box-shadow: 0 0 4px $errorRed;
+		}
 		label {
 			display: block;
 			color: $grey6;
 		}
+
 	}
 	.formInput {
 		width: 100%;
@@ -139,9 +153,9 @@
 			width: 100px;
 		}
 
-		&.ng-invalid.ng-touched {
-			background: red;
-		}
+		// &.ng-invalid.ng-touched {
+		// 	background: red;
+		// }
 
 		&:focus {
 			outline: none;
