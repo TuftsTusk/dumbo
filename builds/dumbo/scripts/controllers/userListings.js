@@ -3,22 +3,16 @@
 angular.module('dumboApp')
 .controller('UserListingsCtrl', function ($scope) {
 
+	// title in header
 	$scope.title = 'Room 1';
+
+	// data for entire sublet listing
 	$scope.listingData = {
 		address: '303 Boston Ave, Medford, MA',
 		bedrooms: []
 	}
 
-	$scope.roomForm = {
-		placeholder: $scope.title,
-		title: $scope.title,
-		rent: '',
-		dateAvailable: '',
-		dateUnavailable: '',
-		DAFlexible: false,
-		DUFlexible: false
-	};
-
+	// when back button is pressed
 	$scope.save = function(room) {
 		var r = angular.copy(room);
 		$scope.listingData.bedrooms.push(r);
@@ -26,45 +20,27 @@ angular.module('dumboApp')
 		console.log($scope.listingData.bedrooms);
 	}
 
+	// check if a field is empty
+	// angular has functionality for simply checking if a field is empty,
+	// but I wanted some extra things to happen when the title was modified.
+	// The function is passed the value of the field it is supposed to modify,
+	// so it can be used for multiple fields.
 	$scope.checkEmpty = function(room, value) {
-		//console.log(e, value);
-		//console.log($scope.roomForm[value]);
-
 		if (value == 'title') {
 			if (!room[value]) {
+				// if the title field is empty, set the title to Room 1
 				$scope.title = 'Room 1';
 			} else {
 				$scope.title = room[value];
 			}
 		}
 	};
+
+	// set min and max dates
 	var dmin = new Date(),
 		dmax = new Date();
 	dmax.setFullYear(dmin.getFullYear() + 1);
 	$scope.dateMin = dmin.toISOString().split('T')[0];
-	// $scope.dateMin = d;
 	$scope.dateMax = dmax.toISOString().split('T')[0];
 
-	var tForm = $('.tForm');
-	// var inputs = tForm.find('.formInput');
-
-	// $scope.DAValid = true;
-	// $scope.DUValid = true;
-	$scope.checkDate = function(room) {
-		// console.log(room);
-		// var dateString1 = room.dateAvailable,
-		// 	dateString2 = room.dateUnavailable;
-		// console.log(dateString1);
-		// console.log(dateString2);
-		// // $('.tForm .formInput.ng-invalid.ng-touched').parent().addClass('fieldInvalid');
-		//
-		// if (dateString1 && dateString2 && dateString1 != "" && dateString2 != "") {
-		//
-		// 	console.log('check here');
-		// 	// var d1 = new Date(dateString1),
-		// 	// 	d2 = new Date(dateString2);
-		// }
-	}
-
-	console.log($scope.listingData);
 });
