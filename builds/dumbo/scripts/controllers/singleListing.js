@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('UserListingsCtrl', function ($scope) {
+.controller('singleListingCtrl', function ($scope) {
 
 	// title in header
 	$scope.title = 'Room 1';

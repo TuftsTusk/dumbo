@@ -57,7 +57,7 @@ angular
                 templateUrl: 'views/welcome.html'
             })
 			.when('/mylistings/' , {
-				templateUrl: 'views/userListings.html'
+				templateUrl: 'views/singleListing.html'
 			})
             .when('/settings' , {
 				redirectTo: '/settings/account'
