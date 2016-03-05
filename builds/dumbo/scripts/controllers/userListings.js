@@ -26,15 +26,15 @@ angular.module('dumboApp')
 		console.log($scope.listingData.bedrooms);
 	}
 
-	$scope.checkEmpty = function(e, value) {
+	$scope.checkEmpty = function(room, value) {
 		//console.log(e, value);
 		//console.log($scope.roomForm[value]);
 
 		if (value == 'title') {
-			if ($scope.roomForm[value] == '') {
+			if (!room[value]) {
 				$scope.title = 'Room 1';
 			} else {
-				$scope.title = $scope.roomForm[value];
+				$scope.title = room[value];
 			}
 		}
 	};

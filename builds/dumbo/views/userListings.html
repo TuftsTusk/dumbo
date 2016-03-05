@@ -23,12 +23,13 @@
 							</a>
 							<fieldset class="formGroup">
 								<label>Title</label>
-								<input class="formInput" required name="title" type="text" ng-model="room.title" ng-keyup="checkEmpty($event, 'title')" >
+								<input class="formInput" required name="title" type="text" ng-model="room.title" ng-change="checkEmpty(room, 'title')" >
+								<span class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">This field is required.</span>
 							</fieldset>
 							<fieldset class="formGroup">
 								<label>Rent per month</label>
 								<span style="font-size: 1.2em">$</span><input class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
-								<!-- <span class="errorMsg" ng-show="rForm.rent.$error.required">Please add a how much this room costs.</span> -->
+								<div class="errorMsg" ng-show="rForm.rent.$error.required && rForm.rent.$touched">This field is required.</div>
 							</fieldset>
 							<fieldset class="double last">
 								<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.dateAvailable.$invalid && rForm.dateAvailable.$touched}">
@@ -58,7 +59,7 @@
 						</div>
 
 					</div>
-					<pre>room = {{rForm | json}}</pre>
+					<!-- <pre>room = {{rForm | json}}</pre> -->
 				</div>
 			</form>
 		</div>
