@@ -50,19 +50,19 @@ angular.module('dumboApp')
 
 	// $scope.DAValid = true;
 	// $scope.DUValid = true;
-	$scope.checkDate = function(e) {
-		// console.log('checkDate');
-		// var dateString1 = $scope.roomForm['dateAvailable'],
-		// 	dateString2 = $scope.roomForm['dateUnavailable'];
+	$scope.checkDate = function(room) {
+		// console.log(room);
+		// var dateString1 = room.dateAvailable,
+		// 	dateString2 = room.dateUnavailable;
 		// console.log(dateString1);
 		// console.log(dateString2);
-		// $('.tForm .formInput.ng-invalid.ng-touched').parent().addClass('fieldInvalid');
+		// // $('.tForm .formInput.ng-invalid.ng-touched').parent().addClass('fieldInvalid');
 		//
-		// if (dateString1 != "" && dateString2 != "") {
+		// if (dateString1 && dateString2 && dateString1 != "" && dateString2 != "") {
 		//
 		// 	console.log('check here');
-		// 	var d1 = new Date(dateString1),
-		// 		d2 = new Date(dateString2);
+		// 	// var d1 = new Date(dateString1),
+		// 	// 	d2 = new Date(dateString2);
 		// }
 	}
 

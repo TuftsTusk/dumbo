@@ -15,7 +15,6 @@
 						<h2 class="panel-title" ng-model="title">{{title}}</h2>
 					</div>
 					<div class="panel-body">
-
 							<a href="" class="photoUpload">
 								<div class="photoUploadTitle">
 									<img src="images/skinnyplus.svg" class="isizeMed">
@@ -24,28 +23,33 @@
 							</a>
 							<fieldset class="formGroup">
 								<label>Title</label>
-								<input class="formInput" name="title" type="text" ng-model="room.title" ng-keyup="checkEmpty($event, 'title')" >
+								<input class="formInput" required name="title" type="text" ng-model="room.title" ng-keyup="checkEmpty($event, 'title')" >
 							</fieldset>
 							<fieldset class="formGroup">
 								<label>Rent per month</label>
-								<span style="font-size: 1.2em">$</span><input class="formInput fixedWidth" name="rent" type="number" ng-model="room.rent">
+								<span style="font-size: 1.2em">$</span><input class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
+								<!-- <span class="errorMsg" ng-show="rForm.rent.$error.required">Please add a how much this room costs.</span> -->
 							</fieldset>
 							<fieldset class="double last">
-								<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.dateAvailable.$invalid}">
+								<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.dateAvailable.$invalid && rForm.dateAvailable.$touched}">
 									<label>Date available</label>
-									<input class="formInput" name="dateAvailable" type="date" min={{dateMin}} ng-model="room.dateAvailable" ng-change="checkDate($event)">
+									<input class="formInput" required name="dateAvailable" type="date" min={{dateMin}} ng-model="room.dateAvailable" ng-change="checkDate(room)">
+									<span class="errorMsg" ng-show="rForm.dateAvailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 									<div class="formCheckbox">
 										<input name="DAFlexible" type="checkbox" tabindex="-1" ng-model="room.DAFlexible">
 										Date is flexible
 									</div>
 								</div>
-								<div class="formGroup" ng-class="{'fieldInvalid': rForm.dateUnavailable.$invalid}">
+								<div class="formGroup" ng-class="{'fieldInvalid': rForm.dateUnavailable.$invalid && rForm.dateAvailable.$touched}">
 									<label>Date unavailable</label>
-									<input class="formInput" name="dateUnavailable" type="date" min={{room.dateAvailable}} max={{dateMax}} ng-model="room.dateUnavailable" ng-change="checkDate($event)">
+									<input class="formInput" required name="dateUnavailable" type="date" min={{room.dateAvailable}} max={{dateMax}} ng-model="room.dateUnavailable" ng-change="checkDate()">
+									<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.min">Must be after {{room.dateAvailable | date : format : timezone}}.</span>
+									<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 									<div class="formCheckbox">
 										<input name="DUFlexible" type="checkbox" tabindex="-1" ng-model="room.DUFlexible">
 										Date is flexible
 									</div>
+
 								</div>
 							</fieldset>
 
