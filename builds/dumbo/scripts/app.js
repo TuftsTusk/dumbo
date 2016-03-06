@@ -65,6 +65,9 @@ angular
 			.when('/settings/:page' , {
 				templateUrl: 'views/settings.html'
 			})
+            .when('/sublet' , {
+				templateUrl: 'views/view_sub.html'
+			})
 
             .otherwise({
                 templateUrl: '404.html'
