@@ -5,6 +5,16 @@
 	outline: none !important;
 }
 
+.btn {
+	&.btn-tertiary {
+		background: white;
+	}
+	.fa-angle-right {
+		margin-left: 10px;
+	}
+}
+
+
 .semesters {
 	.semWrapper {
 		display: inline-block;
@@ -32,11 +42,153 @@
 			-moz-transition: 0.3s;
 			-ms-transition: 0.3s;
 			-o-transition: 0.3s;
-			transition: 0.3s; 
+			transition: 0.3s;
 
 			margin-left: 0px;
 		}
 	}
 }
+
+.headerbar {
+	background: $grey2;
+	margin-bottom: 20px;
+	h2 {
+		font-weight: bold;
+	}
+}
+
+.splitNav {
+	padding-left: 0;
+	.splitNavItem {
+		display: block;
+		padding: 5px 0;
+		color: $grey4;
+		text-decoration: none;
+
+		&:hover {
+			color: $grey3;
+		}
+
+		&.active {
+			color: $blue;
+		}
+	}
+
+}
+
+.splitContent {
+	.panel {
+		position: relative;
+		background: $grey1;
+		.panel-heading {
+			background: white;
+			height: 38px;
+			.panel-title {
+				text-align: center;
+			}
+		}
+
+		.panel-body {
+			padding: 0;
+		}
+
+	}
+}
+
+.spacer {
+	height: 300px;
+}
+
+.iconLink {
+	text-decoration: none;
+	color: black;
+
+	&:hover {
+		color: $grey5;
+	}
+}
+
+.backIcon {
+	padding: 0;
+	background: transparent;
+	border: 0;
+	position: absolute;
+	font-size: 1.7em;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.isizeMed {
+	height: 20px;
+	margin-top: -4px;
+}
+
+.tForm {
+	$border: 1px solid $grey2;
+	.formGroup {
+		padding: 7px 15px;
+		border-top: $border;
+		&.fieldInvalid {
+			border: 0 !important;
+		    outline: 1px solid $errorRed;
+			margin-top: 1px;
+		    -webkit-box-shadow: 0 0 4px $errorRed;
+		    box-shadow: 0 0 4px $errorRed;
+		}
+		label {
+			display: block;
+			color: $grey6;
+		}
+
+	}
+	.formInput {
+		width: 100%;
+		background: transparent;
+		border: none;
+		font-size: 1.2em;
+
+		&.fixedWidth {
+			width: 100px;
+		}
+
+		// &.ng-invalid.ng-touched {
+		// 	background: red;
+		// }
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.formCheckbox {
+		margin-top: 10px;
+		color: $grey4;
+		font-size: .85em;
+	}
+
+	fieldset {
+		&.double {
+			.formGroup {
+				width: 50%;
+				float: left;
+
+				&.bRight {
+					border-right: $border;
+				}
+			}
+		}
+		&.last {
+			border-bottom: $border;
+		}
+	}
+	.errorMsg {
+		color: $errorRed;
+		font-size: .85em;
+	}
+
+}
+
 
 /* end interface.scss */

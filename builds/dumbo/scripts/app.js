@@ -56,6 +56,9 @@ angular
             .when('/welcome' , {
                 templateUrl: 'views/welcome.html'
             })
+			.when('/mylistings/listing/:id' , {
+				templateUrl: 'views/singleListing.html'
+			})
             .when('/settings' , {
 				redirectTo: '/settings/account'
             })

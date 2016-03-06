@@ -8,6 +8,7 @@
 	border-radius: 0px;
 	border: 0px;
 	color: $navTextColor;
+	margin-bottom: 0;
 	.navbar-header {
 		.navbar-toggle {
 
@@ -234,7 +235,7 @@ $flyArrowHeight: 11px;
 		right: initial;
 		left: 15px;
 		top: initial;
-    	
+
     	.flyArrow {
         	right: initial;
         	left: 18px;

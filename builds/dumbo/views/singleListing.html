@@ -1,0 +1,67 @@
+<div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing">
+	<div class="row headerbar">
+		<h3 class="container">303 Boston Ave, Medford, MA</h3>
+	</div>
+	<div class="container">
+		<ul class="splitNav col-md-3">
+			<a href="" class="splitNavItem">Apartment Info</a>
+			<a href="" class="splitNavItem active">Bedrooms</a>
+		</ul>
+		<div class="splitContent col-md-6">
+			<form class="tForm" name="rForm" ng-submit="save(room)" novalidate>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<button type="submit" class="backIcon fa fa-angle-left fa-lg"></button>
+						<h2 class="panel-title" ng-model="title">{{title}}</h2>
+					</div>
+					<div class="panel-body">
+							<a href="" class="photoUpload">
+								<div class="photoUploadTitle">
+									<img src="images/skinnyplus.svg" class="isizeMed">
+									Add photos
+								</div>
+							</a>
+							<fieldset class="formGroup">
+								<label>Title</label>
+								<input class="formInput" required name="title" type="text" ng-model="room.title" ng-change="checkEmpty(room, 'title')" >
+								<span class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">This field is required.</span>
+							</fieldset>
+							<fieldset class="formGroup">
+								<label>Rent per month</label>
+								<span style="font-size: 1.2em">$</span><input class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
+								<div class="errorMsg" ng-show="rForm.rent.$error.required && rForm.rent.$touched">This field is required.</div>
+							</fieldset>
+							<fieldset class="double last">
+								<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.dateAvailable.$invalid && rForm.dateAvailable.$touched}">
+									<label>Date available</label>
+									<input class="formInput" required name="dateAvailable" type="date" min={{dateMin}} ng-model="room.dateAvailable" ng-change="checkDate(room)">
+									<span class="errorMsg" ng-show="rForm.dateAvailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+									<div class="formCheckbox">
+										<input name="DAFlexible" type="checkbox" tabindex="-1" ng-model="room.DAFlexible">
+										Date is flexible
+									</div>
+								</div>
+								<div class="formGroup" ng-class="{'fieldInvalid': rForm.dateUnavailable.$invalid && rForm.dateAvailable.$touched}">
+									<label>Date unavailable</label>
+									<input class="formInput" required name="dateUnavailable" type="date" min={{room.dateAvailable}} max={{dateMax}} ng-model="room.dateUnavailable" ng-change="checkDate()">
+									<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.min">Must be after {{room.dateAvailable | date : format : timezone}}.</span>
+									<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+									<div class="formCheckbox">
+										<input name="DUFlexible" type="checkbox" tabindex="-1" ng-model="room.DUFlexible">
+										Date is flexible
+									</div>
+
+								</div>
+							</fieldset>
+
+						<div class="detailsBox">
+							<button class="btn btn-tertiary" role="button">Optional details<i class="fa fa-angle-right fa-lg"></i></button>
+						</div>
+
+					</div>
+					<!-- <pre>room = {{rForm | json}}</pre> -->
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
