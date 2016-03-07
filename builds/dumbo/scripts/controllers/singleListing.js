@@ -4,7 +4,7 @@ angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope) {
 
 	// title in header
-	$scope.title = 'Room 1';
+	$scope.roomTitle = 'Room 1';
 
 	// data for entire sublet listing
 	$scope.listingData = {
@@ -29,9 +29,9 @@ angular.module('dumboApp')
 		if (value == 'title') {
 			if (!room[value]) {
 				// if the title field is empty, set the title to Room 1
-				$scope.title = 'Room 1';
+				$scope.roomTitle = 'Room 1';
 			} else {
-				$scope.title = room[value];
+				$scope.roomTitle = room[value];
 			}
 		}
 	};
