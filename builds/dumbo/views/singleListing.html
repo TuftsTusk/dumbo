@@ -9,14 +9,18 @@
 	</ul>
 	<div class="splitContent col-md-4">
 		<div class="panel panel-default">
-			<div class="panel-body">
-				<div style="background:red;border:1px solid black;height: 100px">
-				</div>
-				<div style="background:red;border:1px solid black;height: 100px">
-				</div>
-				<div style="background:red;border:1px solid black;height: 100px">
-				</div>
-
+			<div class="list-group panelGroup">
+				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms">
+					<img ng-src={{rm.photos[0]}}></img>
+					<div class="pad">
+						{{rm.title}}
+						<i class="forwardIcon fa fa-angle-right fa-lg"></i>
+					</div>
+				</button>
+				<button type="button" class="list-group-item">
+					<img src="images/skinnyplus.svg" class="isizeMed">
+					Add room
+				</button>
 			</div>
 		</div>
 	</div>
@@ -72,7 +76,7 @@
 					</div>
 
 				</div>
-				<pre>room = {{rForm | json}}</pre>
+				<!-- <pre>room = {{rForm | json}}</pre> -->
 			</div>
 		</form>
 	</div>

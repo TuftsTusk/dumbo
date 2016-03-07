@@ -12,6 +12,21 @@ angular.module('dumboApp')
 		bedrooms: []
 	}
 
+	// remove this
+	var test_room = {
+		dateAvailable: 'Mon May 23 2016 00:00:00 GMT-0400 (EDT)',
+		dateUnavailable: 'Tue Aug 23 2016 00:00:00 GMT-0400 (EDT)',
+		rent: 667,
+		title: "Jackson's room",
+		photos: [
+			'http://www.pawderosa.com/images/puppies.jpg',
+			'http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg',
+			'http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg',
+			'https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg'
+		]
+	};
+	$scope.listingData.bedrooms.push(test_room);
+
 	// when back button is pressed
 	$scope.save = function(room) {
 		var r = angular.copy(room);

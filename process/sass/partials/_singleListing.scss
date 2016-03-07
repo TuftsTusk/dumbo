@@ -37,5 +37,30 @@
 				}
 			}
 		}
+		.panelGroup {
+			$height: 90px;
+			> * {
+				font-size: 16px;
+				height: $height;
+			}
+			.list-group-item {
+				text-align: center;
+			}
+			.panelGroupItem {
+				padding: 0;
+				text-align: left;
+				position: relative;
+
+				img {
+					height: 100%;
+					background: white;
+					float: left;
+					margin-right: 15px;
+				}
+				.pad {
+					margin-top: $height/2 - 10;
+				}
+			}
+		}
 	}
 }
