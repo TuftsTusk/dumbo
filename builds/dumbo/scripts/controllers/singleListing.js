@@ -3,8 +3,6 @@
 angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope) {
 
-	// title in header
-	$scope.roomTitle = 'Room 1';
 	$scope.selected = 0;
 
 	// data for entire sublet listing
@@ -17,38 +15,75 @@ angular.module('dumboApp')
 	debugLoadTestData();
 
 	$scope.loadRoom = function(index) {
-		$scope.room = $scope.listingData.bedrooms[index];
-		$scope.roomTitle = $scope.listingData.bedrooms[index].title;
-		debugPrintListingData();
-		$scope.selected = index;
+		var length = $scope.listingData.bedrooms.length;
+		if (index >= 0 && length > 0 && length > index) {
+			$scope.room = $scope.listingData.bedrooms[index];
+			// $scope.roomTitle = $scope.listingData.bedrooms[index].title;
+			// debugPrintListingData();
+			$scope.selected = index;
+		} else {
+			if (length == 0) {
+				// $scope.roomTitle = 'Room 1';
+			}
+			$scope.room = {};
+			$scope.selected = 0;
+		}
 	}
 
 	$scope.newRoom = function() {
-		var newIndex = $scope.listingData.bedrooms.length + 1;
+		var length = $scope.listingData.bedrooms.length;
+		var newIndex = length + 1;
 		var r = {title: 'Room ' + newIndex};
 		$scope.listingData.bedrooms.push(r);
 
-		debugPrintListingData();
+		length = $scope.listingData.bedrooms.length;
+		if (length == 1) {
+			$scope.loadRoom(0);
+		}
+
+		// debugPrintListingData();
 	}
 
 	$scope.switchRoom = function(room, index) {
 		if ($scope.selected == '') {
 			$scope.selected = index;
 		}
+
+		if (!$scope.room.title) {
+			$scope.room.title = 'Room ' + ($scope.selected + 1);
+		}
 		// console.log($scope.room);
 		$scope.loadRoom(index);
 	}
 
-	$scope.checkEmpty = function(room, value) {
-		if (value == 'title') {
-			if (!room[value]) {
-				// if the title field is empty, set the title to Room 1
-				$scope.roomTitle = 'Room 1';
-			} else {
-				$scope.roomTitle = room[value];
-			}
+	$scope.deleteRoom = function() {
+		var index = $scope.selected;
+		$scope.listingData.bedrooms.splice(index, 1);
+
+		var length = $scope.listingData.bedrooms.length,
+			newIndex = 0;
+		console.log('length: ', length);
+		console.log('index: ', index);
+		if (length <= index) {
+			newIndex = index - 1;
+		} else {
+			newIndex = index;
 		}
-	};
+
+		console.log('newIndex: ', newIndex);
+		$scope.loadRoom(newIndex);
+	}
+
+	// $scope.checkEmpty = function(room, value) {
+	// 	if (value == 'title') {
+	// 		if (!room[value]) {
+	// 			// if the title field is empty, set the title to Room 1
+	// 			$scope.roomTitle = 'Room ';
+	// 		} else {
+	// 			$scope.roomTitle = room[value];
+	// 		}
+	// 	}
+	// };
 
 	if ($scope.listingData.bedrooms.length > 0) {
 		$scope.loadRoom(0);

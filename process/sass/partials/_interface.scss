@@ -108,7 +108,7 @@
 	}
 }
 
-.backIcon {
+.leftIcon {
 	padding: 0;
 	background: transparent;
 	border: 0;
@@ -120,10 +120,19 @@
 	}
 }
 
-.forwardIcon {
+.rightIcon {
 	float: right;
 	font-size: 1.7em;
 	margin-right: 15px;
+}
+
+.upperRightIcon {
+	@extend .rightIcon;
+	position: absolute;
+	right: 0;
+	padding: 0;
+	background: transparent;
+	border: 0;
 }
 
 .isizeMed {

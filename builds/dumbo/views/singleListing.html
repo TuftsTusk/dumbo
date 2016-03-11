@@ -16,7 +16,7 @@
 					</div>
 					<div class="pad">
 						{{rm.title}}
-						<i class="forwardIcon fa fa-angle-right fa-lg"></i>
+						<i class="rightIcon fa fa-angle-right fa-lg"></i>
 					</div>
 				</button>
 				<button type="button" class="list-group-item" ng-click="newRoom()">
@@ -26,12 +26,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="splitContent col-md-6">
+	<div class="splitContent col-md-6" ng-show="listingData.bedrooms.length > 0">
 		<form class="tForm" name="rForm" ng-submit="save(room)" novalidate>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<!-- <button type="submit" class="backIcon fa fa-angle-left fa-lg"></button> -->
-					<h2 class="panel-title">{{roomTitle}}</h2>
+					<!-- <button type="submit" class="leftIcon fa fa-angle-left fa-lg"></button> -->
+					<button type="button" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="deleteRoom()"></button>
+					<h2 class="panel-title">{{room.title}}</h2>
+
 				</div>
 				<div class="panel-body">
 						<a href="" class="photoUpload">
@@ -42,7 +44,7 @@
 						</a>
 						<fieldset class="formGroup">
 							<label>Title</label>
-							<input class="formInput" required name="title" type="text" ng-model="room.title" ng-change="checkEmpty(room, 'title')" >
+							<input class="formInput" required name="title" type="text" ng-model="room.title" >
 							<span class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">This field is required.</span>
 						</fieldset>
 						<fieldset class="formGroup">
