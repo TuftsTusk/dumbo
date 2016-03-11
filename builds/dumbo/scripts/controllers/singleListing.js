@@ -18,13 +18,9 @@ angular.module('dumboApp')
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
 			$scope.room = $scope.listingData.bedrooms[index];
-			// $scope.roomTitle = $scope.listingData.bedrooms[index].title;
 			// debugPrintListingData();
 			$scope.selected = index;
 		} else {
-			if (length == 0) {
-				// $scope.roomTitle = 'Room 1';
-			}
 			$scope.room = {};
 			$scope.selected = 0;
 		}
@@ -44,16 +40,17 @@ angular.module('dumboApp')
 		// debugPrintListingData();
 	}
 
-	$scope.switchRoom = function(room, index) {
-		if ($scope.selected == '') {
-			$scope.selected = index;
-		}
-
+	$scope.saveRoom = function() {
+		var index = $scope.selected;
 		if (!$scope.room.title) {
-			$scope.room.title = 'Room ' + ($scope.selected + 1);
+			$scope.room.title = 'Room ' + (index + 1);
 		}
-		// console.log($scope.room);
-		$scope.loadRoom(index);
+	}
+
+	$scope.switchRoom = function(room, newIndex) {
+		// save the current room
+		$scope.saveRoom();
+		$scope.loadRoom(newIndex);
 	}
 
 	$scope.deleteRoom = function() {

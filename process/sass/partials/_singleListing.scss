@@ -1,4 +1,9 @@
 #singleListing {
+	> .container {
+		@media screen and (max-width: $break-small) {
+			padding: 0;
+		}
+	}
 	.splitContent {
 		.panel-body {
 			.photoUpload {
@@ -72,6 +77,21 @@
 					margin-top: $height/2 - 10;
 				}
 			}
+		}
+		@media screen and (max-width: $break-small) {
+			padding: 0;
+		}
+	}
+	#roomList {
+		@media screen and (max-width: $break-medium) {
+			display: none;
+		}
+	}
+
+	#roomBackButton {
+		display: none;
+		@media screen and (max-width: $break-medium) {
+			display: initial;
 		}
 	}
 }
