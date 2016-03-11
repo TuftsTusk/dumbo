@@ -10,7 +10,7 @@
 	<div class="splitContent col-md-4">
 		<div class="panel panel-default">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms">
+				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switch_room(room, $index)">
 					<img ng-src={{rm.photos[0]}}></img>
 					<div class="pad">
 						{{rm.title}}
@@ -28,7 +28,7 @@
 		<form class="tForm" name="rForm" ng-submit="save(room)" novalidate>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button type="submit" class="backIcon fa fa-angle-left fa-lg"></button>
+					<!-- <button type="submit" class="backIcon fa fa-angle-left fa-lg"></button> -->
 					<h2 class="panel-title">{{roomTitle}}</h2>
 				</div>
 				<div class="panel-body">

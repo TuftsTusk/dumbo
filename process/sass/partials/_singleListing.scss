@@ -50,6 +50,11 @@
 				padding: 0;
 				text-align: left;
 				position: relative;
+				overflow: hidden;
+
+				&.active {
+					background: $blue;
+				}
 
 				img {
 					height: 100%;

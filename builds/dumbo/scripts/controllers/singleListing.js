@@ -5,6 +5,7 @@ angular.module('dumboApp')
 
 	// title in header
 	$scope.roomTitle = 'Room 1';
+	$scope.selected = '';
 
 	// data for entire sublet listing
 	$scope.listingData = {
@@ -14,8 +15,10 @@ angular.module('dumboApp')
 
 	// remove this
 	var test_room = {
-		dateAvailable: 'Mon May 23 2016 00:00:00 GMT-0400 (EDT)',
-		dateUnavailable: 'Tue Aug 23 2016 00:00:00 GMT-0400 (EDT)',
+		// dateAvailable: 'Mon May 23 2016 00:00:00 GMT-0400 (EDT)',
+		// dateUnavailable: 'Tue Aug 23 2016 00:00:00 GMT-0400 (EDT)',
+		dateAvailable: new Date('2016-05-23'),
+		dateUnavailable: new Date('2016-08-23'),
 		rent: 667,
 		title: "Jackson's room",
 		photos: [
@@ -25,14 +28,49 @@ angular.module('dumboApp')
 			'https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg'
 		]
 	};
+
+	var test_room2 = {
+		// dateAvailable: 'Mon May 14 2016 00:00:00 GMT-0400 (EDT)',
+		// dateUnavailable: 'Tue Sep 10 2016 00:00:00 GMT-0400 (EDT)',
+		dateAvailable: new Date('2016-05-14'),
+		dateUnavailable: new Date('2016-09-10'),
+		rent: 750,
+		title: "Conor's room",
+		photos: [
+			'http://www.fndvisions.org/img/cutecat.jpg',
+			'https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg',
+			'http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg',
+			'https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png'
+		]
+	}
 	$scope.listingData.bedrooms.push(test_room);
+	$scope.listingData.bedrooms.push(test_room2);
+
+	$scope.switch_room = function(room, index) {
+		if ($scope.selected == '') {
+			$scope.selected = index;
+		}
+		console.log($scope.room);
+		$scope.load_room(index);
+	}
 
 	// when back button is pressed
-	$scope.save = function(room) {
-		var r = angular.copy(room);
-		$scope.listingData.bedrooms.push(r);
-		console.log('saving');
+	// $scope.save = function(room, prev_index) {
+	// 	if (room) {
+	// 		console.log(room);
+	// 		console.log(prev_index);
+	// 		var r = angular.copy(room);
+	// 		$scope.listingData.bedrooms[prev_index] = r;
+	// 		console.log('saving');
+	// 		console.log($scope.listingData.bedrooms);
+	// 	}
+	// }
+
+	$scope.load_room = function(index) {
+		$scope.room = $scope.listingData.bedrooms[index];
+		$scope.roomTitle = $scope.listingData.bedrooms[index].title;
 		console.log($scope.listingData.bedrooms);
+		$scope.selected = index;
 	}
 
 	// check if a field is empty

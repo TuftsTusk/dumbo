@@ -1,7 +1,7 @@
 /********* _interface.scss *********/
 /* buttons, filters */
 
-.btn:focus {
+.btn:focus, button:focus {
 	outline: none !important;
 }
 
