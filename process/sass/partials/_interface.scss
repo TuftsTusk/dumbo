@@ -51,29 +51,36 @@
 
 .headerbar {
 	background: $grey2;
-	margin-bottom: 20px;
 	h2 {
 		font-weight: bold;
 	}
 }
+.horizNav {
+	background: $grey1;
+	margin-bottom: 20px;
 
-.splitNav {
-	padding-left: 0;
-	.splitNavItem {
-		display: block;
-		padding: 5px 0;
-		color: $grey4;
-		text-decoration: none;
+	.container {
+		margin-bottom: 0;
 
-		&:hover {
-			color: $grey3;
-		}
+		.horizNavItem {
+			font-weight: bold;
+			font-size: 1.1em;
 
-		&.active {
-			color: $blue;
+			float: left;
+			padding: 10px 0px;
+			margin-right: 30px;
+			color: $grey4;
+			text-decoration: none;
+
+			&:hover {
+				color: $grey3;
+			}
+
+			&.active {
+				color: $blue;
+			}
 		}
 	}
-
 }
 
 .splitContent {

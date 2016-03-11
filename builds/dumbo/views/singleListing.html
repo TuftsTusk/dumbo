@@ -2,12 +2,14 @@
 <div class="row headerbar">
 	<h3 class="container">303 Boston Ave, Medford, MA</h3>
 </div>
-<div class="container">
-	<ul class="splitNav col-md-2">
-		<a href="" class="splitNavItem">Apartment Info</a>
-		<a href="" class="splitNavItem active">Bedrooms</a>
+<div class="row horizNav">
+	<ul class="container">
+		<a href="" class="horizNavItem">Apartment Info</a>
+		<a href="" class="horizNavItem active">Bedrooms</a>
 	</ul>
-	<div id="roomList" class="splitContent col-md-4">
+</div>
+<div class="container">
+	<div id="roomList" class="splitContent col-md-5 col-lg-4">
 		<div class="panel panel-default">
 			<div class="list-group panelGroup">
 				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switchRoom(room, $index)">
