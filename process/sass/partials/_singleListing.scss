@@ -55,13 +55,19 @@
 				&.active {
 					background: $blue;
 				}
+				.listImage {
 
-				img {
 					height: 100%;
-					background: white;
+					width: 120px;
 					float: left;
+					overflow: hidden;
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center center;
 					margin-right: 15px;
+					background-color: $grey1;
 				}
+
 				.pad {
 					margin-top: $height/2 - 10;
 				}

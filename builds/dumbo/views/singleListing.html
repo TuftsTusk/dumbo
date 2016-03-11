@@ -10,14 +10,16 @@
 	<div class="splitContent col-md-4">
 		<div class="panel panel-default">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switch_room(room, $index)">
-					<img ng-src={{rm.photos[0]}}></img>
+				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switchRoom(room, $index)">
+					<div class="listImage" ng-style="{'background-image':'url({{rm.photos[0]}})'}">
+						<!-- <img ng-src={{rm.photos[0]}}></img> -->
+					</div>
 					<div class="pad">
 						{{rm.title}}
 						<i class="forwardIcon fa fa-angle-right fa-lg"></i>
 					</div>
 				</button>
-				<button type="button" class="list-group-item">
+				<button type="button" class="list-group-item" ng-click="newRoom()">
 					<img src="images/skinnyplus.svg" class="isizeMed">
 					Add room
 				</button>
