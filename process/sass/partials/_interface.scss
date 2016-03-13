@@ -149,6 +149,13 @@
 
 .tForm {
 	$border: 1px solid $grey2;
+	.panel > * {
+		$duration: .1s;
+		-webkit-transition: -webkit-filter $duration;
+		-moz-transition: -moz-filter $duration;
+		transition: -webkit-filter $duration;
+		// transition: filter $duration;
+	}
 	.formGroup {
 		padding: 7px 15px;
 		border-top: $border;
@@ -210,6 +217,45 @@
 		font-size: .85em;
 	}
 
+	.formBlurBox {
+		display: none;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 100;
+		padding: 80px;
+		background: rgba($grey1,0.4);
+
+		.formBlurMsg {
+			font-size: 40px;
+			text-align: center;
+			background: white;
+			padding: 40px;
+			margin: 0 auto;
+			border-radius: 10px;
+
+			div {
+				margin-bottom: 20px;
+			}
+		}
+	}
+	.formBlur {
+		> *:not(.formBlurBox) {
+			@extend .blur;
+		}
+		.formBlurBox {
+			display: initial;
+		}
+	}
+
+}
+
+.blur {
+	-webkit-filter: blur($blur-size);
+	-moz-filter: blur($blur-size);
+	-o-filter: blur($blur-size);
+	-ms-filter: blur($blur-size);
+	filter: blur($blur-size);
 }
 
 

@@ -28,11 +28,18 @@
 		</div>
 	</div>
 	<div class="splitContent col-md-6" ng-show="listingData.bedrooms.length > 0">
-		<form class="tForm" name="rForm" ng-submit="save(room)" novalidate>
+		<form id="roomForm" class="tForm" name="rForm" ng-submit="save(room)" novalidate>
 			<div class="panel panel-default">
+				<div class="formBlurBox">
+					<div class="formBlurMsg">
+						<div>Are you sure?</div>
+						<button type="button" class="btn btn-secondary btn-lg" ng-click="cancelDelete()">Cancel</button>
+						<button type="button" class="btn btn-danger btn-lg" ng-click="deleteRoom()">Delete</button>
+					</div>
+				</div>
 				<div class="panel-heading">
 					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
-					<button type="button" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="deleteRoom()"></button>
+					<button type="button" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="confirmDelete()"></button>
 					<h2 class="panel-title">{{room.title}}</h2>
 
 				</div>

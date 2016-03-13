@@ -53,7 +53,15 @@ angular.module('dumboApp')
 		$scope.loadRoom(newIndex);
 	}
 
+	$scope.confirmDelete = function() {
+		$('#roomForm .panel').addClass('formBlur');
+	}
+	$scope.cancelDelete = function() {
+		$('#roomForm .panel').removeClass('formBlur');
+	}
+
 	$scope.deleteRoom = function() {
+		$('#roomForm .panel').removeClass('formBlur');
 		var index = $scope.selected;
 		$scope.listingData.bedrooms.splice(index, 1);
 
