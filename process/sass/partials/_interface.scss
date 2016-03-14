@@ -50,11 +50,53 @@
 }
 
 .headerbar {
-	background: $grey2;
+	background: $lightblue;
+	margin-bottom: 20px;
+
 	h2 {
 		font-weight: bold;
 	}
+	.block {
+		float: left;
+		font-size: 1.2em;
+		padding: 15px 30px;
+		border-color: white;
+	}
+	.first {
+		margin-left: -30px;
+	}
+	.highlight {
+		color: white;
+	}
 }
+.borderRight {
+	border-right: 1px solid;
+}
+.floatLeft {
+	float:left;
+}
+
+.sideNav {
+	background: $grey1;
+	margin-left: -15px;
+	margin-top: -20px;
+	margin-right: 15px;
+	padding: 0;
+
+	.sideNavItem {
+		display: block;
+		padding: 10px;
+		padding-left: 15px;
+		color: $grey5;
+		font-size: 1.1em;
+		text-decoration: none;
+
+		&.active {
+			background: $grey2;
+		}
+	}
+}
+
 .horizNav {
 	background: $grey1;
 	margin-bottom: 20px;
@@ -83,7 +125,7 @@
 	}
 }
 
-.splitContent {
+.centeredPanel {
 	.panel {
 		position: relative;
 		background: $grey1;

@@ -3,6 +3,7 @@
 angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope) {
 
+
 	$scope.selected = 0;
 
 	// data for entire sublet listing
@@ -13,6 +14,16 @@ angular.module('dumboApp')
 
 	// remove this
 	debugLoadTestData();
+
+	$scope.setCurrentPage = function(index) {
+		var pages = [
+			'general',
+			'bedrooms'
+		];
+		$scope.currentPage = pages[index];
+	}
+	
+	$scope.setCurrentPage(0);
 
 	$scope.loadRoom = function(index) {
 		var length = $scope.listingData.bedrooms.length;
@@ -112,7 +123,6 @@ angular.module('dumboApp')
 	// 		console.log($scope.listingData.bedrooms);
 	// 	}
 	// }
-
 
 
 

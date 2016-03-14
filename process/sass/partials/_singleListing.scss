@@ -4,29 +4,30 @@
 			padding: 0;
 		}
 	}
-	.splitContent {
-		.panel-body {
-			.photoUpload {
-				$height: 200px;
-				height: $height;
-				background: white;
-				display: block;
-				color: black;
-				text-decoration: none;
+	.photoUpload {
+		$height: 200px;
+		height: $height;
+		background: white;
+		display: block;
+		color: black;
+		text-decoration: none;
 
-				&:hover {
-					color: black;
-				}
-				.photoUploadTitle {
-					text-align: center;
-					font-size: 16px;
-					height: $height;
-  					line-height: $height;
-					img {
-						margin-right: 10px;
-					}
-				}
+		&:hover {
+			color: black;
+		}
+		.photoUploadTitle {
+			text-align: center;
+			font-size: 16px;
+			height: $height;
+			line-height: $height;
+			img {
+				margin-right: 10px;
 			}
+		}
+	}
+	.centeredPanel {
+		.panel-body {
+
 			.detailsBox {
 				padding: 70px 0;
 				width: 100%;
