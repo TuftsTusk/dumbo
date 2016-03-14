@@ -1,6 +1,8 @@
     {
         "id": "0000001",
         "approximate_address": "Sunset Road, Somerville MA 02144",
+        "lat":"42.4143530",
+        "lng": "-71.1267590",
         "date_range": "2016-06-01,2017-06-1",
         "rent": 700,
         "bathrooms": 1,
