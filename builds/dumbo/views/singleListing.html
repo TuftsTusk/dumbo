@@ -64,7 +64,7 @@
 	</div>
 	<div class="col-md-6" ng-show="listingData.bedrooms.length > 0">
 		<form id="roomForm" class="tForm" name="rForm" ng-submit="save(room)" novalidate>
-			<div class="panel panel-tusk">
+			<div class="panel panel-tusk p1">
 				<div class="formBlurBox">
 					<div class="formBlurMsg">
 						<div>Are you sure?</div>
@@ -95,7 +95,7 @@
 						<span style="font-size: 1.2em">$</span><input class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
 						<div class="errorMsg" ng-show="rForm.rent.$error.required && rForm.rent.$touched">This field is required.</div>
 					</fieldset>
-					<fieldset class="double last">
+					<fieldset class="double">
 						<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.dateAvailable.$invalid && rForm.dateAvailable.$touched}">
 							<label>Date available</label>
 							<input class="formInput" required name="dateAvailable" type="date" min={{dateMin}} ng-model="room.dateAvailable" ng-change="checkDate(room)">
@@ -117,12 +117,11 @@
 
 						</div>
 					</fieldset>
-
-					<div class="detailsBox">
-						<button class="btn btn-tertiary" role="button">Optional details<i class="fa fa-angle-right fa-lg"></i></button>
-					</div>
-
+					<fieldset class="formGroup expandable">
+						Optional details
+					</fieldset>
 				</div>
+
 				<!-- <pre>room = {{rForm | json}}</pre> -->
 			</div>
 		</form>

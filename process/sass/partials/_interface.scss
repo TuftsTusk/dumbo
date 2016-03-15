@@ -201,11 +201,10 @@
 .tForm {
 	$border: 1px solid $grey2;
 	.panel > * {
-		$duration: .1s;
+		$duration: 0s;
 		-webkit-transition: -webkit-filter $duration;
 		-moz-transition: -moz-filter $duration;
 		transition: -webkit-filter $duration;
-		// transition: filter $duration;
 	}
 	.formGroup {
 		padding: 7px 15px;
@@ -221,7 +220,9 @@
 			display: block;
 			color: $grey6;
 		}
-
+		&.expandable {
+			background: white;
+		}
 	}
 	.formInput {
 		width: 100%;
@@ -269,13 +270,16 @@
 	}
 
 	.formBlurBox {
-		display: none;
+		$duration: .3s;
+		opacity: 0;
 		width: 100%;
 		height: 100%;
 		position: absolute;
 		z-index: 100;
 		padding: 80px;
 		background: rgba($grey1,0.4);
+		pointer-events: none;
+		transition: opacity $duration;
 
 		.formBlurMsg {
 			font-size: 40px;
@@ -284,6 +288,9 @@
 			padding: 40px;
 			margin: 0 auto;
 			border-radius: 10px;
+			margin-top: -80px;
+			opacity: 0;
+			transition: margin-top $duration, opacity $duration;
 
 			div {
 				margin-bottom: 20px;
@@ -291,11 +298,24 @@
 		}
 	}
 	.formBlur {
-		> *:not(.formBlurBox) {
-			@extend .blur;
+		> * {
+			$duration: .3s;
+			-webkit-transition: -webkit-filter $duration;
+			-moz-transition: -moz-filter $duration;
+			transition: -webkit-filter $duration;
+
+			&:not(.formBlurBox) {
+				@extend .blur;
+			}
 		}
 		.formBlurBox {
-			display: initial;
+			pointer-events: initial;
+			opacity: 1;
+
+			.formBlurMsg {
+				opacity: 1;
+				margin-top: 0;
+			}
 		}
 	}
 
