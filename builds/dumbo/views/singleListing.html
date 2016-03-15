@@ -1,48 +1,51 @@
 <div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing">
 <div class="row headerbar">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="block first borderRight">303 Boston Ave, Medford, MA</div>
 		<a href="" class="block highlight">Preview</a>
 	</div>
 
 </div>
 
-<ul class="sideNav col-md-3">
+<ul class="sideNav col-md-2 panel panel-default">
 	<a href="" class="sideNavItem" ng-class="{active: currentPage=='general'}" ng-click="setCurrentPage(0)">Apartment Info</a>
 	<a href="" class="sideNavItem" ng-class="{active: currentPage=='bedrooms'}" ng-click="setCurrentPage(1)">Bedrooms</a>
+	<a href="" class="sideNavItem" ng-class="{active: currentPage=='photos'}" ng-click="setCurrentPage(2)">Photos of Shared Spaces</a>
 </ul>
 
 <div class="container pageContent">
 <div id="generalScreen" ng-show="currentPage=='general'">
-	<form id="aptForm" class="tForm centeredPanel col-md-6" name="aptForm" novalidate>
-		<div class="panel panel-default">
+	<form id="aptForm" class="tForm col-md-6" name="aptForm" novalidate>
+		<div class="panel panel-tusk">
 			<div class="panel-heading">
-				<h2 class="panel-title">Sublet Listing</h2>
+				<h2>Basic information</h2>
+				<h4 class="panel-subtitle">Fill in general information about your home.</h4>
 			</div>
 			<div class="panel-body">
 				<fieldset class="formGroup">
-					<label>Location</label>
+					<label>What is your address?</label>
 					<input class="formInput" required name="location" type="text" placeholder="Your address">
 				</fieldset>
-				<fieldset class="formGroup last">
+				<fieldset class="formGroup">
 					<label>How many people live there?</label>
 					<input class="formInput" required name="numOccupants" type="number">
 				</fieldset>
-				<a href="" class="photoUpload">
-					<div class="photoUploadTitle">
-						<img src="images/skinnyplus.svg" class="isizeMed">
-						Add photos
-					</div>
-				</a>
-
 			</div>
 		</div>
 	</form>
 
 </div>
 <div id="bedroomsScreen" ng-show="currentPage=='bedrooms'">
-	<div id="roomList" class="centeredPanel col-md-5 col-lg-4">
-		<div class="panel panel-default">
+	<div class="col-sm-10">
+		<div class="panel panel-tusk">
+			<div class="panel-heading">
+				<h2>Your bedrooms</h2>
+				<h4 class="panel-subtitle">Add all of the rooms you want to list publicly.</h4>
+			</div>
+		</div>
+	</div>
+	<div id="roomList" class="col-md-5 col-lg-4">
+		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
 				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switchRoom(room, $index)">
 					<div class="listImage" ng-style="{'background-image':'url({{rm.photos[0]}})'}">
@@ -59,9 +62,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="centeredPanel col-md-6" ng-show="listingData.bedrooms.length > 0">
+	<div class="col-md-6" ng-show="listingData.bedrooms.length > 0">
 		<form id="roomForm" class="tForm" name="rForm" ng-submit="save(room)" novalidate>
-			<div class="panel panel-default">
+			<div class="panel panel-tusk">
 				<div class="formBlurBox">
 					<div class="formBlurMsg">
 						<div>Are you sure?</div>
@@ -124,6 +127,35 @@
 			</div>
 		</form>
 	</div>
+</div>
+<div id="photosScreen" ng-show="currentPage=='photos'">
+	<form id="photoForm" class="tForm col-md-6" name="pform" novalidate>
+		<div class="panel panel-tusk">
+			<div class="panel-heading">
+				<h2>Photos of shared spaces</h2>
+				<h4 class="panel-subtitle">Add at least one photo for each space.</h4>
+			</div>
+			<div class="panel-body">
+				<fieldset class="formGroup">
+					<label>Living room</label>
+					<input type="file">
+				</fieldset>
+				<fieldset class="formGroup">
+					<label>Kitchen</label>
+					<input type="file">
+				</fieldset>
+				<fieldset class="formGroup">
+					<label>Bathroom(s)</label>
+					<input type="file">
+				</fieldset>
+				<div class="formGroup">
+					<button type="submit" class="btn btn-default">Upload</button>
+				</div>
+
+			</div>
+		</div>
+	</form>
+
 </div>
 </div>
 </div>

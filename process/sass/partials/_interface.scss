@@ -50,7 +50,7 @@
 }
 
 .headerbar {
-	background: $lightblue;
+	background: $dark;
 	margin-bottom: 20px;
 
 	h2 {
@@ -60,7 +60,8 @@
 		float: left;
 		font-size: 1.2em;
 		padding: 15px 30px;
-		border-color: white;
+		border-color: black;
+		color: $blue;
 	}
 	.first {
 		margin-left: -30px;
@@ -78,9 +79,9 @@
 
 .sideNav {
 	background: $grey1;
-	margin-left: -15px;
-	margin-top: -20px;
-	margin-right: 15px;
+	// margin-left: -15px;
+	// margin-top: -20px;
+	// margin-right: 15px;
 	padding: 0;
 
 	.sideNavItem {
@@ -125,23 +126,31 @@
 	}
 }
 
-.centeredPanel {
-	.panel {
-		position: relative;
-		background: $grey1;
-		.panel-heading {
-			background: white;
-			height: 38px;
-			.panel-title {
-				text-align: center;
-			}
+.panel-tusk {
+	padding: 0;
+	position: relative;
+	background: $grey1;
+	.panel-heading {
+		background: white;
+		// height: 38px;
+
+		.panel-title {
+			text-align: center;
 		}
 
-		.panel-body {
-			padding: 0;
+		.panel-subtitle {
+			color: $grey4;
 		}
 
+		h1,h2,h3,h4 {
+			margin: 0;
+		}
 	}
+
+	.panel-body {
+		padding: 0;
+	}
+
 }
 
 .spacer {

@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location) {
 
+	$scope.currentPage = $routeParams.path;
 
 	$scope.selected = 0;
 
@@ -18,12 +19,13 @@ angular.module('dumboApp')
 	$scope.setCurrentPage = function(index) {
 		var pages = [
 			'general',
-			'bedrooms'
+			'bedrooms',
+			'photos'
 		];
+		var str = $location.url();
+		$location.path(str.substring(0, str.lastIndexOf("/")) + '/' + pages[index]);
 		$scope.currentPage = pages[index];
 	}
-	
-	$scope.setCurrentPage(0);
 
 	$scope.loadRoom = function(index) {
 		var length = $scope.listingData.bedrooms.length;

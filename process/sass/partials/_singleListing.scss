@@ -6,11 +6,11 @@
 	}
 	.photoUpload {
 		$height: 200px;
-		height: $height;
 		background: white;
 		display: block;
 		color: black;
 		text-decoration: none;
+		border-top: 1px solid $grey2;
 
 		&:hover {
 			color: black;
@@ -25,7 +25,8 @@
 			}
 		}
 	}
-	.centeredPanel {
+	.panel-tusk {
+		border-color: #ddd;
 		.panel-body {
 
 			.detailsBox {

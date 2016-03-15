@@ -57,6 +57,9 @@ angular
                 templateUrl: 'views/welcome.html'
             })
 			.when('/mylistings/listing/:id' , {
+				redirectTo: '/mylistings/listing/:id/general'
+			})
+			.when('/mylistings/listing/:id/:path' , {
 				templateUrl: 'views/singleListing.html'
 			})
             .when('/settings' , {
