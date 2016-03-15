@@ -13,13 +13,14 @@ var mylng;
 
 
 
+
 angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
         $http.get('../../get_listing.json').then(function (result) {
-            $scope.listings = result.data;
-
-            mylat = $scope.listings.lat;
-            mylng = $scope.listings.lng;
+//            $scope.listings = result.data;
+//
+//            mylat = $scope.listings.lat;
+//            mylng = $scope.listings.lng;
 
 
 
@@ -30,24 +31,21 @@ angular.module('dumboApp')
             $scope.places = result.data;
 
             for (var i = 0; i < $scope.places.length; i++) {
-                var mlat = $scope.places[i].lat;
-                var mlng = $scope.places[i].lng;
-                var note = $scope.places[i].id;
-
-
-
+             
                 var marker = new google.maps.Marker({
                     position: {
-                        lat: mlat,
-                        lng: mlng
+                        lat: $scope.places[i].lat,
+                        lng: $scope.places[i].lng
                     },
                     map: map,
-                    title: note,
+                    title: $scope.places[i].id,
                     icon: {
                         url: "../../images/LOGO.svg",
                         scaledSize: new google.maps.Size(25, 32)
                     }
                 });
+                
+                
                 var infowindow = new google.maps.InfoWindow({
                     content: "contentString",
                     //                    position: {lat: mlat, lng: mlng}
@@ -56,7 +54,8 @@ angular.module('dumboApp')
                 marker.addListener('click', function () {
                     infowindow.setContent(this.title);
                     infowindow.open(map, this);
-
+                    marker.setMap(map);
+                    //map.panTo({lat: parseFloat(this.position.lat), lng: parseFloat(this.position.lng)})
 
                 });
             }
@@ -85,6 +84,9 @@ $(document).ready(function () {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
 
+            mylat = position.coords.latitude;
+            mylng = position.coords.longitude;
+            
             map.panTo({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -107,7 +109,9 @@ $(document).ready(function () {
             here.addListener('click', function () {
                 infowindow.setContent("teehee! that tickles");
                 infowindow.open(map, this);
-
+                here.setMap(map);
+                map.panTo({lat: mylat, lng: mylng});
+                console.log(this.lat);
 
             });
         }, function (err) {
