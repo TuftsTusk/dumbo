@@ -245,8 +245,12 @@
 
 	.formCheckbox {
 		margin-top: 10px;
-		color: $grey4;
-		font-size: .85em;
+		display: block;
+
+		&.optional {
+			color: $grey4;
+			font-size: .85em;
+		}
 	}
 
 	fieldset {

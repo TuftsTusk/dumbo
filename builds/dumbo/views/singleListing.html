@@ -100,7 +100,7 @@
 							<label>Date available</label>
 							<input class="formInput" required name="dateAvailable" type="date" min={{dateMin}} ng-model="room.dateAvailable" ng-change="checkDate(room)">
 							<span class="errorMsg" ng-show="rForm.dateAvailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
-							<div class="formCheckbox">
+							<div class="formCheckbox optional">
 								<input name="DAFlexible" type="checkbox" tabindex="-1" ng-model="room.DAFlexible">
 								Date is flexible
 							</div>
@@ -110,15 +110,23 @@
 							<input class="formInput" required name="dateUnavailable" type="date" min={{room.dateAvailable}} max={{dateMax}} ng-model="room.dateUnavailable" ng-change="checkDate()">
 							<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.min">Must be after {{room.dateAvailable | date : format : timezone}}.</span>
 							<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
-							<div class="formCheckbox">
+							<div class="formCheckbox optional">
 								<input name="DUFlexible" type="checkbox" tabindex="-1" ng-model="room.DUFlexible">
 								Date is flexible
 							</div>
 
 						</div>
 					</fieldset>
-					<fieldset class="formGroup expandable">
-						Optional details
+					<fieldset class="formGroup">
+						<label>Optional details</label>
+						<div class="formCheckbox">
+							<input name="c1" type="checkbox" tabindex="-1">
+							Checkbox 1
+						</div>
+						<div class="formCheckbox">
+							<input name="c2" type="checkbox" tabindex="-1">
+							Checkbox 2
+						</div>
 					</fieldset>
 				</div>
 
