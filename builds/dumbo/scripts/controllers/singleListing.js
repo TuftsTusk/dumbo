@@ -39,7 +39,7 @@ angular.module('dumboApp')
 
 
 	$scope.saveAppt = function() {
-		console.log($scope.appt);
+		console.log($scope.listingData);
 	}
 
 
