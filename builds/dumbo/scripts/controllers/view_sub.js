@@ -14,6 +14,7 @@ var mylng;
 
 
 
+
 angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
         $http.get('../../get_listing.json').then(function (result) {

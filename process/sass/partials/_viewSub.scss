@@ -10,20 +10,28 @@ $image-width: 160px;
     display: inline-block;
 }
 #map-wrap {
+
     overflow: hidden;
     max-height: 550px;
     position: fixed;
     float: right;
 }
 
-.sublet-wrap{
-    overflow: scroll;
-    float: left;
+.navbar-default{
+    width: 100%;
+    position:fixed;
+    z-index: 1;
 }
+#angular-view{
+    padding-top: 50px;
+}
+
+
 .sublet-listings {
     display: block;
     float: left;
-    margin-bottom: 50px;
+
+    margin-bottom: 0px;
     img {
         max-width: $image-width;
         margin-bottom: 0px;
