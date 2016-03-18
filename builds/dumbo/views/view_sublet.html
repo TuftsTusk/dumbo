@@ -6,14 +6,14 @@
             <div class="thumbnail"><img ng-src={{listing.image_gallery_link[1]}}>
             </div>
             <div id="sub-info">
-                <h3>{{listing.id}}</h3>
+                <h3>{{listing.approximate_address}}</h3>
                 <h2 id="price">{{listing.rent}}/mth</h2>
                 <p><a href=""><strong>{{listing.seller_email}}</strong></a>
                 </p>
                 <ul>
-                    <li>info 1</li>
-                    <li>info 2</li>
-                    <li>info 3</li>
+                    <li><strong>Bedrooms:</strong>{{listing.bedrooms_available}}</li>
+                    <li><strong>Furnished: </strong>{{listing.pre_furnished}}</li>
+                    <li><strong>Dates available: </strong>{{listing.date_range}}</li>
                 </ul>
 
             </div>

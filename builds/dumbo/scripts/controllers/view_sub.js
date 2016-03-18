@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name dumboApp.controller:ViewCtrl
+ * @name dumboApp.controller:SubCtrl
  * @description
- * # ViewCtrl
+ * # SubCtrl
  * Controller of the dumboApp
  */
 
@@ -20,28 +20,29 @@ angular.module('dumboApp')
         $http.get('../../get_listing.json').then(function (result) {
             $scope.listings = result.data;
             
-
-
-
             initMap(42.4059385, -71.1197832);
         });
         var test;
         var markers = [];
-        $http.get('../../get_location.json').then(function (result) {
+        $http.get('../../get_listing.json').then(function (result) {
             $scope.places = result.data;
 
             for (var i = 0; i < $scope.places.length; i++) {
 
+                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" src='+$scope.places[i].image_gallery_link[1]+'/img></div><div class="col-sm-6"><h1>'+$scope.places[i].rent+'</h1><p>'+$scope.places[i].approximate_address+'</p> <button class="btn btn-primary">View Listing</button></div>';
+                
                 markers.push(
-                    [$scope.places[i].id, $scope.places[i].lat, $scope.places[i].lng]
+                    [$scope.places[i].id, parseFloat($scope.places[i].lat), parseFloat($scope.places[i].lng), $scope.places[i].rent, $scope.places[i].image_gallery_link, contentstring]
                 )
 
+                console.log(markers);
 
                 var marker = new google.maps.Marker({
                     position: {
-                        lat: $scope.places[i].lat,
-                        lng: $scope.places[i].lng
+                        lat: parseFloat($scope.places[i].lat),
+                        lng: parseFloat($scope.places[i].lng)
                     },
+                    content: contentstring,
                     map: map,
                     title: $scope.places[i].id,
                     icon: {
@@ -50,14 +51,17 @@ angular.module('dumboApp')
                     }
                 });
 
-
+                
+              
                 var infowindow = new google.maps.InfoWindow({
-                    content: "contentString",
-                    //                    position: {lat: mlat, lng: mlng}
+                    content: contentstring
+                    
                 });
+                
 
                 marker.addListener('click', function () {
-                    infowindow.setContent(this.title);
+                    console.log(contentstring);
+                    infowindow.setContent(this.content);
                     infowindow.open(map, this);
                     marker.setMap(map);
                     //map.panTo({lat: parseFloat(marker.position.lat), lng: parseFloat(marker.position.lng)})

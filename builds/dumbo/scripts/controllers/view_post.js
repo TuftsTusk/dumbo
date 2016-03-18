@@ -11,8 +11,8 @@ angular.module('dumboApp')
     .controller('ViewCtrl', function ($scope, $http) {
         console.log('ViewCtrl');
         $http.get('../../get_listing.json').then(function (result) {
-            $scope.listings = result.data;
-            $scope.source = result.data.image_gallery_link[0];
+            $scope.listings = result.data[0];
+            $scope.source = result.data[0].image_gallery_link[0];
             console.log(result.data);
 
         });
