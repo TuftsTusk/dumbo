@@ -1,25 +1,33 @@
-<div id="sublet-wrap" class="container-fluid" ng-controller="SubCtrl">
-    
-    <div id="map"></div>
-    <div class="sublet-listings" ng-repeat="listing in listings">
-        <div class="thumbnail"><img src="http://placehold.it/500x500">
-        </div>
-        <div id="sub-info" >
-            <h3>Address</h3>
-            <h2 id="price">$$/mth</h2>
-            <p><a href=""><strong>seller email</strong></a></p>
-            <ul>
-                <li>info 1</li>
-                <li>info 2</li>
-                <li>info 3</li>
-            </ul>
-      
-        </div>
+<div  class="container-fluid" ng-controller="SubCtrl">
+
+    <div class="col-md-6 sublet-wrap">
+        <div class="sublet-listings" ng-repeat="listing in listings">
+
+            <div class="thumbnail"><img src="http://placehold.it/500x500">
+            </div>
+            <div id="sub-info">
+                <h3>Address</h3>
+                <h2 id="price">$$/mth</h2>
+                <p><a href=""><strong>seller email</strong></a>
+                </p>
+                <ul>
+                    <li>info 1</li>
+                    <li>info 2</li>
+                    <li>info 3</li>
+                </ul>
+
+            </div>
 
 
+
+        </div>
+    </div>
+    <div class="col-md-6" id="map-wrap">
+        <div id="map"></div>
     </div>
 
-    
+
+
 
 
 </div>

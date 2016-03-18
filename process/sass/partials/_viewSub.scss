@@ -1,30 +1,34 @@
 $image-width: 160px;
 #map {
-    float: right;
-    height: 550px;;
-    width: 47%;
+    height: 550px;
+    width: 100%;
     display: inline-block;
     position: fixed;
-  
-}
-#sublet-wrap{
-    max-height:100%;
-    overflow: scroll;
 }
 
+#map-wrap, #sublet-wrap{
+    display: inline-block;
+}
+#map-wrap {
+    overflow: hidden;
+    max-height: 550px;
+    position: fixed;
+    float: right;
+}
+
+.sublet-wrap{
+    overflow: scroll;
+    float: left;
+}
 .sublet-listings {
-    
     display: block;
-    float:left;
+    float: left;
     margin-bottom: 50px;
-   
-    
     img {
         max-width: $image-width;
         margin-bottom: 0px;
-       
     }
-    width: 52%;
+    width:100%;
     h1,
     h2,
     h3,
@@ -37,9 +41,7 @@ $image-width: 160px;
     #price {
         float: right;
     }
-
     border-bottom: 1px solid black;
-  
     .thumbnail {
         max-width: $image-width;
         display: inline-block;
@@ -49,11 +51,11 @@ $image-width: 160px;
     #sub-info {
         margin-left: 180px;
         display: block;
-        width:70%;
+        width: 70%;
     }
 }
+
 .sublet-listings:before,
-.sublet-listings:after{
+.sublet-listings:after {
     clear: both;
 }
-    
