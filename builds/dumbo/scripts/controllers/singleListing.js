@@ -13,6 +13,12 @@ angular.module('dumboApp')
 		bedrooms: []
 	}
 
+	$scope.roomDetailsChecklist = {
+		'Furnished': 'pre_furnished',
+		'Air conditioning': 'incl_air_conditioning'
+	}
+
+
 	// remove this
 	debugLoadTestData();
 
@@ -113,6 +119,8 @@ angular.module('dumboApp')
 	dmax.setFullYear(dmin.getFullYear() + 1);
 	$scope.dateMin = dmin.toISOString().split('T')[0];
 	$scope.dateMax = dmax.toISOString().split('T')[0];
+
+
 
 	// when back button is pressed
 	// $scope.save = function(room, prev_index) {

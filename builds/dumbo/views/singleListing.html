@@ -117,23 +117,27 @@
 
 						</div>
 					</fieldset>
-					<fieldset class="formGroup">
-						<label>Optional details</label>
-						<div class="formCheckbox">
-							<input name="c1" type="checkbox" tabindex="-1">
-							Checkbox 1
+					<fieldset class="formGroup accordion">
+						<div class="heading" ng-click="facc.open = !facc.open">
+							<label>Optional details <i class="fa fa-lg" ng-class="facc.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
 						</div>
-						<div class="formCheckbox">
-							<input name="c2" type="checkbox" tabindex="-1">
-							Checkbox 2
+						<div class="body" ng-show="facc.open">
+							<div class="formCheckbox" ng-repeat="(key, value) in roomDetailsChecklist">
+								<input name="c1" type="checkbox" tabindex="-1">
+								{{key}}
+							</div>
 						</div>
 					</fieldset>
+
 				</div>
+
 
 				<!-- <pre>room = {{rForm | json}}</pre> -->
 			</div>
+
 		</form>
 	</div>
+
 </div>
 <div id="photosScreen" ng-show="currentPage=='photos'">
 	<form id="photoForm" class="tForm col-md-6" name="pform" novalidate>

@@ -209,6 +209,7 @@
 	.formGroup {
 		padding: 7px 15px;
 		border-top: $border;
+
 		&.fieldInvalid {
 			border: 0 !important;
 		    outline: 1px solid $errorRed;
@@ -266,6 +267,25 @@
 		}
 		&.last {
 			border-bottom: $border;
+		}
+	}
+	.accordion {
+		padding: 0;
+		background: white;
+		.heading {
+			text-align: center;
+			padding: 9px 15px;
+			border-bottom: 1px solid $grey1;
+			label {
+				margin-bottom: 0;
+				font-weight: bold;
+				> * {
+					font-weight: bold;
+				}
+			}
+		}
+		.body {
+			padding: 0px 15px 9px;
 		}
 	}
 	.errorMsg {
@@ -331,6 +351,12 @@
 	-o-filter: blur($blur-size);
 	-ms-filter: blur($blur-size);
 	filter: blur($blur-size);
+}
+
+uib-accordion {
+	a:focus, i:focus {
+		outline: none;
+	}
 }
 
 
