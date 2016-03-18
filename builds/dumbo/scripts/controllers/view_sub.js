@@ -17,17 +17,15 @@ var mylng;
 angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
         $http.get('../../get_listing.json').then(function (result) {
-            //            $scope.listings = result.data;
-            //
-            //            mylat = $scope.listings.lat;
-            //            mylng = $scope.listings.lng;
+            $scope.listings = result.data;
+            
 
 
 
             initMap(42.4059385, -71.1197832);
         });
         var test;
-    var markers= [];
+        var markers = [];
         $http.get('../../get_location.json').then(function (result) {
             $scope.places = result.data;
 
@@ -35,9 +33,9 @@ angular.module('dumboApp')
 
                 markers.push(
                     [$scope.places[i].id, $scope.places[i].lat, $scope.places[i].lng]
-                    )
-                
-                
+                )
+
+
                 var marker = new google.maps.Marker({
                     position: {
                         lat: $scope.places[i].lat,
@@ -66,7 +64,7 @@ angular.module('dumboApp')
                 });
             }
         });
-    
+
 
         //    map.panTo({lat:mlat})
 
