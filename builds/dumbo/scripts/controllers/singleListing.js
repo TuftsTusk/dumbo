@@ -3,9 +3,6 @@
 angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope, $routeParams, $location) {
 
-	$scope.test = function(value) {
-		console.log($scope.appt);
-	}
 
 	$scope.currentPage = $routeParams.path;
 
@@ -13,7 +10,9 @@ angular.module('dumboApp')
 
 	// data for entire sublet listing
 	$scope.listingData = {
-		address: '303 Boston Ave, Medford, MA',
+		apptInfo: {
+			opDetails: {}
+		},
 		bedrooms: []
 	}
 
@@ -33,12 +32,6 @@ angular.module('dumboApp')
 		}
 	];
 
-	console.log($scope.apptDetailsChecklist);
-
-	$scope.roomDetailsChecklist = {
-		'Furnished': 'pre_furnished',
-		'Air conditioning': 'incl_air_conditioning'
-	}
 
 
 	// remove this
@@ -48,6 +41,7 @@ angular.module('dumboApp')
 	$scope.saveAppt = function() {
 		console.log($scope.appt);
 	}
+
 
 	$scope.setCurrentPage = function(index) {
 		var pages = [
@@ -125,28 +119,35 @@ angular.module('dumboApp')
 		$scope.loadRoom(newIndex);
 	}
 
-	// $scope.checkEmpty = function(room, value) {
-	// 	if (value == 'title') {
-	// 		if (!room[value]) {
-	// 			// if the title field is empty, set the title to Room 1
-	// 			$scope.roomTitle = 'Room ';
-	// 		} else {
-	// 			$scope.roomTitle = room[value];
-	// 		}
-	// 	}
-	// };
 
-	if ($scope.listingData.bedrooms.length > 0) {
-		$scope.loadRoom(0);
+
+
+
+
+	main();
+
+	function main() {
+		$scope.appt = $scope.listingData.apptInfo;
+
+		$scope.roomDetailsChecklist = {
+			'Furnished': 'pre_furnished',
+			'Air conditioning': 'incl_air_conditioning'
+		}
+
+
+		if ($scope.listingData.bedrooms.length > 0) {
+			$scope.loadRoom(0);
+		}
+
+		// set min and max dates
+		var dmin = new Date(),
+			dmax = new Date();
+		dmax.setFullYear(dmin.getFullYear() + 1);
+		$scope.dateMin = dmin.toISOString().split('T')[0];
+		$scope.dateMax = dmax.toISOString().split('T')[0];
+
+
 	}
-
-	// set min and max dates
-	var dmin = new Date(),
-		dmax = new Date();
-	dmax.setFullYear(dmin.getFullYear() + 1);
-	$scope.dateMin = dmin.toISOString().split('T')[0];
-	$scope.dateMax = dmax.toISOString().split('T')[0];
-
 
 
 	// when back button is pressed

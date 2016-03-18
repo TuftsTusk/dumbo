@@ -30,16 +30,19 @@
 					<label>How many people live there?</label>
 					<input class="formInput" required name="numOccupants" ng-model="appt.numOccupants" type="number">
 				</fieldset>
-				<fieldset class="formGroup accordion">
-					<div class="heading" ng-click="facc.open = !facc.open">
+				<fieldset class="formGroup accordion" >
+					<div class="heading" ng-click="facc.open = !facc.open; appt.opDetails = {}">
 						<label>Optional details <i class="fa fa-lg" ng-class="facc.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
 					</div>
 					<div class="body" ng-show="facc.open">
 						<div class="col-xs-6" ng-repeat="list in apptDetailsChecklist">
 							<div class="formCheckbox" ng-repeat="(key, value) in list">
-								<input name="c1" type="checkbox" tabindex="-1" ng-model="appt[value];">
+								<input name="c1" type="checkbox" tabindex="-1" ng-model="appt.opDetails[value];">
 								{{key}}
 							</div>
+							<!-- ng-click="checkIfDefined('appt.opDetails')" -->
+							<!-- $scope.appt.opDetails = {} -->
+							<!-- checkIfDefined('appt.opDetails') -->
 							<!-- list($index).{{key}} = !list($index).{{key}} -->
 						</div>
 					</div>
