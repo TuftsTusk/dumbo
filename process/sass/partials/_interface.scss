@@ -285,7 +285,10 @@
 			}
 		}
 		.body {
-			padding: 0px 15px 9px;
+			padding: 0px 15px 10px;
+		}
+		div[class^="col-"]{
+			padding: 0 0 15px;
 		}
 	}
 	.errorMsg {

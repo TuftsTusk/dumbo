@@ -3,6 +3,10 @@
 angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope, $routeParams, $location) {
 
+	$scope.test = function(value) {
+		console.log($scope.appt);
+	}
+
 	$scope.currentPage = $routeParams.path;
 
 	$scope.selected = 0;
@@ -13,6 +17,24 @@ angular.module('dumboApp')
 		bedrooms: []
 	}
 
+	$scope.apptDetailsChecklist = [
+		{
+			'Furnished': 'pre_furnished',
+			'Air conditioning': 'incl_air_conditioning',
+			'Washing machine': 'incl_washing_machine',
+			'Dryer': 'incl_dryer',
+			'Dishwasher': 'incl_dishwasher',
+		},
+		{
+			'Pets allowed': 'pets_permitted',
+			'Parking': 'on_premises_parking',
+			'Handicap accessible': 'handicap_accessible',
+			'Smoking permitted': 'smoking_permitted'
+		}
+	];
+
+	console.log($scope.apptDetailsChecklist);
+
 	$scope.roomDetailsChecklist = {
 		'Furnished': 'pre_furnished',
 		'Air conditioning': 'incl_air_conditioning'
@@ -21,6 +43,11 @@ angular.module('dumboApp')
 
 	// remove this
 	debugLoadTestData();
+
+
+	$scope.saveAppt = function() {
+		console.log($scope.appt);
+	}
 
 	$scope.setCurrentPage = function(index) {
 		var pages = [
