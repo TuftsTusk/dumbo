@@ -17,21 +17,27 @@ var mylng;
 angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
         $http.get('../../get_listing.json').then(function (result) {
-//            $scope.listings = result.data;
-//
-//            mylat = $scope.listings.lat;
-//            mylng = $scope.listings.lng;
+            //            $scope.listings = result.data;
+            //
+            //            mylat = $scope.listings.lat;
+            //            mylng = $scope.listings.lng;
 
 
 
             initMap(42.4059385, -71.1197832);
         });
         var test;
+    var markers= [];
         $http.get('../../get_location.json').then(function (result) {
             $scope.places = result.data;
 
             for (var i = 0; i < $scope.places.length; i++) {
-             
+
+                markers.push(
+                    [$scope.places[i].id, $scope.places[i].lat, $scope.places[i].lng]
+                    )
+                
+                
                 var marker = new google.maps.Marker({
                     position: {
                         lat: $scope.places[i].lat,
@@ -44,8 +50,8 @@ angular.module('dumboApp')
                         scaledSize: new google.maps.Size(25, 32)
                     }
                 });
-                
-                
+
+
                 var infowindow = new google.maps.InfoWindow({
                     content: "contentString",
                     //                    position: {lat: mlat, lng: mlng}
@@ -55,11 +61,12 @@ angular.module('dumboApp')
                     infowindow.setContent(this.title);
                     infowindow.open(map, this);
                     marker.setMap(map);
-                    //map.panTo({lat: parseFloat(this.position.lat), lng: parseFloat(this.position.lng)})
+                    //map.panTo({lat: parseFloat(marker.position.lat), lng: parseFloat(marker.position.lng)})
 
                 });
             }
         });
+    
 
         //    map.panTo({lat:mlat})
 
@@ -86,7 +93,7 @@ $(document).ready(function () {
 
             mylat = position.coords.latitude;
             mylng = position.coords.longitude;
-            
+
             map.panTo({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -110,7 +117,10 @@ $(document).ready(function () {
                 infowindow.setContent("teehee! that tickles");
                 infowindow.open(map, this);
                 here.setMap(map);
-                map.panTo({lat: mylat, lng: mylng});
+                map.panTo({
+                    lat: mylat,
+                    lng: mylng
+                });
                 console.log(this.lat);
 
             });
