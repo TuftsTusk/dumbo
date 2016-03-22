@@ -19,7 +19,7 @@ angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
         $http.get('../../get_listing.json').then(function (result) {
             $scope.listings = result.data;
-            
+
             initMap(42.4059385, -71.1197832);
         });
         var test;
@@ -29,13 +29,12 @@ angular.module('dumboApp')
 
             for (var i = 0; i < $scope.places.length; i++) {
 
-                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" src='+$scope.places[i].image_gallery_link[1]+'/img></div><div class="col-sm-6"><h1>'+$scope.places[i].rent+'</h1><p>'+$scope.places[i].approximate_address+'</p> <button class="btn btn-primary">View Listing</button></div>';
-                
+                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" src=' + $scope.places[i].image_gallery_link[1] + '/img></div><div class="col-sm-6"><h1>' + $scope.places[i].rent + '</h1><p>' + $scope.places[i].approximate_address + '</p> <a href="#sub-info:eq('+i+')"><button class="btn btn-primary">View Listing</button></a></div>';
+
                 markers.push(
                     [$scope.places[i].id, parseFloat($scope.places[i].lat), parseFloat($scope.places[i].lng), $scope.places[i].rent, $scope.places[i].image_gallery_link, contentstring]
                 )
 
-                console.log(markers);
 
                 var marker = new google.maps.Marker({
                     position: {
@@ -51,19 +50,24 @@ angular.module('dumboApp')
                     }
                 });
 
-                
-              
+
+
                 var infowindow = new google.maps.InfoWindow({
                     content: contentstring
-                    
+
                 });
-                
+
 
                 marker.addListener('click', function () {
-                    console.log(contentstring);
+
                     infowindow.setContent(this.content);
                     infowindow.open(map, this);
                     marker.setMap(map);
+
+
+                    
+
+
                     //map.panTo({lat: parseFloat(marker.position.lat), lng: parseFloat(marker.position.lng)})
 
                 });
