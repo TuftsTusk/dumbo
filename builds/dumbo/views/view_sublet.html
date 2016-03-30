@@ -5,16 +5,17 @@
 
             <div class="thumbnail"><img ng-src={{listing.image_gallery_link[0]}}>
             </div>
-            <div id="sub-info">
+            <div class="sub-info">
                 <h3>{{listing.approximate_address}}</h3>
                 <h2 id="price">{{listing.rent}}/mth</h2>
                 <p><a href=""><strong>{{listing.seller_email}}</strong></a>
                 </p>
                 <ul>
-                    <li><strong>Bedrooms:</strong>{{listing.bedrooms_available}}</li>
-                    <li><strong>Furnished: </strong>{{listing.pre_furnished}}</li>
-                    <li><strong>Dates available: </strong>{{listing.date_range}}</li>
+                    <li><strong>Bedrooms:  </strong>{{listing.bedrooms_available}}</li>
+                    <li><strong>Furnished:  </strong>{{listing.pre_furnished}}</li>
+                    <li><strong>Dates available:  </strong>{{listing.date_range}}</li>
                 </ul>
+                <button class="btn btn-primary">View on Map --></button>
 
             </div>
 

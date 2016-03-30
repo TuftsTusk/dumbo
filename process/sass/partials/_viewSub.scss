@@ -43,11 +43,12 @@ $image-width: 160px;
     padding: 15px;
     
     &:hover{
-        background: lightblue;
-        padding-bottom: 50px;
+        background: rgba(51, 122, 183, .5);
+       // padding-bottom: 50px;
         border: none;
         box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
         
+    
         
     }
    
@@ -56,7 +57,9 @@ $image-width: 160px;
         border:none;
     }
   
-
+    button{
+        float: right;
+    }
    
     img {
         max-width: $image-width;
@@ -83,7 +86,7 @@ $image-width: 160px;
         border: none;
         background-color: clear;
     }
-    #sub-info {
+    .sub-info {
         margin-left: 180px;
         display: block;
         width: 70%;
