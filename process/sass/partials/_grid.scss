@@ -3,12 +3,12 @@
     .item {
         float: left;
         @include imageGrid(5, 1%);
-    }
-    img {
+        img {
         display: block;
-        border-radius: $roundness;
-        max-width: 100%;
+        max-width: 100px;
     }
+    }
+    
 }
 
 
