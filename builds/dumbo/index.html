@@ -12,7 +12,13 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <script src="https://use.typekit.net/yiw1fez.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <script>
+        try {
+            Typekit.load({
+                async: true
+            });
+        } catch (e) {}
+    </script>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -22,6 +28,8 @@
 
     <link rel="stylesheet" href="styles/style.css">
 
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOBTvP_YccSD8if2yHmyiDMxgulGUXxoY" async defer></script>
 </head>
 
 <body ng-app="dumboApp">
@@ -82,32 +90,28 @@
                             </div>
                             <div class="flyContent">
                                 <a href="#/newListing#SubletListing" class="flyButton">
-                                    <img src="../images/sublet.svg" alt="sublet">
-                                    Sublet
+                                    <img src="../images/sublet.svg" alt="sublet"> Sublet
                                 </a>
                                 <a href="#/newListing#BookListing" class="flyButton">
-                                    <img src="../images/book.svg" alt="book">
-                                    Book
+                                    <img src="../images/book.svg" alt="book"> Book
                                 </a>
                                 <a href="#/newListing#FurnitureListing" class="flyButton">
-                                    <img src="../images/furniture.svg" alt="furniture">
-                                    Furniture
+                                    <img src="../images/furniture.svg" alt="furniture"> Furniture
                                 </a>
                                 <a href="#/newListing#MiscListing" class="flyButton">
-                                    <img src="../images/everything_else2.svg" alt="other">
-                                    Other
+                                    <img src="../images/everything_else2.svg" alt="other"> Other
                                 </a>
                             </div>
                         </div>
                     </li>
-                    <li ng-show = "isLoggedin() == false" ng-cloak id="register"><a href="#" ng-href="#/register">Register</a>
+                    <li ng-show="isLoggedin() == false" ng-cloak id="register"><a href="#" ng-href="#/register">Register</a>
                     </li>
-                    <li ng-show = "isLoggedin() == false" ng-cloak id="signIn"><a href="#" ng-href="#/login">Sign in</a>
+                    <li ng-show="isLoggedin() == false" ng-cloak id="signIn"><a href="#" ng-href="#/login">Sign in</a>
                     </li>
-                    <li ng-show = "isLoggedin() != false" ng-cloak id="email" >
-                      <a href="#" ng-href="#/login">{{requestEmail()}}</a>
+                    <li ng-show="isLoggedin() != false" ng-cloak id="email">
+                        <a href="#" ng-href="#/login">{{requestEmail()}}</a>
                     </li>
-                    <li ng-show = "isLoggedin() != false" ng-cloak id="logout"><a href="#" ng-click="logout()">Sign Out</a>
+                    <li ng-show="isLoggedin() != false" ng-cloak id="logout"><a href="#" ng-click="logout()">Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -115,7 +119,7 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div ng-view=""></div>
+    <div id="angular-view" ng-view=""></div>
 
 
     <div class="footer">
@@ -169,11 +173,16 @@
     <script src="scripts/controllers/register.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/grid_view.js"></script>
+    <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/controllers/view_post.js"></script>
+    <script src="scripts/controllers/view_sub.js"></script>
     <script src="scripts/shared/userDataService.js"></script>
     <script src="scripts/shared/authInterceptor.js"></script>
     <script src="scripts/shared/listingMap.js"></script>
     <script src="scripts/shared/listingDataService.js"></script>
     <script src="scripts/shared/userService.js"></script>
+
+
 
 
 </body>

@@ -2,19 +2,42 @@
 
 /**
  * @ngdoc function
- * @name dumboApp.controller:AboutCtrl
+ * @name dumboApp.controller:ViewCtrl
  * @description
- * # AboutCtrl
+ * # ViewCtrl
  * Controller of the dumboApp
  */
-//angular.module('dumboApp')
-//    .service('listingDataService', function($http,$q, EnvironmentConfig) {
-//
-//  var host = EnvironmentConfig.api;
-//  var listingPath = '/listing';
-//  delete $http.defaults.headers.common['X-Requested-With'];
-//  this.newListing = function(listing) {
-//    return $http.post(host + listingPath, listing);
-//  }
-//});
+angular.module('dumboApp')
+    .controller('ViewCtrl', function ($scope, $http, $routeParams, listingDataService) {
+        $scope.id = $routeParams.id;
+        console.log($scope.id);
+        console.log('ViewCtrl');
+        $http.get('../../get_listing.json').then(function (result) {
+            $scope.listings = result.data[0];
+            $scope.source = result.data[0].image_gallery_link[0];
+            console.log(result.data);
 
+        });
+        $scope.listing = {};
+        $scope.listing.error = true;
+
+
+    $scope.init = function() {
+      listingDataService.getListingById($scope.id)
+      .then(function(response){
+        $scope.listing = response.data.listing;
+        $scope.listing.error = false;
+      }, function (response){
+        console.log("ERROR");
+        $scope.listing.error = true;
+      })
+
+    }
+
+
+    $scope.switch_source= function(array_place){
+        $scope.source = $scope.listings.image_gallery_link[array_place];
+    };
+
+
+    });

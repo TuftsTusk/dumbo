@@ -1,0 +1,34 @@
+<div  id="page-wrap"class="container-fluid" ng-controller="SubCtrl">
+
+    <div class="col-md-6 overflow-scroll">
+        <div class="sublet-listings" ng-repeat="listing in listings">
+
+            <div class="thumbnail"><img ng-src={{listing.image_gallery_link[0]}}>
+            </div>
+            <div class="sub-info">
+                <h3>{{listing.approximate_address}}</h3>
+                <h2 id="price">{{listing.rent}}/mth</h2>
+                <p><a href=""><strong>{{listing.seller_email}}</strong></a>
+                </p>
+                <ul>
+                    <li><strong>Bedrooms:  </strong>{{listing.bedrooms_available}}</li>
+                    <li><strong>Furnished:  </strong>{{listing.pre_furnished}}</li>
+                    <li><strong>Dates available:  </strong>{{listing.date_range}}</li>
+                </ul>
+                <button class="btn btn-primary">View on Map --></button>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="col-md-6" id="map-wrap">
+        <div id="map"></div>
+    </div>
+
+
+
+
+
+</div>

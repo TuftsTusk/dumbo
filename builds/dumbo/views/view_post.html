@@ -1,0 +1,47 @@
+<div id="single-post-view" ng-app="dumboApp" ng-controller="ViewCtrl" class="container-fluid" ng-init=init()>
+    <div ng-if="listing.error">
+      JACKSON INSERT COOL PAGE NOT FOUND
+    </div>
+    <div class="margin-top-bottom" ng-if="!listing.error">
+        <div class="col-md-5" id="col-left">
+            <div class="col-sm-2" id="thumbnail">
+                <a class="thumb" ng-click="switch_source($index)"  ng-repeat="link in listings.image_gallery_link track by $index"><img ng-src={{link}}>
+                </a>
+
+            </div>
+            <div class="col-sm-10" id="image-preview">
+                <img id="view-pic" ng-src={{source}}>
+            </div>
+
+        </div>
+        <div class="col-md-5" id="col-mid">
+            <h1>{{listing.title}}</h1>
+            <h3>${{listing.price}} </h3>
+            <h4>Description</h4>
+            <p>{{listing.description}}</p>
+
+            <div>
+                <button class="btn btn-primary">Contact Seller</button>
+                <button class="btn btn-success">Place Order</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+
+        $('.thumb').click(function () {
+
+                $('#view-pic').attr(
+                    'src', this.firstChild.src);
+
+            });
+
+        });
+
+    </script>
+
+</div>

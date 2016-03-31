@@ -54,22 +54,28 @@ angular
             .when('/listing', {
                 templateUrl: 'views/grid_view.html'
             })
-			.when('/mylistings/listing/:id' , {
-				redirectTo: '/mylistings/listing/:id/general'
-			})
-			.when('/mylistings/listing/:id/:path' , {
-				templateUrl: 'views/singleListing.html'
-			})
-            .when('/settings' , {
-				redirectTo: '/settings/account'
+      			.when('/mylistings/listing/:id' , {
+      				redirectTo: '/mylistings/listing/:id/general'
+      			})
+      			.when('/mylistings/listing/:id/:path' , {
+      				templateUrl: 'views/singleListing.html'
+      			})
+            .when('/listing/:id' , {
+                templateUrl: 'views/view_post.html'
             })
-			.when('/settings/:page' , {
-				templateUrl: 'views/settings.html'
-			})
+            .when('/settings' , {
+      				redirectTo: '/settings/account'
+            })
+      			.when('/settings/:page' , {
+      				templateUrl: 'views/settings.html'
+      			})
+            .when('/sublet' , {
+      				templateUrl: 'views/view_sublet.html'
+      			})
 
-        .otherwise({
-            templateUrl: '404.html'
-        });
-        $httpProvider.defaults.withCredentials = true;
-        $httpProvider.interceptors.push('authInterceptor');
-    });
+          .otherwise({
+              templateUrl: '404.html'
+          });
+          $httpProvider.defaults.withCredentials = true;
+          $httpProvider.interceptors.push('authInterceptor');
+      });
