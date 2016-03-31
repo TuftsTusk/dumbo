@@ -50,14 +50,7 @@ angular
             .when('/about', {
                 templateUrl: 'views/about.html'
             })
-            .when('/listings', {
-                templateUrl: 'views/listings.html'
-            })
-            .when('/welcome', {
-                templateUrl: 'views/welcome.html'
-            })
-
-            .when('/grid', {
+            .when('/listing', {
                 templateUrl: 'views/grid_view.html'
             })
 

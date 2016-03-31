@@ -22,13 +22,29 @@
 
 
 angular.module('dumboApp')
-    .controller('GridCtrl', function ($scope, $http) {
+    .controller('GridCtrl', function ($scope, $http, listingDataService) {
         console.log('GridCtrl');
         $http.get('../../get_listing.json').then(function (result) {
-            $scope.listings = result.data;
+            $scope.oldlistings = result.data;
             console.log(result.data);
 //            console.log($scope.listings);
         });
+        $scope.listings = {};
+        $scope.listings.error = true;
+
+        $scope.init = function(){
+          console.log("HELLO?")
+          listingDataService.getListings()
+          .then(function(request){
+              console.log(request.data);
+              $scope.listings = request.data;
+              $scope.listings.error = false;
+
+              console.log($scope.listings);
+          }, function(request){
+            $scope.listings.error = true;
+          })
+        }
 
   //  console.log(userdata[0].title);
 
@@ -56,6 +72,6 @@ angular.module('dumboApp')
 //        }
 //    }
 //
-//]   
+//]
 
     });
