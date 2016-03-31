@@ -1,5 +1,5 @@
 angular.module('dumboApp')
-    .service('listingDataService', function($http,$q, EnvironmentConfig) {
+    .service('listingDataService', function($http, $q, EnvironmentConfig) {
 
   var host = EnvironmentConfig.api;
   var listingPath = '/listing';
