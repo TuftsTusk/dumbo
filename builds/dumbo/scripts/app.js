@@ -56,7 +56,7 @@ angular
             .when('/welcome' , {
                 templateUrl: 'views/welcome.html'
             })
-            .when('/view' , {
+            .when('/listing/:id' , {
                 templateUrl: 'views/view_post.html'
             })
             .when('/settings' , {

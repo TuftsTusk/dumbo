@@ -7,4 +7,7 @@ angular.module('dumboApp')
   this.newListing = function(listing) {
     return $http.post(host + listingPath, listing);
   }
+  this.getListingById = function(id) {
+    return $http.get(host + listingPath + '/' + id);
+  }
 });

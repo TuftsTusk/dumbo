@@ -8,7 +8,9 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-    .controller('ViewCtrl', function ($scope, $http) {
+    .controller('ViewCtrl', function ($scope, $http, $routeParams, listingDataService) {
+        $scope.id = $routeParams.id;
+        console.log($scope.id);
         console.log('ViewCtrl');
         $http.get('../../get_listing.json').then(function (result) {
             $scope.listings = result.data[0];
@@ -16,6 +18,21 @@ angular.module('dumboApp')
             console.log(result.data);
 
         });
+        $scope.listing = {};
+        $scope.listing.error = true;
+
+
+    $scope.init = function() {
+      listingDataService.getListingById($scope.id)
+      .then(function(response){
+        $scope.listing = response.data.listing;
+        $scope.listing.error = false;
+      }, function (response){
+        console.log("ERROR");
+        $scope.listing.error = true;
+      })
+
+    }
 
 
     $scope.switch_source= function(array_place){
