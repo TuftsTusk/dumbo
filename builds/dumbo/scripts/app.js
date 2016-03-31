@@ -28,7 +28,8 @@ angular
     'oitozero.ngSweetAlert',
     'dumboApp.config',
     'LocalStorageModule',
-    'underscore'
+    'underscore',
+    'angularFileUpload'
   ])
   .config(function ($routeProvider, $httpProvider) {
         $routeProvider

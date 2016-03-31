@@ -8,18 +8,49 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  .controller('NewListingCtrl', function ($scope, $http, listingMap, listingDataService, SweetAlert, localStorageService, _) {
+  .controller('NewListingCtrl', function ($scope, $http, listingMap,
+                                          listingDataService, SweetAlert,
+                                          localStorageService, _, userDataService,
+                                          imageUploadService, FileUploader, $window) {
     var localStorageKey = 'listingform';
     var url = window.location.hash;
+    $scope.userDataService = userDataService;
+    $scope.imageUploadService = imageUploadService;
     $scope.type = url.split('#')[2];
     var text;
 
+    $scope.getSignedURL = function(){
+      imageUploadService.getSignedURL()
+          .then(function(response) {
+            console.log("GET NEW SIGNED URL")
+            $scope.signedUrl = response.data;
+          })
+    };
+
+
+
     $scope.init = function(){
+      $scope.getSignedURL();
+      $scope.uploader = new FileUploader({
+        onBeforeUploadItem: function(item) {
+            item.url = $scope.signedUrl;
+            console.log(item.url);
+        },
+        onSuccess: function(response, status, headers) {
+
+        },
+        onProgress: function(response, status, headers) {
+          console.log("COMPLETE")
+          $scope.getSignedURL();
+        },
+        method: 'PUT',
+        headers: {'x-amz-acl': 'public-read', 'Content-Type': 'image/png'}
+      });
       $scope.newListingFormData = listingMap.getFieldsByType($scope.type);
       $scope.newListingFormData.type = listingMap.getListingTypeByType($scope.type);
-      console.log($scope.listing);
       $scope.loadSavedData();
-    }
+    };
+
 
     $scope.submit = function() {
       $scope.dataLoading = true;
