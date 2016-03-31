@@ -1,20 +1,16 @@
-<div ng-controller="GridCtrl">
-    <div ng-repeat="listing in listings" class="grid">
-        <div class="item">
-            <img src="http://placehold.it/500x500">
-        </div>
-        <div class="item">
-            <img src="http://placehold.it/500x500">
-        </div>
-        <div class="item">
-            <img src="http://placehold.it/500x500">
-        </div>
-        <div class="item">
-            <img src="http://placehold.it/500x500">
+<div class="container-fluid">
+    <div class="col-md-3">filters?</div>
+    <div ng-controller="GridCtrl" class="grid col-md-9">
+        <div ng-repeat="listing in listings" class="item">
+            <h4 class="right">${{listing.rent}}</h4>
+            <img ng-src={{listing.image_gallery_link[0]}}>
+            <h3>{{listing.id}}</h3>
+            
+            <p class="truncate">{{listing.notes}}</p>
+            <button class="btn btn-primary right">View Item</button>
         </div>
     </div>
 </div>
-
 <!--
 
 <div id="single-post-view " >
