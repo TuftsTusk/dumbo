@@ -1,15 +1,14 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location) {
-
-
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService) {
+	var id = $routeParams.id;
 	$scope.currentPage = $routeParams.path;
-
 	$scope.selected = 0;
 
 	// data for entire sublet listing
 	$scope.listingData = {
+		id: id,
 		apptInfo: {
 			opDetails: {}
 		},
@@ -32,14 +31,13 @@ angular.module('dumboApp')
 		}
 	];
 
-
-
 	// remove this
 	debugLoadTestData();
 
 
 	$scope.saveAppt = function() {
 		console.log($scope.listingData);
+		listingDataService.newListing($scope.listingData);
 	}
 
 
@@ -127,6 +125,9 @@ angular.module('dumboApp')
 	main();
 
 	function main() {
+
+		// listingDataService.getListing(id);
+
 		$scope.appt = $scope.listingData.apptInfo;
 
 		$scope.roomDetailsChecklist = {
