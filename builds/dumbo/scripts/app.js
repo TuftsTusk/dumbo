@@ -28,7 +28,8 @@ angular
     'oitozero.ngSweetAlert',
     'dumboApp.config',
     'LocalStorageModule',
-    'underscore'
+    'underscore',
+	'ui.bootstrap'
   ])
   .config(function ($routeProvider, $httpProvider) {
         $routeProvider
@@ -57,6 +58,9 @@ angular
                 templateUrl: 'views/welcome.html'
             })
 			.when('/mylistings/listing/:id' , {
+				redirectTo: '/mylistings/listing/:id/general'
+			})
+			.when('/mylistings/listing/:id/:path' , {
 				templateUrl: 'views/singleListing.html'
 			})
             .when('/settings' , {
