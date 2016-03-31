@@ -47,10 +47,10 @@ $pos: center center) {
 }
 
 @mixin imageGrid($qty,
-$margin) {
+$margin, $margin-bottom) {
     width: ((100% - (($qty - 1) * $margin))/$qty);
     &:nth-child(n) {
-        margin-bottom: $margin;
+        margin-bottom: $margin-bottom;
         margin-right: $margin;
     }
     &:nth-child(#{$qty}n) {

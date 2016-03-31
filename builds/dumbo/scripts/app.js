@@ -9,10 +9,10 @@
  * Main module of the application.
  */
 
- var underscore = angular.module('underscore', []);
-       underscore.factory('_', function() {
-           return window._; //Underscore should be loaded on the page
-       });
+var underscore = angular.module('underscore', []);
+underscore.factory('_', function () {
+    return window._; //Underscore should be loaded on the page
+});
 
 
 angular
@@ -31,18 +31,18 @@ angular
     'underscore',
 	'ui.bootstrap'
   ])
-  .config(function ($routeProvider, $httpProvider) {
+    .config(function ($routeProvider, $httpProvider) {
         $routeProvider
-            .when('/' , {
+            .when('/', {
                 templateUrl: 'views/home.html'
             })
-            .when('/home' , {
+            .when('/home', {
                 templateUrl: 'views/home.html'
             })
-            .when('/login' , {
+            .when('/login', {
                 templateUrl: 'views/login.html'
             })
-            .when('/register' , {
+            .when('/register', {
                 templateUrl: 'views/register.html'
             })
             .when('/newListing', {
@@ -51,11 +51,8 @@ angular
             .when('/about', {
                 templateUrl: 'views/about.html'
             })
-            .when('/listings', {
-                templateUrl: 'views/listings.html'
-            })
-            .when('/welcome' , {
-                templateUrl: 'views/welcome.html'
+            .when('/listing', {
+                templateUrl: 'views/grid_view.html'
             })
 			.when('/mylistings/listing/:id' , {
 				redirectTo: '/mylistings/listing/:id/general'
@@ -70,9 +67,9 @@ angular
 				templateUrl: 'views/settings.html'
 			})
 
-            .otherwise({
-                templateUrl: '404.html'
-            });
+        .otherwise({
+            templateUrl: '404.html'
+        });
         $httpProvider.defaults.withCredentials = true;
         $httpProvider.interceptors.push('authInterceptor');
     });
