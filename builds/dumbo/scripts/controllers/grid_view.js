@@ -45,6 +45,8 @@ angular.module('dumboApp')
             $scope.listings.error = true;
           })
         }
+        
+       
 
   //  console.log(userdata[0].title);
 

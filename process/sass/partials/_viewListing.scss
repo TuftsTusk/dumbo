@@ -23,3 +23,9 @@
 .margin-top-bottom{
     margin-top: 15px;
 }
+
+.thumb {
+    &:hover{
+        cursor: pointer;
+    }
+}

@@ -1,16 +1,17 @@
 <div ng-controller="GridCtrl" class="container-fluid" ng-init="init()">
     <div ng-if="listings.error">
-      No Listings error graphic
+        No Listings error graphic
     </div>
     <div class="col-md-3"></div>
     <div class="grid col-md-9" ng-if="!listings.error">
         <div ng-repeat="listing in listings" class="item">
-            <h4 class="right">${{listing.price}}</h4>
+
             <img ng-src={{listing.image_gallery_link[0]}}>
             <h3>{{listing.title}}</h3>
 
 
-            <p class="truncate">{{listing.notes}}</p>
+            <p class="truncate">{{listing.description}}</p>
+            <h4>${{listing.price}}</h4>
             <a class="btn btn-primary right" href="#/listing/{{listing._id}}">View Item</a>
         </div>
     </div>
