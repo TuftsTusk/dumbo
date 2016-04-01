@@ -1,19 +1,14 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, localStorageService) {
 	var id = $routeParams.id;
+	var localStorageKey = 'subletListingForm';
 	$scope.currentPage = $routeParams.path;
 	$scope.selected = 0;
 
 	// data for entire sublet listing
-	$scope.listingData = {
-		id: id,
-		apptInfo: {
-			opDetails: {}
-		},
-		bedrooms: []
-	}
+	loadSavedData();
 
 	$scope.apptDetailsChecklist = [
 		{
@@ -31,9 +26,19 @@ angular.module('dumboApp')
 		}
 	];
 
-	// remove this
-	debugLoadTestData();
+	var emptyData = {
+		id: id,
+		apptInfo: {
+			opDetails: {}
+		},
+		bedrooms: []
+	};
 
+	// $scope.listingData = emptyData;
+
+	// remove this
+	// debugLoadTestData();
+	// console.log(JSON.stringify($scope.listingData));
 
 	$scope.saveAppt = function() {
 		console.log($scope.listingData);
@@ -48,8 +53,9 @@ angular.module('dumboApp')
 			'photos'
 		];
 		var str = $location.url();
-		$location.path(str.substring(0, str.lastIndexOf("/")) + '/' + pages[index]);
+		updateSavedData();
 		$scope.currentPage = pages[index];
+		$location.path(str.substring(0, str.lastIndexOf("/")) + '/' + pages[index]);
 	}
 
 	$scope.loadRoom = function(index) {
@@ -117,10 +123,75 @@ angular.module('dumboApp')
 		$scope.loadRoom(newIndex);
 	}
 
+	function loadSavedData() {
+		var debugTestData = {
+			"id":"1",
+			"apptInfo":{
+				"opDetails":{
+
+				}
+			},
+			"bedrooms":[
+				{
+					dateAvailable: new Date('2016-05-23'),
+					dateUnavailable: new Date('2016-08-23'),
+					"rent":667,
+					"title":"Jackson's room",
+					"photos":[
+						"http://www.pawderosa.com/images/puppies.jpg",
+						"http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
+						"http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
+						"https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"
+					]
+				},
+				{
+					dateAvailable: new Date('2016-05-14'),
+					dateUnavailable: new Date('2016-09-10'),
+					"rent":750,
+					"title":"Conor's room",
+					"photos":[
+						"http://www.fndvisions.org/img/cutecat.jpg",
+						"https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg",
+						"http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg",
+						"https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"
+					]
+				}
+			]
+		};
+		var savedData = localStorageService.get(localStorageKey);
+		if (savedData) {
+			$.each(savedData.bedrooms, function(index) {
+				$.each(savedData.bedrooms[index], function(key, value) {
+					if (key == 'dateAvailable' || key == 'dateUnavailable') {
+						console.log(index, key);
+
+						// TODO: different format
+						savedData.bedrooms[index][key] = Date.parse(value);
+					}
+				});
+			});
+			$scope.listingData = savedData;
+		} else {
+			$scope.listingData = debugTestData;
+		}
+		debugPrintListingData();
+		// debugPrintSavedData();
+	}
+
+	function deleteSavedData() {
+		localStorageService.remove(localStorageKey);
+		$scope.listingData = emptyData;
+	}
+
+    function updateSavedData() {
+      localStorageService.set(localStorageKey, $scope.listingData);
+	  debugPrintSavedData();
+    };
 
 
-
-
+	function debugPrintSavedData() {
+		console.log('local storage',localStorageService.get(localStorageKey));
+	}
 
 	main();
 
@@ -144,8 +215,8 @@ angular.module('dumboApp')
 		var dmin = new Date(),
 			dmax = new Date();
 		dmax.setFullYear(dmin.getFullYear() + 1);
-		$scope.dateMin = dmin.toISOString().split('T')[0];
-		$scope.dateMax = dmax.toISOString().split('T')[0];
+		$scope.dateMin = dmin.toISOString().substring(0, 10);
+		$scope.dateMax = dmax.toISOString().substring(0, 10);
 
 
 	}
