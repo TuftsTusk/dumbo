@@ -31,10 +31,10 @@
 					<input class="formInput" required name="numOccupants" ng-model="appt.numOccupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >
-					<div class="heading" ng-click="facc.open = !facc.open; appt.opDetails = {}">
-						<label>Optional details <i class="fa fa-lg" ng-class="facc.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
+					<div class="heading" ng-click="modelData.general.open = !modelData.general.open;">
+						<label>Optional details <i class="fa fa-lg" ng-class="modelData.general.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
 					</div>
-					<div class="body" ng-show="facc.open">
+					<div class="body" ng-show="modelData.general.open">
 						<div class="col-xs-6" ng-repeat="list in apptDetailsChecklist">
 							<div class="formCheckbox" ng-repeat="(key, value) in list">
 								<input name="c1" type="checkbox" tabindex="-1" ng-model="appt.opDetails[value];">
@@ -135,12 +135,12 @@
 						</div>
 					</fieldset>
 					<fieldset class="formGroup accordion">
-						<div class="heading" ng-click="facc.open = !facc.open">
-							<label>Optional details <i class="fa fa-lg" ng-class="facc.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
+						<div class="heading" ng-click="modelData.bedrooms.open = !modelData.bedrooms.open">
+							<label>Optional details <i class="fa fa-lg" ng-class="modelData.bedrooms.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
 						</div>
-						<div class="body" ng-show="facc.open">
+						<div class="body" ng-show="modelData.bedrooms.open">
 							<div class="formCheckbox" ng-repeat="(key, value) in roomDetailsChecklist">
-								<input name="c1" type="checkbox" tabindex="-1">
+								<input name="c1" type="checkbox" tabindex="-1" ng-model="room.opDetails[value];">
 								{{key}}
 							</div>
 						</div>

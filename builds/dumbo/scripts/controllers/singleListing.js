@@ -3,7 +3,7 @@
 angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, localStorageService) {
 	var id = $routeParams.id;
-	var localStorageKey = 'subletListingForm';
+	var localStorageKey = 'subletListing';
 	$scope.currentPage = $routeParams.path;
 	$scope.selected = 0;
 
@@ -27,11 +27,21 @@ angular.module('dumboApp')
 	];
 
 	var emptyData = {
-		id: id,
-		apptInfo: {
-			opDetails: {}
+		model: {
+			general: {
+				open: false
+			},
+			bedrooms: {
+				open: false
+			}
 		},
-		bedrooms: []
+		form: {
+			id: id,
+			apptInfo: {
+				opDetails: {}
+			},
+			bedrooms: []
+		}
 	};
 
 	// $scope.listingData = emptyData;
@@ -125,56 +135,73 @@ angular.module('dumboApp')
 
 	function loadSavedData() {
 		var debugTestData = {
-			"id":"1",
-			"apptInfo":{
-				"opDetails":{
-
+			model: {
+				general: {
+					open: false
+				},
+				bedrooms: {
+					open: false
 				}
 			},
-			"bedrooms":[
-				{
-					dateAvailable: new Date('2016-05-23'),
-					dateUnavailable: new Date('2016-08-23'),
-					"rent":667,
-					"title":"Jackson's room",
-					"photos":[
-						"http://www.pawderosa.com/images/puppies.jpg",
-						"http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-						"http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-						"https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"
-					]
+			form: {
+				"id":"1",
+				"apptInfo":{
+					"opDetails":{
+
+					}
 				},
-				{
-					dateAvailable: new Date('2016-05-14'),
-					dateUnavailable: new Date('2016-09-10'),
-					"rent":750,
-					"title":"Conor's room",
-					"photos":[
-						"http://www.fndvisions.org/img/cutecat.jpg",
-						"https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg",
-						"http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg",
-						"https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"
-					]
-				}
-			]
+				"bedrooms":[
+					{
+						dateAvailable: new Date('2016-05-23'),
+						dateUnavailable: new Date('2016-08-23'),
+						"rent":667,
+						"title":"Jackson's room",
+						"photos":[
+							"http://www.pawderosa.com/images/puppies.jpg",
+							"http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
+							"http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
+							"https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"
+						]
+					},
+					{
+						dateAvailable: new Date('2016-05-14'),
+						dateUnavailable: new Date('2016-09-10'),
+						"rent":750,
+						"title":"Conor's room",
+						"photos":[
+							"http://www.fndvisions.org/img/cutecat.jpg",
+							"https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg",
+							"http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg",
+							"https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"
+						]
+					}
+				]
+			}
 		};
+
 		var savedData = localStorageService.get(localStorageKey);
 		if (savedData) {
-			$.each(savedData.bedrooms, function(index) {
-				$.each(savedData.bedrooms[index], function(key, value) {
-					if (key == 'dateAvailable' || key == 'dateUnavailable') {
-						console.log(index, key);
-
-						// TODO: different format
-						savedData.bedrooms[index][key] = Date.parse(value);
-					}
+			var form = savedData.form;
+			var model = savedData.model;
+			if (form) {
+				$.each(form.bedrooms, function(index) {
+					$.each(form.bedrooms[index], function(key, value) {
+						if (key == 'dateAvailable' || key == 'dateUnavailable') {
+							// TODO: different format
+							form.bedrooms[index][key] = new Date(value);
+						}
+					});
 				});
-			});
-			$scope.listingData = savedData;
+			}
+			$scope.listingData = form;
+			$scope.modelData = model;
+			console.log('listingData', $scope.listingData);
 		} else {
-			$scope.listingData = debugTestData;
+			$scope.listingData = debugTestData.form;
+			$scope.modelData = debugTestData.model;
 		}
-		debugPrintListingData();
+
+		// debugPrintListingData();
 		// debugPrintSavedData();
 	}
 
@@ -183,10 +210,14 @@ angular.module('dumboApp')
 		$scope.listingData = emptyData;
 	}
 
-    function updateSavedData() {
-      localStorageService.set(localStorageKey, $scope.listingData);
-	  debugPrintSavedData();
-    };
+	function updateSavedData() {
+		var lsObject = {
+			form: $scope.listingData,
+			model: $scope.modelData
+		}
+		localStorageService.set(localStorageKey, lsObject);
+		debugPrintSavedData();
+	};
 
 
 	function debugPrintSavedData() {
@@ -199,8 +230,17 @@ angular.module('dumboApp')
 
 		// listingDataService.getListing(id);
 
-		$scope.appt = $scope.listingData.apptInfo;
+		// $scope.mod = {
+		// 	general: {
+		// 		open: false
+		// 	},
+		// 	bedrooms: {
+		// 		open: false
+		// 	}
+		// }
 
+		$scope.appt = $scope.listingData.apptInfo;
+		console.log($scope.listingData.apptInfo);
 		$scope.roomDetailsChecklist = {
 			'Furnished': 'pre_furnished',
 			'Air conditioning': 'incl_air_conditioning'
