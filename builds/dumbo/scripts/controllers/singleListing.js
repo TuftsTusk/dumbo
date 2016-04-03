@@ -10,7 +10,7 @@ angular.module('dumboApp')
 	// data for entire sublet listing
 	loadSavedData();
 
-	$scope.apptDetailsChecklist = [
+	$scope.aptDetailsModelRender = [
 		{
 			'Furnished': 'pre_furnished',
 			'Air conditioning': 'incl_air_conditioning',
@@ -25,6 +25,13 @@ angular.module('dumboApp')
 			'Smoking permitted': 'smoking_permitted'
 		}
 	];
+	$scope.aptDetailsChecklist = [];
+	$.each($scope.aptDetailsModelRender, function(index) {
+		$.each($scope.aptDetailsModelRender[index], function(key, value) {
+			$scope.aptDetailsChecklist.push(value);
+		})
+	});
+	console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
 
 	var emptyData = {
 		model: {
@@ -37,15 +44,17 @@ angular.module('dumboApp')
 		},
 		form: {
 			id: id,
-			apptInfo: {
-				opDetails: {}
+			apt_info: {
+				op_details: {}
 			},
 			bedrooms: []
 		}
 	};
 
-	$scope.saveAppt = function() {
+	$scope.saveApt = function() {
 		console.log($scope.listingData);
+		console.log(JSON.stringify($scope.listingData));
+
 		listingDataService.newListing($scope.listingData);
 	}
 
@@ -121,6 +130,14 @@ angular.module('dumboApp')
 		$scope.loadRoom(newIndex);
 	}
 
+	$scope.modifyAllApt = function(bool) {
+		if (typeof bool === 'boolean') {
+			$.each($scope.aptDetailsChecklist, function(index, value) {
+				$scope.apt.op_details[value] = bool;
+			});
+		}
+	}
+
 	function loadSavedData() {
 		var debugTestData = {
 			model: {
@@ -133,15 +150,15 @@ angular.module('dumboApp')
 			},
 			form: {
 				"id":"1",
-				"apptInfo":{
-					"opDetails":{
+				"apt_info":{
+					"op_details":{
 
 					}
 				},
 				"bedrooms":[
 					{
-						dateAvailable: new Date('2016-05-23'),
-						dateUnavailable: new Date('2016-08-23'),
+						date_start: new Date('2016-05-23'),
+						date_end: new Date('2016-08-23'),
 						"rent":667,
 						"title":"Jackson's room",
 						"photos":[
@@ -152,8 +169,8 @@ angular.module('dumboApp')
 						]
 					},
 					{
-						dateAvailable: new Date('2016-05-14'),
-						dateUnavailable: new Date('2016-09-10'),
+						date_start: new Date('2016-05-14'),
+						date_end: new Date('2016-09-10'),
 						"rent":750,
 						"title":"Conor's room",
 						"photos":[
@@ -174,7 +191,7 @@ angular.module('dumboApp')
 			if (form) {
 				$.each(form.bedrooms, function(index) {
 					$.each(form.bedrooms[index], function(key, value) {
-						if (key == 'dateAvailable' || key == 'dateUnavailable') {
+						if (key == 'date_start' || key == 'date_end') {
 							// TODO: different format
 							form.bedrooms[index][key] = new Date(value);
 						}
@@ -207,7 +224,7 @@ angular.module('dumboApp')
 
 	function main() {
 
-		$scope.appt = $scope.listingData.apptInfo;
+		$scope.apt = $scope.listingData.apt_info;
 		$scope.roomDetailsChecklist = {
 			'Furnished': 'pre_furnished',
 			'Air conditioning': 'incl_air_conditioning'
@@ -231,8 +248,8 @@ angular.module('dumboApp')
 
 	function debugLoadTestData() {
 		var test_room = {
-			dateAvailable: new Date('2016-05-23'),
-			dateUnavailable: new Date('2016-08-23'),
+			date_start: new Date('2016-05-23'),
+			date_end: new Date('2016-08-23'),
 			rent: 667,
 			title: "Jackson's room",
 			photos: [
@@ -244,8 +261,8 @@ angular.module('dumboApp')
 		};
 
 		var test_room2 = {
-			dateAvailable: new Date('2016-05-14'),
-			dateUnavailable: new Date('2016-09-10'),
+			date_start: new Date('2016-05-14'),
+			date_end: new Date('2016-09-10'),
 			rent: 750,
 			title: "Conor's room",
 			photos: [

@@ -78,8 +78,8 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li id="newPost">
-                        <a id="newPostButton" ng-href="" class="btn btn-primary" role="button">New Post</a>
+                    <li id="newPost" class="flyoutWrapper">
+                        <a id="newPostButton" ng-href="" class="btn btn-primary flyoutButton" role="button">New Post</a>
                         <div class="toggleFlyout hidden">
                             <div>
                                 <div class="flyArrowWrapper">
@@ -109,8 +109,30 @@
                     </li>
                     <li ng-show="isLoggedin() == false" ng-cloak id="signIn"><a href="#" ng-href="#/login">Sign in</a>
                     </li>
-                    <li ng-show="isLoggedin() != false" ng-cloak id="email">
-                        <a href="#" ng-href="#/login">{{requestEmail()}}</a>
+                    <li ng-show="isLoggedin() != false" ng-cloak id="account" class="flyoutWrapper">
+                        <a id="accountButton" class="flyoutButton" href="#" ng-href="">{{requestEmail()}}</a>
+						<div class="toggleFlyout hidden">
+                            <div>
+                                <div class="flyArrowWrapper">
+                                    <div class="flyArrow">
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="flyContent">
+								<li>
+	                                <a href="#/newListing#SubletListing" class="flyButton">My posts</a>
+								</li>
+                                <a href="#/newListing#BookListing" class="flyButton">
+                                    <img src="../images/book.svg" alt="book"> Saved listings
+                                </a>
+                                <a href="#/newListing#FurnitureListing" class="flyButton">
+                                    <img src="../images/furniture.svg" alt="furniture"> Settings
+                                </a>
+                                <a href="#/newListing#MiscListing" class="flyButton">
+                                    <img src="../images/everything_else2.svg" alt="other"> Log out
+                                </a>
+                            </ul>
+                        </div>
                     </li>
                     <li ng-show="isLoggedin() != false" ng-cloak id="logout"><a href="#" ng-click="logout()">Sign Out</a>
                     </li>

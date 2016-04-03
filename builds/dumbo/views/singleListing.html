@@ -2,7 +2,7 @@
 <div class="row headerbar">
 	<div class="container-fluid">
 		<div class="block first borderRight">303 Boston Ave, Medford, MA</div>
-		<a href="" class="block highlight" ng-click="saveAppt()">Preview</a>
+		<a href="" class="block highlight" ng-click="saveApt()">Preview</a>
 	</div>
 
 </div>
@@ -24,28 +24,31 @@
 			<div class="panel-body">
 				<fieldset class="formGroup">
 					<label>What is your address?</label>
-					<input class="formInput" required name="location" type="text" ng-model="appt.address" placeholder="Your address">
+					<input class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>How many people live there?</label>
-					<input class="formInput" required name="numOccupants" ng-model="appt.numOccupants" type="number">
+					<input class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >
 					<div class="heading" ng-click="modelData.general.open = !modelData.general.open;">
 						<label>Optional details <i class="fa fa-lg" ng-class="modelData.general.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
 					</div>
 					<div class="body" ng-show="modelData.general.open">
-						<div class="col-xs-6" ng-repeat="list in apptDetailsChecklist">
-							<div class="formCheckbox" ng-repeat="(key, value) in list">
-								<input name="c1" type="checkbox" tabindex="-1" ng-model="appt.opDetails[value];">
-								{{key}}
+						<div class="row">
+							<div class="col-xs-6" ng-repeat="list in aptDetailsModelRender">
+								<div class="formCheckbox" ng-repeat="(key, value) in list">
+									<input name="c1" type="checkbox" tabindex="-1" ng-model="apt.op_details[value];">
+									{{key}}
+								</div>
 							</div>
-							<!-- ng-click="checkIfDefined('appt.opDetails')" -->
-							<!-- $scope.appt.opDetails = {} -->
-							<!-- checkIfDefined('appt.opDetails') -->
-							<!-- list($index).{{key}} = !list($index).{{key}} -->
+						</div>
+						<div>
+							<button type="button" class="btn btn-default" ng-click="modifyAllApt(true)">Check all</button>
+							<button type="button" class="btn btn-default" ng-click="modifyAllApt(false)">Uncheck all</button>
 						</div>
 					</div>
+
 				</fieldset>
 			</div>
 		</div>
@@ -113,22 +116,22 @@
 						<div class="errorMsg" ng-show="rForm.rent.$error.required && rForm.rent.$touched">This field is required.</div>
 					</fieldset>
 					<fieldset class="double">
-						<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.dateAvailable.$invalid && rForm.dateAvailable.$touched}">
-							<label>Date available</label>
-							<input class="formInput" required name="dateAvailable" type="date" min={{dateMin}} ng-model="room.dateAvailable" ng-change="checkDate(room)">
-							<span class="errorMsg" ng-show="rForm.dateAvailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+						<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.date_start.$invalid && rForm.date_start.$touched}">
+							<label>Start date</label>
+							<input class="formInput" required name="date_start" type="date" min={{dateMin}} ng-model="room.date_start" ng-change="checkDate(room)">
+							<span class="errorMsg" ng-show="rForm.date_start.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 							<div class="formCheckbox optional">
-								<input name="DAFlexible" type="checkbox" tabindex="-1" ng-model="room.DAFlexible">
+								<input name="date_start_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_start_is_flexible">
 								Date is flexible
 							</div>
 						</div>
-						<div class="formGroup" ng-class="{'fieldInvalid': rForm.dateUnavailable.$invalid && rForm.dateAvailable.$touched}">
-							<label>Date unavailable</label>
-							<input class="formInput" required name="dateUnavailable" type="date" min={{room.dateAvailable}} max={{dateMax}} ng-model="room.dateUnavailable" ng-change="checkDate()">
-							<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.min">Must be after {{room.dateAvailable | date : format : timezone}}.</span>
-							<span class="errorMsg" ng-show="rForm.dateUnavailable.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+						<div class="formGroup" ng-class="{'fieldInvalid': rForm.date_end.$invalid && rForm.date_start.$touched}">
+							<label>End date</label>
+							<input class="formInput" required name="date_end" type="date" min={{room.date_start}} max={{dateMax}} ng-model="room.date_end" ng-change="checkDate()">
+							<span class="errorMsg" ng-show="rForm.date_end.$error.min">Must be after {{room.date_start | date : format : timezone}}.</span>
+							<span class="errorMsg" ng-show="rForm.date_end.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 							<div class="formCheckbox optional">
-								<input name="DUFlexible" type="checkbox" tabindex="-1" ng-model="room.DUFlexible">
+								<input name="date_end_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_end_is_flexible">
 								Date is flexible
 							</div>
 
@@ -140,7 +143,7 @@
 						</div>
 						<div class="body" ng-show="modelData.bedrooms.open">
 							<div class="formCheckbox" ng-repeat="(key, value) in roomDetailsChecklist">
-								<input name="c1" type="checkbox" tabindex="-1" ng-model="room.opDetails[value];">
+								<input name="c1" type="checkbox" tabindex="-1" ng-model="room.op_details[value];">
 								{{key}}
 							</div>
 						</div>
@@ -174,6 +177,10 @@
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Bathroom(s)</label>
+					<input type="file">
+				</fieldset>
+				<fieldset class="formGroup">
+					<label>Other</label>
 					<input type="file">
 				</fieldset>
 				<div class="formGroup">
