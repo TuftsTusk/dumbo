@@ -44,12 +44,6 @@ angular.module('dumboApp')
 		}
 	};
 
-	// $scope.listingData = emptyData;
-
-	// remove this
-	// debugLoadTestData();
-	// console.log(JSON.stringify($scope.listingData));
-
 	$scope.saveAppt = function() {
 		console.log($scope.listingData);
 		listingDataService.newListing($scope.listingData);
@@ -72,7 +66,6 @@ angular.module('dumboApp')
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
 			$scope.room = $scope.listingData.bedrooms[index];
-			// debugPrintListingData();
 			$scope.selected = index;
 		} else {
 			$scope.room = {};
@@ -90,8 +83,6 @@ angular.module('dumboApp')
 		if (length == 1) {
 			$scope.loadRoom(0);
 		}
-
-		// debugPrintListingData();
 	}
 
 	$scope.saveRoom = function() {
@@ -121,15 +112,12 @@ angular.module('dumboApp')
 
 		var length = $scope.listingData.bedrooms.length,
 			newIndex = 0;
-		console.log('length: ', length);
-		console.log('index: ', index);
 		if (length <= index) {
 			newIndex = index - 1;
 		} else {
 			newIndex = index;
 		}
 
-		console.log('newIndex: ', newIndex);
 		$scope.loadRoom(newIndex);
 	}
 
@@ -195,14 +183,11 @@ angular.module('dumboApp')
 			}
 			$scope.listingData = form;
 			$scope.modelData = model;
-			console.log('listingData', $scope.listingData);
 		} else {
 			$scope.listingData = debugTestData.form;
 			$scope.modelData = debugTestData.model;
 		}
 
-		// debugPrintListingData();
-		// debugPrintSavedData();
 	}
 
 	function deleteSavedData() {
@@ -216,31 +201,13 @@ angular.module('dumboApp')
 			model: $scope.modelData
 		}
 		localStorageService.set(localStorageKey, lsObject);
-		debugPrintSavedData();
 	};
-
-
-	function debugPrintSavedData() {
-		console.log('local storage',localStorageService.get(localStorageKey));
-	}
 
 	main();
 
 	function main() {
 
-		// listingDataService.getListing(id);
-
-		// $scope.mod = {
-		// 	general: {
-		// 		open: false
-		// 	},
-		// 	bedrooms: {
-		// 		open: false
-		// 	}
-		// }
-
 		$scope.appt = $scope.listingData.apptInfo;
-		console.log($scope.listingData.apptInfo);
 		$scope.roomDetailsChecklist = {
 			'Furnished': 'pre_furnished',
 			'Air conditioning': 'incl_air_conditioning'
@@ -262,24 +229,8 @@ angular.module('dumboApp')
 	}
 
 
-	// when back button is pressed
-	// $scope.save = function(room, prev_index) {
-	// 	if (room) {
-	// 		console.log(room);
-	// 		console.log(prev_index);
-	// 		var r = angular.copy(room);
-	// 		$scope.listingData.bedrooms[prev_index] = r;
-	// 		console.log('saving');
-	// 		console.log($scope.listingData.bedrooms);
-	// 	}
-	// }
-
-
-
 	function debugLoadTestData() {
 		var test_room = {
-			// dateAvailable: 'Mon May 23 2016 00:00:00 GMT-0400 (EDT)',
-			// dateUnavailable: 'Tue Aug 23 2016 00:00:00 GMT-0400 (EDT)',
 			dateAvailable: new Date('2016-05-23'),
 			dateUnavailable: new Date('2016-08-23'),
 			rent: 667,
@@ -293,8 +244,6 @@ angular.module('dumboApp')
 		};
 
 		var test_room2 = {
-			// dateAvailable: 'Mon May 14 2016 00:00:00 GMT-0400 (EDT)',
-			// dateUnavailable: 'Tue Sep 10 2016 00:00:00 GMT-0400 (EDT)',
 			dateAvailable: new Date('2016-05-14'),
 			dateUnavailable: new Date('2016-09-10'),
 			rent: 750,
@@ -310,10 +259,4 @@ angular.module('dumboApp')
 		$scope.listingData.bedrooms.push(test_room2);
 	}
 
-	function debugPrintListingData() {
-		for (var i = 0; i < $scope.listingData.bedrooms.length; i++) {
-			console.log(i + '.');
-			console.log($scope.listingData.bedrooms[i]);
-		}
-	}
 });
