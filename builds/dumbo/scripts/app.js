@@ -57,12 +57,15 @@ angular
   	// 		.when('/mylistings/listing/:id' , {
   	// 			redirectTo: '/mylistings/listing/:id/general'
   	// 		})
-  			.when('/mylistings/listing/:id' , {
-  				templateUrl: 'views/singleListing.html'
+  			.when('/me/listing' , {
+  				templateUrl: ''
   			})
-            .when('/listing/:id' , {
-                templateUrl: 'views/view_post.html'
+            .when('/subletListing/:id' , {
+                templateUrl: 'views/singleListing.html'
             })
+			.when('/listing/:id' , {
+				templateUrl: 'views/view_post.html'
+			})
             .when('/settings' , {
       				redirectTo: '/settings/account'
             })

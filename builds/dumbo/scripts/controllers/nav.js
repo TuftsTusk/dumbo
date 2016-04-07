@@ -2,6 +2,7 @@
 
 angular.module('dumboApp')
 	.controller('NavCtrl', function ($scope, userService, userDataService) {
+		console.log('here');
 		$scope.isLoggedin = function(){
 		 	return userService.isLoggedin();
 		}
@@ -63,9 +64,6 @@ angular.module('dumboApp')
 			// 		$('.navbar-toggle').click();
 			// 	}
 			// });
-
-
-
 
 			function updateNav(b_small, b_medium) {
 				if ($(window).width() <= b_small) {
