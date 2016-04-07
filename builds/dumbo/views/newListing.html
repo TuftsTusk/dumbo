@@ -11,15 +11,28 @@
                 <p class="help-block" ng-show="modularField.data.$invalid">{{field.displayName}} Required</p>
             </ng-form>
           </div>
+          <div class="file-upload panel panel-default">
+            <div class = "panel-heading">
+              <h3 class = "panel-title">
+                 Images
+              </h3>
+           </div>
+           <div class = "panel-body">
+              <input type="file" multiple file-model="image" ng-file-select/><br/>
+              <i ng-hide="images">No image</i>
+              <div ng-repeat="image in images">
+                <div class="col-md-3">
+                  <img width=50 ng-src="{{image}}" />
+                  <a class="btn btn-danger" ng-click ="removeImage($index)">Remove</a>
+                </div>
+              </div>
+              <a class="btn btn-primary pull-right" ng-click="uploadImages()" ng-disabled = "isUploading">Upload</a>
+          </div>
+
+          </div>
+          <div class="subit-form">
               <button type="submit" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-primary">Create</button>
               <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
           </div>
       </form>
-      <input type="file" nv-file-select uploader="uploader"/><br/>
-        <ul>
-            <li ng-repeat="item in uploader.queue">
-                Name: <span ng-bind="item.file.name"></span><br/>
-                <button ng-click="item.upload()">upload</button>
-            </li>
-        </ul>
 </div>

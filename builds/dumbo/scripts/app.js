@@ -29,7 +29,8 @@ angular
     'dumboApp.config',
     'LocalStorageModule',
     'underscore',
-    'angularFileUpload'
+    'angularFileUpload',
+    'angular-loading-bar'
   ])
   .config(function ($routeProvider, $httpProvider) {
         $routeProvider
