@@ -4,8 +4,16 @@ angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, localStorageService) {
 	var id = $routeParams.id;
 	var localStorageKey = 'subletListing';
-	$scope.currentPage = $routeParams.path;
+	// $scope.currentPage = $routeParams.path;
 	$scope.selected = 0;
+
+	renderScreen('general');
+	function renderScreen(screen) {
+		// Hides other pages and shows the starting screen.
+		$scope.currentPage = screen;
+		$('.page').not($('#' + screen)).removeClass('visible');
+		$('#' + screen).addClass('visible');
+	}
 
 	// data for entire sublet listing
 	loadSavedData();
@@ -31,7 +39,7 @@ angular.module('dumboApp')
 			$scope.aptDetailsChecklist.push(value);
 		})
 	});
-	console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
+	// console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
 
 	var emptyData = {
 		model: {
@@ -44,6 +52,7 @@ angular.module('dumboApp')
 		},
 		form: {
 			id: id,
+			type: 'SubletListing',
 			apt_info: {
 				op_details: {}
 			},
@@ -52,24 +61,30 @@ angular.module('dumboApp')
 	};
 
 	$scope.saveApt = function() {
-		console.log($scope.listingData);
-		console.log(JSON.stringify($scope.listingData));
-
-		listingDataService.newListing($scope.listingData);
+		// console.log($scope.listingData);
+		// console.log(JSON.stringify($scope.listingData));
+		console.log('saving');
+		// listingDataService.newListing($scope.listingData);
 	}
 
-
-	$scope.setCurrentPage = function(index) {
-		var pages = [
-			'general',
-			'bedrooms',
-			'photos'
-		];
-		var str = $location.url();
+	$scope.setCurrentPage = function(screen) {
 		updateSavedData();
-		$scope.currentPage = pages[index];
-		$location.path(str.substring(0, str.lastIndexOf("/")) + '/' + pages[index]);
+		$scope.currentPage = screen;
+		renderScreen(screen);
 	}
+
+
+	// $scope.setCurrentPage = function(index) {
+	// 	var pages = [
+	// 		'general',
+	// 		'bedrooms',
+	// 		'photos'
+	// 	];
+	// 	var str = $location.url();
+	// 	updateSavedData();
+	// 	$scope.currentPage = pages[index];
+	// 	$location.path(str.substring(0, str.lastIndexOf("/")) + '/' + pages[index]);
+	// }
 
 	$scope.loadRoom = function(index) {
 		var length = $scope.listingData.bedrooms.length;
@@ -150,6 +165,7 @@ angular.module('dumboApp')
 			},
 			form: {
 				"id":"1",
+				type: 'SubletListing',
 				"apt_info":{
 					"op_details":{
 
@@ -242,7 +258,7 @@ angular.module('dumboApp')
 		$scope.dateMin = dmin.toISOString().substring(0, 10);
 		$scope.dateMax = dmax.toISOString().substring(0, 10);
 
-
+		// $('#singleListing input').attr('ng-blur','saveApt()');
 	}
 
 

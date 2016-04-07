@@ -54,12 +54,12 @@ angular
             .when('/listing', {
                 templateUrl: 'views/grid_view.html'
             })
-      			.when('/mylistings/listing/:id' , {
-      				redirectTo: '/mylistings/listing/:id/general'
-      			})
-      			.when('/mylistings/listing/:id/:path' , {
-      				templateUrl: 'views/singleListing.html'
-      			})
+  	// 		.when('/mylistings/listing/:id' , {
+  	// 			redirectTo: '/mylistings/listing/:id/general'
+  	// 		})
+  			.when('/mylistings/listing/:id' , {
+  				templateUrl: 'views/singleListing.html'
+  			})
             .when('/listing/:id' , {
                 templateUrl: 'views/view_post.html'
             })

@@ -119,23 +119,15 @@
                                 </div>
                             </div>
                             <ul class="flyContent">
-								<li>
-	                                <a href="#/newListing#SubletListing" class="flyButton">My posts</a>
-								</li>
-                                <a href="#/newListing#BookListing" class="flyButton">
-                                    <img src="../images/book.svg" alt="book"> Saved listings
-                                </a>
-                                <a href="#/newListing#FurnitureListing" class="flyButton">
-                                    <img src="../images/furniture.svg" alt="furniture"> Settings
-                                </a>
-                                <a href="#/newListing#MiscListing" class="flyButton">
-                                    <img src="../images/everything_else2.svg" alt="other"> Log out
-                                </a>
+								<li><a href="#/mylistings" class="flyButton">My posts</a></li>
+								<li><a href="" class="flyButton">Saved listings</a></li>
+								<li><a href="#/settings" class="flyButton">Settings</a></li>
+								<li><a href="#/" ng-click="logout()" id="logout" class="flyButton">Log out</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li ng-show="isLoggedin() != false" ng-cloak id="logout"><a href="#" ng-click="logout()">Sign Out</a>
-                    </li>
+                    <!-- <li ng-show="isLoggedin() != false" ng-cloak id="logout"><a href="#" ng-click="logout()">Sign Out</a>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
