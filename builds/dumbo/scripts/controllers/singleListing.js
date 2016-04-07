@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, localStorageService) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService) {
 	var id = $routeParams.id;
 	var localStorageKey = 'subletListing';
 	// $scope.currentPage = $routeParams.path;
@@ -65,6 +65,29 @@ angular.module('dumboApp')
 		// console.log(JSON.stringify($scope.listingData));
 		console.log('saving');
 		// listingDataService.newListing($scope.listingData);
+	}
+
+	$scope.submitApt = function() {
+		console.log($scope.listingData);
+		listingDataService.newListing($scope.listingData)
+		.then(
+        function success(res){
+          $scope.dataLoading = false;
+          SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
+          localStorageService.remove(localStorageKey);
+        },
+        function failure(res){
+          $scope.dataLoading = false;
+          if (res.status === -1) {
+            SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+          } else {
+            var errorMessage;
+            if (!res.data && res.data.message && res.data.message.message) {
+              errorMessage = res.data.message.message;
+              SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+            }
+          }
+        });
 	}
 
 	$scope.setCurrentPage = function(screen) {
