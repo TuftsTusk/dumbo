@@ -61,7 +61,7 @@ angular.module('dumboApp')
 	};
 
 	$scope.saveApt = function() {
-		// console.log($scope.listingData);
+		console.log($scope.listingData);
 		// console.log(JSON.stringify($scope.listingData));
 		console.log('saving');
 		// listingDataService.newListing($scope.listingData);
@@ -72,19 +72,6 @@ angular.module('dumboApp')
 		$scope.currentPage = screen;
 		renderScreen(screen);
 	}
-
-
-	// $scope.setCurrentPage = function(index) {
-	// 	var pages = [
-	// 		'general',
-	// 		'bedrooms',
-	// 		'photos'
-	// 	];
-	// 	var str = $location.url();
-	// 	updateSavedData();
-	// 	$scope.currentPage = pages[index];
-	// 	$location.path(str.substring(0, str.lastIndexOf("/")) + '/' + pages[index]);
-	// }
 
 	$scope.loadRoom = function(index) {
 		var length = $scope.listingData.bedrooms.length;
@@ -154,51 +141,51 @@ angular.module('dumboApp')
 	}
 
 	function loadSavedData() {
-		var debugTestData = {
-			model: {
-				general: {
-					open: false
-				},
-				bedrooms: {
-					open: false
-				}
-			},
-			form: {
-				"id":"1",
-				type: 'SubletListing',
-				"apt_info":{
-					"op_details":{
-
-					}
-				},
-				"bedrooms":[
-					{
-						date_start: new Date('2016-05-23'),
-						date_end: new Date('2016-08-23'),
-						"rent":667,
-						"title":"Jackson's room",
-						"photos":[
-							"http://www.pawderosa.com/images/puppies.jpg",
-							"http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-							"http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-							"https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"
-						]
-					},
-					{
-						date_start: new Date('2016-05-14'),
-						date_end: new Date('2016-09-10'),
-						"rent":750,
-						"title":"Conor's room",
-						"photos":[
-							"http://www.fndvisions.org/img/cutecat.jpg",
-							"https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg",
-							"http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg",
-							"https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"
-						]
-					}
-				]
-			}
-		};
+		// var debugTestData = {
+		// 	model: {
+		// 		general: {
+		// 			open: false
+		// 		},
+		// 		bedrooms: {
+		// 			open: false
+		// 		}
+		// 	},
+		// 	form: {
+		// 		"id":"1",
+		// 		type: 'SubletListing',
+		// 		"apt_info":{
+		// 			"op_details":{
+		//
+		// 			}
+		// 		},
+		// 		"bedrooms":[
+		// 			{
+		// 				date_start: new Date('2016-05-23'),
+		// 				date_end: new Date('2016-08-23'),
+		// 				"rent":667,
+		// 				"title":"Jackson's room",
+		// 				"photos":[
+		// 					"http://www.pawderosa.com/images/puppies.jpg",
+		// 					"http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
+		// 					"http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
+		// 					"https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"
+		// 				]
+		// 			},
+		// 			{
+		// 				date_start: new Date('2016-05-14'),
+		// 				date_end: new Date('2016-09-10'),
+		// 				"rent":750,
+		// 				"title":"Conor's room",
+		// 				"photos":[
+		// 					"http://www.fndvisions.org/img/cutecat.jpg",
+		// 					"https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg",
+		// 					"http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg",
+		// 					"https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"
+		// 				]
+		// 			}
+		// 		]
+		// 	}
+		// };
 
 		var savedData = localStorageService.get(localStorageKey);
 		if (savedData) {
@@ -217,8 +204,10 @@ angular.module('dumboApp')
 			$scope.listingData = form;
 			$scope.modelData = model;
 		} else {
-			$scope.listingData = debugTestData.form;
-			$scope.modelData = debugTestData.model;
+			// $scope.listingData = debugTestData.form;
+			// $scope.modelData = debugTestData.model;
+			$scope.listingData = emptyData.form;
+			$scope.modelData = emptyData.model;
 		}
 
 	}
@@ -246,7 +235,6 @@ angular.module('dumboApp')
 			'Air conditioning': 'incl_air_conditioning'
 		}
 
-
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
 		}
@@ -257,39 +245,37 @@ angular.module('dumboApp')
 		dmax.setFullYear(dmin.getFullYear() + 1);
 		$scope.dateMin = dmin.toISOString().substring(0, 10);
 		$scope.dateMax = dmax.toISOString().substring(0, 10);
-
-		// $('#singleListing input').attr('ng-blur','saveApt()');
 	}
 
 
-	function debugLoadTestData() {
-		var test_room = {
-			date_start: new Date('2016-05-23'),
-			date_end: new Date('2016-08-23'),
-			rent: 667,
-			title: "Jackson's room",
-			photos: [
-				'http://www.pawderosa.com/images/puppies.jpg',
-				'http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg',
-				'http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg',
-				'https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg'
-			]
-		};
-
-		var test_room2 = {
-			date_start: new Date('2016-05-14'),
-			date_end: new Date('2016-09-10'),
-			rent: 750,
-			title: "Conor's room",
-			photos: [
-				'http://www.fndvisions.org/img/cutecat.jpg',
-				'https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg',
-				'http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg',
-				'https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png'
-			]
-		}
-		$scope.listingData.bedrooms.push(test_room);
-		$scope.listingData.bedrooms.push(test_room2);
-	}
+	// function debugLoadTestData() {
+	// 	var test_room = {
+	// 		date_start: new Date('2016-05-23'),
+	// 		date_end: new Date('2016-08-23'),
+	// 		rent: 667,
+	// 		title: "Jackson's room",
+	// 		photos: [
+	// 			'http://www.pawderosa.com/images/puppies.jpg',
+	// 			'http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg',
+	// 			'http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg',
+	// 			'https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg'
+	// 		]
+	// 	};
+	//
+	// 	var test_room2 = {
+	// 		date_start: new Date('2016-05-14'),
+	// 		date_end: new Date('2016-09-10'),
+	// 		rent: 750,
+	// 		title: "Conor's room",
+	// 		photos: [
+	// 			'http://www.fndvisions.org/img/cutecat.jpg',
+	// 			'https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg',
+	// 			'http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg',
+	// 			'https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png'
+	// 		]
+	// 	}
+	// 	$scope.listingData.bedrooms.push(test_room);
+	// 	$scope.listingData.bedrooms.push(test_room2);
+	// }
 
 });
