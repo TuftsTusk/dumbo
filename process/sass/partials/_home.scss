@@ -9,6 +9,7 @@
         h1, h2, h3, h4, h5, h6 {
             color: white;
             padding-bottom: 50px;
+            
         }
         h1 {
             width: 400px;
@@ -33,5 +34,20 @@
         padding: 50px;   
     }
     //background: rgba(79, 147, 206, 1);
+    p{
+        font-family: $font-main;
+        color:white;
+        width:50%;
+        overflow: visible;
+        margin: auto;
+    }
+    h4{
+        width: 75%;
+        margin: auto;
+    }
+}
+
+.container{
+    width: 100%;
 }
 
