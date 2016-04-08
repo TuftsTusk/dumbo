@@ -64,9 +64,6 @@ angular.module('dumboApp')
 			// 	}
 			// });
 
-
-
-
 			function updateNav(b_small, b_medium) {
 				if ($(window).width() <= b_small) {
 					$('.navbar-right #newPostButton').removeClass('btn btn-primary');
