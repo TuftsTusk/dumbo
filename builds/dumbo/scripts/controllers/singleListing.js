@@ -16,9 +16,20 @@ angular.module('dumboApp')
 			// Create DOM and save to local storage
 		$scope.editing = true;
 		// $('#singleListing input').prop( "disabled", false );
+
+		$scope.owner = true;
 	} else if (id) {
 		// get listing data from server
-		if (action == 'edit') {
+
+		// check owner
+		if (true) {
+			$scope.owner = true;
+		} else {
+			$scope.owner = false;
+		}
+
+
+		if (action == 'edit' && $scope.owner) {
 			// verify user owns the post
 				// put view into edit mode
 			$scope.editing = true;
@@ -27,6 +38,8 @@ angular.module('dumboApp')
 			// put view into view mode
 			$scope.editing = false;
 			// $('#singleListing input').prop( "disabled", true );
+		} else {
+			$scope.editing = false;
 		}
 	}
 
@@ -84,6 +97,12 @@ angular.module('dumboApp')
 
 	// data for entire sublet listing
 	loadSavedData();
+
+	$scope.redirectTo = function(path) {
+		console.log($location.path().split('/'));
+		var pathArr = $location.path().split('/');
+		$location.path(pathArr[1] + '/' + pathArr[2] + '/' + path);
+	}
 
 	$scope.saveApt = function() {
 		console.log($scope.listingData);

@@ -1,10 +1,11 @@
 <div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing">
 <div class="row headerbar">
-	<div class="container-fluid" ng-if="editing">
-		<div id="label" class="block first borderRight">New Sublet Listing</div>
+	<div class="container-fluid">
+		<div id="label" ng-if="editing" class="block first borderRight">New Sublet Listing</div>
 		<div id="actions" class="block highlight">
-			<a href="" ng-click="submitApt()">Save</a>
-			<a href="" ng-click="submitApt()">Preview</a>
+			<a href="" ng-if="editing" ng-click="submitApt()">Save</a>
+			<a href="" ng-if="editing" ng-click="redirectTo('view')">Preview</a>
+			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
 		</div>
 	</div>
 
