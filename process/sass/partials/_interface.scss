@@ -286,6 +286,10 @@
 		}
 		.body {
 			padding: 0px 15px 10px;
+			.row {
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
 		div[class^="col-"]{
 			padding: 0 0 15px;

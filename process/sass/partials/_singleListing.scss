@@ -85,6 +85,20 @@
 			padding: 0;
 		}
 	}
+	.headerbar {
+		@media screen and (max-width: $break-small) {
+			#label {
+				border: none;
+			}
+			#preview {
+				border-left: 1px solid;
+				border-color: black;
+				float: right;
+				padding-right: 15px;
+			}
+		}
+
+	}
 	#roomList {
 		@media screen and (max-width: $break-medium) {
 			display: none;
