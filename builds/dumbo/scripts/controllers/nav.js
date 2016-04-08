@@ -12,7 +12,7 @@ angular.module('dumboApp')
 		$scope.requestEmail = function(){
 			return userService.requestEmail();
 		}
-
+        
 		$(document).ready(function() {
 			var b_small = 768,
 				b_medium = 992;

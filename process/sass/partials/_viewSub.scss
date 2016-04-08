@@ -1,9 +1,10 @@
 $image-width: 160px;
 #map {
-    height: 550px;
+    height: 100vh;
     width: 100%;
     display: inline-block;
     position: fixed;
+    z-index: -1;
 }
 
 #map-wrap,
@@ -13,14 +14,14 @@ $image-width: 160px;
 
 #map-wrap {
     overflow: hidden;
-    max-height: 550px;
+   z-index: -2;
     position: fixed;
     float: right;
 }
 
 .navbar-default {
     width: 100%;
-    position: fixed;
+    //position: fixed;
     z-index: 1;
 }
 
@@ -96,4 +97,8 @@ $image-width: 160px;
 .sublet-listings:before,
 .sublet-listings:after {
     clear: both;
+}
+
+.fixed{
+    position: fixed;
 }

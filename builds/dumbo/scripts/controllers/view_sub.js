@@ -82,6 +82,8 @@ angular.module('dumboApp')
 
     });
 
+$('.navbar').addClass("fixed");
+
 var map;
 
 function initMap(lat, lng) {
