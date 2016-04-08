@@ -57,22 +57,31 @@ angular
   	// 		.when('/mylistings/listing/:id' , {
   	// 			redirectTo: '/mylistings/listing/:id/general'
   	// 		})
-  			.when('/me/listing' , {
+  			.when('/me/listing', {
   				templateUrl: ''
   			})
-            .when('/subletListing/:id' , {
+			.when('/subletListing', {
+				redirectTo: '/subletListing/new'
+			})
+			.when('/subletListing/:action', {
+				templateUrl: 'views/singleListing.html'
+			})
+			.when('/subletListing/:id', {
+                redirectTo: '/subletListing/:id/view'
+            })
+            .when('/subletListing/:id/:action', {
                 templateUrl: 'views/singleListing.html'
             })
-			.when('/listing/:id' , {
+			.when('/listing/:id', {
 				templateUrl: 'views/view_post.html'
 			})
-            .when('/settings' , {
+            .when('/settings', {
       				redirectTo: '/settings/account'
             })
-      			.when('/settings/:page' , {
+      			.when('/settings/:page', {
       				templateUrl: 'views/settings.html'
       			})
-            .when('/sublet' , {
+            .when('/sublet', {
       				templateUrl: 'views/view_sublet.html'
       			})
 

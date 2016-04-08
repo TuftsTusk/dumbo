@@ -1,6 +1,6 @@
 <div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing">
 <div class="row headerbar">
-	<div class="container-fluid">
+	<div class="container-fluid" ng-if="editing">
 		<div id="label" class="block first borderRight">New Sublet Listing</div>
 		<div id="actions" class="block highlight">
 			<a href="" ng-click="submitApt()">Save</a>
@@ -22,16 +22,19 @@
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
 				<h2>Basic information</h2>
-				<h4 class="panel-subtitle">Fill in general information about your home.</h4>
+				<h4 ng-if="editing" class="panel-subtitle">Fill in general information about your home.</h4>
+				<h4 ng-if="!editing" class="panel-subtitle">General information about the apartment/house.</h4>
 			</div>
 			<div class="panel-body">
 				<fieldset class="formGroup">
-					<label>What is your address?</label>
-					<input ng-blur="saveApt()" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
+					<label ng-if="editing">What is your address?</label>
+					<label ng-if="!editing">Address</label>
+					<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label>How many people live there?</label>
-					<input ng-blur="saveApt()" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
+					<label ng-if="editing">How many people live there?</label>
+					<label ng-if="!editing">Number of people that live there</label>
+					<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >
 					<div class="heading" ng-click="modelData.general.open = !modelData.general.open;">
@@ -41,12 +44,14 @@
 						<div class="row">
 							<div class="col-xs-6" ng-repeat="list in aptDetailsModelRender">
 								<div class="formCheckbox" ng-repeat="(key, value) in list">
-									<input ng-blur="saveApt()" type="checkbox" tabindex="-1" ng-model="apt.op_details[value];">
-									{{key}}
+									<div ng-hide="!editing && !apt.op_details[value]">
+										<input ng-blur="saveApt()" ng-if="editing" type="checkbox" tabindex="-1" ng-model="apt.op_details[value];">
+										{{key}}
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" ng-if="editing">
 							<a href="" ng-click="modifyAllApt(false)" style="float: right">Uncheck all</a>
 							<a href="" ng-click="modifyAllApt(true)" style="margin-right: 20px; float: right">Check all</a>
 						</div>
@@ -62,8 +67,10 @@
 	<div class="col-sm-10">
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
-				<h2>Your bedrooms</h2>
-				<h4 class="panel-subtitle">Add all of the rooms you want to list publicly.</h4>
+				<h2 ng-if="editing">Your bedrooms</h2>
+				<h4 ng-if="editing" class="panel-subtitle">Add all of the rooms you want to list publicly.</h4>
+				<h2 ng-if="!editing">Bedrooms</h2>
+				<h4 ng-if="!editing" class="panel-subtitle">All of the rooms available to be subletted.</h4>
 			</div>
 		</div>
 	</div>
@@ -78,7 +85,7 @@
 						<i class="rightIcon fa fa-angle-right fa-lg"></i>
 					</div>
 				</button>
-				<button type="button" class="list-group-item" ng-click="newRoom()">
+				<button ng-if="editing" type="button" class="list-group-item" ng-click="newRoom()">
 					<img src="images/skinnyplus.svg" class="isizeMed">
 					Add room
 				</button>
@@ -110,30 +117,32 @@
 					</a>
 					<fieldset class="formGroup">
 						<label>Title</label>
-						<input ng-blur="saveApt()" class="formInput" required name="title" type="text" ng-model="room.title" >
+						<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
 						<span class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">This field is required.</span>
 					</fieldset>
 					<fieldset class="formGroup">
 						<label>Rent per month</label>
-						<span style="font-size: 1.2em">$</span><input ng-blur="saveApt()" class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
+						<span style="font-size: 1.2em">$</span><input ng-blur="saveApt()" ng-disabled="!editing" class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
 						<div class="errorMsg" ng-show="rForm.rent.$error.required && rForm.rent.$touched">This field is required.</div>
 					</fieldset>
 					<fieldset class="double">
 						<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.date_start.$invalid && rForm.date_start.$touched}">
 							<label>Start date</label>
-							<input ng-blur="saveApt()" class="formInput" required name="date_start" type="date" min={{dateMin}} ng-model="room.date_start" ng-change="checkDate(room)">
+							<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="date_start" type="date" min={{dateMin}} ng-model="room.date_start" ng-change="checkDate(room)">
 							<span class="errorMsg" ng-show="rForm.date_start.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 							<div class="formCheckbox optional">
+								<div ng-if="!editing" class="fauxCheckbox"></div>
 								<input ng-blur="saveApt()" name="date_start_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_start_is_flexible">
 								Date is flexible
 							</div>
 						</div>
 						<div class="formGroup" ng-class="{'fieldInvalid': rForm.date_end.$invalid && rForm.date_start.$touched}">
 							<label>End date</label>
-							<input ng-blur="saveApt()" class="formInput" required name="date_end" type="date" min={{room.date_start}} max={{dateMax}} ng-model="room.date_end" ng-change="checkDate()">
+							<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="date_end" type="date" min={{room.date_start}} max={{dateMax}} ng-model="room.date_end" ng-change="checkDate()">
 							<span class="errorMsg" ng-show="rForm.date_end.$error.min">Must be after {{room.date_start | date : format : timezone}}.</span>
 							<span class="errorMsg" ng-show="rForm.date_end.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 							<div class="formCheckbox optional">
+								<div ng-if="!editing" class="fauxCheckbox"></div>
 								<input ng-blur="saveApt()" name="date_end_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_end_is_flexible">
 								Date is flexible
 							</div>
@@ -146,8 +155,10 @@
 						</div>
 						<div class="body" ng-show="modelData.bedrooms.open">
 							<div class="formCheckbox" ng-repeat="(key, value) in roomDetailsChecklist">
-								<input ng-blur="saveApt()" name="c1" type="checkbox" tabindex="-1" ng-model="room.op_details[value];">
-								{{key}}
+								<div ng-hide="!editing && !room.op_details[value]">
+									<input ng-blur="saveApt()" ng-if="editing" name="c1" type="checkbox" tabindex="-1" ng-model="room.op_details[value];">
+									{{key}}
+								</div>
 							</div>
 						</div>
 					</fieldset>
@@ -167,24 +178,25 @@
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
 				<h2>Photos of shared spaces</h2>
-				<h4 class="panel-subtitle">Add at least one photo for each space.</h4>
+				<h4 ng-if="editing" class="panel-subtitle">Add at least one photo for each space.</h4>
+				<h4 ng-if="!editing" class="panel-subtitle">The areas you will be sharing with other tenants.</h4>
 			</div>
 			<div class="panel-body">
 				<fieldset class="formGroup">
 					<label>Living room</label>
-					<input ng-blur="saveApt()" type="file">
+					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Kitchen</label>
-					<input ng-blur="saveApt()" type="file">
+					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Bathroom(s)</label>
-					<input ng-blur="saveApt()" type="file">
+					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Other</label>
-					<input ng-blur="saveApt()" type="file">
+					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
 				</fieldset>
 				<div class="formGroup">
 					<button type="submit" class="btn btn-default">Upload</button>

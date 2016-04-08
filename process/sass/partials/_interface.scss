@@ -256,6 +256,13 @@
 			color: $grey4;
 			font-size: .85em;
 		}
+
+		.fauxCheckbox {
+			width: 12px;
+			height: 12px;
+			position: absolute;
+			margin-top: 4px;
+		}
 	}
 
 	fieldset {

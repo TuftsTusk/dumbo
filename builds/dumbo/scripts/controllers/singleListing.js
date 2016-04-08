@@ -3,10 +3,32 @@
 angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService) {
 	var id = $routeParams.id;
-	// var action = $routeParams.action;
+	var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
 	// $scope.currentPage = $routeParams.path;
 	$scope.selected = 0;
+
+	if (!id && action == 'new') {
+		// New listing
+
+		// Check local storage for new listing data
+			// If no saved data, get ID from server
+			// Create DOM and save to local storage
+		$scope.editing = true;
+		// $('#singleListing input').prop( "disabled", false );
+	} else if (id) {
+		// get listing data from server
+		if (action == 'edit') {
+			// verify user owns the post
+				// put view into edit mode
+			$scope.editing = true;
+			// $('#singleListing input').prop( "disabled", false );
+		} else if (action == 'view') {
+			// put view into view mode
+			$scope.editing = false;
+			// $('#singleListing input').prop( "disabled", true );
+		}
+	}
 
 	renderScreen('general');
 	function renderScreen(screen) {
@@ -67,6 +89,7 @@ angular.module('dumboApp')
 		console.log($scope.listingData);
 		// console.log(JSON.stringify($scope.listingData));
 		console.log('saving');
+		updateSavedData();
 		// listingDataService.newListing($scope.listingData);
 	}
 
@@ -245,11 +268,11 @@ angular.module('dumboApp')
 	}
 
 	function updateSavedData() {
-		var lsObject = {
+		var localStorageObject = {
 			form: $scope.listingData,
 			model: $scope.modelData
 		}
-		localStorageService.set(localStorageKey, lsObject);
+		localStorageService.set(localStorageKey, localStorageObject);
 	};
 
 	main();
