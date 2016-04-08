@@ -3,6 +3,7 @@
 angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService) {
 	var id = $routeParams.id;
+	// var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
 	// $scope.currentPage = $routeParams.path;
 	$scope.selected = 0;
@@ -15,8 +16,7 @@ angular.module('dumboApp')
 		$('#' + screen).addClass('visible');
 	}
 
-	// data for entire sublet listing
-	loadSavedData();
+
 
 	$scope.aptDetailsModelRender = [
 		{
@@ -59,6 +59,9 @@ angular.module('dumboApp')
 			bedrooms: []
 		}
 	};
+
+	// data for entire sublet listing
+	loadSavedData();
 
 	$scope.saveApt = function() {
 		console.log($scope.listingData);
@@ -224,6 +227,7 @@ angular.module('dumboApp')
 					});
 				});
 			}
+			console.log(form);
 			$scope.listingData = form;
 			$scope.modelData = model;
 		} else {

@@ -2,7 +2,6 @@
 
 angular.module('dumboApp')
 	.controller('NavCtrl', function ($scope, userService, userDataService) {
-		console.log('here');
 		$scope.isLoggedin = function(){
 		 	return userService.isLoggedin();
 		}
