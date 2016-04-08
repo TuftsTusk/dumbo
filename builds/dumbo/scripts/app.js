@@ -80,6 +80,9 @@ angular
             .when('/privacy' , {
       		    templateUrl: 'views/privacy.html'
       		})
+            .when('/view' , {
+      		    templateUrl: 'views/single_sub.html'
+      		})
 
           .otherwise({
               templateUrl: '404.html'
