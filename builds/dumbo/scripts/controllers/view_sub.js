@@ -65,7 +65,7 @@ angular.module('dumboApp')
                     infowindow.open(map, this);
                     marker.setMap(map);
 
-                    $('html, body').animate({
+                    $('html, body, #overflow-scroll').animate({
                         scrollTop: $(".sub-info").eq(this.index).offset().top-$("nav").height()
                     }, 800);
 
@@ -82,7 +82,7 @@ angular.module('dumboApp')
 
     });
 
-$('.navbar').addClass("fixed");
+
 
 var map;
 
@@ -129,11 +129,11 @@ $(document).ready(function () {
                 infowindow.setContent("teehee! that tickles");
                 infowindow.open(map, this);
                 here.setMap(map);
-                map.panTo({
-                    lat: mylat,
-                    lng: mylng
-                });
-                console.log(this.lat);
+//                map.panTo({
+//                    lat: mylat,
+//                    lng: mylng
+//                });
+                //console.log(this.lat);
 
             });
         }, function (err) {

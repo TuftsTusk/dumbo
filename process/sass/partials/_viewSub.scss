@@ -4,7 +4,7 @@ $image-width: 160px;
     width: 100%;
     display: inline-block;
     position: fixed;
-    z-index: -1;
+    
 }
 
 #map-wrap,
@@ -14,7 +14,7 @@ $image-width: 160px;
 
 #map-wrap {
     overflow: hidden;
-   z-index: -2;
+
     position: fixed;
     float: right;
 }
@@ -25,9 +25,7 @@ $image-width: 160px;
     z-index: 1;
 }
 
-#angular-view {
-    padding-top: 50px;
-}
+
 
 .infowindow {
     width: 100px;
@@ -99,6 +97,8 @@ $image-width: 160px;
     clear: both;
 }
 
-.fixed{
-    position: fixed;
+.overflow-scroll{
+    overflow: scroll;
+    height: 100vh;
+   
 }
