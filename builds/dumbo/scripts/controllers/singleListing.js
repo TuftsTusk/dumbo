@@ -12,6 +12,27 @@ angular.module('dumboApp')
 	$scope.editing = false;
 	$scope.owner = false;
 
+	var emptyData = {
+		model: {
+			general: {
+				open: false
+			},
+			bedrooms: {
+				open: false
+			}
+		},
+		form: {
+			id: id,
+			type: 'SubletListing',
+			apt_info: {
+				op_details: {}
+			},
+			bedrooms: []
+		}
+	};
+
+	// data for entire sublet listing
+
 	if (!id && action == 'new') {
 		// New listing
 
@@ -23,14 +44,36 @@ angular.module('dumboApp')
 		// $('#singleListing input').prop( "disabled", false );
 
 		$scope.owner = true;
+
+		loadSavedData();
 	} else if (id) {
 		// get listing data from server
-		var listing = listingDataService.getListingById(id);
-		if (listing && listing.type == 'SubletListing') {
+		listingDataService.getListingById(id).then(
+			function success(res){
+				prepareView(res.data);
+			},
+			function failure(res){
+				console.log("ERROR");
+				console.log('res',res);
+			});
+	}
+
+	function prepareView(data) {
+		var listing = data.listing;
+		var owner = data.owner;
+		if (listing && listing.kind == 'SubletListing') {
 			// check owner
 
-			// $scope.listingData = listing;
-			$scope.owner = listing.owner;
+			$scope.listingData.apt_info = listing.apt_info;
+			$scope.listingData.bedrooms = listing.bedrooms;
+			$scope.listingData.id = listing._id;
+			$scope.listingData.type = 'SubletListing';
+
+			$scope.apt = $scope.listingData.apt_info;
+
+			console.log(listing);
+			console.log($scope.listingData);
+			$scope.owner = owner;
 
 			if (action == 'edit' && $scope.owner) {
 				$scope.editing = true;
@@ -43,7 +86,6 @@ angular.module('dumboApp')
 		} else {
 			// listing not found
 		}
-
 	}
 
 	renderScreen('general');
@@ -79,27 +121,7 @@ angular.module('dumboApp')
 	});
 	// console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
 
-	var emptyData = {
-		model: {
-			general: {
-				open: false
-			},
-			bedrooms: {
-				open: false
-			}
-		},
-		form: {
-			id: id,
-			type: 'SubletListing',
-			apt_info: {
-				op_details: {}
-			},
-			bedrooms: []
-		}
-	};
 
-	// data for entire sublet listing
-	loadSavedData();
 
 	$scope.redirectTo = function(path) {
 		console.log($location.path().split('/'));

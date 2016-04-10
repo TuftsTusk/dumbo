@@ -3,6 +3,7 @@
 	<div class="container-fluid">
 		<div id="label" class="block first borderRight">
 			<span ng-if="newListing">New Sublet Listing</span>
+			<span ng-if="!newListing">{{listingData.apt_info.address}}</span>
 		</div>
 		<div id="actions" ng-if="owner" class="block highlight">
 			<a href="" ng-if="editing" ng-click="submitApt()">Save</a>
