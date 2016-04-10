@@ -19,7 +19,6 @@ angular.module('dumboApp')
     $scope.type = url.split('#')[2];
     $scope.images = [];
     $scope.fileinfos = [];
-    $scope.photolinks = [];
     var text;
 
 
@@ -36,8 +35,10 @@ angular.module('dumboApp')
         SweetAlert.swal("Photo Upload Error", "Sorry Image Upload is temporarily unavailable.", "success");
       }
       var formattedUrl = imageUrl.split('?');
-      $scope.photolinks.push(formattedUrl[0]);
-      if ($scope.photolinks.length = $scope.images.length) {
+      console.log(formattedUrl);
+      $scope.listing.photolinks.push(formattedUrl[0]);
+      console.log($scope.listing.photolinks);
+      if ($scope.listing.photolinks.length == $scope.images.length) {
         $scope.isUploading = false;
       }
     }
@@ -65,10 +66,9 @@ angular.module('dumboApp')
 
 
     $scope.submit = function() {
-      console.log($scope.photolinks);
+      console.log($scope.listing.photolinks);
       $scope.dataLoading = true;
       $scope.listing.type = $scope.type;
-      $scope.listing.imageUrls = $scope.photolinks;
       listingDataService.newListing($scope.listing).then(
       function success(res){
         $scope.dataLoading = false;
@@ -94,6 +94,7 @@ angular.module('dumboApp')
 
     $scope.loadSavedData = function() {
       $scope.listing = localStorageService.get(localStorageKey) || {};
+      $scope.listing.photolinks = [];
     }
 
     $scope.deleteSavedData = function() {
