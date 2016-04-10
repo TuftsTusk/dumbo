@@ -1,5 +1,31 @@
 #coming-soon{
-    h1,h3 {
+    background: #133470;
+    width: 100%;
+    padding: 100px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    .pad50{
+        background: white;
+        
+    }
+    h1{
+        text-align: center;
         margin: auto;
+        padding-top: 65px;
+        font-size: 5em;
+        font-style: italic;
+    }
+    h4{
+        text-align: center;
+        margin: auto;
+        padding-top: 15px;
+    }
+    img{
+        max-height:50vh;
+        width: auto;
+        align-self: center;
+        display: block;
+        margin: auto;
+        padding: 15px;
     }
 }
