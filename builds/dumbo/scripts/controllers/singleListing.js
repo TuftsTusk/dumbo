@@ -8,39 +8,42 @@ angular.module('dumboApp')
 	// $scope.currentPage = $routeParams.path;
 	$scope.selected = 0;
 
+	$scope.newListing = false;
+	$scope.editing = false;
+	$scope.owner = false;
+
 	if (!id && action == 'new') {
 		// New listing
 
 		// Check local storage for new listing data
 			// If no saved data, get ID from server
 			// Create DOM and save to local storage
+		$scope.newListing = true;
 		$scope.editing = true;
 		// $('#singleListing input').prop( "disabled", false );
 
 		$scope.owner = true;
 	} else if (id) {
 		// get listing data from server
+		var listing = listingDataService.getListingById(id);
+		if (listing && listing.type == 'SubletListing') {
+			// check owner
 
-		// check owner
-		if (true) {
-			$scope.owner = true;
+			// $scope.listingData = listing;
+			$scope.owner = listing.owner;
+
+			if (action == 'edit' && $scope.owner) {
+				$scope.editing = true;
+			} else if (action == 'view') {
+				$scope.editing = false;
+			} else {
+				$scope.editing = false;
+				$scope.redirectTo('view');
+			}
 		} else {
-			$scope.owner = false;
+			// listing not found
 		}
 
-
-		if (action == 'edit' && $scope.owner) {
-			// verify user owns the post
-				// put view into edit mode
-			$scope.editing = true;
-			// $('#singleListing input').prop( "disabled", false );
-		} else if (action == 'view') {
-			// put view into view mode
-			$scope.editing = false;
-			// $('#singleListing input').prop( "disabled", true );
-		} else {
-			$scope.editing = false;
-		}
 	}
 
 	renderScreen('general');
@@ -233,10 +236,10 @@ angular.module('dumboApp')
 		// 				"rent":667,
 		// 				"title":"Jackson's room",
 		// 				"photos":[
-		// 					"http://www.pawderosa.com/images/puppies.jpg",
-		// 					"http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-		// 					"http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-		// 					"https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"
+		// 					{photo_url: "http://www.pawderosa.com/images/puppies.jpg"},
+		// 					{photo_url: "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"},
+		// 					{photo_url: "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"},
+		// 					{photo_url: "https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"}
 		// 				]
 		// 			},
 		// 			{
@@ -245,10 +248,10 @@ angular.module('dumboApp')
 		// 				"rent":750,
 		// 				"title":"Conor's room",
 		// 				"photos":[
-		// 					"http://www.fndvisions.org/img/cutecat.jpg",
-		// 					"https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg",
-		// 					"http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg",
-		// 					"https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"
+		// 					{photo_url: "http://www.fndvisions.org/img/cutecat.jpg"},
+		// 					{photo_url: "https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg"},
+		// 					{photo_url: "http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg"},
+		// 					{photo_url: "https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"}
 		// 				]
 		// 			}
 		// 		]
