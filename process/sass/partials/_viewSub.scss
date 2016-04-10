@@ -12,11 +12,12 @@ $image-width: 160px;
         height: 100%;
         overflow: scroll;
         padding-bottom: 50px;
+        padding-top: 50px;
     }
     #map-wrap,
     #sublet-wrap {
         display: inline-block;
-        height: inherit;
+       
        
     }
     #map-wrap {
