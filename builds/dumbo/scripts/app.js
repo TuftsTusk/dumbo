@@ -89,6 +89,15 @@ angular
 	.when('/privacy' , {
 		templateUrl: 'views/privacy.html'
 	})
+    .when('/books' , {
+		templateUrl: 'views/coming_soon.html'
+	})
+    .when('/misc' , {
+		templateUrl: 'views/coming_soon.html'
+	})
+    .when('/furniture' , {
+		templateUrl: 'views/coming_soon.html'
+	})
 	.otherwise({
 		templateUrl: '404.html'
 	});
