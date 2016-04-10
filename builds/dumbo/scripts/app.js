@@ -79,7 +79,7 @@ angular
 		templateUrl: 'views/settings.html'
 	})
 	.when('/sublet' , {
-		templateUrl: 'views/coming_soon.html'
+		templateUrl: 'views/view_sublet.html'
 	})
 	.when('/terms' , {
 		templateUrl: 'views/terms.html'
