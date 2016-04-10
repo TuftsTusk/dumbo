@@ -5,6 +5,10 @@ body {
 	font-family: $font-main;
 }
 
+*:focus {
+	outline: none;
+}
+
 /* Main marketing message and sign up button */
 .jumbotron {
 	text-align: center;
@@ -15,4 +19,10 @@ body {
 	padding: 14px 24px;
 }
  /* end main.scss */
+
+.footer{
+    text-align: center;
+    margin: auto;
+}
+
 

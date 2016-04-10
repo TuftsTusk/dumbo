@@ -1,0 +1,41 @@
+.grid {
+    @include clearfix;
+    .item {
+        float: left;
+        margin-top: 15px;
+        @include imageGrid(3, 1%, 1%);
+        border: 1px solid lightgray;
+        padding: 5px;
+        img {
+            display: block;
+            align-content: center;
+            max-width: 100%;
+            min-width: 200px;
+            min-height: 150px;
+            background: lightgray;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            display: inline-block;
+        }
+        .right {
+            float: right;  
+        }
+        
+    }
+}
+
+.truncate {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#see_more{
+    text-emphasis: underline;
+}

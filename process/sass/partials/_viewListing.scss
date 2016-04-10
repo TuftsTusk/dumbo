@@ -1,0 +1,31 @@
+#thumbnail{
+    a{
+        img{
+        width: 60px;
+        height:auto;
+        margin-bottom: 10%;
+    
+        
+        }
+        
+       
+    }
+    
+}
+
+#image-preview{
+    img{
+        max-height:300px;
+        max-width:400px;
+    }
+}
+
+.margin-top-bottom{
+    margin-top: 15px;
+}
+
+.thumb {
+    &:hover{
+        cursor: pointer;
+    }
+}

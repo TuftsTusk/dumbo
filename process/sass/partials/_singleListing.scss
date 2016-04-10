@@ -1,27 +1,34 @@
 #singleListing {
-	.splitContent {
-		.panel-body {
-			.photoUpload {
-				$height: 200px;
-				height: $height;
-				background: white;
-				display: block;
-				color: black;
-				text-decoration: none;
+	> .container {
+		@media screen and (max-width: $break-small) {
+			padding: 0;
+		}
+	}
+	.photoUpload {
+		$height: 200px;
+		background: white;
+		display: block;
+		color: black;
+		text-decoration: none;
+		border-top: 1px solid $grey2;
 
-				&:hover {
-					color: black;
-				}
-				.photoUploadTitle {
-					text-align: center;
-					font-size: 16px;
-					height: $height;
-  					line-height: $height;
-					img {
-						margin-right: 10px;
-					}
-				}
+		&:hover {
+			color: black;
+		}
+		.photoUploadTitle {
+			text-align: center;
+			font-size: 16px;
+			height: $height;
+			line-height: $height;
+			img {
+				margin-right: 10px;
 			}
+		}
+	}
+	.panel-tusk {
+		border-color: #ddd;
+		.panel-body {
+
 			.detailsBox {
 				padding: 70px 0;
 				width: 100%;
@@ -37,5 +44,71 @@
 				}
 			}
 		}
+		.panelGroup {
+			$height: 90px;
+			> * {
+				font-size: 16px;
+				height: $height;
+			}
+			.list-group-item {
+				text-align: center;
+			}
+			.panelGroupItem {
+				padding: 0;
+				text-align: left;
+				position: relative;
+				overflow: hidden;
+
+				&.active {
+					background: $blue;
+				}
+				.listImage {
+
+					height: 100%;
+					width: 120px;
+					float: left;
+					overflow: hidden;
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center center;
+					margin-right: 15px;
+					background-color: $grey1;
+				}
+
+				.pad {
+					margin-top: $height/2 - 10;
+				}
+			}
+		}
+
+		@media screen and (max-width: $break-small) {
+			padding: 0;
+		}
 	}
+	.headerbar {
+		@media screen and (max-width: $break-small) {
+			#label {
+				border: none;
+			}
+			#actions {
+				border-left: 1px solid;
+				border-color: black;
+				float: right;
+			}
+		}
+
+	}
+	#roomList {
+		@media screen and (max-width: $break-medium) {
+			display: none;
+		}
+	}
+
+	#roomBackButton {
+		display: none;
+		@media screen and (max-width: $break-medium) {
+			display: initial;
+		}
+	}
+
 }
