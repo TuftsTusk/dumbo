@@ -14,9 +14,6 @@ underscore.factory('_', function () {
 	return window._; //Underscore should be loaded on the page
 });
 
-
-
-
 angular
 .module('dumboApp', [
 	'ngAnimate',
@@ -31,7 +28,8 @@ angular
 	'dumboApp.config',
 	'LocalStorageModule',
 	'underscore',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'angular-loading-bar'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
