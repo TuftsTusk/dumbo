@@ -54,7 +54,7 @@ angular
 		templateUrl: 'views/about.html'
 	})
 	.when('/listing', {
-		templateUrl: 'views/grid_view.html'
+		templateUrl: 'views/coming_soon.html'
 	})
 	.when('/me/listing', {
 		templateUrl: ''
@@ -72,7 +72,7 @@ angular
 		templateUrl: 'views/singleListing.html'
 	})
 	.when('/listing/:id', {
-		templateUrl: 'views/view_post.html'
+		templateUrl: 'views/coming_soon.html'
 	})
 	.when('/settings', {
 		redirectTo: '/settings/account'
@@ -81,7 +81,7 @@ angular
 		templateUrl: 'views/settings.html'
 	})
 	.when('/sublet' , {
-		templateUrl: 'views/view_sublet.html'
+		templateUrl: 'views/coming_soon.html'
 	})
 	.when('/terms' , {
 		templateUrl: 'views/terms.html'
