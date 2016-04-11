@@ -31,71 +31,6 @@ angular.module('dumboApp')
 		}
 	};
 
-	// data for entire sublet listing
-
-	if (!id && action == 'new') {
-		// New listing
-
-		// Check local storage for new listing data
-			// If no saved data, get ID from server
-			// Create DOM and save to local storage
-		$scope.newListing = true;
-		$scope.editing = true;
-		// $('#singleListing input').prop( "disabled", false );
-
-		$scope.owner = true;
-
-		loadSavedData();
-	} else if (id) {
-		// get listing data from server
-		listingDataService.getListingById(id).then(
-			function success(res){
-				prepareView(res.data);
-			},
-			function failure(res){
-				console.log("ERROR");
-				console.log('res',res);
-			});
-	}
-
-	function prepareView(data) {
-		var listing = data.listing;
-		var owner = data.owner;
-		if (listing && listing.kind == 'SubletListing') {
-			// check owner
-
-			$scope.listingData.apt_info = listing.apt_info;
-			$scope.listingData.bedrooms = listing.bedrooms;
-			$scope.listingData.id = listing._id;
-			$scope.listingData.type = 'SubletListing';
-
-			$scope.apt = $scope.listingData.apt_info;
-
-			console.log(listing);
-			console.log($scope.listingData);
-			$scope.owner = owner;
-
-			if (action == 'edit' && $scope.owner) {
-				$scope.editing = true;
-			} else if (action == 'view') {
-				$scope.editing = false;
-			} else {
-				$scope.editing = false;
-				$scope.redirectTo('view');
-			}
-		} else {
-			// listing not found
-		}
-	}
-
-	renderScreen('general');
-	function renderScreen(screen) {
-		// Hides other pages and shows the starting screen.
-		$scope.currentPage = screen;
-		$('.page').not($('#' + screen)).removeClass('visible');
-		$('#' + screen).addClass('visible');
-	}
-
 
 
 	$scope.aptDetailsModelRender = [
@@ -122,6 +57,115 @@ angular.module('dumboApp')
 	// console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
 
 
+
+	if (!id && action == 'new') {
+		// New listing
+
+		// Check local storage for new listing data
+			// If no saved data, get ID from server
+			// Create DOM and save to local storage
+		$scope.newListing = true;
+		$scope.editing = true;
+		// $('#singleListing input').prop( "disabled", false );
+
+		$scope.owner = true;
+		loadSavedData();
+
+	} else if (id) {
+		// get listing data from server
+		listingDataService.getListingById(id).then(
+			function success(res){
+				prepareView(res.data);
+			},
+			function failure(res){
+				console.log("ERROR");
+				console.log('res',res);
+			});
+	}
+
+	console.log($scope.owner);
+
+	// function loadSavedData() {
+	//
+	// 	var savedData = localStorageService.get(localStorageKey);
+	// 	if (savedData) {
+	// 		var form = savedData.form;
+	// 		var model = savedData.model;
+	// 		if (form) {
+	// 			$.each(form.bedrooms, function(index) {
+	// 				$.each(form.bedrooms[index], function(key, value) {
+	// 					if (key == 'date_start' || key == 'date_end') {
+	// 						// TODO: different format
+	// 						form.bedrooms[index][key] = new Date(value);
+	// 					}
+	// 				});
+	// 			});
+	// 		}
+	// 		console.log(form);
+	// 		$scope.listingData = form;
+	// 		$scope.modelData = model;
+	// 	} else {
+	// 		// $scope.listingData = debugTestData.form;
+	// 		// $scope.modelData = debugTestData.model;
+	// 		$scope.listingData = emptyData.form;
+	// 		$scope.modelData = emptyData.model;
+	// 	}
+	//
+	// }
+
+
+
+
+
+	function prepareView(data) {
+		var listing = data.listing;
+		var owner = data.owner;
+		if (listing && listing.kind == 'SubletListing') {
+			// check owner
+
+			$scope.listingData.apt_info = listing.apt_info;
+			$scope.listingData.bedrooms = listing.bedrooms;
+			$scope.listingData.id = listing._id;
+			$scope.listingData.type = 'SubletListing';
+
+			$scope.apt = $scope.listingData.apt_info;
+			$scope.loadRoom(0);
+
+			console.log(listing);
+			console.log($scope.listingData);
+			$scope.owner = owner;
+
+			if (action == 'edit' && $scope.owner) {
+				$scope.editing = true;
+			} else if (action == 'view') {
+				$scope.editing = false;
+			} else {
+				$scope.editing = false;
+				$scope.redirectTo('view');
+			}
+		} else {
+			// listing not found
+		}
+	}
+
+
+
+
+
+
+	// data for entire sublet listing
+	loadSavedData();
+
+
+
+
+	renderScreen('general');
+	function renderScreen(screen) {
+		// Hides other pages and shows the starting screen.
+		$scope.currentPage = screen;
+		$('.page').not($('#' + screen)).removeClass('visible');
+		$('#' + screen).addClass('visible');
+	}
 
 	$scope.redirectTo = function(path) {
 		console.log($location.path().split('/'));
