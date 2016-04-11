@@ -123,8 +123,19 @@ angular.module('dumboApp')
 
 			$scope.listingData.apt_info = listing.apt_info;
 			$scope.listingData.bedrooms = listing.bedrooms;
+			$scope.listingData.common_area_photos = listing.common_area_photos;
 			$scope.listingData.id = listing._id;
 			$scope.listingData.type = 'SubletListing';
+
+
+			$.each($scope.listingData.bedrooms, function(index) {
+				$.each($scope.listingData.bedrooms[index], function(key, value) {
+					if (key == 'date_start' || key == 'date_end') {
+						// TODO: different format
+						$scope.listingData.bedrooms[index][key] = new Date(value);
+					}
+				});
+			});
 
 			$scope.apt = $scope.listingData.apt_info;
 			$scope.loadRoom(0);
@@ -368,7 +379,7 @@ angular.module('dumboApp')
 	main();
 
 	function main() {
-
+		$scope.listingData.common_area_photos = {};
 		$scope.apt = $scope.listingData.apt_info;
 		$scope.roomDetailsChecklist = {
 			'Furnished': 'pre_furnished',
@@ -382,11 +393,69 @@ angular.module('dumboApp')
 		// set min and max dates
 		var dmin = new Date(),
 			dmax = new Date();
-		dmax.setFullYear(dmin.getFullYear() + 1);
+		dmax.setFullYear(dmin.getFullYear() + 2);
 		$scope.dateMin = dmin.toISOString().substring(0, 10);
 		$scope.dateMax = dmax.toISOString().substring(0, 10);
 	}
 
+
+	// remove this
+	$scope.testingImages = {};
+	$scope.testingUploaded = {
+		'room1': false
+	};
+
+	$scope.generatePics = function(type) {
+		$('#photoUploadInput').click();
+		if (type == 'room1') {
+			$scope.listingData.bedrooms[0].photos = testingPhotos(type);
+		} else if (type == 'room2') {
+			$scope.listingData.bedrooms[1].photos = testingPhotos(type);
+		} else {
+			$scope.listingData.common_area_photos[type] = testingPhotos(type);
+		}
+		$scope.testingImages[type] = testingPhotos(type);
+		$scope.testingUploaded[type] = true;
+	}
+
+
+	function testingPhotos(type) {
+		var photos = {
+			'room1': [
+				'http://www.core6athletes.com/wp-content/uploads/2015/10/college-decorating-ideas-apartment.jpg',
+				'http://blog.mindbites.com/wp-content/uploads/desk.jpg',
+				'https://s-media-cache-ak0.pinimg.com/236x/65/f2/33/65f2334ce0bf00dd918c5b95b65d5032.jpg'
+			],
+			'room2': [
+				'http://homeset.win/wp-content/uploads/2016/02/college-apartment-design-ideas.jpg',
+				'http://avenueb.org/oldalbums/guestroom/aah.sized.jpg'
+			],
+			'living_room': [
+				'http://static1.squarespace.com/static/524974d9e4b0faa97477b730/52e286ade4b09c7bb22af552/531dd09fe4b00379baf38b45/1394463699827/CS1.jpg',
+				'http://www.ccifs.co/uploads/images/college-apartment-bedroom-decorating-ideas-unique-decoration-3-HVA2a.jpg'
+			],
+			'kitchen': [
+				'http://www.lenwoodinc.com/wp-content/uploads/2015/01/LenwoodInc_CollegePark_Kitchen2.jpg',
+				'https://medialibrarycdn.entrata.com/media_library/2422/518d10f6f3cc1186.jpg'
+			],
+			'bathroom': [
+				'http://www.calicopot.com/wp-content/uploads/2016/03/college-apartment-ideas-on-magnificent-apartment-bathroom-ideas-on-bathroom-with-college-apartment-bathroom-decorating-ideas-plan.jpg'
+			],
+			'other': [
+
+			]
+		};
+		var arr = PhotoArrayToObj(photos[type]);
+		return arr;
+	}
+
+	function PhotoArrayToObj(arr) {
+		var newArr = [];
+		$.each(arr, function(index, value) {
+			newArr.push({'photo_url': value});
+		});
+		return newArr;
+	}
 
 	// function debugLoadTestData() {
 	// 	var test_room = {

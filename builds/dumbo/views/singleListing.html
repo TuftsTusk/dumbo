@@ -113,12 +113,18 @@
 
 				</div>
 				<div class="panel-body">
-					<a href="" class="photoUpload">
-						<div class="photoUploadTitle">
-							<img src="images/skinnyplus.svg" class="isizeMed">
-							Add photos
+					<div class="photoUploadWrapper">
+						<a ng-if="editing && !testingUploaded.room1" href="" class="photoUpload" ng-click="generatePics('room1')">
+							<div class="photoUploadTitle">
+								<img src="images/skinnyplus.svg" class="isizeMed">
+								Add photos
+							</div>
+						</a>
+						<div ng-if="!editing || testingUploaded.room1">
+							<img ng-src={{image.photo_url}} ng-repeat="image in listingData.bedrooms[0].photos" class="testingImage">
 						</div>
-					</a>
+
+					</div>
 					<fieldset class="formGroup">
 						<label>Title</label>
 						<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
@@ -188,19 +194,43 @@
 			<div class="panel-body">
 				<fieldset class="formGroup">
 					<label>Living room</label>
-					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
+					<div class="photoUploadWrapper">
+						<button ng-if="editing && !testingUploaded.living_room" href="" ng-click="generatePics('living_room')">
+						Select images</button>
+						<div ng-if="!editing || testingUploaded.living_room">
+							<img ng-src={{image.photo_url}} ng-repeat="image in listingData.common_area_photos['living_room']" class="testingImage">
+						</div>
+					</div>
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Kitchen</label>
-					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
+					<div class="photoUploadWrapper">
+						<button ng-if="editing && !testingUploaded.kitchen" href="" ng-click="generatePics('kitchen')">
+						Select images</button>
+						<div ng-if="!editing || testingUploaded.kitchen">
+							<img ng-src={{image.photo_url}} ng-repeat="image in listingData.common_area_photos['kitchen']" class="testingImage">
+						</div>
+					</div>
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Bathroom(s)</label>
-					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
+					<div class="photoUploadWrapper">
+						<button ng-if="editing && !testingUploaded.bathroom" href="" ng-click="generatePics('bathroom')">
+						Select images</button>
+						<div ng-if="!editing || testingUploaded.bathroom">
+							<img ng-src={{image.photo_url}} ng-repeat="image in listingData.common_area_photos['bathroom']" class="testingImage">
+						</div>
+					</div>
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Other</label>
-					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
+					<div class="photoUploadWrapper">
+						<button ng-if="editing && !testingUploaded.other" href="" ng-click="generatePics('other')">
+						Select images</button>
+						<div ng-if="!editing || testingUploaded.other">
+							<img ng-src={{image.photo_url}} ng-repeat="image in listingData.common_area_photos['other']" class="testingImage">
+						</div>
+					</div>
 				</fieldset>
 				<div class="formGroup">
 					<button type="submit" class="btn btn-default">Upload</button>
@@ -209,7 +239,7 @@
 			</div>
 		</div>
 	</form>
-
+	<input type="file" id="photoUploadInput" multiple style="visibility:hidden"/>
 </div>
 </div>
 </div>
