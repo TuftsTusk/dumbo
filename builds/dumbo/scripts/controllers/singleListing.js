@@ -139,8 +139,6 @@ angular.module('dumboApp')
 			$scope.apt = $scope.listingData.apt_info;
 			$scope.loadRoom(0);
 
-			console.log(listing);
-			console.log($scope.listingData);
 			$scope.owner = owner;
 
 			if (action == 'edit' && $scope.owner) {
