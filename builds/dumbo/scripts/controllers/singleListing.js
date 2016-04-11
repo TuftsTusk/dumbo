@@ -83,8 +83,6 @@ angular.module('dumboApp')
 			});
 	}
 
-	console.log($scope.owner);
-
 	// function loadSavedData() {
 	//
 	// 	var savedData = localStorageService.get(localStorageKey);
@@ -174,11 +172,13 @@ angular.module('dumboApp')
 	}
 
 	$scope.saveApt = function() {
-		console.log($scope.listingData);
-		// console.log(JSON.stringify($scope.listingData));
-		console.log('saving');
-		updateSavedData();
-		// listingDataService.newListing($scope.listingData);
+		if ($scope.editing) {
+			console.log($scope.listingData);
+			// console.log(JSON.stringify($scope.listingData));
+			console.log('saving');
+			updateSavedData();
+			// listingDataService.newListing($scope.listingData);
+		}
 	}
 
 	$scope.submitApt = function() {
@@ -205,7 +205,9 @@ angular.module('dumboApp')
 	}
 
 	$scope.setCurrentPage = function(screen) {
-		updateSavedData();
+		if ($scope.editing) {
+			updateSavedData();
+		}
 		$scope.currentPage = screen;
 		renderScreen(screen);
 	}
