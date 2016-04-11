@@ -17,33 +17,33 @@ var mylng;
 
 angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
-        $http.get('../../get_listing.json').then(function (result) {
+        $http.get('../../housing.json').then(function (result) {
             $scope.listings = result.data;
 
             initMap(42.4059385, -71.1197832);
         });
         var test;
         var markers = [];
-        $http.get('../../get_listing.json').then(function (result) {
+        $http.get('../../housing.json').then(function (result) {
             $scope.places = result.data;
-
+         
             for (var i = 0; i < $scope.places.length; i++) {
 
-                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" src=' + $scope.places[i].image_gallery_link[1] + '/img></div><div class="col-sm-6"><h1>$' + $scope.places[i].rent + '</h1><p>' + $scope.places[i].approximate_address + '</p> <a href="#/sublet"><button class="btn btn-primary">View Listing</button></a></div>';
+                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" src=' + $scope.places[i].common_area_photos.living_room[1] + '/img></div><div class="col-sm-6"><h1>$' + $scope.places[i].rent + '</h1><p>' + $scope.places[i].apt_info.address + '</p> <a href=""><button class="btn btn-primary">View Listing</button></a></div>';
 
                 markers.push(
-                    [$scope.places[i].id, parseFloat($scope.places[i].lat), parseFloat($scope.places[i].lng), $scope.places[i].rent, $scope.places[i].image_gallery_link, contentstring]
+                    [$scope.places[i].user_id, parseFloat($scope.places[i].apt_info.lat), parseFloat($scope.places[i].apt_info.lng), $scope.places[i].rent, $scope.places[i].common_area_photos.living_room[1], contentstring]
                 )
 
 
                 var marker = new google.maps.Marker({
                     position: {
-                        lat: parseFloat($scope.places[i].lat),
-                        lng: parseFloat($scope.places[i].lng)
+                        lat: parseFloat($scope.places[i].apt_info.lat),
+                        lng: parseFloat($scope.places[i].apt_info.lng)
                     },
                     content: contentstring,
                     map: map,
-                    title: $scope.places[i].id,
+                    title: $scope.places[i].user_id,
                     icon: {
                         url: "../../images/LOGO.svg",
                         scaledSize: new google.maps.Size(25, 32)
