@@ -127,7 +127,6 @@ angular.module('dumboApp')
 			$scope.listingData.id = listing._id;
 			$scope.listingData.type = 'SubletListing';
 
-
 			$.each($scope.listingData.bedrooms, function(index) {
 				$.each($scope.listingData.bedrooms[index], function(key, value) {
 					if (key == 'date_start' || key == 'date_end') {
