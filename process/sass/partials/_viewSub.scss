@@ -1,6 +1,5 @@
 $image-width: 160px;
 .sublet-map {
-    
     #map {
         height: 100%;
         width: 100%;
@@ -17,13 +16,10 @@ $image-width: 160px;
     #map-wrap,
     #sublet-wrap {
         display: inline-block;
-       
-       
     }
     #map-wrap {
         overflow: hidden;
         max-height: inherit;
-        
         position: fixed;
         display: inline-block;
         float: right;
@@ -42,7 +38,8 @@ $image-width: 160px;
     .sublet-listings {
         display: block;
         float: left;
-        padding: 15px;
+        width: 110%;
+        padding-right: 10%;
         &:hover {
             background: rgba(51, 122, 183, .5);
             // padding-bottom: 50px;
@@ -53,14 +50,15 @@ $image-width: 160px;
             margin-top: 15px;
             border: none;
         }
-        .btn {
+        a {
             float: right;
+            margin: 5px;
+            margin-top: -50px;
         }
         img {
             max-width: $image-width;
             margin-bottom: 0px;
         }
-        width:100%;
         h1,
         h2,
         h3,
@@ -97,4 +95,10 @@ $image-width: 160px;
     width: 100%;
     position: fixed;
     z-index: 1;
+}
+
+.highlight {
+    background: rgba(51, 122, 183, .5);
+    border: none;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
 }

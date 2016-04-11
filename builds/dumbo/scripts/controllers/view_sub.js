@@ -66,14 +66,22 @@ angular.module('dumboApp')
                     marker.setMap(map);
 
                     $('html, body').animate({
-                        scrollTop: $(".sub-info").eq(this.index).offset().top-$("nav").height()
+                        scrollTop: $(".sub-info").eq(this.index).offset().top - $("nav").height()
                     }, 800);
+
+                    $(".sublet-listings").eq(this.index).addClass("highlight");
+                    
 
 
 
                     //map.panTo({lat: parseFloat(marker.position.lat), lng: parseFloat(marker.position.lng)})
 
                 });
+
+                infowindow.addListener('closeclick', function(){
+                    console.log("clicked!");
+                    $(".sublet-listings").removeClass("highlight");
+                })
             }
         });
 
@@ -137,6 +145,8 @@ $(document).ready(function () {
         }, function (err) {
             console.log(err);
         });
+
+
     } else {
 
     }
