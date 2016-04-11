@@ -187,7 +187,17 @@
 			<div class="panel-body">
 				<fieldset class="formGroup">
 					<label>Living room</label>
-					<input ng-blur="saveApt()" ng-disabled="!editing" type="file">
+					<div>
+						 <input type="file" ng-change="imageUploadService.uploadImage()" multiple file-model="image" ng-file-select/><br/>
+						 <i ng-hide="listingData.common_area_photos.kitchen">No image</i>
+						 <div ng-repeat="image in listingData.common_area_photos.kitchen">
+							 <div class="col-md-3">
+								 <img width=50 src="{{image}}" />
+								 <a class="btn btn-danger" ng-click ="removeImage($index)">Remove</a>
+							 </div>
+						 </div>
+				 </div>
+					<input type="file">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label>Kitchen</label>

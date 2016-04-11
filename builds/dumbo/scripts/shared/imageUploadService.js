@@ -5,6 +5,7 @@ angular.module('dumboApp')
   var sign = '/sign_s3';
   delete $http.defaults.headers.common['X-Requested-With'];
   this.uploadImage = function(file, cb) {
+    console.log("HELLO");
     //TODO: Errors for image upload
     console.log(file);
     if (file && file.type) {
