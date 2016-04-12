@@ -26,24 +26,43 @@ angular.module('dumboApp')
 				flyout.toggleClass('hidden');
 			});
 
-			$(document).mouseup(function (e) {
-			    var container = $('#newPost .toggleFlyout');
-			    var button = $('#newPostButton');
-			    if (!container.hasClass('hidden') &&
-			    	!container.is(e.target) &&
-			    	!button.is(e.target) &&
-			    	container.has(e.target).length === 0)
-			    {
-			        container.addClass('hidden');
-			    }
+			$('#accountButton').click(function() {
+				var flyout = $('#account').find('.toggleFlyout');
+				flyout.toggleClass('hidden');
 			});
 
-			$('#newPost .toggleFlyout a').click(function() {
-				$('#newPost .toggleFlyout').addClass('hidden');
-				if ($(window).width() <= b_small) {
-					$('.navbar-toggle').click();
-				}
+			$(document).mouseup(function (e) {
+				var flyouts = $('.flyoutWrapper');
+				flyouts.each(function(index, flyout) {
+					var flyout = $(flyout);
+					var container = flyout.find('.toggleFlyout');
+				    var button = flyout.find('.flyoutButton');
+					if (!container.hasClass('hidden') &&
+						!container.is(e.target) &&
+						!button.is(e.target) &&
+						container.has(e.target).length === 0)
+					{
+						container.addClass('hidden');
+					}
+				});
 			});
+
+			$('.flyoutWrapper').each(function(index, flyout) {
+				flyout = $(flyout);
+				var link = flyout.find('.toggleFlyout a');
+				link.click(function() {
+					flyout.find('.toggleFlyout').addClass('hidden');
+					if ($(window).width() <= b_small) {
+						$('.navbar-toggle').click();
+					}
+				});
+			});
+			// $('#newPost .toggleFlyout a').click(function() {
+			// 	$('#newPost .toggleFlyout').addClass('hidden');
+			// 	if ($(window).width() <= b_small) {
+			// 		$('.navbar-toggle').click();
+			// 	}
+			// });
 
 			function updateNav(b_small, b_medium) {
 				if ($(window).width() <= b_small) {
