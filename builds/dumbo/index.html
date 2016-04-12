@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
 
     <link rel="stylesheet" href="styles/style.css">
 
@@ -59,15 +60,13 @@
                         <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
                         <ul class="nav navbar-nav">
 
-                            <li><a href="#" onClick="return false;">Sublets<span class="sr-only">(current)</span></a>
+                            <li><a href="#/subletListing" >Sublets<span class="sr-only">(current)</span></a>
                             </li>
-                            <li><a href="#" onClick="return false;">Books</a>
+                            <li><a href="#/books" >Books</a>
                             </li>
-                            <li><a href="#" onClick="return false;">Furniture</a>
+                            <li><a href="#/furniture" >Furniture</a>
                             </li>
-
-                            <li><a href="#/listing">All the rest</a>
-
+                            <li><a href="#/misc">Miscellaneous</a>
                             </li>
                         </ul>
                     </li>
@@ -80,8 +79,8 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li id="newPost">
-                        <a id="newPostButton" ng-href="" class="btn btn-primary" role="button">New Post</a>
+                    <li id="newPost" class="flyoutWrapper">
+                        <a id="newPostButton" ng-href="" class="btn btn-primary flyoutButton" role="button">New Post</a>
                         <div class="toggleFlyout hidden">
                             <div>
                                 <div class="flyArrowWrapper">
@@ -111,10 +110,22 @@
                     </li>
                     <li ng-show="isLoggedin() == false" ng-cloak id="signIn"><a href="#" ng-href="#/login">Sign in</a>
                     </li>
-                    <li ng-show="isLoggedin() != false" ng-cloak id="email">
-                        <a href="#" ng-href="#/login">{{requestEmail()}}</a>
-                    </li>
-                    <li ng-show="isLoggedin() != false" ng-cloak id="logout"><a href="#" ng-click="logout()">Sign Out</a>
+                    <li ng-show="isLoggedin() != false" ng-cloak id="account" class="flyoutWrapper">
+                        <a id="accountButton" class="flyoutButton" href="#" ng-href="">{{requestEmail()}}</a>
+						<div class="toggleFlyout hidden">
+                            <div>
+                                <div class="flyArrowWrapper">
+                                    <div class="flyArrow">
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="flyContent">
+								<li><a href="#/mylistings" class="flyButton">My posts</a></li>
+								<li><a href="" class="flyButton">Saved listings</a></li>
+								<li><a href="#/settings" class="flyButton">Settings</a></li>
+								<li><a href="#/" ng-click="logout()" id="logout" class="flyButton">Log out</a></li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -122,12 +133,14 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div id="angular-view" ng-view=""></div>
+    <div id="angular-view" class="page-wrap" ng-view=""></div>
 
 
     <div class="footer">
         <div class="container-fluid">
             <a ng-href="#/about">About</a>
+            <a ng-href="#/privacy">Privacy Policy</a>
+            <a ng-href="#/terms">Terms of Service</a>
             <p>&copy; Tusk Marketplace, Inc. 2016</p>
         </div>
     </div>
@@ -166,12 +179,14 @@
     <script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
 
     <script src="scripts/config.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/nav.js"></script>
     <script src="scripts/controllers/home.js"></script>
     <script src="scripts/controllers/newListing.js"></script>
+	<script src="scripts/controllers/singleListing.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/register.js"></script>
     <script src="scripts/controllers/login.js"></script>
@@ -180,10 +195,13 @@
     <script src="scripts/controllers/view_post.js"></script>
     <script src="scripts/controllers/view_sub.js"></script>
     <script src="scripts/shared/userDataService.js"></script>
+    <script src="scripts/shared/imageUploadService.js"></script>
     <script src="scripts/shared/authInterceptor.js"></script>
     <script src="scripts/shared/listingMap.js"></script>
     <script src="scripts/shared/listingDataService.js"></script>
     <script src="scripts/shared/userService.js"></script>
+    <script src="scripts/shared/ngFileSelect.js"></script>
+    <script src="scripts/shared/fileReader.js"></script>
 
 
 

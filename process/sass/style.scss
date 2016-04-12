@@ -11,4 +11,31 @@
 @import 'partials/viewSub';
 @import 'partials/foot';
 @import 'partials/grid';
+
 @import 'partials/home';
+
+@import 'partials/about';
+@import 'partials/terms';
+@import 'partials/privacy';
+@import 'partials/comingsoon';
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -50px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.footer, .page-wrap:after {
+  height:50px; 
+}
+
+

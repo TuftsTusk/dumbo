@@ -57,22 +57,26 @@
 .headerbar {
 	background: $dark;
 	margin-bottom: 20px;
-
+	color: $blue;
 	h2 {
 		font-weight: bold;
 	}
 	.block {
-		float: left;
 		font-size: 1.2em;
-		padding: 15px 30px;
+		padding: 15px 15px;
 		border-color: black;
-		color: $blue;
+		display: inline-block;
+		float: left;
 	}
 	.first {
-		margin-left: -30px;
+		margin-left: -15px;
 	}
 	.highlight {
-		color: white;
+		margin-right: -25px;
+		> * {
+			color: white;
+			padding: 0 10px;
+		}
 	}
 }
 .borderRight {
@@ -255,6 +259,13 @@
 			color: $grey4;
 			font-size: .85em;
 		}
+
+		.fauxCheckbox {
+			width: 12px;
+			height: 12px;
+			position: absolute;
+			margin-top: 4px;
+		}
 	}
 
 	fieldset {
@@ -289,6 +300,10 @@
 		}
 		.body {
 			padding: 0px 15px 10px;
+			.row {
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
 		div[class^="col-"]{
 			padding: 0 0 15px;

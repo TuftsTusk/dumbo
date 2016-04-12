@@ -1,21 +1,62 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService) {
 	var id = $routeParams.id;
-	$scope.currentPage = $routeParams.path;
+	var action = $routeParams.action;
+	var localStorageKey = 'subletListing';
+	// $scope.currentPage = $routeParams.path;
 	$scope.selected = 0;
 
-	// data for entire sublet listing
-	$scope.listingData = {
-		id: id,
-		apptInfo: {
-			opDetails: {}
-		},
-		bedrooms: []
+	$scope.newListing = false;
+	$scope.editing = false;
+	$scope.owner = false;
+
+	if (!id && action == 'new') {
+		// New listing
+
+		// Check local storage for new listing data
+			// If no saved data, get ID from server
+			// Create DOM and save to local storage
+		$scope.newListing = true;
+		$scope.editing = true;
+		// $('#singleListing input').prop( "disabled", false );
+
+		$scope.owner = true;
+	} else if (id) {
+		// get listing data from server
+		var listing = listingDataService.getListingById(id);
+		if (listing && listing.type == 'SubletListing') {
+			// check owner
+
+			// $scope.listingData = listing;
+			$scope.owner = listing.owner;
+
+			if (action == 'edit' && $scope.owner) {
+				$scope.editing = true;
+			} else if (action == 'view') {
+				$scope.editing = false;
+			} else {
+				$scope.editing = false;
+				$scope.redirectTo('view');
+			}
+		} else {
+			// listing not found
+		}
+
 	}
 
-	$scope.apptDetailsChecklist = [
+	renderScreen('general');
+	function renderScreen(screen) {
+		// Hides other pages and shows the starting screen.
+		$scope.currentPage = screen;
+		$('.page').not($('#' + screen)).removeClass('visible');
+		$('#' + screen).addClass('visible');
+	}
+
+
+
+	$scope.aptDetailsModelRender = [
 		{
 			'Furnished': 'pre_furnished',
 			'Air conditioning': 'incl_air_conditioning',
@@ -30,33 +71,83 @@ angular.module('dumboApp')
 			'Smoking permitted': 'smoking_permitted'
 		}
 	];
+	$scope.aptDetailsChecklist = [];
+	$.each($scope.aptDetailsModelRender, function(index) {
+		$.each($scope.aptDetailsModelRender[index], function(key, value) {
+			$scope.aptDetailsChecklist.push(value);
+		})
+	});
+	// console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
 
-	// remove this
-	debugLoadTestData();
+	var emptyData = {
+		model: {
+			general: {
+				open: false
+			},
+			bedrooms: {
+				open: false
+			}
+		},
+		form: {
+			id: id,
+			type: 'SubletListing',
+			apt_info: {
+				op_details: {}
+			},
+			bedrooms: []
+		}
+	};
 
+	// data for entire sublet listing
+	loadSavedData();
 
-	$scope.saveAppt = function() {
-		console.log($scope.listingData);
-		listingDataService.newListing($scope.listingData);
+	$scope.redirectTo = function(path) {
+		console.log($location.path().split('/'));
+		var pathArr = $location.path().split('/');
+		$location.path(pathArr[1] + '/' + pathArr[2] + '/' + path);
 	}
 
+	$scope.saveApt = function() {
+		console.log($scope.listingData);
+		// console.log(JSON.stringify($scope.listingData));
+		console.log('saving');
+		updateSavedData();
+		// listingDataService.newListing($scope.listingData);
+	}
 
-	$scope.setCurrentPage = function(index) {
-		var pages = [
-			'general',
-			'bedrooms',
-			'photos'
-		];
-		var str = $location.url();
-		$location.path(str.substring(0, str.lastIndexOf("/")) + '/' + pages[index]);
-		$scope.currentPage = pages[index];
+	$scope.submitApt = function() {
+		console.log($scope.listingData);
+		listingDataService.newListing($scope.listingData)
+		.then(
+        function success(res){
+          $scope.dataLoading = false;
+          SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
+          localStorageService.remove(localStorageKey);
+        },
+        function failure(res){
+          $scope.dataLoading = false;
+          if (res.status === -1) {
+            SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+          } else {
+            var errorMessage;
+            if (!res.data && res.data.message && res.data.message.message) {
+              errorMessage = res.data.message.message;
+              SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+            }
+          }
+        });
+	}
+
+	$scope.setCurrentPage = function(screen) {
+		updateSavedData();
+		$scope.currentPage = screen;
+		renderScreen(screen);
 	}
 
 	$scope.loadRoom = function(index) {
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
 			$scope.room = $scope.listingData.bedrooms[index];
-			// debugPrintListingData();
 			$scope.selected = index;
 		} else {
 			$scope.room = {};
@@ -74,8 +165,6 @@ angular.module('dumboApp')
 		if (length == 1) {
 			$scope.loadRoom(0);
 		}
-
-		// debugPrintListingData();
 	}
 
 	$scope.saveRoom = function() {
@@ -105,36 +194,118 @@ angular.module('dumboApp')
 
 		var length = $scope.listingData.bedrooms.length,
 			newIndex = 0;
-		console.log('length: ', length);
-		console.log('index: ', index);
 		if (length <= index) {
 			newIndex = index - 1;
 		} else {
 			newIndex = index;
 		}
 
-		console.log('newIndex: ', newIndex);
 		$scope.loadRoom(newIndex);
 	}
 
+	$scope.modifyAllApt = function(bool) {
+		if (typeof bool === 'boolean') {
+			$.each($scope.aptDetailsChecklist, function(index, value) {
+				$scope.apt.op_details[value] = bool;
+			});
+		}
+	}
 
+	function loadSavedData() {
+		// var debugTestData = {
+		// 	model: {
+		// 		general: {
+		// 			open: false
+		// 		},
+		// 		bedrooms: {
+		// 			open: false
+		// 		}
+		// 	},
+		// 	form: {
+		// 		"id":"1",
+		// 		type: 'SubletListing',
+		// 		"apt_info":{
+		// 			"op_details":{
+		//
+		// 			}
+		// 		},
+		// 		"bedrooms":[
+		// 			{
+		// 				date_start: new Date('2016-05-23'),
+		// 				date_end: new Date('2016-08-23'),
+		// 				"rent":667,
+		// 				"title":"Jackson's room",
+		// 				"photos":[
+		// 					{photo_url: "http://www.pawderosa.com/images/puppies.jpg"},
+		// 					{photo_url: "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"},
+		// 					{photo_url: "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"},
+		// 					{photo_url: "https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"}
+		// 				]
+		// 			},
+		// 			{
+		// 				date_start: new Date('2016-05-14'),
+		// 				date_end: new Date('2016-09-10'),
+		// 				"rent":750,
+		// 				"title":"Conor's room",
+		// 				"photos":[
+		// 					{photo_url: "http://www.fndvisions.org/img/cutecat.jpg"},
+		// 					{photo_url: "https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg"},
+		// 					{photo_url: "http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg"},
+		// 					{photo_url: "https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"}
+		// 				]
+		// 			}
+		// 		]
+		// 	}
+		// };
 
+		var savedData = localStorageService.get(localStorageKey);
+		if (savedData) {
+			var form = savedData.form;
+			var model = savedData.model;
+			if (form) {
+				$.each(form.bedrooms, function(index) {
+					$.each(form.bedrooms[index], function(key, value) {
+						if (key == 'date_start' || key == 'date_end') {
+							// TODO: different format
+							form.bedrooms[index][key] = new Date(value);
+						}
+					});
+				});
+			}
+			console.log(form);
+			$scope.listingData = form;
+			$scope.modelData = model;
+		} else {
+			// $scope.listingData = debugTestData.form;
+			// $scope.modelData = debugTestData.model;
+			$scope.listingData = emptyData.form;
+			$scope.modelData = emptyData.model;
+		}
 
+	}
 
+	function deleteSavedData() {
+		localStorageService.remove(localStorageKey);
+		$scope.listingData = emptyData;
+	}
+
+	function updateSavedData() {
+		var localStorageObject = {
+			form: $scope.listingData,
+			model: $scope.modelData
+		}
+		localStorageService.set(localStorageKey, localStorageObject);
+	};
 
 	main();
 
 	function main() {
 
-		// listingDataService.getListing(id);
-
-		$scope.appt = $scope.listingData.apptInfo;
-
+		$scope.apt = $scope.listingData.apt_info;
 		$scope.roomDetailsChecklist = {
 			'Furnished': 'pre_furnished',
 			'Air conditioning': 'incl_air_conditioning'
 		}
-
 
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
@@ -144,65 +315,39 @@ angular.module('dumboApp')
 		var dmin = new Date(),
 			dmax = new Date();
 		dmax.setFullYear(dmin.getFullYear() + 1);
-		$scope.dateMin = dmin.toISOString().split('T')[0];
-		$scope.dateMax = dmax.toISOString().split('T')[0];
-
-
+		$scope.dateMin = dmin.toISOString().substring(0, 10);
+		$scope.dateMax = dmax.toISOString().substring(0, 10);
 	}
 
 
-	// when back button is pressed
-	// $scope.save = function(room, prev_index) {
-	// 	if (room) {
-	// 		console.log(room);
-	// 		console.log(prev_index);
-	// 		var r = angular.copy(room);
-	// 		$scope.listingData.bedrooms[prev_index] = r;
-	// 		console.log('saving');
-	// 		console.log($scope.listingData.bedrooms);
+	// function debugLoadTestData() {
+	// 	var test_room = {
+	// 		date_start: new Date('2016-05-23'),
+	// 		date_end: new Date('2016-08-23'),
+	// 		rent: 667,
+	// 		title: "Jackson's room",
+	// 		photos: [
+	// 			'http://www.pawderosa.com/images/puppies.jpg',
+	// 			'http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg',
+	// 			'http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg',
+	// 			'https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg'
+	// 		]
+	// 	};
+	//
+	// 	var test_room2 = {
+	// 		date_start: new Date('2016-05-14'),
+	// 		date_end: new Date('2016-09-10'),
+	// 		rent: 750,
+	// 		title: "Conor's room",
+	// 		photos: [
+	// 			'http://www.fndvisions.org/img/cutecat.jpg',
+	// 			'https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg',
+	// 			'http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg',
+	// 			'https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png'
+	// 		]
 	// 	}
+	// 	$scope.listingData.bedrooms.push(test_room);
+	// 	$scope.listingData.bedrooms.push(test_room2);
 	// }
 
-
-
-	function debugLoadTestData() {
-		var test_room = {
-			// dateAvailable: 'Mon May 23 2016 00:00:00 GMT-0400 (EDT)',
-			// dateUnavailable: 'Tue Aug 23 2016 00:00:00 GMT-0400 (EDT)',
-			dateAvailable: new Date('2016-05-23'),
-			dateUnavailable: new Date('2016-08-23'),
-			rent: 667,
-			title: "Jackson's room",
-			photos: [
-				'http://www.pawderosa.com/images/puppies.jpg',
-				'http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg',
-				'http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg',
-				'https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg'
-			]
-		};
-
-		var test_room2 = {
-			// dateAvailable: 'Mon May 14 2016 00:00:00 GMT-0400 (EDT)',
-			// dateUnavailable: 'Tue Sep 10 2016 00:00:00 GMT-0400 (EDT)',
-			dateAvailable: new Date('2016-05-14'),
-			dateUnavailable: new Date('2016-09-10'),
-			rent: 750,
-			title: "Conor's room",
-			photos: [
-				'http://www.fndvisions.org/img/cutecat.jpg',
-				'https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg',
-				'http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg',
-				'https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png'
-			]
-		}
-		$scope.listingData.bedrooms.push(test_room);
-		$scope.listingData.bedrooms.push(test_room2);
-	}
-
-	function debugPrintListingData() {
-		for (var i = 0; i < $scope.listingData.bedrooms.length; i++) {
-			console.log(i + '.');
-			console.log($scope.listingData.bedrooms[i]);
-		}
-	}
 });
