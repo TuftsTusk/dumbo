@@ -257,26 +257,31 @@ angular.module('dumboApp')
 	}
 
 	$scope.confirmDelete = function() {
-		$('#roomForm .panel').addClass('formBlur');
+		if ($scope.editing) {
+			$('#roomForm .panel').addClass('formBlur');
+		}
 	}
 	$scope.cancelDelete = function() {
 		$('#roomForm .panel').removeClass('formBlur');
 	}
 
 	$scope.deleteRoom = function() {
-		$('#roomForm .panel').removeClass('formBlur');
-		var index = $scope.selected;
-		$scope.listingData.bedrooms.splice(index, 1);
+		if ($scope.editing) {
+			$('#roomForm .panel').removeClass('formBlur');
+			var index = $scope.selected;
+			$scope.listingData.bedrooms.splice(index, 1);
 
-		var length = $scope.listingData.bedrooms.length,
-			newIndex = 0;
-		if (length <= index) {
-			newIndex = index - 1;
-		} else {
-			newIndex = index;
+			var length = $scope.listingData.bedrooms.length,
+				newIndex = 0;
+			if (length <= index) {
+				newIndex = index - 1;
+			} else {
+				newIndex = index;
+			}
+
+			$scope.loadRoom(newIndex);
 		}
 
-		$scope.loadRoom(newIndex);
 	}
 
 	$scope.modifyAllApt = function(bool) {
