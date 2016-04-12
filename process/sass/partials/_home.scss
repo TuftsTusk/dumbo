@@ -1,22 +1,30 @@
 #homebody {
-
     padding: 0;
     background: #133470;
     height: 100vh;
     margin-bottom: -50px;
     .div1 {
-        
-        
         img {
             height: 150px;
             width: auto;
         }
-        h1, h2, h3, h4, h5, h6 {
+        #sss {
+            height: auto;
+            width: 60%;
+            
+           
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             color: white;
             padding-bottom: 50px;
-            
         }
         h1 {
+            
             width: 400px;
             flex-wrap: wrap;
             text-align: center;
@@ -25,53 +33,46 @@
             margin-top: 15px;
         }
         background: #133470;
-       
         width:100vw;
         padding:50px;
-        
-        border-top: solid rgba(79,147,206,1) 2px;
+        border-top: solid rgba(79,
+        147,
+        206,
+        1) 2px;
         text-align: center;
-        
-        
     }
-    
-    h3{
+    h3 {
         margin: auto;
         text-align: center;
     }
-    input{
+    input {
         width: 50%;
         margin: auto;
     }
-    .pad50{
+    .pad50 {
         background: white;
         padding: 100px;
         width: 80%;
         margin: auto;
-
     }
-    
-    .div2{
-        padding: 50px; 
-      
+    .div2 {
+        padding: 50px;
     }
     //background: rgba(79, 147, 206, 1);
-    p{
+    p {
         font-family: $font-main;
-        color:white;
-        width:50%;
+        color: white;
+        width: 50%;
         overflow: visible;
         margin: auto;
     }
-    h4{
+    h4 {
         width: 75%;
         margin: auto;
     }
 }
 
-.container{
+.container {
     width: 100%;
+  
 }
-
-
-
