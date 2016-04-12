@@ -25,6 +25,15 @@
 			}
 		}
 	}
+	.testingImage {
+		height: 100px;
+		width: 100px;
+		margin: 10px 5px;
+		display: inline-block;
+	}
+
+
+
 	.panel-tusk {
 		border-color: #ddd;
 		.panel-body {
@@ -63,16 +72,11 @@
 					background: $blue;
 				}
 				.listImage {
-
+					@extend .scaledImage;
 					height: 100%;
 					width: 120px;
 					float: left;
-					overflow: hidden;
-					background-repeat: no-repeat;
-					background-size: cover;
-					background-position: center center;
-					margin-right: 15px;
-					background-color: $grey1;
+
 				}
 
 				.pad {

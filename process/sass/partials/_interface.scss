@@ -371,6 +371,15 @@
 	filter: blur($blur-size);
 }
 
+.scaledImage {
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	margin-right: 15px;
+	background-color: $grey1;
+}
+
 uib-accordion {
 	a:focus, i:focus {
 		outline: none;
