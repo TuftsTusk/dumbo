@@ -56,9 +56,25 @@ angular.module('dumboApp')
 	});
 	// console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
 
+	console.log('action',action);
 
+	if (id) {
+		if (action == 'edit' || action == 'view') {
+			// get listing data from server
+			listingDataService.getListingById(id).then(
+				function success(res){
+					prepareView(res.data);
+				},
+				function failure(res){
+					console.log("ERROR");
+					console.log('res',res);
+				});
+		} else {
+			$scope.redirectTo('view');
+		}
 
-	if (!id && action == 'new') {
+	} else if (action == 'new') {
+
 		// New listing
 
 		// Check local storage for new listing data
@@ -70,17 +86,14 @@ angular.module('dumboApp')
 
 		$scope.owner = true;
 		loadSavedData();
-
-	} else if (id) {
-		// get listing data from server
-		listingDataService.getListingById(id).then(
-			function success(res){
-				prepareView(res.data);
-			},
-			function failure(res){
-				console.log("ERROR");
-				console.log('res',res);
-			});
+	} else if (action == 'preview') {
+		$scope.editing = false;
+		$scope.owner = true;
+	}
+	else {
+		// action is actually ID because there was no action
+		id = action;
+		$location.path($location.path().split('/')[1] + '/' + id + '/view');
 	}
 
 	// function loadSavedData() {
@@ -145,9 +158,6 @@ angular.module('dumboApp')
 				$scope.editing = true;
 			} else if (action == 'view') {
 				$scope.editing = false;
-			} else {
-				$scope.editing = false;
-				$scope.redirectTo('view');
 			}
 		} else {
 			// listing not found
@@ -176,7 +186,15 @@ angular.module('dumboApp')
 	$scope.redirectTo = function(path) {
 		console.log($location.path().split('/'));
 		var pathArr = $location.path().split('/');
-		$location.path(pathArr[1] + '/' + pathArr[2] + '/' + path);
+
+		if (pathArr[2] === id) {
+			$location.path(pathArr[1] + '/' + id + '/' + path);
+		} else {
+			if (path == 'edit') {
+				path = 'new';
+			}
+			$location.path(pathArr[1] + '/' + path);
+		}
 	}
 
 	$scope.saveApt = function() {
