@@ -140,6 +140,18 @@
 
 		.panel-title {
 			text-align: center;
+
+			.formInput {
+				text-align: center;
+				padding: 0;
+				width: initial;
+				font-size: initial;
+				border-radius: 2.5px;
+				
+				&:focus {
+					box-shadow: inset 0px 0.5px 2px #BDBDBD;
+				}
+			}
 		}
 
 		.panel-subtitle {
@@ -242,6 +254,10 @@
 		// &.ng-invalid.ng-touched {
 		// 	background: red;
 		// }
+
+		.panel-title & {
+
+		}
 
 		&:focus {
 			outline: none;

@@ -120,7 +120,7 @@ angular.module('dumboApp')
 		var owner = data.owner;
 		if (listing && listing.kind == 'SubletListing') {
 			// check owner
-
+			console.log(listing);
 			$scope.listingData.apt_info = listing.apt_info;
 			$scope.listingData.bedrooms = listing.bedrooms;
 			$scope.listingData.common_area_photos = listing.common_area_photos;
@@ -234,7 +234,10 @@ angular.module('dumboApp')
 	$scope.newRoom = function() {
 		var length = $scope.listingData.bedrooms.length;
 		var newIndex = length + 1;
-		var r = {title: 'Room ' + newIndex};
+		var r = {
+			title: 'Room ' + newIndex,
+			photos: []
+		};
 		$scope.listingData.bedrooms.push(r);
 
 		length = $scope.listingData.bedrooms.length;
@@ -285,7 +288,9 @@ angular.module('dumboApp')
 	}
 
 	$scope.deleteRoomPhoto = function(index) {
-		console.log('clicked');
+		if (index < $scope.room.photos.length) {
+			$scope.room.photos.splice(index, 1);
+		}
 	}
 
 	$scope.modifyAllApt = function(bool) {
@@ -406,35 +411,26 @@ angular.module('dumboApp')
 
 
 	// remove this
-	$scope.testingImages = {};
-	$scope.testingUploaded = {
-		'room1': false
-	};
+
+	console.log($scope.listingData.bedrooms);
 
 	$scope.generatePics = function(type) {
 		$('#photoUploadInput').click();
-		if (type == 'room1') {
-			$scope.listingData.bedrooms[0].photos = testingPhotos(type);
-		} else if (type == 'room2') {
-			$scope.listingData.bedrooms[1].photos = testingPhotos(type);
+		if (type == 'room') {
+			var arr = $scope.room.photos;
+			$scope.room.photos.push.apply(arr, testingPhotos(type));
 		} else {
 			$scope.listingData.common_area_photos[type] = testingPhotos(type);
 		}
-		$scope.testingImages[type] = testingPhotos(type);
-		$scope.testingUploaded[type] = true;
 	}
 
 
 	function testingPhotos(type) {
 		var photos = {
-			'room1': [
+			'room': [
 				'http://www.core6athletes.com/wp-content/uploads/2015/10/college-decorating-ideas-apartment.jpg',
 				'http://blog.mindbites.com/wp-content/uploads/desk.jpg',
 				'https://s-media-cache-ak0.pinimg.com/236x/65/f2/33/65f2334ce0bf00dd918c5b95b65d5032.jpg'
-			],
-			'room2': [
-				'http://homeset.win/wp-content/uploads/2016/02/college-apartment-design-ideas.jpg',
-				'http://avenueb.org/oldalbums/guestroom/aah.sized.jpg'
 			],
 			'living_room': [
 				'http://static1.squarespace.com/static/524974d9e4b0faa97477b730/52e286ade4b09c7bb22af552/531dd09fe4b00379baf38b45/1394463699827/CS1.jpg',

@@ -82,7 +82,7 @@
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
 				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switchRoom(room, $index)">
-					<div class="listImage" ng-style="{'background-image':'url({{rm.photos[0].photo_url}})'}">
+					<div class="listImage" ng-style="{'background-image':'url(' + rm.photos[0].photo_url + ')'}">
 					</div>
 					<div class="pad">
 						{{rm.title}}
@@ -109,30 +109,33 @@
 				<div class="panel-heading">
 					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
 					<button type="button" ng-if="editing" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="confirmDelete()"></button>
-					<h2 class="panel-title">{{room.title}}</h2>
+					<div class="panel-title">
+						<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
+						<div class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">Please give your room a name.</div>
+					</div>
 
 				</div>
 				<div class="panel-body">
 					<div class="photoUploadWrapper">
-						<a ng-if="editing && !testingUploaded.room1" href="" class="photoUpload" ng-click="generatePics('room1')">
+						<a ng-if="editing && !(room.photos.length)" href="" class="photoUpload" ng-click="generatePics('room')">
 							<div class="photoUploadTitle">
 								<img src="images/skinnyplus.svg" class="isizeMed">
 								Add photos
 							</div>
 						</a>
-						<div ng-if="!editing || testingUploaded.room1">
-							<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.bedrooms[0].photos track by $index" target="_blank">
-								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
-								<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto(index)" aria-hidden="true"></i>
-							</a>
+						<div ng-if="!editing || room.photos.length">
+							<div class="imageHolder">
+								<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
+									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage testingImage"></div>
+									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
+								</a>
+							</div>
+							<div class="photoUploadMore">
+								<button class="btn btn-default" ng-click="generatePics('room')">Add more photos</button>
+							</div>
 						</div>
 
 					</div>
-					<fieldset class="formGroup">
-						<label>Title</label>
-						<input ng-blur="saveApt()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
-						<span class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">This field is required.</span>
-					</fieldset>
 					<fieldset class="formGroup">
 						<label>Rent per month</label>
 						<span style="font-size: 1.2em">$</span><input ng-blur="saveApt()" ng-disabled="!editing" class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
