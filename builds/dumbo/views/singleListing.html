@@ -121,7 +121,10 @@
 							</div>
 						</a>
 						<div ng-if="!editing || testingUploaded.room1">
-							<a href="{{image.photo_url}}" ng-repeat="image in listingData.bedrooms[0].photos" target="_blank"><div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div></a>
+							<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.bedrooms[0].photos track by $index" target="_blank">
+								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
+								<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto(index)" aria-hidden="true"></i>
+							</a>
 						</div>
 
 					</div>
@@ -198,7 +201,10 @@
 						<button ng-if="editing && !testingUploaded.living_room" href="" ng-click="generatePics('living_room')">
 						Select images</button>
 						<div ng-if="!editing || testingUploaded.living_room">
-							<a href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['living_room']" target="_blank"><div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div></a>
+							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['living_room']" target="_blank">
+								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
+								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
 				</fieldset>
@@ -208,7 +214,10 @@
 						<button ng-if="editing && !testingUploaded.kitchen" href="" ng-click="generatePics('kitchen')">
 						Select images</button>
 						<div ng-if="!editing || testingUploaded.kitchen">
-							<a href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['kitchen']" target="_blank"><div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div></a>
+							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['kitchen']" target="_blank">
+								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
+								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
 				</fieldset>
@@ -218,7 +227,10 @@
 						<button ng-if="editing && !testingUploaded.bathroom" href="" ng-click="generatePics('bathroom')">
 						Select images</button>
 						<div ng-if="!editing || testingUploaded.bathroom">
-							<a href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['bathroom']" target="_blank"><div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div></a>
+							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['bathroom']" target="_blank">
+								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
+								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
 				</fieldset>
@@ -228,7 +240,10 @@
 						<button ng-if="editing && !testingUploaded.other" href="" ng-click="generatePics('other')">
 						Select images</button>
 						<div ng-if="!editing || testingUploaded.other">
-							<a href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['other']" target="_blank"><div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div></a>
+							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['other']" target="_blank">
+								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
+								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
 				</fieldset>

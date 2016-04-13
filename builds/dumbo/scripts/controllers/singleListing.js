@@ -284,6 +284,10 @@ angular.module('dumboApp')
 
 	}
 
+	$scope.deleteRoomPhoto = function(index) {
+		console.log('clicked');
+	}
+
 	$scope.modifyAllApt = function(bool) {
 		if (typeof bool === 'boolean') {
 			$.each($scope.aptDetailsChecklist, function(index, value) {
