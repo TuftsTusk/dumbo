@@ -1,11 +1,11 @@
 #coming-soon{
-    background: #133470;
-    width: 100%;
-    padding: 100px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    .pad50{
+    background: $darkblue;
+
+    .pad50 {
+        padding: 50px;
+        padding-top: 10px;
         background: white;
+        width: 80%;
         
     }
     h1{
@@ -22,7 +22,7 @@
     }
     img{
         max-height:50vh;
-        width: auto;
+        max-width: 50%;
         align-self: center;
         display: block;
         margin: auto;
