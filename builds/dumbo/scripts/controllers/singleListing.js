@@ -328,6 +328,7 @@ angular.module('dumboApp')
 
 	$scope.deleteRoomPhoto = function(index) {
 		$scope.room.photos.splice(index, 1);
+		$scope.save()
 	}
 
 	$scope.deleteCommonAreaPhoto = function(type, index) {
@@ -459,6 +460,10 @@ angular.module('dumboApp')
 	$scope.generatePics = function(type) {
 		$('#photoUploadInput').click();
 		if (type == 'room') {
+			//probably don't need these checks, but for now
+			if $scope.listingData.bedrooms[$scope.selectedRoom] == undefined {
+				$scope.listingData.bedrooms[$scope.selectedRoom].photos = [];
+			}
 			$scope.currentUploadTarget = $scope.listingData.bedrooms[$scope.selectedRoom].photos;
 		} else {
 			$scope.currentUploadTarget = $scope.listingData.common_area_photos[type];
