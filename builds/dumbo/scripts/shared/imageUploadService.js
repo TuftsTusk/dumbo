@@ -6,7 +6,12 @@ angular.module('dumboApp')
   delete $http.defaults.headers.common['X-Requested-With'];
   this.uploadImage = function(file, cb) {
     //TODO: Errors for image upload
-    console.log(file);
+    if (!file){
+      return errorMessage ("Photo Upload Failed",  "Please Try Again")
+    }
+    if (file.type.match('(jpeg|jpg|gif|png)') == null || file.size > 5000000){
+      return errorMessage ("Photo Upload Failed", "We accept JPEG, JPG, GIF, or PNG files up to a max size of 5MB.")
+    }
     if (file && file.type) {
       $http.get(host + sign + "?file_type="+file.type)
       .then(function(response){
