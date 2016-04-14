@@ -4,6 +4,11 @@ angular.module('dumboApp')
   var host = EnvironmentConfig.api;
   var sign = '/sign_s3';
   delete $http.defaults.headers.common['X-Requested-With'];
+
+  var errorMessage = function(title, message){
+    SweetAlert.swal(title, message, "error");
+  }
+  
   this.uploadImage = function(file, cb) {
     //TODO: Errors for image upload
     if (!file || !file.type){
