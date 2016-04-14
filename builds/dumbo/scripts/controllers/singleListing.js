@@ -27,7 +27,13 @@ angular.module('dumboApp')
 			apt_info: {
 				op_details: {}
 			},
-			bedrooms: []
+			bedrooms: [],
+			common_area_photos: {
+				living_room: [],
+				kitchen: [],
+				bathroom: [],
+				other: []
+			}
 		}
 	};
 
@@ -185,7 +191,7 @@ angular.module('dumboApp')
 
 
 	// data for entire sublet listing
-	loadSavedData();
+	// loadSavedData();
 
 
 
@@ -212,7 +218,7 @@ angular.module('dumboApp')
 		}
 	}
 
-	$scope.saveApt = function() {
+	$scope.save = function() {
 		if ($scope.editing) {
 			console.log($scope.listingData);
 			// console.log(JSON.stringify($scope.listingData));
@@ -321,9 +327,11 @@ angular.module('dumboApp')
 	}
 
 	$scope.deleteRoomPhoto = function(index) {
-		if (index < $scope.room.photos.length) {
-			$scope.room.photos.splice(index, 1);
-		}
+		$scope.room.photos.splice(index, 1);
+	}
+
+	$scope.deleteCommonAreaPhoto = function(type, index) {
+		$scope.listingData.common_area_photos[type].splice(index, 1);
 	}
 
 	$scope.modifyAllApt = function(bool) {
@@ -423,12 +431,12 @@ angular.module('dumboApp')
 	main();
 
 	function main() {
-		$scope.listingData.common_area_photos = {
-			'living_room': [],
-			'kitchen': [],
-			'bathroom': [],
-			'other': []
-		};
+		// $scope.listingData.common_area_photos = {
+		// 	'living_room': [],
+		// 	'kitchen': [],
+		// 	'bathroom': [],
+		// 	'other': []
+		// };
 		$scope.apt = $scope.listingData.apt_info;
 		$scope.roomDetailsChecklist = {
 			'Furnished': 'pre_furnished',
@@ -447,10 +455,6 @@ angular.module('dumboApp')
 		$scope.dateMax = dmax.toISOString().substring(0, 10);
 	}
 
-
-	// remove this
-
-	console.log($scope.listingData.bedrooms);
 
 	$scope.generatePics = function(type) {
 		$('#photoUploadInput').click();
