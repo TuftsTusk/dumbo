@@ -63,9 +63,6 @@ angular
 	.when('/subletListing/:action', {
 		templateUrl: 'views/singleListing.html'
 	})
-	.when('/subletListing/:id', {
-		redirectTo: '/subletListing/:id/view'
-	})
 	.when('/subletListing/:id/:action', {
 		templateUrl: 'views/singleListing.html'
 	})

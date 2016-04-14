@@ -4,27 +4,64 @@
 			padding: 0;
 		}
 	}
-	.photoUpload {
-		$height: 200px;
-		background: white;
-		display: block;
-		color: black;
-		text-decoration: none;
-		border-top: 1px solid $grey2;
 
-		&:hover {
+	.photoUploadWrapper {
+		.photoUpload {
+			$height: 200px;
+			background: white;
+			display: block;
 			color: black;
-		}
-		.photoUploadTitle {
-			text-align: center;
-			font-size: 16px;
-			height: $height;
-			line-height: $height;
-			img {
-				margin-right: 10px;
+			text-decoration: none;
+			border-top: 1px solid $grey2;
+
+			&:hover {
+				color: black;
+			}
+			.photoUploadTitle {
+				text-align: center;
+				font-size: 16px;
+				height: $height;
+				line-height: $height;
+				img {
+					margin-right: 10px;
+				}
 			}
 		}
+
+		.imageHolder {
+			padding: 10px 5px 3px;
+		}
+
+		.testingImage {
+			height: 100px;
+			width: 100px;
+			margin: 0;
+			// display: inline-block;
+		}
+		.photoUploadImage {
+			display: inline-block;
+			position: relative;
+			margin: 0 5px;
+			text-decoration: none;
+			color: white;
+
+			.deleteImage {
+				display: block;
+				position: absolute;
+				right: 5px;
+				top: 3px;
+				text-shadow: 0px 0px 1px black;
+			}
+		}
+
+
+		.photoUploadMore {
+			text-align: center;
+			margin-bottom: 10px;
+		}
 	}
+
+
 	.panel-tusk {
 		border-color: #ddd;
 		.panel-body {
@@ -63,16 +100,11 @@
 					background: $blue;
 				}
 				.listImage {
-
+					@extend .scaledImage;
 					height: 100%;
 					width: 120px;
 					float: left;
-					overflow: hidden;
-					background-repeat: no-repeat;
-					background-size: cover;
-					background-position: center center;
-					margin-right: 15px;
-					background-color: $grey1;
+
 				}
 
 				.pad {
