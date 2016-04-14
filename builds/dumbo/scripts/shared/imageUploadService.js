@@ -1,5 +1,5 @@
 angular.module('dumboApp')
-    .service('imageUploadService', function($http,$q, EnvironmentConfig) {
+    .service('imageUploadService', function($http,$q, EnvironmentConfig, SweetAlert) {
 
   var host = EnvironmentConfig.api;
   var sign = '/sign_s3';
@@ -8,7 +8,7 @@ angular.module('dumboApp')
   var errorMessage = function(title, message){
     SweetAlert.swal(title, message, "error");
   }
-  
+
   this.uploadImage = function(file, cb) {
     //TODO: Errors for image upload
     if (!file || !file.type){
