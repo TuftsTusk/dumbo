@@ -6,7 +6,7 @@ angular.module('dumboApp')
 	var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
 	// $scope.currentPage = $routeParams.path;
-	$scope.selected = 0;
+	$scope.selectedRoom = 0;
 
 	$scope.newListing = false;
 	$scope.editing = false;
@@ -48,6 +48,21 @@ angular.module('dumboApp')
 			'Smoking permitted': 'smoking_permitted'
 		}
 	];
+
+	$scope.commonAreaPhotoFields = [
+		{ name: 'Living Room',
+		  variable: 'living_room'},
+
+		{ name: 'Kitchen',
+		  variable: 'kitchen'},
+
+		{ name: 'Bathroom(s)',
+		  variable: 'bathroom'},
+
+		{ name: 'Other',
+		  variable: 'other'}
+	];
+
 	$scope.aptDetailsChecklist = [];
 	$.each($scope.aptDetailsModelRender, function(index) {
 		$.each($scope.aptDetailsModelRender[index], function(key, value) {
@@ -242,10 +257,10 @@ angular.module('dumboApp')
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
 			$scope.room = $scope.listingData.bedrooms[index];
-			$scope.selected = index;
+			$scope.selectedRoom = index;
 		} else {
 			$scope.room = {};
-			$scope.selected = 0;
+			$scope.selectedRoom = 0;
 		}
 	}
 
@@ -265,7 +280,7 @@ angular.module('dumboApp')
 	}
 
 	$scope.saveRoom = function() {
-		var index = $scope.selected;
+		var index = $scope.selectedRoom;
 		if (!$scope.room.title) {
 			$scope.room.title = 'Room ' + (index + 1);
 		}
@@ -289,7 +304,7 @@ angular.module('dumboApp')
 	$scope.deleteRoom = function() {
 		if ($scope.editing) {
 			$('#roomForm .panel').removeClass('formBlur');
-			var index = $scope.selected;
+			var index = $scope.selectedRoom;
 			$scope.listingData.bedrooms.splice(index, 1);
 
 			var length = $scope.listingData.bedrooms.length,
@@ -408,7 +423,12 @@ angular.module('dumboApp')
 	main();
 
 	function main() {
-		$scope.listingData.common_area_photos = {};
+		$scope.listingData.common_area_photos = {
+			'living_room': [],
+			'kitchen': [],
+			'bathroom': [],
+			'other': []
+		};
 		$scope.apt = $scope.listingData.apt_info;
 		$scope.roomDetailsChecklist = {
 			'Furnished': 'pre_furnished',
@@ -435,11 +455,17 @@ angular.module('dumboApp')
 	$scope.generatePics = function(type) {
 		$('#photoUploadInput').click();
 		if (type == 'room') {
-			var arr = $scope.room.photos;
-			$scope.room.photos.push.apply(arr, testingPhotos(type));
+			$scope.currentUploadTarget = $scope.listingData.bedrooms[$scope.selectedRoom].photos;
 		} else {
-			$scope.listingData.common_area_photos[type] = testingPhotos(type);
+			$scope.currentUploadTarget = $scope.listingData.common_area_photos[type];
 		}
+
+		// if (type == 'room') {
+		// 	var arr = $scope.room.photos;
+		// 	$scope.room.photos.push.apply(arr, testingPhotos(type));
+		// } else {
+		// 	$scope.listingData.common_area_photos[type] = testingPhotos(type);
+		// }
 	}
 
 

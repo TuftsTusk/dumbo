@@ -81,7 +81,7 @@
 	<div id="roomList" class="col-md-5 col-lg-4">
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switchRoom(room, $index)">
+				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom}" ng-click="switchRoom(room, $index)">
 					<div class="listImage" ng-style="{'background-image':'url(' + rm.photos[0].photo_url + ')'}">
 					</div>
 					<div class="pad">
@@ -198,66 +198,34 @@
 				<h4 ng-if="!editing" class="panel-subtitle">The areas you will be sharing with other tenants.</h4>
 			</div>
 			<div class="panel-body">
-				<fieldset class="formGroup">
-					<label>Living room</label>
+				<fieldset class="formGroup" ng-repeat="field in commonAreaPhotoFields">
+					<label>{{field.name}}</label>
 					<div class="photoUploadWrapper">
-						<button ng-if="editing && !testingUploaded.living_room" href="" ng-click="generatePics('living_room')">
-						Select images</button>
-						<div ng-if="!editing || testingUploaded.living_room">
-							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['living_room']" target="_blank">
-								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
-								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
-							</a>
+						<a ng-if="editing && !listingData.common_area_photos[field.variable].length" href="" class="photoUpload" ng-click="generatePics(field.variable)">
+							<div class="photoUploadTitle">
+								<img src="images/skinnyplus.svg" class="isizeMed">
+								Add photos
+							</div>
+						</a>
+						<div ng-if="!editing || listingData.common_area_photos[field.variable].length">
+							<div class="imageHolder">
+								<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
+									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage testingImage"></div>
+									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
+								</a>
+							</div>
+							<div class="photoUploadMore" ng-if="editing || !listingData.common_area_photos[field.variable].length">
+								<button class="btn btn-default" ng-click="generatePics(field.variable)">Add more photos</button>
+							</div>
 						</div>
+
 					</div>
 				</fieldset>
-				<fieldset class="formGroup">
-					<label>Kitchen</label>
-					<div class="photoUploadWrapper">
-						<button ng-if="editing && !testingUploaded.kitchen" href="" ng-click="generatePics('kitchen')">
-						Select images</button>
-						<div ng-if="!editing || testingUploaded.kitchen">
-							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['kitchen']" target="_blank">
-								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
-								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
-				</fieldset>
-				<fieldset class="formGroup">
-					<label>Bathroom(s)</label>
-					<div class="photoUploadWrapper">
-						<button ng-if="editing && !testingUploaded.bathroom" href="" ng-click="generatePics('bathroom')">
-						Select images</button>
-						<div ng-if="!editing || testingUploaded.bathroom">
-							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['bathroom']" target="_blank">
-								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
-								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
-				</fieldset>
-				<fieldset class="formGroup">
-					<label>Other</label>
-					<div class="photoUploadWrapper">
-						<button ng-if="editing && !testingUploaded.other" href="" ng-click="generatePics('other')">
-						Select images</button>
-						<div ng-if="!editing || testingUploaded.other">
-							<a class="photoUploadImage" href="{{image.photo_url}}" ng-repeat="image in listingData.common_area_photos['other']" target="_blank">
-								<div ng-style="{'background-image':'url({{image.photo_url}})'}" class="scaledImage testingImage"></div>
-								<i class="fa fa-times deleteImage" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
-				</fieldset>
-				<div class="formGroup">
-					<button type="submit" class="btn btn-default">Upload</button>
-				</div>
 
 			</div>
 		</div>
 	</form>
-	<input type="file" id="photoUploadInput" multiple style="visibility:hidden"/>
+	<input type="file" id="photoUploadInput" ng-file-select multiple style="visibility:hidden"/>
 </div>
 </div>
 </div>

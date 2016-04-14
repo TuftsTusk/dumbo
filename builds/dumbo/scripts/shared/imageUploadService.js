@@ -12,7 +12,9 @@ angular.module('dumboApp')
       .then(function(response){
         $http({method: 'PUT', url: response.data, headers: {'x-amz-acl': 'public-read', 'Content-Type': file.type}, data: file})
         .then(function(){
-          cb(response.data);
+		  //trim off AWS authorization headers
+		  var formattedUrl = (response.data).split('?')[0];
+          cb(formattedUrl);
         });
       });
     }
