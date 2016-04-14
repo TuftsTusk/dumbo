@@ -1,27 +1,31 @@
-#coming-soon{
+#coming-soon {
     background: $darkblue;
     width: 100%;
-    padding: 100px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    .pad50{
+    height: 100%;
+
+
+    .pad50 {
         background: white;
-        
+        padding: 17px;
+//        padding-top: 0px;
+//        padding-bottom: 35px;
+        width: 80%;
+        margin: auto;
     }
-    h1{
+    h1 {
         text-align: center;
         margin: auto;
         padding-top: 65px;
         font-size: 5em;
         font-style: italic;
     }
-    h4{
+    h4 {
         text-align: center;
         margin: auto;
         padding-top: 15px;
     }
-    img{
-        max-height:50vh;
+    img {
+        max-height: 50vh;
         width: auto;
         align-self: center;
         display: block;
