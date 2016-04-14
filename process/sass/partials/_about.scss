@@ -1,8 +1,15 @@
-#team{
-    img{
+#team {
+    img {
         max-height: 200px;
-        border-radius: 500px;
+        border-radius: 100px;
+        margin: auto;
     }
-
-    background: white;
+    background: $darkblue;
+    .pad50 {
+        padding: 50px;
+        padding-top: 10px;
+        background: white;
+        width: 80%;
+       
+    }
 }
