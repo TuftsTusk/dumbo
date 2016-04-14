@@ -2,11 +2,16 @@
 /* elements in the footer */
 
 .footer {
-	height:50px;
-    padding-top: 19px;
+
+	padding-top: 19px;
+    height: 50px;
+
 	color: white;
 	//border-top: 1px solid #e5e5e5;
+
     background: $darkblue;
+    z-index: 9999;
+
     
     a{
         display: inline-block;
