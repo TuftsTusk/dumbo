@@ -130,7 +130,7 @@
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
 								</a>
 							</div>
-							<div class="photoUploadMore" ng-if="editing || !room.photos.length">
+							<div class="photoUploadMore" ng-if="editing && room.photos.length">
 								<button class="btn btn-default" ng-click="generatePics('room')">Add more photos</button>
 							</div>
 						</div>
@@ -214,7 +214,7 @@
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
 								</a>
 							</div>
-							<div class="photoUploadMore" ng-if="editing || !listingData.common_area_photos[field.variable].length">
+							<div class="photoUploadMore" ng-if="editing && listingData.common_area_photos[field.variable].length">
 								<button class="btn btn-default" ng-click="generatePics(field.variable)">Add more photos</button>
 							</div>
 						</div>
