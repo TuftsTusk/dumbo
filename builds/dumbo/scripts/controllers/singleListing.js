@@ -5,12 +5,27 @@ angular.module('dumboApp')
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
-	// $scope.currentPage = $routeParams.path;
-	$scope.selectedRoom = 0;
 
-	$scope.newListing = false;
-	$scope.editing = false;
-	$scope.owner = false;
+	init();
+	function init() {
+		$scope.selectedRoom = 0;
+
+		$scope.newListing = false;
+		$scope.editing = false;
+		$scope.owner = false;
+
+		$scope.roomDetailsChecklist = {
+			'Furnished': 'pre_furnished',
+			'Air conditioning': 'incl_air_conditioning'
+		}
+
+		// set min and max dates
+		var dmin = new Date(),
+			dmax = new Date();
+		dmax.setFullYear(dmin.getFullYear() + 2);
+		$scope.dateMin = dmin.toISOString().substring(0, 10);
+		$scope.dateMax = dmax.toISOString().substring(0, 10);
+	}
 
 	var emptyData = {
 		model: {
@@ -75,9 +90,8 @@ angular.module('dumboApp')
 			$scope.aptDetailsChecklist.push(value);
 		})
 	});
-	// console.log('aptDetailsChecklist', $scope.aptDetailsChecklist);
 
-	console.log('action',action);
+	// TODO: also retrieve listing if action is a UUID
 
 	if (id) {
 		if (action == 'edit' || action == 'view') {
@@ -117,50 +131,23 @@ angular.module('dumboApp')
 		$location.path($location.path().split('/')[1] + '/' + id + '/view');
 	}
 
-	// function loadSavedData() {
-	//
-	// 	var savedData = localStorageService.get(localStorageKey);
-	// 	if (savedData) {
-	// 		var form = savedData.form;
-	// 		var model = savedData.model;
-	// 		if (form) {
-	// 			$.each(form.bedrooms, function(index) {
-	// 				$.each(form.bedrooms[index], function(key, value) {
-	// 					if (key == 'date_start' || key == 'date_end') {
-	// 						// TODO: different format
-	// 						form.bedrooms[index][key] = new Date(value);
-	// 					}
-	// 				});
-	// 			});
-	// 		}
-	// 		console.log(form);
-	// 		$scope.listingData = form;
-	// 		$scope.modelData = model;
-	// 	} else {
-	// 		// $scope.listingData = debugTestData.form;
-	// 		// $scope.modelData = debugTestData.model;
-	// 		$scope.listingData = emptyData.form;
-	// 		$scope.modelData = emptyData.model;
-	// 	}
-	//
-	// }
-
-
-
-
 
 	function prepareView(data) {
 		var listing = data.listing;
 		var owner = data.owner;
 		if (listing && listing.kind == 'SubletListing') {
 			// check owner
+			console.log('listing');
 			console.log(listing);
+			$scope.listingData = {};
 			$scope.listingData.apt_info = listing.apt_info;
 			$scope.listingData.bedrooms = listing.bedrooms;
 			$scope.listingData.common_area_photos = listing.common_area_photos;
 			$scope.listingData.id = listing._id;
 			$scope.listingData.type = 'SubletListing';
 
+			console.log('listingData');
+			console.log($scope.listingData);
 			$.each($scope.listingData.bedrooms, function(index) {
 				$.each($scope.listingData.bedrooms[index], function(key, value) {
 					if (key == 'date_start' || key == 'date_end') {
@@ -180,6 +167,8 @@ angular.module('dumboApp')
 			} else if (action == 'view') {
 				$scope.editing = false;
 			}
+
+			dataPrep();
 		} else {
 			// listing not found
 		}
@@ -413,6 +402,7 @@ angular.module('dumboApp')
 			$scope.listingData = emptyData.form;
 			$scope.modelData = emptyData.model;
 		}
+		dataPrep();
 
 	}
 
@@ -429,33 +419,12 @@ angular.module('dumboApp')
 		localStorageService.set(localStorageKey, localStorageObject);
 	};
 
-	main();
-
-	function main() {
-		// $scope.listingData.common_area_photos = {
-		// 	'living_room': [],
-		// 	'kitchen': [],
-		// 	'bathroom': [],
-		// 	'other': []
-		// };
+	function dataPrep() {
 		$scope.apt = $scope.listingData.apt_info;
-		$scope.roomDetailsChecklist = {
-			'Furnished': 'pre_furnished',
-			'Air conditioning': 'incl_air_conditioning'
-		}
-
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
 		}
-
-		// set min and max dates
-		var dmin = new Date(),
-			dmax = new Date();
-		dmax.setFullYear(dmin.getFullYear() + 2);
-		$scope.dateMin = dmin.toISOString().substring(0, 10);
-		$scope.dateMax = dmax.toISOString().substring(0, 10);
 	}
-
 
 	$scope.generatePics = function(type) {
 		$('#photoUploadInput').click();
