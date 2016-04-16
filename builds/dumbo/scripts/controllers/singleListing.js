@@ -117,7 +117,6 @@ angular.module('dumboApp')
 			// Create DOM and save to local storage
 		$scope.newListing = true;
 		$scope.editing = true;
-		// $('#singleListing input').prop( "disabled", false );
 
 		$scope.owner = true;
 		loadSavedData();
@@ -174,17 +173,6 @@ angular.module('dumboApp')
 		}
 	}
 
-
-
-
-
-
-	// data for entire sublet listing
-	// loadSavedData();
-
-
-
-
 	renderScreen('general');
 	function renderScreen(screen) {
 		// Hides other pages and shows the starting screen.
@@ -194,7 +182,6 @@ angular.module('dumboApp')
 	}
 
 	$scope.redirectTo = function(path) {
-		console.log($location.path().split('/'));
 		var pathArr = $location.path().split('/');
 
 		if (pathArr[2] === id) {
@@ -210,10 +197,8 @@ angular.module('dumboApp')
 	$scope.save = function() {
 		if ($scope.editing) {
 			console.log($scope.listingData);
-			// console.log(JSON.stringify($scope.listingData));
 			console.log('saving');
 			updateSavedData();
-			// listingDataService.newListing($scope.listingData);
 		}
 	}
 
@@ -333,52 +318,6 @@ angular.module('dumboApp')
 	}
 
 	function loadSavedData() {
-		// var debugTestData = {
-		// 	model: {
-		// 		general: {
-		// 			open: false
-		// 		},
-		// 		bedrooms: {
-		// 			open: false
-		// 		}
-		// 	},
-		// 	form: {
-		// 		"id":"1",
-		// 		type: 'SubletListing',
-		// 		"apt_info":{
-		// 			"op_details":{
-		//
-		// 			}
-		// 		},
-		// 		"bedrooms":[
-		// 			{
-		// 				date_start: new Date('2016-05-23'),
-		// 				date_end: new Date('2016-08-23'),
-		// 				"rent":667,
-		// 				"title":"Jackson's room",
-		// 				"photos":[
-		// 					{photo_url: "http://www.pawderosa.com/images/puppies.jpg"},
-		// 					{photo_url: "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"},
-		// 					{photo_url: "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"},
-		// 					{photo_url: "https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg"}
-		// 				]
-		// 			},
-		// 			{
-		// 				date_start: new Date('2016-05-14'),
-		// 				date_end: new Date('2016-09-10'),
-		// 				"rent":750,
-		// 				"title":"Conor's room",
-		// 				"photos":[
-		// 					{photo_url: "http://www.fndvisions.org/img/cutecat.jpg"},
-		// 					{photo_url: "https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg"},
-		// 					{photo_url: "http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg"},
-		// 					{photo_url: "https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png"}
-		// 				]
-		// 			}
-		// 		]
-		// 	}
-		// };
-
 		var savedData = localStorageService.get(localStorageKey);
 		if (savedData) {
 			var form = savedData.form;
@@ -397,8 +336,6 @@ angular.module('dumboApp')
 			$scope.listingData = form;
 			$scope.modelData = model;
 		} else {
-			// $scope.listingData = debugTestData.form;
-			// $scope.modelData = debugTestData.model;
 			$scope.listingData = emptyData.form;
 			$scope.modelData = emptyData.model;
 		}
@@ -438,77 +375,6 @@ angular.module('dumboApp')
 			$scope.currentUploadTarget = $scope.listingData.common_area_photos[type];
 		}
 
-		// if (type == 'room') {
-		// 	var arr = $scope.room.photos;
-		// 	$scope.room.photos.push.apply(arr, testingPhotos(type));
-		// } else {
-		// 	$scope.listingData.common_area_photos[type] = testingPhotos(type);
-		// }
 	}
-
-
-	function testingPhotos(type) {
-		var photos = {
-			'room': [
-				'http://www.core6athletes.com/wp-content/uploads/2015/10/college-decorating-ideas-apartment.jpg',
-				'http://blog.mindbites.com/wp-content/uploads/desk.jpg',
-				'https://s-media-cache-ak0.pinimg.com/236x/65/f2/33/65f2334ce0bf00dd918c5b95b65d5032.jpg'
-			],
-			'living_room': [
-				'http://static1.squarespace.com/static/524974d9e4b0faa97477b730/52e286ade4b09c7bb22af552/531dd09fe4b00379baf38b45/1394463699827/CS1.jpg',
-				'http://www.ccifs.co/uploads/images/college-apartment-bedroom-decorating-ideas-unique-decoration-3-HVA2a.jpg'
-			],
-			'kitchen': [
-				'http://www.lenwoodinc.com/wp-content/uploads/2015/01/LenwoodInc_CollegePark_Kitchen2.jpg',
-				'https://medialibrarycdn.entrata.com/media_library/2422/518d10f6f3cc1186.jpg'
-			],
-			'bathroom': [
-				'http://www.calicopot.com/wp-content/uploads/2016/03/college-apartment-ideas-on-magnificent-apartment-bathroom-ideas-on-bathroom-with-college-apartment-bathroom-decorating-ideas-plan.jpg'
-			],
-			'other': [
-
-			]
-		};
-		var arr = PhotoArrayToObj(photos[type]);
-		return arr;
-	}
-
-	function PhotoArrayToObj(arr) {
-		var newArr = [];
-		$.each(arr, function(index, value) {
-			newArr.push({'photo_url': value});
-		});
-		return newArr;
-	}
-
-	// function debugLoadTestData() {
-	// 	var test_room = {
-	// 		date_start: new Date('2016-05-23'),
-	// 		date_end: new Date('2016-08-23'),
-	// 		rent: 667,
-	// 		title: "Jackson's room",
-	// 		photos: [
-	// 			'http://www.pawderosa.com/images/puppies.jpg',
-	// 			'http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg',
-	// 			'http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg',
-	// 			'https://pbs.twimg.com/profile_images/497043545505947648/ESngUXG0.jpeg'
-	// 		]
-	// 	};
-	//
-	// 	var test_room2 = {
-	// 		date_start: new Date('2016-05-14'),
-	// 		date_end: new Date('2016-09-10'),
-	// 		rent: 750,
-	// 		title: "Conor's room",
-	// 		photos: [
-	// 			'http://www.fndvisions.org/img/cutecat.jpg',
-	// 			'https://pbs.twimg.com/profile_images/567285191169687553/7kg_TF4l.jpeg',
-	// 			'http://www.findcatnames.com/wp-content/uploads/2014/09/453768-cats-cute.jpg',
-	// 			'https://www.screensaversplanet.com/img/screenshots/screensavers/large/cute-cats-1.png'
-	// 		]
-	// 	}
-	// 	$scope.listingData.bedrooms.push(test_room);
-	// 	$scope.listingData.bedrooms.push(test_room2);
-	// }
 
 });
