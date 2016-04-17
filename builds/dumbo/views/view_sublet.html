@@ -1,21 +1,20 @@
-<div  id="page-wrap"class="container-fluid" ng-controller="SubCtrl">
+<div  id="page-wrap" class="container-fluid sublet-map" ng-controller="SubCtrl">
 
     <div class="col-md-6 overflow-scroll">
         <div class="sublet-listings" ng-repeat="listing in listings">
 
-            <div class="thumbnail"><img ng-src={{listing.image_gallery_link[0]}}>
+            <div class="thumbnail"><img ng-src={{listing.bedrooms[0].photos[0]}}>
             </div>
             <div class="sub-info">
-                <h3>{{listing.approximate_address}}</h3>
-                <h2 id="price">{{listing.rent}}/mth</h2>
-                <p><a href=""><strong>{{listing.seller_email}}</strong></a>
-                </p>
+                <h3>{{listing.apt_info.address}}</h3>
+                <h2 id="price">${{listing.bedrooms[0].rent}}</h2>
                 <ul>
-                    <li><strong>Bedrooms:  </strong>{{listing.bedrooms_available}}</li>
-                    <li><strong>Furnished:  </strong>{{listing.pre_furnished}}</li>
-                    <li><strong>Dates available:  </strong>{{listing.date_range}}</li>
+                    <li><strong>Bedrooms Available:  </strong>{{listing.bedrooms.length}}</li>
+                    <li><strong>Furnished:  </strong>{{listing.apt_info.op_details.pre_furnished ? "Yes" : "No"}}</li>
+                    <li class="dates"><strong>Dates available:  </strong>{{listing.date_range}}</li>
                 </ul>
-                <button class="btn btn-primary">View on Map --></button>
+                
+                 <a ng-href="#/subletListing/{{listing.user_id}}" class="btn btn-primary">View Listing</a>
 
             </div>
 

@@ -22,22 +22,22 @@ angular.module('dumboApp')
         $scope.listing.error = true;
 
 
-    $scope.init = function() {
-      listingDataService.getListingById($scope.id)
-      .then(function(response){
-        $scope.listing = response.data.listing;
-        $scope.listing.error = false;
-      }, function (response){
-        console.log("ERROR");
-        $scope.listing.error = true;
-      })
+        $scope.init = function () {
+            listingDataService.getListingById($scope.id)
+                .then(function (response) {
+                    $scope.listing = response.data.listing;
+                    $scope.listing.error = false;
+                }, function (response) {
+                    console.log("ERROR");
+                    $scope.listing.error = true;
+                })
 
-    }
+        }
 
 
-    $scope.switch_source= function(array_place){
-        $scope.source = $scope.listings.image_gallery_link[array_place];
-    };
+        $scope.switch_source = function (array_place) {
+            $scope.source = $scope.listings.image_gallery_link[array_place];
+        };
 
 
     });
