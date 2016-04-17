@@ -6,8 +6,7 @@ angular.module('dumboApp')
 	var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
 
-	init();
-	function init() {
+	$scope.init = function() {
 		$scope.selectedRoom = 0;
 
 		$scope.newListing = false;
@@ -25,6 +24,45 @@ angular.module('dumboApp')
 		dmax.setFullYear(dmin.getFullYear() + 2);
 		$scope.dateMin = dmin.toISOString().substring(0, 10);
 		$scope.dateMax = dmax.toISOString().substring(0, 10);
+
+		// TODO: also retrieve listing if action is a UUID
+
+		if (id) {
+			if (action == 'edit' || action == 'view') {
+				// get listing data from server
+				listingDataService.getListingById(id).then(
+					function success(res){
+						prepareView(res.data);
+					},
+					function failure(res){
+						console.log("ERROR");
+						console.log('res',res);
+					});
+			} else {
+				$scope.redirectTo('view');
+			}
+
+		} else if (action == 'new') {
+
+			// New listing
+
+			// Check local storage for new listing data
+				// If no saved data, get ID from server
+				// Create DOM and save to local storage
+			$scope.newListing = true;
+			$scope.editing = true;
+
+			$scope.owner = true;
+			$scope.loadSavedData();
+		} else if (action == 'preview') {
+			$scope.editing = false;
+			$scope.owner = true;
+		}
+		else {
+			// action is actually ID because there was no action
+			id = action;
+			$location.path($location.path().split('/')[1] + '/' + id + '/view');
+		}
 	}
 
 	var emptyData = {
@@ -91,45 +129,6 @@ angular.module('dumboApp')
 		})
 	});
 
-	// TODO: also retrieve listing if action is a UUID
-
-	if (id) {
-		if (action == 'edit' || action == 'view') {
-			// get listing data from server
-			listingDataService.getListingById(id).then(
-				function success(res){
-					prepareView(res.data);
-				},
-				function failure(res){
-					console.log("ERROR");
-					console.log('res',res);
-				});
-		} else {
-			$scope.redirectTo('view');
-		}
-
-	} else if (action == 'new') {
-
-		// New listing
-
-		// Check local storage for new listing data
-			// If no saved data, get ID from server
-			// Create DOM and save to local storage
-		$scope.newListing = true;
-		$scope.editing = true;
-
-		$scope.owner = true;
-		loadSavedData();
-	} else if (action == 'preview') {
-		$scope.editing = false;
-		$scope.owner = true;
-	}
-	else {
-		// action is actually ID because there was no action
-		id = action;
-		$location.path($location.path().split('/')[1] + '/' + id + '/view');
-	}
-
 
 	function prepareView(data) {
 		var listing = data.listing;
@@ -179,6 +178,17 @@ angular.module('dumboApp')
 		$scope.currentPage = screen;
 		$('.page').not($('#' + screen)).removeClass('visible');
 		$('#' + screen).addClass('visible');
+	}
+
+	$scope.loadRoom = function(index) {
+		var length = $scope.listingData.bedrooms.length;
+		if (index >= 0 && length > 0 && length > index) {
+			$scope.room = $scope.listingData.bedrooms[index];
+			$scope.selectedRoom = index;
+		} else {
+			$scope.room = {};
+			$scope.selectedRoom = 0;
+		}
 	}
 
 	$scope.redirectTo = function(path) {
@@ -231,17 +241,6 @@ angular.module('dumboApp')
 		}
 		$scope.currentPage = screen;
 		renderScreen(screen);
-	}
-
-	$scope.loadRoom = function(index) {
-		var length = $scope.listingData.bedrooms.length;
-		if (index >= 0 && length > 0 && length > index) {
-			$scope.room = $scope.listingData.bedrooms[index];
-			$scope.selectedRoom = index;
-		} else {
-			$scope.room = {};
-			$scope.selectedRoom = 0;
-		}
 	}
 
 	$scope.newRoom = function() {
@@ -317,7 +316,7 @@ angular.module('dumboApp')
 		}
 	}
 
-	function loadSavedData() {
+	$scope.loadSavedData = function() {
 		var savedData = localStorageService.get(localStorageKey);
 		if (savedData) {
 			var form = savedData.form;
@@ -339,7 +338,7 @@ angular.module('dumboApp')
 			$scope.listingData = emptyData.form;
 			$scope.modelData = emptyData.model;
 		}
-		dataPrep();
+		$scope.dataPrep();
 
 	}
 
@@ -356,7 +355,7 @@ angular.module('dumboApp')
 		localStorageService.set(localStorageKey, localStorageObject);
 	};
 
-	function dataPrep() {
+	$scope.dataPrep = function() {
 		$scope.apt = $scope.listingData.apt_info;
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
