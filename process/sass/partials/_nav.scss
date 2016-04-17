@@ -9,6 +9,7 @@
 	border: 0px;
 	color: $navTextColor;
 	margin-bottom: 0;
+   
 
 	.navbar-header {
 		.navbar-toggle {
@@ -171,14 +172,13 @@ $flyArrowHeight: 11px;
 .toggleFlyout {
 	z-index: 100;
     position: absolute;
+	background: white;
+	min-width: 100px;
     border-radius: 4px;
-    background: whitesmoke;
     border: 1px solid $border-color;
     box-shadow: 0 3px 12px rgba(0, 0, 0, .25);
-    width: 372px;
     right: 0;
     top: 41px + $flyArrowHeight;
-
 
     .flyArrowWrapper {
     	position: relative;
@@ -187,7 +187,6 @@ $flyArrowHeight: 11px;
     		background-image: url(../images/flyArrow-01.svg);
     		background-repeat: no-repeat;
     	    position: absolute;
-		    right: 51px;
 		    height: $flyArrowHeight;
 		    width: 20px;
 		    top: -$flyArrowHeight;
@@ -213,15 +212,10 @@ $flyArrowHeight: 11px;
     		background: white;
     		text-decoration: none;
     		color: black;
-	    	float: left;
-		  	width: 80px;
 		    // background: red;
-		    margin: 5px;
-		    text-align: center;
 		    box-sizing: border-box;
-		    padding: 10px;
-		    border: 1px solid $divider-color;
-		    border-radius: 4px;
+		    padding: 5px 10px;
+			display: block;
 
 		    > img {
 		    	height: 50px;
@@ -241,6 +235,26 @@ $flyArrowHeight: 11px;
         	right: initial;
         	left: 18px;
         }
+    }
+}
+
+#newListing .toggleFlyout {
+	width: 372px;
+	background: whitesmoke;
+
+
+    .flyArrowWrapper .flyArrow {
+		right: 51px;
+    }
+
+    .flyContent .flyButton {
+		margin: 5px;
+		border: 1px solid $divider-color;
+		border-radius: 4px;
+		width: 80px;
+		text-align: center;
+		float: left;
+		padding: 10px;
     }
 }
 

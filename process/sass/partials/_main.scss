@@ -36,6 +36,7 @@ html, body {height: 100%;}
   padding-bottom: 50px; /* must be same height as the footer */
 }
 
+
 .footer {
   position: relative;
   margin-top: -50px; /* negative value of footer height */
@@ -52,3 +53,24 @@ body:before {
   width:0;
   margin-top:-32767px;/* thank you Erik J - negate effect of float*/
 }
+
+/* sticky footer info */
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -50px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.footer, .page-wrap:after {
+  height:50px; 
+}
+

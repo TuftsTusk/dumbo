@@ -14,6 +14,11 @@
 	}
 }
 
+.btn-extend{
+   
+    width:400px;
+}
+
 
 .semesters {
 	.semWrapper {
@@ -52,22 +57,26 @@
 .headerbar {
 	background: $dark;
 	margin-bottom: 20px;
-
+	color: $blue;
 	h2 {
 		font-weight: bold;
 	}
 	.block {
-		float: left;
 		font-size: 1.2em;
-		padding: 15px 30px;
+		padding: 15px 15px;
 		border-color: black;
-		color: $blue;
+		display: inline-block;
+		float: left;
 	}
 	.first {
-		margin-left: -30px;
+		margin-left: -15px;
 	}
 	.highlight {
-		color: white;
+		margin-right: -25px;
+		> * {
+			color: white;
+			padding: 0 10px;
+		}
 	}
 }
 .borderRight {
@@ -136,6 +145,18 @@
 
 		.panel-title {
 			text-align: center;
+
+			.formInput {
+				text-align: center;
+				padding: 0;
+				width: initial;
+				font-size: initial;
+				border-radius: 2.5px;
+				
+				&:focus {
+					box-shadow: inset 0px 0.5px 2px #BDBDBD;
+				}
+			}
 		}
 
 		.panel-subtitle {
@@ -237,6 +258,10 @@
 		// 	background: red;
 		// }
 
+		.panel-title & {
+
+		}
+
 		&:focus {
 			outline: none;
 		}
@@ -249,6 +274,13 @@
 		&.optional {
 			color: $grey4;
 			font-size: .85em;
+		}
+
+		.fauxCheckbox {
+			width: 12px;
+			height: 12px;
+			position: absolute;
+			margin-top: 4px;
 		}
 	}
 
@@ -284,6 +316,10 @@
 		}
 		.body {
 			padding: 0px 15px 10px;
+			.row {
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
 		div[class^="col-"]{
 			padding: 0 0 15px;
@@ -352,6 +388,15 @@
 	-o-filter: blur($blur-size);
 	-ms-filter: blur($blur-size);
 	filter: blur($blur-size);
+}
+
+.scaledImage {
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	margin-right: 15px;
+	background-color: $grey1;
 }
 
 uib-accordion {

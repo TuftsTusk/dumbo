@@ -1,34 +1,48 @@
+<<<<<<< HEAD
 <div ng-controller="singleListingCtrl" class="container-fluid main" id="singleListing">
+=======
+<div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing" ng-init="init()">
+>>>>>>> master
 <div class="row headerbar">
 	<div class="container-fluid">
-		<div class="block first borderRight">303 Boston Ave, Medford, MA</div>
-		<a href="" class="block highlight" ng-click="saveApt()">Preview</a>
+		<div id="label" class="block first borderRight">
+			<span ng-if="newListing">New Sublet Listing</span>
+			<span ng-if="!newListing">{{listingData.apt_info.address}}</span>
+		</div>
+		<div id="actions" ng-if="owner" class="block highlight">
+			<a href="" ng-if="editing" ng-click="submitApt()">Save</a>
+			<a href="" ng-if="editing" ng-click="redirectTo('preview')">Preview</a>
+			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
+		</div>
 	</div>
 
 </div>
 
 <ul class="sideNav col-md-2 panel panel-default">
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='general'}" ng-click="setCurrentPage(0)">Apartment Info</a>
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='bedrooms'}" ng-click="setCurrentPage(1)">Bedrooms</a>
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='photos'}" ng-click="setCurrentPage(2)">Photos of Shared Spaces</a>
+	<a href="" class="sideNavItem" ng-class="{active: currentPage=='general'}" ng-click="setCurrentPage('general')">Apartment Info</a>
+	<a href="" class="sideNavItem" ng-class="{active: currentPage=='bedrooms'}" ng-click="setCurrentPage('bedrooms')">Bedrooms</a>
+	<a href="" class="sideNavItem" ng-class="{active: currentPage=='photos'}" ng-click="setCurrentPage('photos')">Photos of Shared Spaces</a>
 </ul>
 
 <div class="container pageContent">
-<div id="generalScreen" ng-show="currentPage=='general'">
-	<form id="aptForm" class="tForm col-md-6" name="aptForm" novalidate>
+<div id="generalScreen" class="page" ng-show="currentPage=='general'">
+	<form id="aptForm" class="tForm col-md-6" name="aptForm" novalidate >
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
 				<h2>Basic information</h2>
-				<h4 class="panel-subtitle">Fill in general information about your home.</h4>
+				<h4 ng-if="editing" class="panel-subtitle">Fill in general information about your home.</h4>
+				<h4 ng-if="!editing" class="panel-subtitle">General information about the apartment/house.</h4>
 			</div>
 			<div class="panel-body">
 				<fieldset class="formGroup">
-					<label>What is your address?</label>
-					<input class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
+					<label ng-if="editing">What is your address?</label>
+					<label ng-if="!editing">Address</label>
+					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label>How many people live there?</label>
-					<input class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
+					<label ng-if="editing">How many people live there?</label>
+					<label ng-if="!editing">Number of people that live there</label>
+					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >
 					<div class="heading" ng-click="modelData.general.open = !modelData.general.open;">
@@ -38,12 +52,14 @@
 						<div class="row">
 							<div class="col-xs-6" ng-repeat="list in aptDetailsModelRender">
 								<div class="formCheckbox" ng-repeat="(key, value) in list">
-									<input name="c1" type="checkbox" tabindex="-1" ng-model="apt.op_details[value];">
-									{{key}}
+									<div ng-hide="!editing && !apt.op_details[value]">
+										<input ng-blur="save()" ng-if="editing" type="checkbox" tabindex="-1" ng-model="apt.op_details[value];">
+										{{key}}
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" ng-if="editing">
 							<a href="" ng-click="modifyAllApt(false)" style="float: right">Uncheck all</a>
 							<a href="" ng-click="modifyAllApt(true)" style="margin-right: 20px; float: right">Check all</a>
 						</div>
@@ -55,27 +71,29 @@
 	</form>
 
 </div>
-<div id="bedroomsScreen" ng-show="currentPage=='bedrooms'">
+<div id="bedroomsScreen" class="page" ng-show="currentPage=='bedrooms'">
 	<div class="col-sm-10">
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
-				<h2>Your bedrooms</h2>
-				<h4 class="panel-subtitle">Add all of the rooms you want to list publicly.</h4>
+				<h2 ng-if="editing">Your bedrooms</h2>
+				<h4 ng-if="editing" class="panel-subtitle">Add all of the rooms you want to list publicly.</h4>
+				<h2 ng-if="!editing">Bedrooms</h2>
+				<h4 ng-if="!editing" class="panel-subtitle">All of the rooms available to be subletted.</h4>
 			</div>
 		</div>
 	</div>
 	<div id="roomList" class="col-md-5 col-lg-4">
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selected}" ng-click="switchRoom(room, $index)">
-					<div class="listImage" ng-style="{'background-image':'url({{rm.photos[0]}})'}">
+				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom}" ng-click="switchRoom(room, $index)">
+					<div class="listImage" ng-style="{'background-image':'url(' + rm.photos[0].photo_url + ')'}">
 					</div>
 					<div class="pad">
 						{{rm.title}}
 						<i class="rightIcon fa fa-angle-right fa-lg"></i>
 					</div>
 				</button>
-				<button type="button" class="list-group-item" ng-click="newRoom()">
+				<button ng-if="editing" type="button" class="list-group-item" ng-click="newRoom()">
 					<img src="images/skinnyplus.svg" class="isizeMed">
 					Add room
 				</button>
@@ -94,44 +112,58 @@
 				</div>
 				<div class="panel-heading">
 					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
-					<button type="button" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="confirmDelete()"></button>
-					<h2 class="panel-title">{{room.title}}</h2>
+					<button type="button" ng-if="editing" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="confirmDelete()"></button>
+					<div class="panel-title">
+						<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
+						<div class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">Please give your room a name.</div>
+					</div>
 
 				</div>
 				<div class="panel-body">
-					<a href="" class="photoUpload">
-						<div class="photoUploadTitle">
-							<img src="images/skinnyplus.svg" class="isizeMed">
-							Add photos
+					<div class="photoUploadWrapper">
+						<a ng-if="editing && !(room.photos.length)" href="" class="photoUpload" ng-click="generatePics('room')">
+							<div class="photoUploadTitle">
+								<img src="images/skinnyplus.svg" class="isizeMed">
+								Add photos
+							</div>
+						</a>
+						<div ng-if="!editing || room.photos.length">
+							<div class="imageHolder">
+								<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
+									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage testingImage"></div>
+									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
+								</a>
+							</div>
+							<div class="photoUploadMore" ng-if="editing && room.photos.length">
+								<button class="btn btn-default" ng-click="generatePics('room')">Add more photos</button>
+							</div>
 						</div>
-					</a>
-					<fieldset class="formGroup">
-						<label>Title</label>
-						<input class="formInput" required name="title" type="text" ng-model="room.title" >
-						<span class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">This field is required.</span>
-					</fieldset>
+
+					</div>
 					<fieldset class="formGroup">
 						<label>Rent per month</label>
-						<span style="font-size: 1.2em">$</span><input class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
+						<span style="font-size: 1.2em">$</span><input ng-blur="save()" ng-disabled="!editing" class="formInput fixedWidth" required name="rent" type="number" ng-model="room.rent">
 						<div class="errorMsg" ng-show="rForm.rent.$error.required && rForm.rent.$touched">This field is required.</div>
 					</fieldset>
 					<fieldset class="double">
 						<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.date_start.$invalid && rForm.date_start.$touched}">
 							<label>Start date</label>
-							<input class="formInput" required name="date_start" type="date" min={{dateMin}} ng-model="room.date_start" ng-change="checkDate(room)">
+							<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_start" type="date" min={{dateMin}} ng-model="room.date_start" ng-change="checkDate(room)">
 							<span class="errorMsg" ng-show="rForm.date_start.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 							<div class="formCheckbox optional">
-								<input name="date_start_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_start_is_flexible">
+								<div ng-if="!editing" class="fauxCheckbox"></div>
+								<input ng-blur="save()" name="date_start_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_start_is_flexible">
 								Date is flexible
 							</div>
 						</div>
 						<div class="formGroup" ng-class="{'fieldInvalid': rForm.date_end.$invalid && rForm.date_start.$touched}">
 							<label>End date</label>
-							<input class="formInput" required name="date_end" type="date" min={{room.date_start}} max={{dateMax}} ng-model="room.date_end" ng-change="checkDate()">
+							<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_end" type="date" min={{room.date_start}} max={{dateMax}} ng-model="room.date_end" ng-change="checkDate()">
 							<span class="errorMsg" ng-show="rForm.date_end.$error.min">Must be after {{room.date_start | date : format : timezone}}.</span>
 							<span class="errorMsg" ng-show="rForm.date_end.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
 							<div class="formCheckbox optional">
-								<input name="date_end_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_end_is_flexible">
+								<div ng-if="!editing" class="fauxCheckbox"></div>
+								<input ng-blur="save()" name="date_end_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_end_is_flexible">
 								Date is flexible
 							</div>
 
@@ -143,8 +175,10 @@
 						</div>
 						<div class="body" ng-show="modelData.bedrooms.open">
 							<div class="formCheckbox" ng-repeat="(key, value) in roomDetailsChecklist">
-								<input name="c1" type="checkbox" tabindex="-1" ng-model="room.op_details[value];">
-								{{key}}
+								<div ng-hide="!editing && !room.op_details[value]">
+									<input ng-blur="save()" ng-if="editing" name="c1" type="checkbox" tabindex="-1" ng-model="room.op_details[value];">
+									{{key}}
+								</div>
 							</div>
 						</div>
 					</fieldset>
@@ -159,38 +193,43 @@
 	</div>
 
 </div>
-<div id="photosScreen" ng-show="currentPage=='photos'">
+<div id="photosScreen" class="page" ng-show="currentPage=='photos'">
 	<form id="photoForm" class="tForm col-md-6" name="pform" novalidate>
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
 				<h2>Photos of shared spaces</h2>
-				<h4 class="panel-subtitle">Add at least one photo for each space.</h4>
+				<h4 ng-if="editing" class="panel-subtitle">Add at least one photo for each space.</h4>
+				<h4 ng-if="!editing" class="panel-subtitle">The areas you will be sharing with other tenants.</h4>
 			</div>
 			<div class="panel-body">
-				<fieldset class="formGroup">
-					<label>Living room</label>
-					<input type="file">
+				<fieldset class="formGroup" ng-repeat="field in commonAreaPhotoFields">
+					<label>{{field.name}}</label>
+					<div class="photoUploadWrapper">
+						<a ng-if="editing && !listingData.common_area_photos[field.variable].length" href="" class="photoUpload" ng-click="generatePics(field.variable)">
+							<div class="photoUploadTitle">
+								<img src="images/skinnyplus.svg" class="isizeMed">
+								Add photos
+							</div>
+						</a>
+						<div ng-if="!editing || listingData.common_area_photos[field.variable].length">
+							<div class="imageHolder">
+								<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
+									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage testingImage"></div>
+									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
+								</a>
+							</div>
+							<div class="photoUploadMore" ng-if="editing && listingData.common_area_photos[field.variable].length">
+								<button class="btn btn-default" ng-click="generatePics(field.variable)">Add more photos</button>
+							</div>
+						</div>
+
+					</div>
 				</fieldset>
-				<fieldset class="formGroup">
-					<label>Kitchen</label>
-					<input type="file">
-				</fieldset>
-				<fieldset class="formGroup">
-					<label>Bathroom(s)</label>
-					<input type="file">
-				</fieldset>
-				<fieldset class="formGroup">
-					<label>Other</label>
-					<input type="file">
-				</fieldset>
-				<div class="formGroup">
-					<button type="submit" class="btn btn-default">Upload</button>
-				</div>
 
 			</div>
 		</div>
 	</form>
-
+	<input type="file" id="photoUploadInput" ng-file-select multiple style="visibility:hidden"/>
 </div>
 </div>
 </div>

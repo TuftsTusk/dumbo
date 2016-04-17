@@ -21,8 +21,8 @@ angular.module('dumboApp')
 				updateNav(b_small, b_medium);
 			})
 
-			$('#newPostButton').click(function() {
-				var flyout = $('#newPost').find('.toggleFlyout');
+			$('#newListingButton').click(function() {
+				var flyout = $('#newListing').find('.toggleFlyout');
 				flyout.toggleClass('hidden');
 			});
 
@@ -57,25 +57,22 @@ angular.module('dumboApp')
 					}
 				});
 			});
-			// $('#newPost .toggleFlyout a').click(function() {
-			// 	$('#newPost .toggleFlyout').addClass('hidden');
+			// $('#newListing .toggleFlyout a').click(function() {
+			// 	$('#newListing .toggleFlyout').addClass('hidden');
 			// 	if ($(window).width() <= b_small) {
 			// 		$('.navbar-toggle').click();
 			// 	}
 			// });
 
-
-
-
 			function updateNav(b_small, b_medium) {
 				if ($(window).width() <= b_small) {
-					$('.navbar-right #newPostButton').removeClass('btn btn-primary');
+					$('.navbar-right #newListingButton').removeClass('btn btn-primary');
 					if ($('.navbar-collapse .searchbar').length) {
                         // take search bar out of nav collapse
 						$('.searchbar').appendTo('.navbar-header');
 					}
 				} else {
-					$('.navbar-right #newPostButton').addClass('btn btn-primary');
+					$('.navbar-right #newListingButton').addClass('btn btn-primary');
 					if (! $('.navbar-collapse .searchbar').length) {
                         // reverse
 						$('.searchbar').insertAfter('.navbarMain');

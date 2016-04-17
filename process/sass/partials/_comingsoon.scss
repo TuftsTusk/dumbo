@@ -1,0 +1,35 @@
+#coming-soon {
+    background: $darkblue;
+    padding: 100px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    .pad50 {
+        background: white;
+        padding: 17px;
+        width: 80%;
+        margin: auto;
+    }
+    h1 {
+        text-align: center;
+        margin: auto;
+        padding-top: 65px;
+        font-size: 5em;
+        font-style: italic;
+    }
+    h4 {
+        text-align: center;
+        margin: auto;
+        padding-top: 15px;
+    }
+   
+        max-height: 50vh;
+        max-width: 50%;
+        img {
+            max-height: 50vh;
+            width: auto;
+            align-self: center;
+            display: block;
+            margin: auto;
+            padding: 15px;
+        }
+    }

@@ -25,11 +25,12 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
 
     <link rel="stylesheet" href="styles/style.css">
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOBTvP_YccSD8if2yHmyiDMxgulGUXxoY" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKX_RLGjLpNIYFmMF9DoQHERXfm4vMQYg" async defer></script>
 </head>
 
 <body ng-app="dumboApp">
@@ -59,13 +60,13 @@
                         <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
                         <ul class="nav navbar-nav">
 
-                            <li><a href="#" onClick="return false;">Sublets<span class="sr-only">(current)</span></a>
+                            <li><a href="#/subletListing" >Sublets<span class="sr-only">(current)</span></a>
                             </li>
-                            <li><a href="#" onClick="return false;">Books</a>
+                            <li><a href="#/books" >Books</a>
                             </li>
-                            <li><a href="#" onClick="return false;">Furniture</a>
+                            <li><a href="#/furniture" >Furniture</a>
                             </li>
-                            <li><a href="#/listing" onClick="return false;">Miscellaneous</a>
+                            <li><a href="#/misc">Miscellaneous</a>
                             </li>
                         </ul>
                     </li>
@@ -78,8 +79,8 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li id="newPost" class="flyoutWrapper">
-                        <a id="newPostButton" ng-href="" class="btn btn-primary flyoutButton" role="button">New Post</a>
+                    <li id="newListing" class="flyoutWrapper">
+                        <a id="newListingButton" ng-href="" class="btn btn-primary flyoutButton" role="button">New Listing</a>
                         <div class="toggleFlyout hidden">
                             <div>
                                 <div class="flyArrowWrapper">
@@ -90,7 +91,7 @@
                             <div class="flyHeader">What are you posting?
                             </div>
                             <div class="flyContent">
-                                <a href="#/newListing#SubletListing" class="flyButton">
+                                <a href="#/subletListing/new" class="flyButton">
                                     <img src="../images/sublet.svg" alt="sublet"> Sublet
                                 </a>
                                 <a href="#/newListing#BookListing" class="flyButton">
@@ -119,22 +120,12 @@
                                 </div>
                             </div>
                             <ul class="flyContent">
-								<li>
-	                                <a href="#/newListing#SubletListing" class="flyButton">My posts</a>
-								</li>
-                                <a href="#/newListing#BookListing" class="flyButton">
-                                    <img src="../images/book.svg" alt="book"> Saved listings
-                                </a>
-                                <a href="#/newListing#FurnitureListing" class="flyButton">
-                                    <img src="../images/furniture.svg" alt="furniture"> Settings
-                                </a>
-                                <a href="#/newListing#MiscListing" class="flyButton">
-                                    <img src="../images/everything_else2.svg" alt="other"> Log out
-                                </a>
+								<li><a href="#/mylistings" class="flyButton">My posts</a></li>
+								<li><a href="" class="flyButton">Saved listings</a></li>
+								<li><a href="#/settings" class="flyButton">Settings</a></li>
+								<li><a href="#/" ng-click="logout()" id="logout" class="flyButton">Log out</a></li>
                             </ul>
                         </div>
-                    </li>
-                    <li ng-show="isLoggedin() != false" ng-cloak id="logout"><a href="#/" ng-click="logout()">Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -142,7 +133,11 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+<<<<<<< HEAD
     <div id="angular-view" class="wrap" ng-view=""></div>
+=======
+    <div id="angular-view" class="page-wrap" ng-view=""></div>
+>>>>>>> master
 
  
     <div class="footer" >
@@ -188,6 +183,7 @@
     <script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
 
     <script src="scripts/config.js"></script>
     <script src="scripts/app.js"></script>
@@ -203,10 +199,13 @@
     <script src="scripts/controllers/view_post.js"></script>
     <script src="scripts/controllers/view_sub.js"></script>
     <script src="scripts/shared/userDataService.js"></script>
+    <script src="scripts/shared/imageUploadService.js"></script>
     <script src="scripts/shared/authInterceptor.js"></script>
     <script src="scripts/shared/listingMap.js"></script>
     <script src="scripts/shared/listingDataService.js"></script>
     <script src="scripts/shared/userService.js"></script>
+    <script src="scripts/shared/ngFileSelect.js"></script>
+    <script src="scripts/shared/fileReader.js"></script>
 
 
 
