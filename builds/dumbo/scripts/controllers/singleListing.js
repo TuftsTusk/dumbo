@@ -181,6 +181,18 @@ angular.module('dumboApp')
 		$('#' + screen).addClass('visible');
 	}
 
+	$scope.loadRoom = function(index) {
+		console.log(index);
+		var length = $scope.listingData.bedrooms.length;
+		if (index >= 0 && length > 0 && length > index) {
+			$scope.room = $scope.listingData.bedrooms[index];
+			$scope.selectedRoom = index;
+		} else {
+			$scope.room = {};
+			$scope.selectedRoom = 0;
+		}
+	}
+
 	$scope.redirectTo = function(path) {
 		var pathArr = $location.path().split('/');
 
@@ -231,17 +243,6 @@ angular.module('dumboApp')
 		}
 		$scope.currentPage = screen;
 		renderScreen(screen);
-	}
-
-	$scope.loadRoom = function(index) {
-		var length = $scope.listingData.bedrooms.length;
-		if (index >= 0 && length > 0 && length > index) {
-			$scope.room = $scope.listingData.bedrooms[index];
-			$scope.selectedRoom = index;
-		} else {
-			$scope.room = {};
-			$scope.selectedRoom = 0;
-		}
 	}
 
 	$scope.newRoom = function() {
@@ -359,7 +360,8 @@ angular.module('dumboApp')
 	function dataPrep() {
 		$scope.apt = $scope.listingData.apt_info;
 		if ($scope.listingData.bedrooms.length > 0) {
-			$scope.loadRoom(0);
+			//removing this for now. What does this part do?
+			// $scope.loadRoom(0);
 		}
 	}
 
