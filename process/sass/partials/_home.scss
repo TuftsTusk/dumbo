@@ -1,10 +1,14 @@
 #homebody {
     padding: 0;
     background: #133470;
-    height: 100vh;
+    height: 90vh;
     margin-bottom: -50px;
+    padding-top: 0px;
+   
     .div1 {
+       
         img {
+            
             height: 150px;
             width: auto;
         }
@@ -32,7 +36,7 @@
             margin: auto;
             margin-top: 15px;
         }
-        background: #133470;
+        background: $darkblue;
         width:100vw;
         padding:50px;
         border-top: solid rgba(79,
@@ -48,15 +52,6 @@
     input {
         width: 50%;
         margin: auto;
-    }
-    .pad50 {
-        background: white;
-        padding: 100px;
-        width: 80%;
-        margin: auto;
-    }
-    .div2 {
-        padding: 50px;
     }
     //background: rgba(79, 147, 206, 1);
     p {
