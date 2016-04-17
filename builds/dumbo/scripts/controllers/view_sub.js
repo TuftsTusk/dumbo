@@ -30,6 +30,7 @@ angular.module('dumboApp')
             for (var i = 0; i < $scope.places.length; i++) {
 
                 var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" src=' + $scope.places[i].common_area_photos.living_room[1] + '/img></div><div class="col-sm-6"><h1>$' + $scope.places[i].rent + '</h1><p>' + $scope.places[i].apt_info.address + '</p> <a href=""><button class="btn btn-primary">View Listing</button></a></div>';
+                console.log(contentstring);
 
                 markers.push(
                     [$scope.places[i].user_id, parseFloat($scope.places[i].apt_info.lat), parseFloat($scope.places[i].apt_info.lng), $scope.places[i].rent, $scope.places[i].common_area_photos.living_room[1], contentstring]
