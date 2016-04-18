@@ -6,8 +6,6 @@ angular.module('dumboApp')
 	var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
 
-	init();
-
 	var emptyData = {
 		view: {
 			general: {
@@ -72,43 +70,219 @@ angular.module('dumboApp')
 		})
 	});
 
-	// TODO: also retrieve listing if action is a UUID
+	$scope.init = function() {
+		$scope.selectedRoom = 0;
 
-	if (id) {
-		if (action == 'edit' || action == 'view') {
-			// get listing data from server
-			listingDataService.getListingById(id).then(
-				function success(res){
-					prepareView(res.data);
-				},
-				function failure(res){
-					console.log("ERROR");
-					console.log('res',res);
-				});
-		} else {
-			$scope.redirectTo('view');
+		$scope.newListing = false;
+		$scope.editing = false;
+		$scope.owner = false;
+
+		$scope.roomDetailsChecklist = {
+			'Furnished': 'pre_furnished',
+			'Air conditioning': 'incl_air_conditioning'
 		}
 
-	} else if (action == 'new') {
+		// set min and max dates
+		var dmin = new Date(),
+			dmax = new Date();
+		dmax.setFullYear(dmin.getFullYear() + 2);
+		$scope.dateMin = dmin.toISOString().substring(0, 10);
+		$scope.dateMax = dmax.toISOString().substring(0, 10);
 
-		// New listing
 
-		// Check local storage for new listing data
-			// If no saved data, get ID from server
-			// Create DOM and save to local storage
-		$scope.newListing = true;
-		$scope.editing = true;
+			// TODO: also retrieve listing if action is a UUID
+		if (id) {
+			if (action == 'edit' || action == 'view') {
+				// get listing data from server
+				listingDataService.getListingById(id).then(
+					function success(res){
+						prepareView(res.data);
+					},
+					function failure(res){
+						console.log("ERROR");
+						console.log('res',res);
+					});
+			} else {
+				$scope.redirectTo('view');
+			}
 
-		$scope.owner = true;
-		loadSavedData();
-	} else if (action == 'preview') {
-		$scope.editing = false;
-		$scope.owner = true;
+		} else if (action == 'new') {
+
+			// New listing
+
+			// Check local storage for new listing data
+				// If no saved data, get ID from server
+				// Create DOM and save to local storage
+			$scope.newListing = true;
+			$scope.editing = true;
+
+			$scope.owner = true;
+			console.log('here');
+			loadSavedData();
+		} else if (action == 'preview') {
+			$scope.editing = false;
+			$scope.owner = true;
+		}
+		else {
+			// action is actually ID because there was no action
+			id = action;
+			$location.path($location.path().split('/')[1] + '/' + id + '/view');
+		}
+
+		renderScreen('general');
 	}
-	else {
-		// action is actually ID because there was no action
-		id = action;
-		$location.path($location.path().split('/')[1] + '/' + id + '/view');
+
+
+
+
+	$scope.redirectTo = function(path) {
+		var pathArr = $location.path().split('/');
+
+		if (pathArr[2] === id) {
+			$location.path(pathArr[1] + '/' + id + '/' + path);
+		} else {
+			if (path == 'edit') {
+				path = 'new';
+			}
+			$location.path(pathArr[1] + '/' + path);
+		}
+	}
+
+	$scope.save = function() {
+		if ($scope.editing) {
+			console.log($scope.listingData);
+			console.log('saving');
+			updateSavedData();
+		}
+	}
+
+	$scope.submitApt = function() {
+		console.log($scope.listingData);
+		listingDataService.newListing($scope.listingData)
+		.then(
+		function success(res){
+		  $scope.dataLoading = false;
+		  SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
+		  localStorageService.remove(localStorageKey);
+		},
+		function failure(res){
+		  $scope.dataLoading = false;
+		  if (res.status === -1) {
+			SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+		  } else {
+			var errorMessage;
+			if (!res.data && res.data.message && res.data.message.message) {
+			  errorMessage = res.data.message.message;
+			  SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+			}
+		  }
+		});
+	}
+
+	$scope.setCurrentPage = function(screen) {
+		if ($scope.editing) {
+			updateSavedData();
+		}
+		$scope.currentPage = screen;
+		renderScreen(screen);
+	}
+
+	$scope.loadRoom = function(index) {
+		var length = $scope.listingData.bedrooms.length;
+		if (index >= 0 && length > 0 && length > index) {
+			$scope.room = $scope.listingData.bedrooms[index];
+			$scope.selectedRoom = index;
+		} else {
+			$scope.room = {};
+			$scope.selectedRoom = 0;
+		}
+	}
+
+	$scope.newRoom = function() {
+		var length = $scope.listingData.bedrooms.length;
+		var newIndex = length + 1;
+		var r = {
+			title: 'Room ' + newIndex,
+			photos: []
+		};
+		$scope.listingData.bedrooms.push(r);
+
+		length = $scope.listingData.bedrooms.length;
+		if (length == 1) {
+			$scope.loadRoom(0);
+		}
+	}
+
+	$scope.saveRoom = function() {
+		var index = $scope.selectedRoom;
+		if (!$scope.room.title) {
+			$scope.room.title = 'Room ' + (index + 1);
+		}
+	}
+
+	$scope.switchRoom = function(room, newIndex) {
+		// save the current room
+		$scope.saveRoom();
+		$scope.loadRoom(newIndex);
+	}
+
+	$scope.confirmDelete = function() {
+		if ($scope.editing) {
+			$('#roomForm .panel').addClass('formBlur');
+		}
+	}
+	$scope.cancelDelete = function() {
+		$('#roomForm .panel').removeClass('formBlur');
+	}
+
+	$scope.deleteRoom = function() {
+		if ($scope.editing) {
+			$('#roomForm .panel').removeClass('formBlur');
+			var index = $scope.selectedRoom;
+			$scope.listingData.bedrooms.splice(index, 1);
+
+			var length = $scope.listingData.bedrooms.length,
+				newIndex = 0;
+			if (length <= index) {
+				newIndex = index - 1;
+			} else {
+				newIndex = index;
+			}
+
+			$scope.loadRoom(newIndex);
+		}
+
+	}
+
+	$scope.deleteRoomPhoto = function(index) {
+		$scope.room.photos.splice(index, 1);
+		$scope.save()
+	}
+
+	$scope.deleteCommonAreaPhoto = function(type, index) {
+		$scope.listingData.common_area_photos[type].splice(index, 1);
+	}
+
+	$scope.modifyAllApt = function(bool) {
+		if (typeof bool === 'boolean') {
+			$.each($scope.aptDetailsChecklist, function(index, value) {
+				$scope.apt.op_details[value] = bool;
+			});
+		}
+	}
+
+	$scope.initiatePhotoUpload = function(type) {
+		$('#photoUploadInput').click();
+		if (type == 'room') {
+			//probably don't need these checks, but for now
+			if ($scope.listingData.bedrooms[$scope.selectedRoom] == undefined) {
+				$scope.listingData.bedrooms[$scope.selectedRoom].photos = [];
+			}
+			$scope.currentUploadTarget = $scope.listingData.bedrooms[$scope.selectedRoom].photos;
+		} else {
+			$scope.currentUploadTarget = $scope.listingData.common_area_photos[type];
+		}
+
 	}
 
 
@@ -154,7 +328,6 @@ angular.module('dumboApp')
 		}
 	}
 
-	renderScreen('general');
 	function renderScreen(screen) {
 		// Hides other pages and shows the starting screen.
 		$scope.currentPage = screen;
@@ -181,6 +354,8 @@ angular.module('dumboApp')
 			$scope.listingData = form;
 			$scope.viewData = view;
 		} else {
+			console.log('nothing loaded');
+			console.log(emptyData);
 			$scope.listingData = emptyData.form;
 			$scope.viewData = emptyData.view;
 		}
@@ -208,175 +383,6 @@ angular.module('dumboApp')
 		}
 	}
 
-	function init() {
-		$scope.selectedRoom = 0;
 
-		$scope.newListing = false;
-		$scope.editing = false;
-		$scope.owner = false;
-
-		$scope.roomDetailsChecklist = {
-			'Furnished': 'pre_furnished',
-			'Air conditioning': 'incl_air_conditioning'
-		}
-
-		// set min and max dates
-		var dmin = new Date(),
-			dmax = new Date();
-		dmax.setFullYear(dmin.getFullYear() + 2);
-		$scope.dateMin = dmin.toISOString().substring(0, 10);
-		$scope.dateMax = dmax.toISOString().substring(0, 10);
-
-		$scope.redirectTo = function(path) {
-			var pathArr = $location.path().split('/');
-
-			if (pathArr[2] === id) {
-				$location.path(pathArr[1] + '/' + id + '/' + path);
-			} else {
-				if (path == 'edit') {
-					path = 'new';
-				}
-				$location.path(pathArr[1] + '/' + path);
-			}
-		}
-
-		$scope.save = function() {
-			if ($scope.editing) {
-				console.log($scope.listingData);
-				console.log('saving');
-				updateSavedData();
-			}
-		}
-
-		$scope.submitApt = function() {
-			console.log($scope.listingData);
-			listingDataService.newListing($scope.listingData)
-			.then(
-	        function success(res){
-	          $scope.dataLoading = false;
-	          SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
-	          localStorageService.remove(localStorageKey);
-	        },
-	        function failure(res){
-	          $scope.dataLoading = false;
-	          if (res.status === -1) {
-	            SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
-	          } else {
-	            var errorMessage;
-	            if (!res.data && res.data.message && res.data.message.message) {
-	              errorMessage = res.data.message.message;
-	              SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
-	            }
-	          }
-	        });
-		}
-
-		$scope.setCurrentPage = function(screen) {
-			if ($scope.editing) {
-				updateSavedData();
-			}
-			$scope.currentPage = screen;
-			renderScreen(screen);
-		}
-
-		$scope.loadRoom = function(index) {
-			var length = $scope.listingData.bedrooms.length;
-			if (index >= 0 && length > 0 && length > index) {
-				$scope.room = $scope.listingData.bedrooms[index];
-				$scope.selectedRoom = index;
-			} else {
-				$scope.room = {};
-				$scope.selectedRoom = 0;
-			}
-		}
-
-		$scope.newRoom = function() {
-			var length = $scope.listingData.bedrooms.length;
-			var newIndex = length + 1;
-			var r = {
-				title: 'Room ' + newIndex,
-				photos: []
-			};
-			$scope.listingData.bedrooms.push(r);
-
-			length = $scope.listingData.bedrooms.length;
-			if (length == 1) {
-				$scope.loadRoom(0);
-			}
-		}
-
-		$scope.saveRoom = function() {
-			var index = $scope.selectedRoom;
-			if (!$scope.room.title) {
-				$scope.room.title = 'Room ' + (index + 1);
-			}
-		}
-
-		$scope.switchRoom = function(room, newIndex) {
-			// save the current room
-			$scope.saveRoom();
-			$scope.loadRoom(newIndex);
-		}
-
-		$scope.confirmDelete = function() {
-			if ($scope.editing) {
-				$('#roomForm .panel').addClass('formBlur');
-			}
-		}
-		$scope.cancelDelete = function() {
-			$('#roomForm .panel').removeClass('formBlur');
-		}
-
-		$scope.deleteRoom = function() {
-			if ($scope.editing) {
-				$('#roomForm .panel').removeClass('formBlur');
-				var index = $scope.selectedRoom;
-				$scope.listingData.bedrooms.splice(index, 1);
-
-				var length = $scope.listingData.bedrooms.length,
-					newIndex = 0;
-				if (length <= index) {
-					newIndex = index - 1;
-				} else {
-					newIndex = index;
-				}
-
-				$scope.loadRoom(newIndex);
-			}
-
-		}
-
-		$scope.deleteRoomPhoto = function(index) {
-			$scope.room.photos.splice(index, 1);
-			$scope.save()
-		}
-
-		$scope.deleteCommonAreaPhoto = function(type, index) {
-			$scope.listingData.common_area_photos[type].splice(index, 1);
-		}
-
-		$scope.modifyAllApt = function(bool) {
-			if (typeof bool === 'boolean') {
-				$.each($scope.aptDetailsChecklist, function(index, value) {
-					$scope.apt.op_details[value] = bool;
-				});
-			}
-		}
-
-		$scope.initiatePhotoUpload = function(type) {
-			$('#photoUploadInput').click();
-			if (type == 'room') {
-				//probably don't need these checks, but for now
-				if ($scope.listingData.bedrooms[$scope.selectedRoom] == undefined) {
-					$scope.listingData.bedrooms[$scope.selectedRoom].photos = [];
-				}
-				$scope.currentUploadTarget = $scope.listingData.bedrooms[$scope.selectedRoom].photos;
-			} else {
-				$scope.currentUploadTarget = $scope.listingData.common_area_photos[type];
-			}
-
-		}
-
-	}
 
 });
