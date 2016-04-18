@@ -41,12 +41,12 @@
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >
-					<div class="heading" ng-click="modelData.general.open = !modelData.general.open;">
-						<label>Optional details <i class="fa fa-lg" ng-class="modelData.general.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
+					<div class="heading" ng-click="viewData.general.open = !viewData.general.open;">
+						<label>Optional details <i class="fa fa-lg" ng-class="viewData.general.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
 					</div>
-					<div class="body" ng-show="modelData.general.open">
+					<div class="body" ng-show="viewData.general.open">
 						<div class="row">
-							<div class="col-xs-6" ng-repeat="list in aptDetailsModelRender">
+							<div class="col-xs-6" ng-repeat="list in aptDetailsModel">
 								<div class="formCheckbox" ng-repeat="(key, value) in list">
 									<div ng-hide="!editing && !apt.op_details[value]">
 										<input ng-blur="save()" ng-if="editing" type="checkbox" tabindex="-1" ng-model="apt.op_details[value];">
@@ -117,9 +117,10 @@
 				</div>
 				<div class="panel-body">
 					<div class="photoUploadWrapper">
-						<a ng-if="editing && !(room.photos.length)" href="" class="photoUpload" ng-click="generatePics('room')">
+						<a ng-if="editing && !(room.photos.length)" href="" class="photoUpload" ng-click="initiatePhotoUpload('room')">
 							<div class="photoUploadTitle">
 								<img src="images/skinnyplus.svg" class="isizeMed">
+								<!-- <input type="file" id="photoUploadInput" ng-file-select multiple style="visibility:hidden;position:absolute"/> -->
 								Add photos
 							</div>
 						</a>
@@ -131,10 +132,10 @@
 								</a>
 							</div>
 							<div class="photoUploadMore" ng-if="editing && room.photos.length">
-								<button class="btn btn-default" ng-click="generatePics('room')">Add more photos</button>
+								<button class="btn btn-default" ng-click="initiatePhotoUpload('room')">Add more photos</button>
 							</div>
 						</div>
-
+						<div class="errorMsg" ng-show="!room.photos.length">Please upload at least one photo.</div>
 					</div>
 					<fieldset class="formGroup">
 						<label>Rent per month</label>
@@ -166,10 +167,10 @@
 						</div>
 					</fieldset>
 					<fieldset class="formGroup accordion">
-						<div class="heading" ng-click="modelData.bedrooms.open = !modelData.bedrooms.open">
-							<label>Optional details <i class="fa fa-lg" ng-class="modelData.bedrooms.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
+						<div class="heading" ng-click="viewData.bedrooms.open = !viewData.bedrooms.open">
+							<label>Optional details <i class="fa fa-lg" ng-class="viewData.bedrooms.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
 						</div>
-						<div class="body" ng-show="modelData.bedrooms.open">
+						<div class="body" ng-show="viewData.bedrooms.open">
 							<div class="formCheckbox" ng-repeat="(key, value) in roomDetailsChecklist">
 								<div ng-hide="!editing && !room.op_details[value]">
 									<input ng-blur="save()" ng-if="editing" name="c1" type="checkbox" tabindex="-1" ng-model="room.op_details[value];">
@@ -182,9 +183,8 @@
 				</div>
 
 
-				<!-- <pre>room = {{rForm | json}}</pre> -->
+				<pre>room = {{rForm | json}}</pre>
 			</div>
-
 		</form>
 	</div>
 
@@ -201,7 +201,7 @@
 				<fieldset class="formGroup" ng-repeat="field in commonAreaPhotoFields">
 					<label>{{field.name}}</label>
 					<div class="photoUploadWrapper">
-						<a ng-if="editing && !listingData.common_area_photos[field.variable].length" href="" class="photoUpload" ng-click="generatePics(field.variable)">
+						<a ng-if="editing && !listingData.common_area_photos[field.variable].length" href="" class="photoUpload" ng-click="initiatePhotoUpload(field.variable)">
 							<div class="photoUploadTitle">
 								<img src="images/skinnyplus.svg" class="isizeMed">
 								Add photos
@@ -215,9 +215,10 @@
 								</a>
 							</div>
 							<div class="photoUploadMore" ng-if="editing && listingData.common_area_photos[field.variable].length">
-								<button class="btn btn-default" ng-click="generatePics(field.variable)">Add more photos</button>
+								<button class="btn btn-default" ng-click="initiatePhotoUpload(field.variable)">Add more photos</button>
 							</div>
 						</div>
+						<div class="errorMsg" ng-show="!listingData.common_area_photos[field.variable].length && field.variable != 'other'">Please upload at least one photo.</div>
 
 					</div>
 				</fieldset>
@@ -225,7 +226,8 @@
 			</div>
 		</div>
 	</form>
-	<input type="file" id="photoUploadInput" ng-file-select multiple style="visibility:hidden"/>
+	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
+
 </div>
 </div>
 </div>
