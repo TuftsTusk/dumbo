@@ -27,25 +27,36 @@
 				}
 			}
 		}
-
+		$imageHeight: 100px;
 		.imageHolder {
 			padding: 10px 5px 3px;
 		}
+		.inProgress {
+			.photoUploadImage {
+				background: white;
+				padding-top: 5px;
+			}
+			.spinner {
+				text-align: center;
+				line-height: $imageHeight;
+			}
+		}
 
-		.testingImage {
-			height: 100px;
-			width: 100px;
+		.photoUploadImage {
+			height: $imageHeight;
+			width: $imageHeight;
 			margin: 0;
 			// display: inline-block;
 		}
-		.photoUploadImage {
+		.photoUploadBox {
 			display: inline-block;
 			position: relative;
 			margin: 0 5px;
 			text-decoration: none;
-			color: white;
+
 
 			.deleteImage {
+				color: white;
 				display: block;
 				position: absolute;
 				right: 5px;
