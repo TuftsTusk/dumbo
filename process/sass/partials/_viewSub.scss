@@ -44,12 +44,16 @@ $image-width: 160px;
             background: rgba(51, 122, 183, .5);
             // padding-bottom: 50px;
             border: none;
+            margin-bottom: 1px;
+           
             box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
+           
         }
         &:first-of-type {
             margin-top: 15px;
-            border: none;
+          
         }
+       
         a {
             float: right;
             margin: 5px;
@@ -71,7 +75,8 @@ $image-width: 160px;
         #price {
             float: right;
         }
-        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+  
         .thumbnail {
             max-width: $image-width;
             display: inline-block;

@@ -11,10 +11,6 @@
 var mylat;
 var mylng;
 
-
-
-
-
 angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
         $http.get('../../housing.json').then(function (result) {
@@ -93,7 +89,7 @@ angular.module('dumboApp')
                 });
 
                 infowindow.addListener('closeclick', function () {
-                    console.log("clicked!");
+                
                     $(".sublet-listings").removeClass("highlight");
                 })
             }
