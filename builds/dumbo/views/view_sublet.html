@@ -1,4 +1,4 @@
-<div  id="page-wrap" class="container-fluid sublet-map" ng-controller="SubCtrl">
+<div  id="view_sublet" class="container-fluid sublet-map" ng-controller="SubCtrl">
 
     <div class="col-md-6 overflow-scroll">
         <div class="sublet-listings" ng-repeat="listing in listings">
@@ -13,7 +13,7 @@
                     <li><strong>Furnished:  </strong>{{listing.apt_info.op_details.pre_furnished ? "Yes" : "No"}}</li>
                     <li class="dates"><strong>Dates available:  </strong>{{listing.date_range}}</li>
                 </ul>
-                
+
                  <a ng-href="#/subletListing/{{listing.user_id}}" class="btn btn-primary">View Listing</a>
 
             </div>
