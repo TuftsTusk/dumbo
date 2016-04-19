@@ -117,19 +117,26 @@
 				</div>
 				<div class="panel-body">
 					<div class="photoUploadWrapper">
-						<a ng-if="editing && !(room.photos.length)" href="" class="photoUpload" ng-click="initiatePhotoUpload('room')">
+						<a ng-if="editing && room.photos.length == 0 && !uploading" href="" class="photoUpload" ng-click="initiatePhotoUpload('room')">
 							<div class="photoUploadTitle">
 								<img src="images/skinnyplus.svg" class="isizeMed">
 								<!-- <input type="file" id="photoUploadInput" ng-file-select multiple style="visibility:hidden;position:absolute"/> -->
 								Add photos
 							</div>
 						</a>
-						<div ng-if="!editing || room.photos.length">
+						<div ng-if="!editing || room.photos.length || uploading">
 							<div class="imageHolder">
-								<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
-									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage testingImage"></div>
+								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
+									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
 								</a>
+								<div ng-if="uploading" class="photoUploadBox inProgress">
+									<div class="scaledImage photoUploadImage">
+										<div class="spinner">
+											<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="photoUploadMore" ng-if="editing && room.photos.length">
 								<button class="btn btn-default" ng-click="initiatePhotoUpload('room')">Add more photos</button>
@@ -199,18 +206,25 @@
 				<fieldset class="formGroup" ng-repeat="field in commonAreaPhotoFields">
 					<label>{{field.name}}</label>
 					<div class="photoUploadWrapper">
-						<a ng-if="editing && !listingData.common_area_photos[field.variable].length" href="" class="photoUpload" ng-click="initiatePhotoUpload(field.variable)">
+						<a ng-if="editing && !listingData.common_area_photos[field.variable].length && !(uploading && currentUploadType == field.variable)" href="" class="photoUpload" ng-click="initiatePhotoUpload(field.variable)">
 							<div class="photoUploadTitle">
 								<img src="images/skinnyplus.svg" class="isizeMed">
 								Add photos
 							</div>
 						</a>
-						<div ng-if="!editing || listingData.common_area_photos[field.variable].length">
+						<div ng-if="!editing || listingData.common_area_photos[field.variable].length || (uploading && currentUploadType == field.variable)">
 							<div class="imageHolder">
-								<a class="photoUploadImage" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
-									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage testingImage"></div>
+								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
+									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
 								</a>
+								<div ng-if="uploading && currentUploadType == field.variable" class="photoUploadBox inProgress">
+									<div class="scaledImage photoUploadImage">
+										<div class="spinner">
+											<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="photoUploadMore" ng-if="editing && listingData.common_area_photos[field.variable].length">
 								<button class="btn btn-default" ng-click="initiatePhotoUpload(field.variable)">Add more photos</button>
