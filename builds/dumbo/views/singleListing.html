@@ -206,20 +206,19 @@
 				<fieldset class="formGroup" ng-repeat="field in commonAreaPhotoFields">
 					<label>{{field.name}}</label>
 					<div class="photoUploadWrapper">
-						<a ng-if="editing && !listingData.common_area_photos[field.variable].length && !uploading" href="" class="photoUpload" ng-click="initiatePhotoUpload(field.variable)">
+						<a ng-if="editing && !listingData.common_area_photos[field.variable].length && !(uploading && currentUploadType == field.variable)" href="" class="photoUpload" ng-click="initiatePhotoUpload(field.variable)">
 							<div class="photoUploadTitle">
 								<img src="images/skinnyplus.svg" class="isizeMed">
 								Add photos
 							</div>
 						</a>
-						<div ng-if="!editing || listingData.common_area_photos[field.variable].length || uploading">
+						<div ng-if="!editing || listingData.common_area_photos[field.variable].length || (uploading && currentUploadType == field.variable)">
 							<div class="imageHolder">
-								<span ng-hide="numFilesToUpload==0 || numFilesToUpload==undefined">{{numFilesTotal - numFilesToUpload}} / {{numFilesTotal}}</span>
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
 								</a>
-								<div ng-if="uploading" class="photoUploadBox inProgress">
+								<div ng-if="uploading && currentUploadType == field.variable" class="photoUploadBox inProgress">
 									<div class="scaledImage photoUploadImage">
 										<div class="spinner">
 											<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>

@@ -115,9 +115,7 @@ angular.module('dumboApp')
 				// Create DOM and save to local storage
 			$scope.newListing = true;
 			$scope.editing = true;
-
 			$scope.owner = true;
-			console.log('here');
 			loadSavedData();
 		} else if (action == 'preview') {
 			$scope.editing = false;
@@ -273,6 +271,7 @@ angular.module('dumboApp')
 
 	$scope.initiatePhotoUpload = function(type) {
 		$('#photoUploadInput').click();
+		$scope.currentUploadType = type;
 		if (type == 'room') {
 			//probably don't need these checks, but for now
 			if ($scope.listingData.bedrooms[$scope.selectedRoom] == undefined) {
@@ -291,8 +290,6 @@ angular.module('dumboApp')
 		var owner = data.owner;
 		if (listing && listing.kind == 'SubletListing') {
 			// check owner
-			console.log('listing');
-			console.log(listing);
 			$scope.listingData = {};
 			$scope.listingData.apt_info = listing.apt_info;
 			$scope.listingData.bedrooms = listing.bedrooms;
@@ -300,8 +297,6 @@ angular.module('dumboApp')
 			$scope.listingData.id = listing._id;
 			$scope.listingData.type = 'SubletListing';
 
-			console.log('listingData');
-			console.log($scope.listingData);
 			$.each($scope.listingData.bedrooms, function(index) {
 				$.each($scope.listingData.bedrooms[index], function(key, value) {
 					if (key == 'date_start' || key == 'date_end') {
@@ -350,12 +345,9 @@ angular.module('dumboApp')
 					});
 				});
 			}
-			console.log(form);
 			$scope.listingData = form;
 			$scope.viewData = view;
 		} else {
-			console.log('nothing loaded');
-			console.log(emptyData);
 			$scope.listingData = emptyData.form;
 			$scope.viewData = emptyData.view;
 		}

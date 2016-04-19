@@ -14,7 +14,6 @@ angular.module('dumboApp')
 				$scope.save();
 				// $scope.isUploading = false;
 				$scope.currentUploadTarget.push(obj);
-				console.log('done');
 			}
 
 			$scope.numFilesToUpload--;
