@@ -6,6 +6,17 @@ angular.module('dumboApp')
 	var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
 
+	$scope.errorLog = {
+		apt_info: {},
+		bedrooms: [],
+		common_area_photos: {
+			living_room: [],
+			kitchen: [],
+			bathroom: [],
+			other: []
+		}
+	};
+
 	var emptyData = {
 		view: {
 			general: {
@@ -30,8 +41,6 @@ angular.module('dumboApp')
 			}
 		}
 	};
-
-
 
 	$scope.aptDetailsModel = [
 		{
@@ -151,6 +160,7 @@ angular.module('dumboApp')
 			console.log($scope.listingData);
 			console.log('saving');
 			updateSavedData();
+			updateErrorLog();
 		}
 	}
 
@@ -198,14 +208,12 @@ angular.module('dumboApp')
 
 	$scope.newRoom = function() {
 		var length = $scope.listingData.bedrooms.length;
-		var newIndex = length + 1;
+		var newIndex = length;
 		var r = {
-			title: 'Room ' + newIndex,
+			title: 'Room ' + (newIndex + 1),
 			photos: []
 		};
 		$scope.listingData.bedrooms.push(r);
-
-		length = $scope.listingData.bedrooms.length;
 		if (length == 1) {
 			$scope.loadRoom(0);
 		}
@@ -241,11 +249,7 @@ angular.module('dumboApp')
 
 			var length = $scope.listingData.bedrooms.length,
 				newIndex = 0;
-			if (length <= index) {
-				newIndex = index - 1;
-			} else {
-				newIndex = index;
-			}
+			newIndex = length <= index ? index - 1 : index;
 
 			$scope.loadRoom(newIndex);
 		}
@@ -367,6 +371,22 @@ angular.module('dumboApp')
 		}
 		localStorageService.set(localStorageKey, localStorageObject);
 	};
+
+	function updateErrorLog() {
+		if ($scope.rForm.$invalid) {
+			var roomName = $scope.rForm.title.$modelValue;
+			var errors = [];
+			$.each($scope.rForm.$error, function(index, value) {
+				errors.push(value[0].$name);
+			})
+			console.log($scope.errorLog.bedrooms);
+		}
+		if ($scope.aptForm.$invalid) {
+			$.each($scope.aptForm.$error.required, function(index, value) {
+				// $scope.errorLog.apt_info[]
+			})
+		}
+	}
 
 	function dataPrep() {
 		$scope.apt = $scope.listingData.apt_info;

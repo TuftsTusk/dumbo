@@ -5,6 +5,11 @@
 		}
 	}
 
+	.disabled {
+		color: $grey5;
+		text-decoration: none;
+	}
+
 	.photoUploadWrapper {
 		.photoUpload {
 			$height: 200px;

@@ -7,8 +7,23 @@
 		</div>
 		<div id="actions" ng-if="owner" class="block highlight">
 			<a href="" ng-if="editing" ng-click="submitApt()">Save</a>
-			<a href="" ng-if="editing" ng-click="redirectTo('preview')">Preview</a>
+			<div class="flyoutWrapper" style="display:inline-block">
+				<a href="" ng-if="editing" ng-click="redirectTo('preview')" ng-class="{disabled: !validListing}">Preview</a>
+				<div class="toggleFlyout hidden">
+					<div>
+						<div class="flyArrowWrapper">
+							<div class="flyArrow">
+							</div>
+						</div>
+					</div>
+					<div class="flyContent">
+						hi
+					</div>
+				</div>
+			</div>
+			<!-- <a href="" ng-if="editing" ng-click="redirectTo('preview')" ng-class="{disabled: !validListing}">Preview</a> -->
 			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
+			<a href="" ng-if="!editing && owner" ng-click="submitApt()">Publish</a>
 		</div>
 	</div>
 
@@ -64,6 +79,7 @@
 				</fieldset>
 			</div>
 		</div>
+		<!-- <pre>apt = {{aptForm | json}}</pre> -->
 	</form>
 
 </div>
@@ -188,7 +204,7 @@
 					</fieldset>
 
 				</div>
-				<!-- <pre>room = {{rForm | json}}</pre> -->
+				<pre>room = {{rForm | json}}</pre>
 			</div>
 		</form>
 	</div>
