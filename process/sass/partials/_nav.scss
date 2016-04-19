@@ -9,7 +9,7 @@
 	border: 0px;
 	color: $navTextColor;
 	margin-bottom: 0;
-   
+
 
 	.navbar-header {
 		.navbar-toggle {
@@ -216,14 +216,20 @@ $flyArrowHeight: 11px;
 		    box-sizing: border-box;
 		    padding: 5px 10px;
 			display: block;
-
-		    > img {
-		    	height: 50px;
+			@include transition(all .1s);
+			svg {
+				height: 50px;
 			    width: 50px;
-			    // background: blue;
 			    margin: 0 auto;
 			    margin-bottom: 5px;
-		    }
+				@include transition(fill .1s);
+			}
+			&:hover {
+				color: $blue;
+				svg {
+					fill: $blue;
+				}
+			}
 	    }
     }
     @media screen and (max-width: $break-small) {
