@@ -18,6 +18,6 @@ angular.module('dumboApp')
     return $http.post(host + logout);
   }
   this.confirmAccount = function(id, key) {
-    return $http.post(host + user + id + confirm + key);
+    return $http.get(host + user + id + confirm + key);
   }
 });
