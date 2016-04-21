@@ -57,6 +57,9 @@ angular
 	.when('/me/listing', {
 		templateUrl: ''
 	})
+	.when('/me/confirm/:id/:key', {
+		templateUrl: 'views/login.html'
+	})
 	.when('/subletListing', {
 		redirectTo: '/subletListing/new'
 	})
