@@ -27,11 +27,33 @@ angular.module('dumboApp')
             },
             function failure(res){
                 $scope.dataLoading = false;
-                console.log(res);
-                if (res.status === -1) {
+                console.log($scope.user);
+                if (res.status === -1 || !res.data || !res.data.message) {
                     SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
                 } else {
-                    SweetAlert.swal("I'm sorry I can't do that", res.data.message, "error");
+                    if (res.data.type == 'USER_NOT_CONFIRMED_FAILURE'){
+                        swal({title: "Looks like your account isn't confirmed",
+                        text: "Click to resend confirmation email",
+                        type: "info",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        showLoaderOnConfirm: true, },
+                        function(){
+                            setTimeout(function(){
+                                userDataService.resendConfirmation($scope.user.email).then(
+                                    function success(res){
+                                        swal("Please check your email to confirm your account.");
+                                    },
+                                    function failure(res){
+                                        SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+                                    }
+                                )
+
+                            }, 2000); });
+                    } else {
+                        SweetAlert.swal("I'm sorry I can't do that", res.data.message, "error");
+                    }
+
                 }
             });
         };

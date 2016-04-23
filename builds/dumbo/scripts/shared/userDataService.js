@@ -7,6 +7,7 @@ angular.module('dumboApp')
   var logout = '/me/logout';
   var user = '/user/';
   var confirm = '/confirm?key=';
+  var resendConfirmation = '/me/resendConfirmation'
   delete $http.defaults.headers.common['X-Requested-With'];
   this.register = function(user) {
     return $http.post(host + registration, user);
@@ -19,5 +20,8 @@ angular.module('dumboApp')
   }
   this.confirmAccount = function(id, key) {
     return $http.get(host + user + id + confirm + key);
+  }
+  this.resendConfirmation = function(email) {
+    return $http.post(host + resendConfirmation, {'email': email});
   }
 });
