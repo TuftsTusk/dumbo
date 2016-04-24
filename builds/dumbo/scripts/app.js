@@ -57,7 +57,7 @@ angular
 	.when('/me/listing', {
 		templateUrl: ''
 	})
-	.when('/me/confirm/:id/:key', {
+	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
 	.when('/subletListing', {
