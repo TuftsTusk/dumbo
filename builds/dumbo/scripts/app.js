@@ -14,7 +14,7 @@ underscore.factory('_', function () {
 	return window._; //Underscore should be loaded on the page
 });
 
-angular
+var app = angular
 .module('dumboApp', [
 	'ngAnimate',
 	'ngAria',
@@ -29,7 +29,8 @@ angular
 	'LocalStorageModule',
 	'underscore',
 	'ui.bootstrap',
-	'angular-loading-bar'
+	'angular-loading-bar',
+	'ngToast'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
@@ -102,3 +103,12 @@ angular
 	$httpProvider.defaults.withCredentials = true;
 	$httpProvider.interceptors.push('authInterceptor');
 });
+
+app.config(['ngToastProvider', function(ngToast) {
+    ngToast.configure({
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      maxNumber: 3,
+	  animation: "fade"
+    });
+  }]);

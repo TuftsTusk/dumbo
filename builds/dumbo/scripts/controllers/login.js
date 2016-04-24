@@ -1,5 +1,5 @@
 angular.module('dumboApp')
-.controller('LoginCtrl', function ($scope, userDataService, SweetAlert, userService,$routeParams) {
+.controller('LoginCtrl', function ($scope, userDataService, SweetAlert, userService,$routeParams, $location, ngToast) {
     var id = $routeParams.id;
     var key = $routeParams.key;
     var action = $routeParams.action;
@@ -101,7 +101,13 @@ $scope.login = function(){
         function success(res){
             userService.setLoggedIn($scope.user.email);
             $scope.dataLoading = false;
-            SweetAlert.swal("Congrats!", "Welcome to Tusk Marketplace.", "success");
+            $location.path('/');
+            ngToast.create({
+              className: 'success',
+              content: 'You have succesfully logged in',
+              timeout: 3000
+            });
+
         },
         function failure(res){
             $scope.dataLoading = false;

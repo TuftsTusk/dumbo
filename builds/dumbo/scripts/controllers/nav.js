@@ -14,6 +14,7 @@ angular.module('dumboApp')
 		}
 
 		$(document).ready(function() {
+
 			var b_small = 768,
 				b_medium = 992;
 			updateNav(b_small, b_medium);
