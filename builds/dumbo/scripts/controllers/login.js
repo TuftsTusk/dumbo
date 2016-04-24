@@ -32,8 +32,8 @@ angular.module('dumboApp')
         confirmButtonText: "Reset Password",
         showLoaderOnConfirm: true,
         formFields: [
-            { id: 'password', placeholder:'Password' },
-            { id: 'confirmpass', placeholder:'Password confirmation' }
+            { id: 'password', placeholder:'Password', type:'password' },
+            { id: 'confirmpass', placeholder:'Password confirmation', type:'password' }
         ]
     },
     function(){
