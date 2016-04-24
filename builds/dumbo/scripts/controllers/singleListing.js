@@ -292,7 +292,7 @@ angular.module('dumboApp')
 	function prepareView(data) {
 		var listing = data.listing;
 		var owner = data.owner;
-		if (listing && listing.kind == 'SubletListing') {
+		if (listing && listing.type == 'SubletListing') {
 			// check owner
 			$scope.listingData = {};
 			$scope.listingData.apt_info = listing.apt_info;
