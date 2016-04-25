@@ -57,13 +57,13 @@ angular
 	.when('/me/listing', {
 		templateUrl: 'views/myListings.html'
 	})
-	.when('/subletListing', {
-		redirectTo: '/subletListing/new'
+	.when('/SubletListing', {
+		redirectTo: '/SubletListing/new'
 	})
-	.when('/subletListing/:action', {
+	.when('/SubletListing/:action', {
 		templateUrl: 'views/singleListing.html'
 	})
-	.when('/subletListing/:id/:action', {
+	.when('/SubletListing/:id/:action', {
 		templateUrl: 'views/singleListing.html'
 	})
 	.when('/listing/:id', {

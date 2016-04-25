@@ -4,7 +4,7 @@ angular.module('dumboApp')
 .controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
-	var localStorageKey = 'subletListing';
+	var localStorageKey = 'SubletListing';
 
 	$scope.errorLog = {
 		apt_info: {},
@@ -105,6 +105,7 @@ angular.module('dumboApp')
 				// get listing data from server
 				listingDataService.getListingById(id).then(
 					function success(res){
+						console.log(res.data);
 						prepareView(res.data);
 					},
 					function failure(res){
@@ -160,7 +161,7 @@ angular.module('dumboApp')
 			console.log($scope.listingData);
 			console.log('saving');
 			updateSavedData();
-			// updateErrorLog();
+			updateErrorLog();
 		}
 	}
 
@@ -196,6 +197,7 @@ angular.module('dumboApp')
 	}
 
 	$scope.loadRoom = function(index) {
+		console.log($scope.listingData);
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
 			$scope.selectedRoom = index;
@@ -373,21 +375,21 @@ angular.module('dumboApp')
 		localStorageService.set(localStorageKey, localStorageObject);
 	};
 
-	// function updateErrorLog() {
-	// 	if ($scope.rForm.$invalid) {
-	// 		var roomName = $scope.rForm.title.$modelValue;
-	// 		var errors = [];
-	// 		$.each($scope.rForm.$error, function(index, value) {
-	// 			errors.push(value[0].$name);
-	// 		})
-	// 		console.log($scope.errorLog.bedrooms);
-	// 	}
-	// 	if ($scope.aptForm.$invalid) {
-	// 		$.each($scope.aptForm.$error.required, function(index, value) {
-	// 			// $scope.errorLog.apt_info[]
-	// 		})
-	// 	}
-	// }
+	function updateErrorLog() {
+		if ($scope.rForm.$invalid) {
+			var roomName = $scope.rForm.title.$modelValue;
+			var errors = [];
+			$.each($scope.rForm.$error, function(index, value) {
+				errors.push(value[0].$name);
+			})
+			console.log($scope.errorLog.bedrooms);
+		}
+		if ($scope.aptForm.$invalid) {
+			$.each($scope.aptForm.$error.required, function(index, value) {
+				// $scope.errorLog.apt_info[]
+			})
+		}
+	}
 
 	function dataPrep() {
 		$scope.apt = $scope.listingData.apt_info;

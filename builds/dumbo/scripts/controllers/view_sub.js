@@ -42,7 +42,7 @@ angular.module('dumboApp')
                
                 $(".dates").html(format_start + "  -- <br>" + format_end);
 
-                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" ng-src=' + $scope.places[i].common_area_photos.living_room[0] + '/img></div><div class="col-sm-6"><h1>$' + $scope.places[i].bedrooms[0].rent + '</h1><p>' + $scope.places[i].apt_info.address + '</p> <a ng-href="#/subletListing/{{listing.user_id}}"><button class="btn btn-primary">View Listing</button></a></div>';
+                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" ng-src=' + $scope.places[i].common_area_photos.living_room[0] + '/img></div><div class="col-sm-6"><h1>$' + $scope.places[i].bedrooms[0].rent + '</h1><p>' + $scope.places[i].apt_info.address + '</p> <a ng-href="#/SubletListing/{{listing.user_id}}"><button class="btn btn-primary">View Listing</button></a></div>';
          
 
                 markers.push(
