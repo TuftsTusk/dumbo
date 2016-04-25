@@ -14,6 +14,17 @@ underscore.factory('_', function () {
 	return window._; //Underscore should be loaded on the page
 });
 
+var requireLogin = function(userService, $location, ngToast){
+	if (!userService.isLoggedin()){
+		$location.path('/login');
+		ngToast.create({
+		  className: 'info',
+		  content: 'Please login or register to continue',
+		  timeout: 3000
+		});
+	}
+}
+
 var app = angular
 .module('dumboApp', [
 	'ngAnimate',
@@ -40,47 +51,74 @@ var app = angular
 	.when('/home', {
 		templateUrl: 'views/home.html'
 	})
-	.when('/login', {
+	.when('/login/:loginType', {
 		templateUrl: 'views/login.html'
 	})
-	.when('/register', {
-		templateUrl: 'views/register.html'
-	})
 	.when('/newListing', {
-		templateUrl: 'views/newListing.html'
+		templateUrl: 'views/newListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/about', {
 		templateUrl: 'views/about.html'
 	})
 	.when('/listing', {
-		templateUrl: 'views/coming_soon.html'
+		templateUrl: 'views/coming_soon.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/me/listing', {
-		templateUrl: ''
+		templateUrl: '',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
 	.when('/subletListing', {
-		redirectTo: '/subletListing/new'
+		redirectTo: '/subletListing/new',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/subletListing/:action', {
-		templateUrl: 'views/singleListing.html'
+		templateUrl: 'views/singleListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/subletListing/:id/:action', {
-		templateUrl: 'views/singleListing.html'
+		templateUrl: 'views/singleListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/listing/:id', {
-		templateUrl: 'views/coming_soon.html'
+		templateUrl: 'views/coming_soon.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/settings', {
-		redirectTo: '/settings/account'
+		redirectTo: '/settings/account',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/settings/:page', {
-		templateUrl: 'views/settings.html'
+		templateUrl: 'views/settings.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/sublet' , {
-		templateUrl: 'views/view_sublet.html'
+		templateUrl: 'views/view_sublet.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/terms' , {
 		templateUrl: 'views/terms.html'
@@ -88,14 +126,23 @@ var app = angular
 	.when('/privacy' , {
 		templateUrl: 'views/privacy.html'
 	})
-    .when('/books' , {
-		templateUrl: 'views/coming_soon.html'
+	.when('/books' , {
+		templateUrl: 'views/coming_soon.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
-    .when('/misc' , {
-		templateUrl: 'views/coming_soon.html'
+	.when('/misc' , {
+		templateUrl: 'views/coming_soon.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
-    .when('/furniture' , {
-		templateUrl: 'views/coming_soon.html'
+	.when('/furniture' , {
+		templateUrl: 'views/coming_soon.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.otherwise({
 		templateUrl: '404.html'
@@ -104,11 +151,12 @@ var app = angular
 	$httpProvider.interceptors.push('authInterceptor');
 });
 
+
 app.config(['ngToastProvider', function(ngToast) {
-    ngToast.configure({
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      maxNumber: 3,
-	  animation: "fade"
-    });
-  }]);
+	ngToast.configure({
+		verticalPosition: 'top',
+		horizontalPosition: 'center',
+		maxNumber: 3,
+		animation: "fade"
+	});
+}]);

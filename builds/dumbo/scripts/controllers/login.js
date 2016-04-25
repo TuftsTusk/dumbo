@@ -3,7 +3,14 @@ angular.module('dumboApp')
     var id = $routeParams.id;
     var key = $routeParams.key;
     var action = $routeParams.action;
+    var loginType = $routeParams.loginType;
     $scope.init = function() {
+        //setup page actions
+        if (loginType=="newuser"){
+            $scope.newuser = true;
+        } else {
+            $scope.newuser= false;
+        }
         if (id && key && action=="confirm"){
             userDataService.confirmAccount(id,key).then(function(data){
                 SweetAlert.swal({title: "Welcome!",
@@ -103,9 +110,9 @@ $scope.login = function(){
             $scope.dataLoading = false;
             $location.path('/');
             ngToast.create({
-              className: 'success',
-              content: 'You have succesfully logged in',
-              timeout: 3000
+                className: 'success',
+                content: 'You have succesfully logged in',
+                timeout: 3000
             });
 
         },
@@ -141,4 +148,21 @@ $scope.login = function(){
                 }
             });
         };
-    });
+        $scope.register = function(){
+            $scope.dataLoading = true;
+            userDataService.register($scope.user).then(
+                function success(res){
+                    $scope.dataLoading = false;
+                    $location.path('/');
+                    SweetAlert.swal("Welcome", "Check your email to verify your new account", "success");
+                },
+                function failure(res){
+                    $scope.dataLoading = false;
+                    if (res.status === -1) {
+                        SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+                    } else {
+                        SweetAlert.swal("One little thing", res.data.message, "error");
+                    }
+                });
+            };
+        });

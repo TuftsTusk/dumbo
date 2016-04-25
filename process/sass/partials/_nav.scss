@@ -9,7 +9,7 @@
 	border: 0px;
 	color: $navTextColor;
 	margin-bottom: 0;
-   
+
 
 	.navbar-header {
 		.navbar-toggle {
@@ -256,6 +256,17 @@ $flyArrowHeight: 11px;
 		float: left;
 		padding: 10px;
     }
+}
+
+.alert {
+	margin-bottom: 0px;
+}
+.alert.ng-leave {
+  opacity: 1;
+  transition: opacity 1.5s ease-out;
+}
+.alert.ng-leave-active {
+  opacity: 0;
 }
 
 
