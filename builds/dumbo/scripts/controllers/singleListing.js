@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'SubletListing';
@@ -9,12 +9,7 @@ angular.module('dumboApp')
 	$scope.errorLog = {
 		apt_info: {},
 		bedrooms: [],
-		common_area_photos: {
-			living_room: [],
-			kitchen: [],
-			bathroom: [],
-			other: []
-		}
+		common_area_photos: {}
 	};
 
 	var emptyData = {
@@ -41,6 +36,75 @@ angular.module('dumboApp')
 			}
 		}
 	};
+
+	$scope.validation = {
+		apt_info: {
+			op_details: {
+				required: false,
+				recommended: false
+			},
+			address: {
+				required: true,
+				recommended: true
+			},
+			num_occupants: {
+				required: true,
+				recommended: true
+			}
+		},
+		room: {
+			date_start: {
+				required: true,
+				recommended: true
+			},
+			date_end: {
+				required: true,
+				recommended: true
+			},
+			rent: {
+				required: true,
+				recommended: true
+			},
+			title: {
+				required: true,
+				recommended: true
+			},
+			photos: {
+				required: false,
+				recommended: true
+			},
+			op_details: {
+				required: false,
+				recommended: false
+			},
+			date_start_is_flexible: {
+				required: false,
+				recommended: false
+			},
+			date_end_is_flexible: {
+				required: false,
+				recommended: false
+			}
+		},
+		common_area_photos: {
+			kitchen: {
+				required: false,
+				recommended: true
+			},
+			living_room: {
+				required: false,
+				recommended: true
+			},
+			bathroom: {
+				required: false,
+				recommended: true
+			},
+			other: {
+				required: false,
+				recommended: false
+			}
+		}
+	}
 
 	$scope.aptDetailsModel = [
 		{
@@ -161,7 +225,8 @@ angular.module('dumboApp')
 			console.log($scope.listingData);
 			console.log('saving');
 			updateSavedData();
-			updateErrorLog();
+			validateData();
+			// updateErrorLog();
 		}
 	}
 
@@ -197,7 +262,6 @@ angular.module('dumboApp')
 	}
 
 	$scope.loadRoom = function(index) {
-		console.log($scope.listingData);
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
 			$scope.selectedRoom = index;
@@ -261,7 +325,7 @@ angular.module('dumboApp')
 
 	$scope.deleteRoomPhoto = function(index) {
 		$scope.room.photos.splice(index, 1);
-		$scope.save()
+		$scope.save();
 	}
 
 	$scope.deleteCommonAreaPhoto = function(type, index) {
@@ -375,20 +439,108 @@ angular.module('dumboApp')
 		localStorageService.set(localStorageKey, localStorageObject);
 	};
 
-	function updateErrorLog() {
-		if ($scope.rForm.$invalid) {
-			var roomName = $scope.rForm.title.$modelValue;
-			var errors = [];
-			$.each($scope.rForm.$error, function(index, value) {
-				errors.push(value[0].$name);
-			})
-			console.log($scope.errorLog.bedrooms);
+	// function updateErrorLog() {
+	//
+	//
+	// 	if ($scope.rForm.$invalid) {
+	// 		var roomName = $scope.rForm.title.$modelValue;
+	// 		var errors = [];
+	// 		$.each($scope.rForm.$error, function(index, value) {
+	// 			errors.push(value[0].$name);
+	// 			$scope.listingValidation.alert = true;
+	// 		})
+	// 		// console.log($scope.errorLog.bedrooms);
+	// 	}
+	// 	if ($scope.aptForm.$invalid) {
+	// 		var aptErrors = {};
+	// 		$.each($scope.aptForm.$error.required, function(index, value) {
+	// 			aptErrors[value.$name] = {
+	// 				required: true,
+	// 				invalid: true
+	// 			};
+	// 			$scope.listingValidation.alert = true;
+	// 		})
+	// 		$scope.errorLog.apt_info = aptErrors;
+	// 	}
+	//
+	// 	// validate common area photos
+	// 	$.each($scope.listingData.common_area_photos, function(key, list) {
+	// 		if (list.length == 0 && key != 'other') {
+	// 			$scope.errorLog.common_area_photos[key] = {
+	// 				required: false,
+	// 				invalid: true
+	// 			};
+	// 			$scope.listingValidation.warning = true;
+	// 		} else {
+	// 			delete $scope.errorLog.common_area_photos[key];
+	// 		}
+	// 	});
+	//
+	// 	console.log($scope.errorLog);
+	//
+	//
+	// }
+
+
+	function validateData() {
+		$scope.listingValidation = {
+			alert: false,
+			warning: ''
+		};
+		var tempListingData = angular.copy($scope.listingData);
+
+		$scope.errorLog.apt_info = validateField('apt_info', tempListingData.apt_info);
+		$scope.errorLog.bedrooms = [];
+		$.each(tempListingData.bedrooms, function(index, room) {
+			$scope.errorLog.bedrooms.push(validateField('room', room));
+		});
+		$scope.errorLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos);
+
+		console.log($scope.errorLog);
+		// apt_info
+
+	}
+
+	function validateField(field, data) {
+		var response = {
+			alerts: {},
+			warnings: {}
+		};
+		$.each($scope.validation[field], function(key,value) {
+
+			// debug
+			// if (field == 'room' && key == 'photos') {
+			// 	console.log(key, ',' , value);
+			// 	console.log(data[key]);
+			// }
+
+			// clean out undefined fields
+			if (data[key] == undefined) {
+				delete data[key];
+			}
+			if (!(key in data) || (Array.isArray(data[key]) && data[key].length == 0)) {
+				if (value.required) {
+					response.alerts[key] = true;
+				} else if (value.recommended) {
+					response.warnings[key] = true;
+				}
+			} else {
+				delete response.alerts[key];
+				delete response.warnings[key];
+
+			}
+			if (key in data) delete data[key];
+		});
+
+		if (!(_.isEmpty(data))) {
+			// listingData not empty: data contains extraneous fields
+
+			console.log('NOT EMPTY');
+			console.log(data);
 		}
-		if ($scope.aptForm.$invalid) {
-			$.each($scope.aptForm.$error.required, function(index, value) {
-				// $scope.errorLog.apt_info[]
-			})
-		}
+		if (_.isEmpty(response.alerts)) delete response.alerts;
+		if (_.isEmpty(response.warnings)) delete response.warnings;
+		return response;
 	}
 
 	function dataPrep() {
