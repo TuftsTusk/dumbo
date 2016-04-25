@@ -1,6 +1,7 @@
 <div id="single-post-view" ng-app="dumboApp" ng-controller="ViewCtrl" class="container-fluid wrapper" ng-init=init()>
     <div ng-if="listing.error">
-        JACKSON INSERT COOL PAGE NOT FOUND
+        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
+        <span>Loading...</span>
     </div>
     <div class="margin-top-bottom" ng-if="!listing.error">
         <div class="col-md-5" id="col-left">
@@ -21,14 +22,14 @@
             <p>{{listing.description}}</p>
 
             <div>
-                <button class="btn btn-primary">Contact Seller</button>
+                <a class="btn btn-primary" target="mailto" href="mailto:"+listing.email>Contact Seller</a>
                 <button class="btn btn-success">Place Order</button>
             </div>
         </div>
-        
+
 
 </div>
-    
+
 
 <script>
     $(document).ready(function () {

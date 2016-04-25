@@ -1,18 +1,19 @@
 <div ng-controller="GridCtrl" class="container-fluid" ng-init="init()">
     <div ng-if="listings.error">
-        No Listings error graphic
+        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
+        <span>Loading...</span>
     </div>
     <div class="col-md-3"></div>
     <div class="grid col-md-9" ng-if="!listings.error">
-        <div ng-repeat="listing in listings" class="item">
+        <div ng-repeat="data in listings" class="item">
 
-            <img ng-src={{listing.image_gallery_link[0]}}>
-            <h3>{{listing.title}}</h3>
+            <img ng-src={{data.listing.image_gallery_link[0]}}>
+            <h3>{{data.listing.title}}</h3>
 
 
-            <p class="truncate">{{listing.description}}</p>
-            <h4>${{listing.price}}</h4>
-            <a class="btn btn-primary right" href="#/listing/{{listing._id}}">View Item</a>
+            <p class="truncate">{{data.listing.description}}</p>
+            <h4>${{data.listing.price}}</h4>
+            <a class="btn btn-primary right" href="#/listing/{{data.listing._id}}">View Item</a>
         </div>
     </div>
 </div>

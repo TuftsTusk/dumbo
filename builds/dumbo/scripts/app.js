@@ -64,7 +64,7 @@ var app = angular
 		templateUrl: 'views/about.html'
 	})
 	.when('/listing', {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/grid_view.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
@@ -97,7 +97,7 @@ var app = angular
 		}
 	})
 	.when('/listing/:id', {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/view_post.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
@@ -133,7 +133,7 @@ var app = angular
 		}
 	})
 	.when('/misc' , {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/grid_view.html',
 		resolve: {
 			loggedIn: requireLogin
 		}

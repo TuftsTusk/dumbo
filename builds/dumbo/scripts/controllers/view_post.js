@@ -28,7 +28,6 @@ angular.module('dumboApp')
                     $scope.listing = response.data.listing;
                     $scope.listing.error = false;
                 }, function (response) {
-                    console.log("ERROR");
                     $scope.listing.error = true;
                 })
 
