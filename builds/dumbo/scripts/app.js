@@ -16,7 +16,7 @@ underscore.factory('_', function () {
 
 var requireLogin = function(userService, $location, ngToast){
 	if (!userService.isLoggedin()){
-		$location.path('/login');
+		$location.path('/login/existing');
 		ngToast.create({
 		  className: 'info',
 		  content: 'Please login or register to continue',
