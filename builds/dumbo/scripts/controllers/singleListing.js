@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'subletListing';
@@ -283,6 +283,21 @@ angular.module('dumboApp')
 		}
 
 	}
+
+	$scope.getAddress = function(address){
+		if(_.isObject(address)){
+			var formatted_address = address.getPlace().formatted_address;
+			return formatted_address;
+		} else {
+			return address;
+		}
+	}
+  // /bind to places api
+  // scope.$on('gmPlacesAutocomplete::placeChanged', function(){
+  //     var location = $scope.autocomplete.getPlace().formatted_address;
+  //     $scope.listingData.apt_info.address = location;
+  //  $scope.$apply();
+  // });
 
 
 	function prepareView(data) {

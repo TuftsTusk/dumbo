@@ -33,7 +33,7 @@
 				<fieldset class="formGroup">
 					<label ng-if="editing">What is your address?</label>
 					<label ng-if="!editing">Address</label>
-					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
+					<input ng-blur="apt.address = getAddress(this.apt.address); save()" gm-places-autocomplete ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label ng-if="editing">How many people live there?</label>
