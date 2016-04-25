@@ -55,7 +55,7 @@ angular
 		templateUrl: 'views/coming_soon.html'
 	})
 	.when('/me/listing', {
-		templateUrl: ''
+		templateUrl: 'views/myListings.html'
 	})
 	.when('/subletListing', {
 		redirectTo: '/subletListing/new'

@@ -13,4 +13,7 @@ angular.module('dumboApp')
   this.getListingById = function(id) {
     return $http.get(host + listingPath + '/' + id);
   }
+  this.getMeListing = function(id) {
+    return $http.get(host + '/me' + listingPath);
+  }
 });
