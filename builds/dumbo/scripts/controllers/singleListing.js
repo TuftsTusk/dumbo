@@ -160,7 +160,7 @@ angular.module('dumboApp')
 			console.log($scope.listingData);
 			console.log('saving');
 			updateSavedData();
-			updateErrorLog();
+			// updateErrorLog();
 		}
 	}
 
@@ -198,12 +198,11 @@ angular.module('dumboApp')
 	$scope.loadRoom = function(index) {
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
-			$scope.room = $scope.listingData.bedrooms[index];
 			$scope.selectedRoom = index;
 		} else {
-			$scope.room = {};
 			$scope.selectedRoom = 0;
 		}
+		$scope.room = $scope.listingData.bedrooms[index];
 	}
 
 	$scope.newRoom = function() {
@@ -214,6 +213,8 @@ angular.module('dumboApp')
 			photos: []
 		};
 		$scope.listingData.bedrooms.push(r);
+		length = $scope.listingData.bedrooms.length;
+
 		if (length == 1) {
 			$scope.loadRoom(0);
 		}
@@ -372,21 +373,21 @@ angular.module('dumboApp')
 		localStorageService.set(localStorageKey, localStorageObject);
 	};
 
-	function updateErrorLog() {
-		if ($scope.rForm.$invalid) {
-			var roomName = $scope.rForm.title.$modelValue;
-			var errors = [];
-			$.each($scope.rForm.$error, function(index, value) {
-				errors.push(value[0].$name);
-			})
-			console.log($scope.errorLog.bedrooms);
-		}
-		if ($scope.aptForm.$invalid) {
-			$.each($scope.aptForm.$error.required, function(index, value) {
-				// $scope.errorLog.apt_info[]
-			})
-		}
-	}
+	// function updateErrorLog() {
+	// 	if ($scope.rForm.$invalid) {
+	// 		var roomName = $scope.rForm.title.$modelValue;
+	// 		var errors = [];
+	// 		$.each($scope.rForm.$error, function(index, value) {
+	// 			errors.push(value[0].$name);
+	// 		})
+	// 		console.log($scope.errorLog.bedrooms);
+	// 	}
+	// 	if ($scope.aptForm.$invalid) {
+	// 		$.each($scope.aptForm.$error.required, function(index, value) {
+	// 			// $scope.errorLog.apt_info[]
+	// 		})
+	// 	}
+	// }
 
 	function dataPrep() {
 		$scope.apt = $scope.listingData.apt_info;
