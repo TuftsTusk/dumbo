@@ -1,5 +1,10 @@
 <div ng-controller="MyListingsCtrl" class="container-fluid" id="myListings">
+	<h3>Published posts</h3>
 	<div ng-repeat="listing in listings">
 		<a href="#/{{listing.type}}/{{listing._id}}">{{listing.title || listing.apt_info.address}}</a>
+	</div>
+	<h3>Drafts</h3>
+	<div ng-repeat="draft in drafts">
+		<a href="#/SubletListing/new">{{draft.title || draft.apt_info.address}}</a>
 	</div>
 </div>
