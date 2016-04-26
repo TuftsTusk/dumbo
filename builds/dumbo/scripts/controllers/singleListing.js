@@ -548,6 +548,7 @@ angular.module('dumboApp')
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
 		}
+		if ($scope.editing) validateData();
 	}
 
 
