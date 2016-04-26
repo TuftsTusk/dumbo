@@ -6,18 +6,26 @@
 			<span ng-if="!newListing">{{listingData.apt_info.address}}</span>
 		</div>
 		<div id="actions" ng-if="owner" class="block highlight">
-			<a href="" ng-if="editing" ng-click="submitApt()">Save</a>
-			<a href="" ng-if="editing" ng-click="redirectTo('preview')">Preview</a>
+			<a href="" ng-if="editing" ng-click="saveButton()">Save</a>
+			<a href="" ng-if="editing" class="floatRight" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a>
 			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
+			<a href="" ng-if="!editing && owner" ng-click="submitApt()">Publish</a>
 		</div>
+
 	</div>
-
 </div>
+<uib-alert type="danger" ng-if="showAlert" close="closeAlert()">You are missing some required fields. Please fill them out before continuing.</uib-alert>
 
-<ul class="sideNav col-md-2 panel panel-default">
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='general'}" ng-click="setCurrentPage('general')">Apartment Info</a>
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='bedrooms'}" ng-click="setCurrentPage('bedrooms')">Bedrooms</a>
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='photos'}" ng-click="setCurrentPage('photos')">Photos of Shared Spaces</a>
+<ul class="sideNav col-md-2 list-group">
+	<a href="" class="list-group-item" ng-class="{active: currentPage=='general', 'list-group-item-danger': errorLog.apt_info}" ng-click="setCurrentPage('general')">
+		Apartment Info
+	</a>
+	<a href="" class="list-group-item" ng-class="{active: currentPage=='bedrooms', 'list-group-item-danger': errorLog.bedrooms}" ng-click="setCurrentPage('bedrooms')">
+		Bedrooms
+	</a>
+	<a href="" class="list-group-item" ng-class="{active: currentPage=='photos', 'list-group-item-danger': errorLog.common_area_photos}" ng-click="setCurrentPage('photos')">
+		Photos of Shared Spaces
+	</a>
 </ul>
 
 <div class="container pageContent">
@@ -64,6 +72,7 @@
 				</fieldset>
 			</div>
 		</div>
+		<!-- <pre>apt = {{aptForm | json}}</pre> -->
 	</form>
 
 </div>
@@ -81,7 +90,7 @@
 	<div id="roomList" class="col-md-5 col-lg-4">
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom}" ng-click="switchRoom(room, $index)">
+				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom, 'list-group-item-danger': errorLog.bedrooms && errorLog.bedrooms[$index]}" ng-click="switchRoom(room, $index)">
 					<div class="listImage" ng-style="{'background-image':'url(' + rm.photos[0].photo_url + ')'}">
 					</div>
 					<div class="pad">
@@ -125,7 +134,7 @@
 							</div>
 						</a>
 						<div ng-if="!editing || room.photos.length || uploading">
-							<div class="imageHolder">
+							<div class="imageHolder" ng-if="editing || room.photos.length">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
@@ -142,7 +151,6 @@
 								<button class="btn btn-default" ng-click="initiatePhotoUpload('room')">Add more photos</button>
 							</div>
 						</div>
-						<div class="errorMsg" ng-show="!room.photos.length">Please upload at least one photo.</div>
 					</div>
 					<fieldset class="formGroup">
 						<label>Rent per month</label>
@@ -199,7 +207,7 @@
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
 				<h2>Photos of shared spaces</h2>
-				<h4 ng-if="editing" class="panel-subtitle">Add at least one photo for each space.</h4>
+				<h4 ng-if="editing" class="panel-subtitle">Add one or more photos for each space.</h4>
 				<h4 ng-if="!editing" class="panel-subtitle">The areas you will be sharing with other tenants.</h4>
 			</div>
 			<div class="panel-body">
@@ -213,7 +221,7 @@
 							</div>
 						</a>
 						<div ng-if="!editing || listingData.common_area_photos[field.variable].length || (uploading && currentUploadType == field.variable)">
-							<div class="imageHolder">
+							<div class="imageHolder" ng-if="editing || room.photos.length">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
@@ -230,7 +238,6 @@
 								<button class="btn btn-default" ng-click="initiatePhotoUpload(field.variable)">Add more photos</button>
 							</div>
 						</div>
-						<div class="errorMsg" ng-show="!listingData.common_area_photos[field.variable].length && field.variable != 'other'">Please upload at least one photo.</div>
 
 					</div>
 				</fieldset>

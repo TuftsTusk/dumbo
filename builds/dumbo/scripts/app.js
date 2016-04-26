@@ -71,6 +71,7 @@ var app = angular
 		}
 	})
 	.when('/me/listing', {
+<<<<<<< HEAD
 		templateUrl: '',
 		resolve: {
 			loggedIn: requireLogin
@@ -96,6 +97,18 @@ var app = angular
 		resolve: {
 			loggedIn: requireLogin
 		}
+=======
+		templateUrl: 'views/myListings.html'
+	})
+	.when('/SubletListing', {
+		redirectTo: '/SubletListing/new'
+	})
+	.when('/SubletListing/:action', {
+		templateUrl: 'views/singleListing.html'
+	})
+	.when('/SubletListing/:id/:action', {
+		templateUrl: 'views/singleListing.html'
+>>>>>>> userlistings
 	})
 	.when('/listing/:id', {
 		templateUrl: 'views/coming_soon.html',
