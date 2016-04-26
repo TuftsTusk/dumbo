@@ -98,7 +98,7 @@
 						<i class="rightIcon fa fa-angle-right fa-lg"></i>
 					</div>
 				</button>
-				<button ng-if="editing" type="button" class="list-group-item" ng-click="newRoom()">
+				<button ng-if="editing" type="button" class="list-group-item nofocus" ng-class="{'list-group-item-danger': errorLog.bedrooms == true}" ng-click="newRoom()">
 					<img src="images/skinnyplus.svg" class="isizeMed">
 					Add room
 				</button>

@@ -509,6 +509,10 @@ angular.module('dumboApp')
 			if (roomValidation != null) bedroomError = true;
 			$scope[logType].bedrooms.push(roomValidation);
 		});
+		if (tempListingData.bedrooms.length == 0) {
+			bedroomError = true;
+			$scope[logType].bedrooms = true;
+		}
 		if (!bedroomError) $scope[logType].bedrooms = null;
 	}
 
