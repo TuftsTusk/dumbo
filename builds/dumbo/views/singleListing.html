@@ -34,6 +34,10 @@
 					<label ng-if="editing">What is your address?</label>
 					<label ng-if="!editing">Address</label>
 					<input ng-blur="apt.address = getAddress(this.apt.address); save()" gm-places-autocomplete ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
+					<ui-gmap-google-map ng-hide="apt.address==null" center='map.center' zoom='map.zoom'>
+						<ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+        				</ui-gmap-marker>
+					</ui-gmap-google-map>
 				</fieldset>
 				<fieldset class="formGroup">
 					<label ng-if="editing">How many people live there?</label>

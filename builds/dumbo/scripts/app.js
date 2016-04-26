@@ -42,7 +42,8 @@ var app = angular
 	'ui.bootstrap',
 	'angular-loading-bar',
 	'ngToast',
-	'gm'
+	'gm',
+	'uiGmapgoogle-maps'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
@@ -150,7 +151,14 @@ var app = angular
 	});
 	$httpProvider.defaults.withCredentials = true;
 	$httpProvider.interceptors.push('authInterceptor');
-});
+})
+.config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        //    key: 'your api key',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+    });
+})
 
 
 app.config(['ngToastProvider', function(ngToast) {
