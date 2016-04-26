@@ -225,7 +225,7 @@ angular.module('dumboApp')
 
 	$scope.save = function() {
 		if ($scope.editing) {
-			console.log($scope.listingData);
+			console.log(JSON.stringify($scope.listingData));
 			console.log('saving');
 			updateSavedData();
 			validateData();
