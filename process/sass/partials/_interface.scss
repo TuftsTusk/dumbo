@@ -31,25 +31,42 @@
 		font-weight: bold;
 	}
 	.block {
-		font-size: 1.2em;
-		padding: 15px 15px;
+		font-size: 16px;
+		padding: 10px 15px;
 		border-color: black;
 		display: inline-block;
 		float: left;
+
+		&.text {
+			padding: 15px 15px;
+		}
 	}
 	.first {
 		margin-left: -15px;
+		// padding: 20px 15px;
 	}
 	.highlight {
 		margin-right: -25px;
-		> * {
+		float: left;
+
+		* {
 			color: white;
-			padding: 0 10px;
+		}
+
+		.btn {
+			padding: 5px 15px;
+			font-size: 16px;
 		}
 	}
 }
 .borderRight {
 	border-right: 1px solid;
+}
+.paddingRight {
+	padding-right: 25px !important;
+}
+.paddingLeft {
+	padding-left: 10px !important;
 }
 .floatLeft {
 	float:left;

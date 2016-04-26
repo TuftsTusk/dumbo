@@ -1,15 +1,15 @@
 <div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing" ng-init="init()">
 <div class="row headerbar">
 	<div class="container-fluid">
-		<div id="label" class="block first borderRight">
+		<div id="label" class="block text first borderRight paddingRight">
 			<span ng-if="newListing">New Sublet Listing</span>
 			<span ng-if="!newListing">{{listingData.apt_info.address}}</span>
 		</div>
-		<div id="actions" ng-if="owner" class="block highlight">
-			<a href="" ng-if="editing" ng-click="saveButton()">Save</a>
-			<a href="" ng-if="editing" class="floatRight" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a>
-			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
-			<a href="" ng-if="!editing && owner" ng-click="submitApt()">Publish</a>
+		<div id="actions" ng-if="owner" class="highlight paddingLeft">
+			<div class="block text" ng-if="editing"><a href="" ng-click="saveButton()">Save</a></div>
+			<div class="block" ng-if="editing"><a href="" class=" btn btn-primary btn-lg" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a></div>
+			<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
+			<div class="block" ng-if="!editing && owner"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
 		</div>
 
 	</div>
