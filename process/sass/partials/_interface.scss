@@ -5,6 +5,10 @@
 	outline: none !important;
 }
 
+.list-group-item.nofocus:focus {
+	background-color: #fff;
+}
+
 .btn {
 	&.btn-tertiary {
 		background: white;
