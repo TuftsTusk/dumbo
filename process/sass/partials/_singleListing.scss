@@ -112,9 +112,6 @@
 				position: relative;
 				overflow: hidden;
 
-				&.active {
-					background: $blue;
-				}
 				.listImage {
 					@extend .scaledImage;
 					height: 100%;

@@ -7,34 +7,25 @@
 		</div>
 		<div id="actions" ng-if="owner" class="block highlight">
 			<a href="" ng-if="editing" ng-click="submitApt()">Save</a>
-			<div class="flyoutWrapper" style="display:inline-block">
-				<a href="" ng-if="editing" ng-click="redirectTo('preview')" ng-class="{disabled: !listingValidation.alert}">Preview</a>
-
-				<div class="toggleFlyout hidden">
-					<div>
-						<div class="flyArrowWrapper">
-							<div class="flyArrow">
-							</div>
-						</div>
-					</div>
-					<div class="flyContent">
-						hi
-					</div>
-				</div>
-			</div>
-			<!-- <a href="" ng-if="editing" ng-click="redirectTo('preview')" ng-class="{disabled: !validListing}">Preview</a> -->
+			<a href="" ng-if="editing" class="floatRight" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a>
 			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
 			<a href="" ng-if="!editing && owner" ng-click="submitApt()">Publish</a>
 		</div>
 
 	</div>
 </div>
-<uib-alert type="danger" ng-if="showAlert" close="showAlert = false">hi</uib-alert>
+<uib-alert type="danger" ng-if="showAlert" close="closeAlert()">You are missing some required fields. Please fill them out before continuing.</uib-alert>
 
-<ul class="sideNav col-md-2 panel panel-default">
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='general'}" ng-click="setCurrentPage('general')">Apartment Info</a>
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='bedrooms'}" ng-click="setCurrentPage('bedrooms')">Bedrooms</a>
-	<a href="" class="sideNavItem" ng-class="{active: currentPage=='photos'}" ng-click="setCurrentPage('photos')">Photos of Shared Spaces</a>
+<ul class="sideNav col-md-2 list-group">
+	<a href="" class="list-group-item" ng-class="{active: currentPage=='general', 'list-group-item-danger': errorLog.apt_info}" ng-click="setCurrentPage('general')">
+		Apartment Info
+	</a>
+	<a href="" class="list-group-item" ng-class="{active: currentPage=='bedrooms', 'list-group-item-danger': errorLog.bedrooms}" ng-click="setCurrentPage('bedrooms')">
+		Bedrooms
+	</a>
+	<a href="" class="list-group-item" ng-class="{active: currentPage=='photos', 'list-group-item-danger': errorLog.common_area_photos}" ng-click="setCurrentPage('photos')">
+		Photos of Shared Spaces
+	</a>
 </ul>
 
 <div class="container pageContent">
@@ -99,7 +90,7 @@
 	<div id="roomList" class="col-md-5 col-lg-4">
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom}" ng-click="switchRoom(room, $index)">
+				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom, 'list-group-item-danger': errorLog.bedrooms && errorLog.bedrooms[$index]}" ng-click="switchRoom(room, $index)">
 					<div class="listImage" ng-style="{'background-image':'url(' + rm.photos[0].photo_url + ')'}">
 					</div>
 					<div class="pad">

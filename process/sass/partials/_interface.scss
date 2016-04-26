@@ -50,6 +50,9 @@
 .floatLeft {
 	float:left;
 }
+.floatRight {
+	float:right;
+}
 
 .sideNav {
 	background: $grey1;
@@ -58,17 +61,9 @@
 	// margin-right: 15px;
 	padding: 0;
 
-	.sideNavItem {
-		display: block;
-		padding: 10px;
-		padding-left: 15px;
-		color: $grey5;
+	.list-group-item {
 		font-size: 1.1em;
 		text-decoration: none;
-
-		&.active {
-			background: $grey2;
-		}
 	}
 }
 

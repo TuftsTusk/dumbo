@@ -6,11 +6,8 @@ angular.module('dumboApp')
 	var action = $routeParams.action;
 	var localStorageKey = 'SubletListing';
 
-	$scope.errorLog = {
-		apt_info: {},
-		bedrooms: [],
-		common_area_photos: {}
-	};
+	$scope.errorLog = {};
+	$scope.warningLog = {};
 
 	var emptyData = {
 		view: {
@@ -205,7 +202,13 @@ angular.module('dumboApp')
 	}
 
 
-
+	$scope.loadPreview = function() {
+		if ($scope.listingValidation.alert) {
+			$scope.showAlert = true;
+		} else {
+			$scope.redirectTo('preview');
+		}
+	}
 
 	$scope.redirectTo = function(path) {
 		var pathArr = $location.path().split('/');
@@ -284,6 +287,7 @@ angular.module('dumboApp')
 		if (length == 1) {
 			$scope.loadRoom(0);
 		}
+		$scope.save();
 	}
 
 	$scope.saveRoom = function() {
@@ -301,7 +305,19 @@ angular.module('dumboApp')
 
 	$scope.confirmDelete = function() {
 		if ($scope.editing) {
-			$('#roomForm .panel').addClass('formBlur');
+			var room = $scope.listingData.bedrooms[$scope.selectedRoom];
+			var empty = true;
+			$.each(room, function(key, value) {
+				if (key != 'title' && key != 'photos') {
+					empty = false;
+				}
+			});
+
+			if (!empty) {
+				$('#roomForm .panel').addClass('formBlur');
+			} else {
+				$scope.deleteRoom();
+			}
 		}
 	}
 	$scope.cancelDelete = function() {
@@ -309,6 +325,7 @@ angular.module('dumboApp')
 	}
 
 	$scope.deleteRoom = function() {
+
 		if ($scope.editing) {
 			$('#roomForm .panel').removeClass('formBlur');
 			var index = $scope.selectedRoom;
@@ -319,7 +336,9 @@ angular.module('dumboApp')
 			newIndex = length <= index ? index - 1 : index;
 
 			$scope.loadRoom(newIndex);
+			$scope.save();
 		}
+
 
 	}
 
@@ -439,48 +458,6 @@ angular.module('dumboApp')
 		localStorageService.set(localStorageKey, localStorageObject);
 	};
 
-	// function updateErrorLog() {
-	//
-	//
-	// 	if ($scope.rForm.$invalid) {
-	// 		var roomName = $scope.rForm.title.$modelValue;
-	// 		var errors = [];
-	// 		$.each($scope.rForm.$error, function(index, value) {
-	// 			errors.push(value[0].$name);
-	// 			$scope.listingValidation.alert = true;
-	// 		})
-	// 		// console.log($scope.errorLog.bedrooms);
-	// 	}
-	// 	if ($scope.aptForm.$invalid) {
-	// 		var aptErrors = {};
-	// 		$.each($scope.aptForm.$error.required, function(index, value) {
-	// 			aptErrors[value.$name] = {
-	// 				required: true,
-	// 				invalid: true
-	// 			};
-	// 			$scope.listingValidation.alert = true;
-	// 		})
-	// 		$scope.errorLog.apt_info = aptErrors;
-	// 	}
-	//
-	// 	// validate common area photos
-	// 	$.each($scope.listingData.common_area_photos, function(key, list) {
-	// 		if (list.length == 0 && key != 'other') {
-	// 			$scope.errorLog.common_area_photos[key] = {
-	// 				required: false,
-	// 				invalid: true
-	// 			};
-	// 			$scope.listingValidation.warning = true;
-	// 		} else {
-	// 			delete $scope.errorLog.common_area_photos[key];
-	// 		}
-	// 	});
-	//
-	// 	console.log($scope.errorLog);
-	//
-	//
-	// }
-
 
 	function validateData() {
 		$scope.listingValidation = {
@@ -489,44 +466,55 @@ angular.module('dumboApp')
 		};
 		var tempListingData = angular.copy($scope.listingData);
 
-		$scope.errorLog.apt_info = validateField('apt_info', tempListingData.apt_info);
-		$scope.errorLog.bedrooms = [];
-		$.each(tempListingData.bedrooms, function(index, room) {
-			$scope.errorLog.bedrooms.push(validateField('room', room));
-		});
-		$scope.errorLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos);
+		$scope.errorLog.apt_info = validateField('apt_info', tempListingData.apt_info, 'required');
+		validateBedrooms(tempListingData, 'required');
+		validateBedrooms(tempListingData, 'recommended');
+		$scope.errorLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos, 'required');
+		$scope.warningLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos, 'recommended');
 
 		console.log($scope.errorLog);
-		// apt_info
+		console.log($scope.warningLog);
 
+		var err = $scope.errorLog;
+		$scope.listingValidation.alert = (err.apt_info || err.bedrooms || err.common_area_photos) ? true : false;
 	}
 
-	function validateField(field, data) {
-		var response = {
-			alerts: {},
-			warnings: {}
-		};
-		$.each($scope.validation[field], function(key,value) {
+	function validateBedrooms(tempListingData, fieldType) {
+		var bedroomError = false;
+		var logType = (fieldType == 'required') ? 'errorLog' : (fieldType == 'recommended') ? 'warningLog' : 'BAD';
+		$scope[logType].bedrooms = [];
+		$.each(tempListingData.bedrooms, function(index, room) {
+			var roomValidation = validateField('room', room, fieldType);
+			if (roomValidation != null) bedroomError = true;
+			$scope[logType].bedrooms.push(roomValidation);
+		});
+		if (!bedroomError) $scope[logType].bedrooms = null;
+	}
 
-			// debug
-			// if (field == 'room' && key == 'photos') {
-			// 	console.log(key, ',' , value);
-			// 	console.log(data[key]);
-			// }
+	function validateField(field, inputData, fieldType) {
+
+		if (fieldType != 'required' && fieldType != 'recommended') {
+			console.log('ERROR');
+		}
+
+		var data = angular.copy(inputData);
+
+		var response = {};
+		$.each($scope.validation[field], function(key,value) {
 
 			// clean out undefined fields
 			if (data[key] == undefined) {
 				delete data[key];
 			}
 			if (!(key in data) || (Array.isArray(data[key]) && data[key].length == 0)) {
-				if (value.required) {
-					response.alerts[key] = true;
-				} else if (value.recommended) {
-					response.warnings[key] = true;
+
+				if (value[fieldType]) {
+					if (fieldType == 'required' || (fieldType == 'recommended' && !value['required'])) {
+						response[key] = true;
+					}
 				}
 			} else {
-				delete response.alerts[key];
-				delete response.warnings[key];
+				delete response[key];
 
 			}
 			if (key in data) delete data[key];
@@ -538,9 +526,15 @@ angular.module('dumboApp')
 			console.log('NOT EMPTY');
 			console.log(data);
 		}
-		if (_.isEmpty(response.alerts)) delete response.alerts;
-		if (_.isEmpty(response.warnings)) delete response.warnings;
+		if (_.isEmpty(response)) {
+			response = null;
+		}
+
 		return response;
+	}
+
+	$scope.closeAlert = function() {
+		$scope.showAlert = false;
 	}
 
 	function dataPrep() {
@@ -548,6 +542,7 @@ angular.module('dumboApp')
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
 		}
+		validateData();
 	}
 
 
