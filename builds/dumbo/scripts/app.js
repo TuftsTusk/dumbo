@@ -71,8 +71,7 @@ var app = angular
 		}
 	})
 	.when('/me/listing', {
-<<<<<<< HEAD
-		templateUrl: '',
+		templateUrl: 'views/myListings.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
@@ -80,35 +79,23 @@ var app = angular
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
-	.when('/subletListing', {
+	.when('/SubletListing', {
 		redirectTo: '/subletListing/new',
 		resolve: {
 			loggedIn: requireLogin
 		}
 	})
-	.when('/subletListing/:action', {
-		templateUrl: 'views/singleListing.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
-	.when('/subletListing/:id/:action', {
-		templateUrl: 'views/singleListing.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
-=======
-		templateUrl: 'views/myListings.html'
-	})
-	.when('/SubletListing', {
-		redirectTo: '/SubletListing/new'
-	})
 	.when('/SubletListing/:action', {
-		templateUrl: 'views/singleListing.html'
+		templateUrl: 'views/singleListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/SubletListing/:id/:action', {
-		templateUrl: 'views/singleListing.html'
->>>>>>> userlistings
+		templateUrl: 'views/singleListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/listing/:id', {
 		templateUrl: 'views/coming_soon.html',

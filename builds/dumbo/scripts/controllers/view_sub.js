@@ -42,13 +42,8 @@ angular.module('dumboApp')
 
                 $(".dates").html(format_start + "  -- <br>" + format_end);
 
-<<<<<<< HEAD
                 var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" ng-src=' + $scope.places[i].common_area_photos.living_room[0] + '/img></div><div class="col-sm-6"><h1>$' + $scope.places[i].bedrooms[0].rent + '</h1><p>' + $scope.places[i].apt_info.address + '</p> <a ng-href="#/subletListing/{{listing.user_id}}"><button class="btn btn-primary">View Listing</button></a></div>';
 
-=======
-                var contentstring = '<div class="col-sm-6"><img style="max-width:75px;margin-top:10px;" ng-src=' + $scope.places[i].common_area_photos.living_room[0] + '/img></div><div class="col-sm-6"><h1>$' + $scope.places[i].bedrooms[0].rent + '</h1><p>' + $scope.places[i].apt_info.address + '</p> <a ng-href="#/SubletListing/{{listing.user_id}}"><button class="btn btn-primary">View Listing</button></a></div>';
-         
->>>>>>> userlistings
 
                 markers.push(
                     [$scope.places[i].user_id, parseFloat($scope.places[i].apt_info.lat), parseFloat($scope.places[i].apt_info.lng), $scope.places[i].rent, $scope.places[i].common_area_photos.living_room[1], contentstring]
