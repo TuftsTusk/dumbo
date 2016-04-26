@@ -30,7 +30,7 @@
 
 <div class="container pageContent">
 <div id="generalScreen" class="page" ng-show="currentPage=='general'">
-	<form id="aptForm" class="tForm col-md-6" name="aptForm" novalidate >
+	<form id="aptForm" class="tForm col-md-6" name="aptForm" novalidate autocomplete="off" >
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
 				<h2>Basic information</h2>
@@ -106,7 +106,7 @@
 		</div>
 	</div>
 	<div class="col-md-6" ng-show="listingData.bedrooms.length > 0">
-		<form id="roomForm" class="tForm" name="rForm" novalidate>
+		<form id="roomForm" class="tForm" name="rForm" novalidate autocomplete="off">
 			<div class="panel panel-tusk p1">
 				<div class="formBlurBox">
 					<div class="formBlurMsg">
