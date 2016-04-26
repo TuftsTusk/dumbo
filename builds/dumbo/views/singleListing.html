@@ -6,7 +6,7 @@
 			<span ng-if="!newListing">{{listingData.apt_info.address}}</span>
 		</div>
 		<div id="actions" ng-if="owner" class="block highlight">
-			<a href="" ng-if="editing" ng-click="submitApt()">Save</a>
+			<a href="" ng-if="editing" ng-click="saveButton()">Save</a>
 			<a href="" ng-if="editing" class="floatRight" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a>
 			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
 			<a href="" ng-if="!editing && owner" ng-click="submitApt()">Publish</a>
@@ -134,7 +134,7 @@
 							</div>
 						</a>
 						<div ng-if="!editing || room.photos.length || uploading">
-							<div class="imageHolder">
+							<div class="imageHolder" ng-if="editing || room.photos.length">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
@@ -221,7 +221,7 @@
 							</div>
 						</a>
 						<div ng-if="!editing || listingData.common_area_photos[field.variable].length || (uploading && currentUploadType == field.variable)">
-							<div class="imageHolder">
+							<div class="imageHolder" ng-if="editing || room.photos.length">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
 									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>

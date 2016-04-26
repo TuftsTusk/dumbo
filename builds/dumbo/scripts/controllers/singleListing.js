@@ -191,6 +191,7 @@ angular.module('dumboApp')
 		} else if (action == 'preview') {
 			$scope.editing = false;
 			$scope.owner = true;
+			loadSavedData();
 		}
 		else {
 			// action is actually ID because there was no action
@@ -231,6 +232,11 @@ angular.module('dumboApp')
 			validateData();
 			// updateErrorLog();
 		}
+	}
+
+	$scope.saveButton = function() {
+		$scope.save();
+		SweetAlert.swal("Saved!", "Feel free to come back to this later.", "success");
 	}
 
 	$scope.submitApt = function() {
