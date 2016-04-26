@@ -166,7 +166,6 @@ angular.module('dumboApp')
 				// get listing data from server
 				listingDataService.getListingById(id).then(
 					function success(res){
-						console.log(res.data);
 						prepareView(res.data);
 					},
 					function failure(res){
@@ -382,6 +381,7 @@ angular.module('dumboApp')
 
 
 	function prepareView(data) {
+		console.log('data', data);
 		var listing = data.listing;
 		var owner = data.owner;
 		if (listing && listing.type == 'SubletListing') {
@@ -548,7 +548,6 @@ angular.module('dumboApp')
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
 		}
-		validateData();
 	}
 
 
