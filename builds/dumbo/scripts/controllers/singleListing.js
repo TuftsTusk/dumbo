@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $http) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'SubletListing';
@@ -162,7 +162,30 @@ angular.module('dumboApp')
 
 			// TODO: also retrieve listing if action is a UUID
 		if (id) {
-			if (action == 'edit' || action == 'view') {
+			// TESTING: remove this
+			if (id == 'usabilityTest') {
+
+				$http.get('usabilityTestData/sampleRoom.json').success(function(data) {
+					var form = data.listing;
+					if (form) {
+						$.each(form.bedrooms, function(index) {
+							$.each(form.bedrooms[index], function(key, value) {
+								if (key == 'date_start' || key == 'date_end') {
+									// TODO: different format
+									form.bedrooms[index][key] = new Date(value);
+								}
+							});
+						});
+					}
+					$scope.listingData = form;
+					console.log(data);
+					$scope.viewData = emptyData.view;
+					dataPrep();
+				});
+
+			}
+
+			else if (action == 'edit' || action == 'view') {
 				// get listing data from server
 				listingDataService.getListingById(id).then(
 					function success(res){
