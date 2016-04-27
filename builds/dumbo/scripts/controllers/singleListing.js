@@ -211,6 +211,7 @@ angular.module('dumboApp')
 			$scope.owner = true;
 			loadSavedData();
 		} else if (action == 'preview') {
+			$scope.previewing = true;
 			$scope.editing = false;
 			$scope.owner = true;
 			loadSavedData();

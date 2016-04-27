@@ -5,13 +5,15 @@
 			<span ng-if="newListing">New Sublet Listing</span>
 			<span ng-if="!newListing">{{listingData.apt_info.address}}</span>
 		</div>
-		<div id="actions" ng-if="owner" class="highlight paddingLeft">
-			<div class="block text" ng-if="editing"><a href="" ng-click="saveButton()">Save</a></div>
-			<div class="block" ng-if="editing"><a href="" class=" btn btn-primary btn-lg" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a></div>
-			<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
-			<div class="block" ng-if="!editing && owner"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
+		<div id="actions" class="highlight paddingLeft">
+			<div ng-if="owner">
+				<div class="block text" ng-if="editing"><a href="" ng-click="saveButton()">Save</a></div>
+				<div class="block" ng-if="editing"><a href="" class=" btn btn-primary btn-lg" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a></div>
+				<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
+				<div class="block" ng-if="!editing && owner"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
+			</div>
+			<div class="block" ng-if="!editing && !previewing"><a href="" class=" btn btn-primary btn-lg">Contact seller</a></div>
 		</div>
-
 	</div>
 </div>
 <uib-alert type="danger" ng-if="showAlert" close="closeAlert()">You are missing some required fields. Please fill them out before continuing.</uib-alert>
