@@ -6,8 +6,10 @@
 	}
 
 	.disabled {
-		color: $grey5;
-		text-decoration: none;
+		cursor: pointer;
+		background-color: $grey4;
+		border-color: $grey5;
+		pointer-events: all;
 	}
 
 	.photoUploadWrapper {

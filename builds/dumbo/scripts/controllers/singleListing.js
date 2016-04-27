@@ -506,6 +506,9 @@ angular.module('dumboApp')
 
 		var err = $scope.errorLog;
 		$scope.listingValidation.alert = (err.apt_info || err.bedrooms || err.common_area_photos) ? true : false;
+		if (!$scope.listingValidation.alert) {
+			$scope.showAlert = false;
+		}
 	}
 
 	function validateBedrooms(tempListingData, fieldType) {
