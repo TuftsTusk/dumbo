@@ -46,8 +46,8 @@
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label ng-if="editing">How many people live there?</label>
-					<label ng-if="!editing">Number of people that live there</label>
+					<label ng-if="editing">How many bedrooms?</label>
+					<label ng-if="!editing">Number of total bedrooms</label>
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >

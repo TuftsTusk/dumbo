@@ -17,8 +17,8 @@
 					}
 				],
 				"rent": 680,
-				"date_start": "2016-06-03T04:00:00.000Z",
-				"date_end": "2016-08-28T04:00:00.000Z",
+				"date_start": "2016-09-03T04:00:00.000Z",
+				"date_end": "2016-12-20T04:00:00.000Z",
 				"date_start_is_flexible": true,
 				"date_end_is_flexible": true
 			},
@@ -30,8 +30,8 @@
 					}
 				],
 				"rent": 680,
-				"date_start": "2016-06-01T04:00:00.000Z",
-				"date_end": "2016-08-31T04:00:00.000Z",
+				"date_start": "2016-09-06T04:00:00.000Z",
+				"date_end": "2016-12-12T04:00:00.000Z",
 				"date_end_is_flexible": true
 			},
 			{
@@ -42,8 +42,8 @@
 					}
 				],
 				"rent": 700,
-				"date_start": "2016-06-06T04:00:00.000Z",
-				"date_end": "2016-08-26T04:00:00.000Z",
+				"date_start": "2016-09-06T04:00:00.000Z",
+				"date_end": "2016-12-17T04:00:00.000Z",
 				"date_end_is_flexible": false,
 				"date_start_is_flexible": true
 			}
