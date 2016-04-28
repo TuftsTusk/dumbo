@@ -368,10 +368,6 @@ angular.module('dumboApp')
 		$('#photoUploadInput').click();
 		$scope.currentUploadType = type;
 		if (type == 'room') {
-			//probably don't need these checks, but for now
-			if ($scope.listingData.bedrooms[$scope.selectedRoom] == undefined) {
-				$scope.listingData.bedrooms[$scope.selectedRoom].photos = [];
-			}
 			$scope.currentUploadTarget = $scope.listingData.bedrooms[$scope.selectedRoom].photos;
 		} else {
 			$scope.currentUploadTarget = $scope.listingData.common_area_photos[type];
