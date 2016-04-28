@@ -319,6 +319,11 @@ angular.module('dumboApp')
 		$scope.save();
 	}
 
+	$scope.initializeRoom = function() {
+		$scope.newRoom();
+		$scope.loadRoom(0);
+	}
+
 	$scope.saveRoom = function() {
 		var index = $scope.selectedRoom;
 		if (!$scope.room.title) {
@@ -427,7 +432,6 @@ angular.module('dumboApp')
 			});
 
 			$scope.apt = $scope.listingData.apt_info;
-			$scope.loadRoom(0);
 
 			$scope.owner = owner;
 
@@ -578,6 +582,8 @@ angular.module('dumboApp')
 		$scope.apt = $scope.listingData.apt_info;
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
+		} else {
+			$scope.initializeRoom();
 		}
 		if ($scope.editing) validateData();
 	}
