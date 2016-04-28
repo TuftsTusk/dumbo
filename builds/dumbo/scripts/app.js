@@ -41,8 +41,7 @@ var app = angular
 	'underscore',
 	'ui.bootstrap',
 	'angular-loading-bar',
-	'ngToast',
-	'gm'
+	'ngToast'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
