@@ -65,10 +65,10 @@ var app = angular
 		templateUrl: 'views/about.html'
 	})
 	.when('/listing', {
-		templateUrl: 'views/coming_soon.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
+		templateUrl: 'views/grid_view.html',
+//		resolve: {
+//			loggedIn: requireLogin
+//		}
 	})
 	.when('/me/listing', {
 		templateUrl: 'views/myListings.html',
@@ -98,10 +98,10 @@ var app = angular
 		}
 	})
 	.when('/listing/:id', {
-		templateUrl: 'views/coming_soon.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
+		templateUrl: 'views/view_post.html',
+//		resolve: {
+//			loggedIn: requireLogin
+//		}
 	})
 	.when('/settings', {
 		redirectTo: '/settings/account',
@@ -134,7 +134,7 @@ var app = angular
 		}
 	})
 	.when('/misc' , {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/grid_view.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
