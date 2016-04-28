@@ -39,3 +39,14 @@
 #see_more{
     text-emphasis: underline;
 }
+
+#gridview{
+    .right{
+       
+        float: right;
+        @include clearfix;
+    }
+    .block{
+        display: block;
+    }
+}
