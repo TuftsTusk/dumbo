@@ -379,21 +379,6 @@ angular.module('dumboApp')
 
 	}
 
-	$scope.getAddress = function(address){
-		if(_.isObject(address)){
-			var formatted_address = address.getPlace().formatted_address;
-			return formatted_address;
-		} else {
-			return address;
-		}
-	}
-  // /bind to places api
-  // scope.$on('gmPlacesAutocomplete::placeChanged', function(){
-  //     var location = $scope.autocomplete.getPlace().formatted_address;
-  //     $scope.listingData.apt_info.address = location;
-  //  $scope.$apply();
-  // });
-
 
 	function prepareView(data) {
 		console.log('data', data);
