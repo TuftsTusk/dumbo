@@ -7,7 +7,7 @@
     <div class="grid col-md-9" ng-if="!listings.error">
         <div ng-repeat="data in listings" class="item">
 
-            <img ng-src={{data.listing.image_gallery_link[0]}}>
+            <img ng-src={{data.listing.photo_urls[0].photo_url}}>
             <h3>{{data.listing.title}}</h3>
 
 

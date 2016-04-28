@@ -65,9 +65,9 @@ var app = angular
 	})
 	.when('/listing', {
 		templateUrl: 'views/grid_view.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
+//		resolve: {
+//			loggedIn: requireLogin
+//		}
 	})
 	.when('/me/listing', {
 		templateUrl: '',
@@ -98,9 +98,9 @@ var app = angular
 	})
 	.when('/listing/:id', {
 		templateUrl: 'views/view_post.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
+//		resolve: {
+//			loggedIn: requireLogin
+//		}
 	})
 	.when('/settings', {
 		redirectTo: '/settings/account',
