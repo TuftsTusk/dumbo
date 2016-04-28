@@ -127,6 +127,9 @@ var app = angular
 	.when('/privacy' , {
 		templateUrl: 'views/privacy.html'
 	})
+    .when('/view', {
+        templateUrl: 'views/view_post.html'
+    })
 	.when('/books' , {
 		templateUrl: 'views/coming_soon.html',
 		resolve: {
@@ -145,6 +148,7 @@ var app = angular
 			loggedIn: requireLogin
 		}
 	})
+   
 	.otherwise({
 		templateUrl: '404.html'
 	});
