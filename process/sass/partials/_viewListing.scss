@@ -20,6 +20,18 @@
     }
 }
 
-.margin-top-bottom{
-    margin-top: 15px;
+
+
+#single-post-view{
+    padding-left: 100px;
+    padding-right: 100px;
+    background:$darkblue;
+    .pad5050{
+        background: white;
+        z-index: 1;
+        margin-top: 15px;
+    }
+    div{
+        background: white;
+    }
 }
