@@ -1,31 +1,113 @@
-#thumbnail{
-    a{
-        img{
-        width: 60px;
-        height:auto;
-        margin-bottom: 10%;
-    
-        
+#single-post-view {
+   
+    height: calc(100vh - 100px);
+    @media screen and (min-width: $break-medium) {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    @media screen and (max-width: $break-medium) and (min-width: $break-small) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    @media screen and (max-width: $break-small) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    #thumbnail {
+        a {
+            img {
+                width: 60px;
+                height: auto;
+                margin-bottom: 10%;
+            }
         }
-        
-       
     }
-    
-}
-
-#image-preview{
-    img{
-        max-height:300px;
-        max-width:400px;
+   
+    #image-preview {
+        @media screen and (min-width: $break-medium) {
+            img {
+                max-height: 100%;
+                max-width: 100%;
+                display: block;
+            }
+        }
+        @media screen and (max-width: $break-medium) and (min-width: $break-small) {
+            img {
+                max-height: 50%;
+                max-width: 50%;
+                display: block;
+            }
+        }
+        @media screen and (max-width: $break-small) {
+            img {
+                max-height: 50%;
+                max-width: 80%;
+                display: block;
+            }
+        }
     }
-}
-
-.margin-top-bottom{
-    margin-top: 15px;
-}
-
-.thumb {
-    &:hover{
-        cursor: pointer;
+    .margin-top-bottom {
+        margin-top: 15px;
+    }
+    .thumb {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .inner-padding {
+        min-height: 100%;
+        overflow: hidden;
+        padding: 15px;
+        background: white;
+        @media screen and (min-width: $break-medium) {
+            padding-bottom: 20%;
+            .left {
+                @include clearfix;
+                display: block;
+                 position: relative;
+                float: left;
+                width: 50%;
+            }
+            .right {
+                @include clearfix;
+                display: block;
+                position: relative;
+                float: right;
+                margin-left: 15px;
+                width: 45%;
+                h4 {
+                    max-height: 100px;
+                    overflow: hidden;
+                }
+            }
+        }
+        @media screen and (max-width: $break-medium) and (min-width: $break-small) {
+            .left {
+                @include clearfix;
+                display: block;
+                width: 100%;
+            }
+            .right {
+                @include clearfix;
+                display: block;
+                width: 100%;
+                h4 {
+                    max-height: 50px;
+                    overflow: hidden;
+                }
+            }
+        }
+        @media screen and (max-width: $break-small) {
+            .right {
+                @include clearfix;
+                display: inline-block;
+                float: right;
+                width: 100%;
+                h4 {
+                    max-height: 100px;
+                    overflow: visible;
+                }
+            }
+        }
     }
 }
