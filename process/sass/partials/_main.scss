@@ -35,6 +35,9 @@ body {
     margin: 0;
 }
 
+.white-wrap{
+    background: white;
+}
 html,
 body {
     height: 100%;
@@ -45,6 +48,7 @@ body {
     min-height: calc(100vh - 50px);
     /* equal to footer height */
     margin-bottom: -50px;
+    background-color: white;
 }
 
 .page-wrap:after {
