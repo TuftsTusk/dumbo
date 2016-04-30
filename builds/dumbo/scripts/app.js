@@ -70,7 +70,7 @@ var app = angular
 //		}
 	})
 	.when('/me/listing', {
-		templateUrl: '',
+		templateUrl: 'views/myListings.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
@@ -78,19 +78,19 @@ var app = angular
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
-	.when('/subletListing', {
+	.when('/SubletListing', {
 		redirectTo: '/subletListing/new',
 		resolve: {
 			loggedIn: requireLogin
 		}
 	})
-	.when('/subletListing/:action', {
+	.when('/SubletListing/:action', {
 		templateUrl: 'views/singleListing.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
 	})
-	.when('/subletListing/:id/:action', {
+	.when('/SubletListing/:id/:action', {
 		templateUrl: 'views/singleListing.html',
 		resolve: {
 			loggedIn: requireLogin

@@ -11,9 +11,10 @@ angular.module('dumboApp')
 			}
 			else {
 				var obj = {'photo_url': url};
-				$scope.save();
+
 				// $scope.isUploading = false;
 				$scope.currentUploadTarget.push(obj);
+				$scope.save();
 			}
 
 			$scope.numFilesToUpload--;
