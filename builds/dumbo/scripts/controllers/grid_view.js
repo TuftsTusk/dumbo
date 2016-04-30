@@ -29,7 +29,7 @@ angular.module('dumboApp')
                     $scope.listings.error = false;
 
                     $scope.currentPage = 0;
-                    $scope.pageSize = 12;
+                    $scope.pageSize = 3;
                   
                     $scope.numberOfPages = function () {
                         return Math.ceil($scope.listings.length / $scope.pageSize);

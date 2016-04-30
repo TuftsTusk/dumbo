@@ -2,45 +2,71 @@
 /* used for global elements */
 
 body {
-	font-family: $font-main;
+    font-family: $font-main;
 }
 
 *:focus {
-	outline: none;
+    outline: none;
 }
-
 /* Main marketing message and sign up button */
-.jumbotron {
-	text-align: center;
-	border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-	font-size: 21px;
-	padding: 14px 24px;
-}
- /* end main.scss */
 
-.footer{
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+/* end main.scss */
+
+.footer {
     text-align: center;
     margin: auto;
 }
 
+.white {
+    background-color: white;
+}
 /* sticky footer info */
+
 * {
-  margin: 0;
+    margin: 0;
 }
-html, body {
-  height: 100%;
+
+html,
+body {
+    height: calc(100vh - 50px);
 }
+
 .page-wrap {
-  min-height: 100%;
-  /* equal to footer height */
-  margin-bottom: -50px; 
+    min-height: 100%;
+    /* equal to footer height */
+    
+    background-color: $grey3;
+    margin-bottom: -50px;
+    /* blue edges styling */
+    
+    padding-top: 0px;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-bottom: 0px;
+    background-color: $darkblue;
+    /* end styling */
 }
+
+.white-wrap {
+    background-color: white;
+    min-height: 100%;
+}
+
 .page-wrap:after {
-  content: "";
-  display: block;
+    content: "";
+    display: block;
 }
-.footer, .page-wrap:after {
-  height:50px; 
+
+.footer,
+.page-wrap:after {
+    height: 50px;
 }

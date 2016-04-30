@@ -1,19 +1,20 @@
-<div ng-controller="GridCtrl" class="container-fluid" id="gridview" ng-init="init()">
+<div ng-controller="GridCtrl" class="container-fluid white-wrap" id="gridview" ng-init="init()">
+
     <div ng-if="listings.error">
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
     <div class="col-md-3"></div>
     <div class="right block">
-            <a class="btn" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
-                Previous
-            </a> {{currentPage+1}}/{{numberOfPages()}}
-            <a class="btn " ng-disabled="currentPage >= listings.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-                Next
-            </a>
-        </div>
+        <button class="btn" ng-disabled="currentPage <= 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button> {{currentPage+1}}/{{numberOfPages()}}
+        <button class="btn " ng-disabled="currentPage >= listings.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+        </button>
+    </div>
     <div class="grid col-md-9 block right" ng-if="!listings.error">
-        
+
         <div ng-repeat="data in listings | startFrom:currentPage*pageSize | limitTo:pageSize" class="item">
 
             <img ng-src={{data.listing.photo_urls[0].photo_url}}>
@@ -26,6 +27,7 @@
         </div>
 
     </div>
+
 </div>
 <!--
 

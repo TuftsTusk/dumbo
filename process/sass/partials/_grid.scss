@@ -3,17 +3,40 @@
     .item {
         float: left;
         margin-top: 15px;
-        @include imageGrid(3, 1%, 1%);
+        @media screen and (max-width: $break-small) {
+            @include imageGrid(1, 1%, 1%);
+        }
+        @media screen and (min-width: $break-small) and (max-width: $break-medium) {
+            @include imageGrid(2, 1%, 1%);
+        }
+        @media screen and (max-width: $break-medium) {
+            @include imageGrid(3, 1%, 1%);
+        }
+        
+        img{
+            @media screen and (max-width: $break-small) {
+            max-width: 50px;
+        }
+        @media screen and (min-width: $break-small) and (max-width: $break-medium) {
+            @include imageGrid(2, 1%, 1%);
+            max-width: 100px;
+        }
+        @media screen and (max-width: $break-medium) {
+            @include imageGrid(3, 1%, 1%);
+            max-width: 200px;
+        }
+        }
+        
         border: 1px solid lightgray;
         padding: 5px;
-        img {
-            display: block;
-            align-content: center;
-            max-width: 100%;
-            min-width: 200px;
-            min-height: 150px;
-            background: lightgray;
-        }
+        //        img {
+        //            display: block;
+        //            align-content: center;
+        //            max-width: 100%;
+        //            min-width: 200px;
+        //            min-height: 150px;
+        //            background: lightgray;
+        //        }
         h1,
         h2,
         h3,
@@ -23,9 +46,8 @@
             display: inline-block;
         }
         .right {
-            float: right;  
+            float: right;
         }
-        
     }
 }
 
@@ -36,17 +58,16 @@
     text-overflow: ellipsis;
 }
 
-#see_more{
+#see_more {
     text-emphasis: underline;
 }
 
-#gridview{
-    .right{
-       
+#gridview {
+    .right {
         float: right;
         @include clearfix;
     }
-    .block{
+    .block {
         display: block;
     }
 }

@@ -13,11 +13,11 @@
 
     <script src="https://use.typekit.net/yiw1fez.js"></script>
     <script>
-    try {
-        Typekit.load({
-            async: true
-        });
-    } catch (e) {}
+        try {
+            Typekit.load({
+                async: true
+            });
+        } catch (e) {}
     </script>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -62,11 +62,11 @@
                         <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
                         <ul class="nav navbar-nav">
 
-                            <li><a href="#/SubletListing" >Sublets<span class="sr-only">(current)</span></a>
+                            <li><a href="#/SubletListing">Sublets<span class="sr-only">(current)</span></a>
                             </li>
-                            <li><a href="#/books" >Books</a>
+                            <li><a href="#/books">Books</a>
                             </li>
-                            <li><a href="#/furniture" >Furniture</a>
+                            <li><a href="#/furniture">Furniture</a>
                             </li>
                             <li><a href="#/misc">Miscellaneous</a>
                             </li>
@@ -94,20 +94,20 @@
                             </div>
                             <div class="flyContent">
                                 <a href="#/SubletListing/new" class="flyButton">
-									<div ng-include="'../images/sublet.svg'" alt="sublet"></div>
-									Sublet
+                                    <div ng-include="'../images/sublet.svg'" alt="sublet"></div>
+                                    Sublet
                                 </a>
                                 <a href="#/newListing#BookListing" class="flyButton">
-									<div ng-include="'../images/book.svg'" alt="book"></div>
-									Book
+                                    <div ng-include="'../images/book.svg'" alt="book"></div>
+                                    Book
                                 </a>
                                 <a href="#/newListing#FurnitureListing" class="flyButton">
                                     <div ng-include="'../images/furniture.svg'" alt="furniture"></div>
-									Furniture
+                                    Furniture
                                 </a>
                                 <a href="#/newListing#MiscListing" class="flyButton">
                                     <div ng-include="'../images/everything_else2.svg'" alt="other"></div>
-									Other
+                                    Other
                                 </a>
                             </div>
                         </div>
@@ -126,10 +126,14 @@
                                 </div>
                             </div>
                             <ul class="flyContent">
-								<li><a href="#/me/listing" class="flyButton">My posts</a></li>
-								<li><a href="" class="flyButton">Saved listings</a></li>
-								<li><a href="#/settings" class="flyButton">Settings</a></li>
-								<li><a href="#/" ng-click="logout()" id="logout" class="flyButton">Log out</a></li>
+                                <li><a href="#/me/listing" class="flyButton">My posts</a>
+                                </li>
+                                <li><a href="" class="flyButton">Saved listings</a>
+                                </li>
+                                <li><a href="#/settings" class="flyButton">Settings</a>
+                                </li>
+                                <li><a href="#/" ng-click="logout()" id="logout" class="flyButton">Log out</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -140,7 +144,9 @@
         <!-- /.container-fluid -->
     </nav>
     <toast></toast>
-    <div id="angular-view" class="page-wrap" ng-view="">
+    <div class="blue-back page-wrap">
+        <div id="angular-view" class="white-wrap" ng-view="">
+        </div>
     </div>
 
 
@@ -156,53 +162,53 @@
 
 
 
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-aria/angular-aria.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-messages/angular-messages.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
-<script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
-<script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-<script src="bower_components/underscore/underscore-min.js"></script>
-<script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-<script src="bower_components/ngToast/dist/ngToast.min.js"></script>
-<script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
-<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="bower_components/ngToast/dist/ngToast.min.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
 
-<!-- TODO: static assets -->
-<script src="//maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <!-- TODO: static assets -->
+    <script src="//maps.googleapis.com/maps/api/js?libraries=places"></script>
 
-<script src="scripts/config.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/nav.js"></script>
-<script src="scripts/controllers/home.js"></script>
-<script src="scripts/controllers/newListing.js"></script>
-<script src="scripts/controllers/singleListing.js"></script>
-<script src="scripts/controllers/myListings.js"></script>
-<script src="scripts/controllers/about.js"></script>
-<script src="scripts/controllers/login.js"></script>
-<script src="scripts/controllers/grid_view.js"></script>
-<script src="scripts/controllers/settings.js"></script>
-<script src="scripts/controllers/view_post.js"></script>
-<script src="scripts/controllers/view_sub.js"></script>
-<script src="scripts/shared/userDataService.js"></script>
-<script src="scripts/shared/imageUploadService.js"></script>
-<script src="scripts/shared/authInterceptor.js"></script>
-<script src="scripts/shared/listingMap.js"></script>
-<script src="scripts/shared/listingDataService.js"></script>
-<script src="scripts/shared/userService.js"></script>
-<script src="scripts/shared/ngFileSelect.js"></script>
-<script src="scripts/shared/fileReader.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/nav.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/newListing.js"></script>
+    <script src="scripts/controllers/singleListing.js"></script>
+    <script src="scripts/controllers/myListings.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/grid_view.js"></script>
+    <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/controllers/view_post.js"></script>
+    <script src="scripts/controllers/view_sub.js"></script>
+    <script src="scripts/shared/userDataService.js"></script>
+    <script src="scripts/shared/imageUploadService.js"></script>
+    <script src="scripts/shared/authInterceptor.js"></script>
+    <script src="scripts/shared/listingMap.js"></script>
+    <script src="scripts/shared/listingDataService.js"></script>
+    <script src="scripts/shared/userService.js"></script>
+    <script src="scripts/shared/ngFileSelect.js"></script>
+    <script src="scripts/shared/fileReader.js"></script>
 
-<script src="scripts/shared/swal-forms.js"></script>
+    <script src="scripts/shared/swal-forms.js"></script>
 
 
 
