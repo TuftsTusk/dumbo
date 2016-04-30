@@ -1,12 +1,17 @@
 /********* _main.scss *********/
 /* used for global elements */
 
+
+#angular-view > div{
+    height: 100%;
+}
 body {
     font-family: $font-main;
    
 }
 .blue{
     background: $darkblue;
+    min-height: calc(100vh - 100px);
 }
 *:focus {
     outline: none;
@@ -23,6 +28,7 @@ body {
     padding: 14px 24px;
 }
 /* end main.scss */
+
 
 .footer {
     text-align: center;

@@ -1,10 +1,10 @@
-<div id="single-post-view" ng-app="dumboApp" ng-controller="ViewCtrl" class="container-fluid blue" ng-init=init()>
+<div id="single-post-view" ng-app="dumboApp" ng-controller="ViewCtrl" class="container-fluid blue block" ng-init=init()>
     <div ng-if="listing.error">
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
-    <div class="margin-top-bottom inner-padding" ng-if="!listing.error">
-        <div class="left" >
+    <div class="margin-top-bottom inner-padding " ng-if="!listing.error">
+        <div class="left">
             <div class="col-sm-2" id="thumbnail">
                 <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index"><img ng-src={{link.photo_url}}>
                 </a>
@@ -15,7 +15,7 @@
             </div>
 
         </div>
-        <div class="right" >
+        <div class="right">
             <h1>{{listing.title}}</h1>
             <h3>${{listing.price}} </h3>
             <h4>Description</h4>
@@ -25,19 +25,17 @@
                 <a class="btn btn-primary" ng-click="contactSeller()">Contact Seller</a>
             </div>
         </div>
+    </div>
 
 
-</div>
+    <script>
+        $(document).ready(function () {
+            $('.thumb').click(function () {
+                $('#view-pic').attr(
+                    'src', this.firstChild.src);
+            });
 
-
-<script>
-    $(document).ready(function () {
-        $('.thumb').click(function () {
-            $('#view-pic').attr(
-                'src', this.firstChild.src);
         });
-
-    });
-</script>
+    </script>
 
 </div>
