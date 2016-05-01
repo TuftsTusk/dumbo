@@ -119,7 +119,11 @@
 				</div>
 				<div class="panel-heading">
 					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
-					<button type="button" ng-if="editing" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="confirmDelete()"></button>
+
+					<div class="upperRightIcon">
+						<button type="button" ng-if="editing" class="fa fa-clone" title="Copy" ng-click="copyRoom()"></button>
+						<button type="button" ng-if="editing" class="fa fa-trash-o" title="Delete" ng-click="confirmDelete()"></button>
+					</div>
 					<div class="panel-title">
 						<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
 						<div class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">Please give your room a name.</div>

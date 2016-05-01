@@ -304,6 +304,7 @@ angular.module('dumboApp')
 	}
 
 	$scope.newRoom = function() {
+
 		var length = $scope.listingData.bedrooms.length;
 		var newIndex = length;
 		var r = {
@@ -316,6 +317,16 @@ angular.module('dumboApp')
 		if (length == 1) {
 			$scope.loadRoom(0);
 		}
+		$scope.save();
+	}
+
+	$scope.copyRoom = function() {
+		var r = angular.copy($scope.room);
+		var stringArr = r.title.split(' ');
+		if (stringArr && stringArr[0] == 'Room') {
+			r.title = 'Room ' + ($scope.listingData.bedrooms.length + 1);
+		}
+		$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
 		$scope.save();
 	}
 
