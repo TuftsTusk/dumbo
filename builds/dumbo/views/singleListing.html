@@ -92,7 +92,7 @@
 	<div id="roomList" class="col-md-5 col-lg-4">
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom, 'list-group-item-danger': errorLog.bedrooms && errorLog.bedrooms[$index]}" ng-click="switchRoom(room, $index)">
+				<button type="button" class="list-group-item panelGroupItem animate" ng-repeat="rm in listingData.bedrooms" ng-class="{'active': $index==selectedRoom, 'list-group-item-danger': errorLog.bedrooms && errorLog.bedrooms[$index]}" ng-click="switchRoom(room, $index)">
 					<div class="listImage" ng-style="{'background-image':'url(' + rm.photos[0].photo_url + ')'}">
 					</div>
 					<div class="pad">

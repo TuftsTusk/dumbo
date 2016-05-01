@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $timeout) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'SubletListing';
@@ -303,6 +303,8 @@ angular.module('dumboApp')
 		if (stringArr && stringArr[0] == 'Room') {
 			r.title = 'Room ' + ($scope.listingData.bedrooms.length + 1);
 		}
+		// var temp = $scope.listingData.bedrooms[$scope.selectedRoom];
+
 		$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
 		$scope.save();
 	}
@@ -328,13 +330,16 @@ angular.module('dumboApp')
 	$scope.confirmDelete = function() {
 		if ($scope.editing) {
 			var room = $scope.listingData.bedrooms[$scope.selectedRoom];
+			console.log($scope.selectedRoom);
 			var empty = true;
+			console.log(room);
 			$.each(room, function(key, value) {
-				if (key != 'title' && key != 'photos') {
+				if (key != 'title' && key != 'photos' && key != '$$hashKey') {
+					empty = false;
+				} else if (key == 'photos' && !(_.isEmpty(value))) {
 					empty = false;
 				}
 			});
-
 			if (!empty) {
 				$('#roomForm .panel').addClass('formBlur');
 			} else {
