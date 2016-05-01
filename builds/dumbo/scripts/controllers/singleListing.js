@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $http) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'SubletListing';
