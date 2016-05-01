@@ -186,11 +186,19 @@
 
 .upperRightIcon {
 	@extend .rightIcon;
+	top: 7px;
 	position: absolute;
 	right: 0;
 	padding: 0;
 	background: transparent;
 	border: 0;
+
+	* {
+		padding: 0;
+		background: transparent;
+		border: 0;
+		margin-left: 5px;
+	}
 }
 
 .isizeMed {

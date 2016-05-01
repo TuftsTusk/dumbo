@@ -113,10 +113,11 @@
 				text-align: left;
 				position: relative;
 				overflow: hidden;
+				z-index: 2;
 
 				.listImage {
 					@extend .scaledImage;
-					height: 100%;
+					height: $height;
 					width: 120px;
 					float: left;
 
@@ -155,6 +156,67 @@
 		display: none;
 		@media screen and (max-width: $break-medium) {
 			display: initial;
+		}
+	}
+
+	.animate.ng-enter,
+	.animate.ng-leave
+	{
+		position: relative;
+		display: block;
+		overflow: hidden;
+		text-overflow: clip;
+		white-space:nowrap;
+	}
+
+	.animate.ng-leave.animate.ng-leave-active,
+	.animate.ng-enter {
+		opacity: 0;
+		height: 0px;
+		right: 200px;
+	}
+
+	.animate.ng-enter.ng-enter-active,
+	.animate.ng-leave {
+		opacity: 1;
+		height: 88px;
+		right: 0;
+	}
+
+	.animate.ng-enter {
+		@include transition(height 300ms);
+		@include animation(fadeIn 300ms);
+	}
+
+	.animate.ng-leave {
+		@include animation(fadeOut 300ms);
+		@include transition(height 300ms);
+	}
+
+	.ng-move{
+	  border: 1px solid red;
+	}
+
+	@include keyframes(fadeIn) {
+		0% {
+			opacity: 0;
+			right: 100px;
+		}
+		100% {
+			right: 0;
+			opacity: 1;
+		}
+	}
+
+	@include keyframes(fadeOut) {
+		0% {
+			right: 0;
+			opacity: 1;
+
+		}
+		100% {
+			opacity: 0;
+			right: 100px;
 		}
 	}
 
