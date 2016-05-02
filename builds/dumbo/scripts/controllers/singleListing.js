@@ -299,10 +299,9 @@ angular.module('dumboApp')
 
 	$scope.copyRoom = function() {
 		var r = angular.copy($scope.room);
-		var stringArr = r.title.split(' ');
-		if (stringArr && stringArr[0] == 'Room') {
-			r.title = 'Room ' + ($scope.listingData.bedrooms.length + 1);
-		}
+
+		r.title = r.title + ' copy';
+
 		// var temp = $scope.listingData.bedrooms[$scope.selectedRoom];
 
 		$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
