@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $timeout) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'SubletListing';
@@ -188,6 +188,7 @@ angular.module('dumboApp')
 			$scope.owner = true;
 			loadSavedData();
 		} else if (action == 'preview') {
+			$scope.previewing = true;
 			$scope.editing = false;
 			$scope.owner = true;
 			loadSavedData();
@@ -225,7 +226,7 @@ angular.module('dumboApp')
 
 	$scope.save = function() {
 		if ($scope.editing) {
-			console.log($scope.listingData);
+			console.log(JSON.stringify($scope.listingData));
 			console.log('saving');
 			updateSavedData();
 			validateData();
@@ -280,6 +281,7 @@ angular.module('dumboApp')
 	}
 
 	$scope.newRoom = function() {
+
 		var length = $scope.listingData.bedrooms.length;
 		var newIndex = length;
 		var r = {
@@ -293,6 +295,22 @@ angular.module('dumboApp')
 			$scope.loadRoom(0);
 		}
 		$scope.save();
+	}
+
+	$scope.copyRoom = function() {
+		var r = angular.copy($scope.room);
+
+		r.title = r.title + ' copy';
+
+		// var temp = $scope.listingData.bedrooms[$scope.selectedRoom];
+
+		$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
+		$scope.save();
+	}
+
+	$scope.initializeRoom = function() {
+		$scope.newRoom();
+		$scope.loadRoom(0);
 	}
 
 	$scope.saveRoom = function() {
@@ -311,13 +329,16 @@ angular.module('dumboApp')
 	$scope.confirmDelete = function() {
 		if ($scope.editing) {
 			var room = $scope.listingData.bedrooms[$scope.selectedRoom];
+			console.log($scope.selectedRoom);
 			var empty = true;
+			console.log(room);
 			$.each(room, function(key, value) {
-				if (key != 'title' && key != 'photos') {
+				if (key != 'title' && key != 'photos' && key != '$$hashKey') {
+					empty = false;
+				} else if (key == 'photos' && !(_.isEmpty(value))) {
 					empty = false;
 				}
 			});
-
 			if (!empty) {
 				$('#roomForm .panel').addClass('formBlur');
 			} else {
@@ -399,7 +420,6 @@ angular.module('dumboApp')
 			});
 
 			$scope.apt = $scope.listingData.apt_info;
-			$scope.loadRoom(0);
 
 			$scope.owner = owner;
 
@@ -479,6 +499,9 @@ angular.module('dumboApp')
 
 		var err = $scope.errorLog;
 		$scope.listingValidation.alert = (err.apt_info || err.bedrooms || err.common_area_photos) ? true : false;
+		if (!$scope.listingValidation.alert) {
+			$scope.showAlert = false;
+		}
 	}
 
 	function validateBedrooms(tempListingData, fieldType) {
@@ -547,6 +570,8 @@ angular.module('dumboApp')
 		$scope.apt = $scope.listingData.apt_info;
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
+		} else {
+			$scope.initializeRoom();
 		}
 		if ($scope.editing) validateData();
 	}

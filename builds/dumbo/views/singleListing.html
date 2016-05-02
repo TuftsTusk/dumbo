@@ -1,17 +1,19 @@
 <div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing" ng-init="init()">
 <div class="row headerbar">
 	<div class="container-fluid">
-		<div id="label" class="block first borderRight">
+		<div id="label" class="block text first borderRight paddingRight">
 			<span ng-if="newListing">New Sublet Listing</span>
 			<span ng-if="!newListing">{{listingData.apt_info.address}}</span>
 		</div>
-		<div id="actions" ng-if="owner" class="block highlight">
-			<a href="" ng-if="editing" ng-click="saveButton()">Save</a>
-			<a href="" ng-if="editing" class="floatRight" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a>
-			<a href="" ng-if="!editing && owner" ng-click="redirectTo('edit')">Edit</a>
-			<a href="" ng-if="!editing && owner" ng-click="submitApt()">Publish</a>
+		<div id="actions" class="highlight paddingLeft">
+			<div ng-if="owner">
+				<div class="block text" ng-if="editing"><a href="" ng-click="saveButton()">Save</a></div>
+				<div class="block" ng-if="editing"><a href="" class=" btn btn-primary btn-lg" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a></div>
+				<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
+				<div class="block" ng-if="!editing && owner"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
+			</div>
+			<div class="block" ng-if="!editing && !previewing"><a href="" class=" btn btn-primary btn-lg">Contact seller</a></div>
 		</div>
-
 	</div>
 </div>
 <uib-alert type="danger" ng-if="showAlert" close="closeAlert()">You are missing some required fields. Please fill them out before continuing.</uib-alert>
@@ -30,7 +32,7 @@
 
 <div class="container pageContent">
 <div id="generalScreen" class="page" ng-show="currentPage=='general'">
-	<form id="aptForm" class="tForm col-md-6" name="aptForm" novalidate >
+	<form id="aptForm" class="tForm col-md-6" name="aptForm" novalidate autocomplete="off" >
 		<div class="panel panel-tusk">
 			<div class="panel-heading">
 				<h2>Basic information</h2>
@@ -44,8 +46,8 @@
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label ng-if="editing">How many people live there?</label>
-					<label ng-if="!editing">Number of people that live there</label>
+					<label ng-if="editing">How many bedrooms total?</label>
+					<label ng-if="!editing">Total number of bedrooms</label>
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >
@@ -90,7 +92,7 @@
 	<div id="roomList" class="col-md-5 col-lg-4">
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
-				<button type="button" class="list-group-item panelGroupItem" ng-repeat="rm in listingData.bedrooms track by $index" ng-class="{'active': $index==selectedRoom, 'list-group-item-danger': errorLog.bedrooms && errorLog.bedrooms[$index]}" ng-click="switchRoom(room, $index)">
+				<button type="button" class="list-group-item panelGroupItem animate" ng-repeat="rm in listingData.bedrooms" ng-class="{'active': $index==selectedRoom, 'list-group-item-danger': errorLog.bedrooms && errorLog.bedrooms[$index]}" ng-click="switchRoom(room, $index)">
 					<div class="listImage" ng-style="{'background-image':'url(' + rm.photos[0].photo_url + ')'}">
 					</div>
 					<div class="pad">
@@ -106,7 +108,7 @@
 		</div>
 	</div>
 	<div class="col-md-6" ng-show="listingData.bedrooms.length > 0">
-		<form id="roomForm" class="tForm" name="rForm" novalidate>
+		<form id="roomForm" class="tForm" name="rForm" novalidate autocomplete="off">
 			<div class="panel panel-tusk p1">
 				<div class="formBlurBox">
 					<div class="formBlurMsg">
@@ -117,7 +119,11 @@
 				</div>
 				<div class="panel-heading">
 					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
-					<button type="button" ng-if="editing" class="upperRightIcon fa fa-trash-o fa-lg" ng-click="confirmDelete()"></button>
+
+					<div class="upperRightIcon">
+						<button type="button" ng-if="editing" class="fa fa-clone" title="Copy" ng-click="copyRoom()"></button>
+						<button type="button" ng-if="editing" class="fa fa-trash-o" title="Delete" ng-click="confirmDelete()"></button>
+					</div>
 					<div class="panel-title">
 						<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
 						<div class="errorMsg" ng-show="rForm.title.$error.required && rForm.title.$touched">Please give your room a name.</div>
