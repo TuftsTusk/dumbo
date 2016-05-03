@@ -1,31 +1,60 @@
-<div id="single-post-view" ng-app="dumboApp" ng-controller="ViewCtrl" class="container-fluid blue block" ng-init=init()>
+<div id="single-post-view" ng-app="dumboApp" ng-controller="ViewCtrl" class="container-fluid carddemoBasicUsage blue block" ng-init=init()>
     <div ng-if="listing.error">
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
     <div class="margin-top-bottom inner-padding " ng-if="!listing.error">
         <div class="left">
-            <div class="col-sm-2" id="thumbnail">
-                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index"><img ng-src={{link.photo_url}}>
-                </a>
 
-            </div>
-            <div class="col-sm-10" id="image-preview">
-                <img id="view-pic" ng-src={{source}}>
-            </div>
 
         </div>
-        <div class="right">
-            <h1>{{listing.title}}</h1>
-            <h3>${{listing.price}} </h3>
-            <h4>Description</h4>
-            <p>{{listing.description}}</p>
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <div flex-xs="" flex-gt-xs="50" layout="column">
+                <md-card>
+                    <div class="col-sm-2" id="thumbnail">
+                        <a class="img-thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index"><img ng-src={{link.photo_url}}>
+                        </a>
 
-            <div>
-                <a class="btn btn-primary" ng-click="contactSeller()">Contact Seller</a>
+                    </div>
+                    <div class="col-sm-10" id="image-preview">
+                        <img class="img-large" ng-src={{source}}>
+                    </div>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{listing.title}}</span>
+                            <span class="md-subhead">{{listing.description}}</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-lg card-media"><img id="view-pic" class="img-large" ng-src={{source}}>
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button>Action 1</md-button>
+                        <md-button>Action 2</md-button>
+                    </md-card-actions>
+                </md-card>
+                <div class="right">
+                    <h1>{{listing.title}}</h1>
+                    <h3>${{listing.price}} </h3>
+                    <h4>Description</h4>
+                    <p>{{listing.description}}</p>
+
+                    <div>
+                        <a class="btn btn-primary" ng-click="contactSeller()">Contact Seller</a>
+                    </div>
+                </div>
             </div>
-        </div>
+
+
+        </md-content>
+
     </div>
+
+    <!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
 
 
     <script>
@@ -37,5 +66,14 @@
 
         });
     </script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
 
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript">
+        /**
+         * You must include the dependency on 'ngMaterial'
+         */
+        angular.module('BlankApp', ['ngMaterial']);
+    </script>
 </div>
