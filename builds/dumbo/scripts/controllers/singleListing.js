@@ -578,6 +578,31 @@ angular.module('dumboApp')
 
 
 
+	//
+	// var ctrl = this;
+	// ctrl.dateRange = {};
+	//
+	// //ctrl scope functions
+	// ctrl.setDateConstraint = function () {
+	// 	if (ctrl.dateRange.startDate) {
+	// 		//next day should be min
+	// 		ctrl.dateRange.minDate = addDays(ctrl.dateRange.startDate, 1);
+	// 		//7 max days
+	// 		ctrl.dateRange.maxDate = addDays(ctrl.dateRange.startDate, 365);
+	// 	}
+	// }
+	//
+	// //private functions
+	// function addDays(date, days) {
+	// 	//make sure is date type
+	// 	var tmpDate = typeof (date) != 'Date' ? new Date(date) : date;
+	// 	tmpDate.setDate(tmpDate.getDate() + days);
+	// 	return tmpDate;
+	// }
+
+
+
+
 
 
 	//
