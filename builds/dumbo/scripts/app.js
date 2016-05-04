@@ -65,9 +65,15 @@ var app = angular
 	})
 	.when('/listing', {
 		templateUrl: 'views/grid_view.html',
-//		resolve: {
-//			loggedIn: requireLogin
-//		}
+		resolve: {
+			loggedIn: requireLogin
+		}
+	})
+	.when('/listing/:id/edit',{
+		templateUrl: 'views/newListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/me/listing', {
 		templateUrl: 'views/myListings.html',

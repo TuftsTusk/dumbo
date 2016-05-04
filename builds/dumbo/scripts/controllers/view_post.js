@@ -8,7 +8,7 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-    .controller('ViewCtrl', function ($scope, $http, $routeParams, listingDataService) {
+    .controller('ViewCtrl', function ($scope, $http, $routeParams, listingDataService, $location) {
         $scope.id = $routeParams.id;
 
 //        $http.get('/listing/' + $scope.id).then(function (result) {
@@ -72,6 +72,9 @@ angular.module('dumboApp')
 
             )
         });
+    }
+    $scope.editListing = function(){
+        $location.path('/listing/' + $scope.id + '/edit');
     }
 
 
