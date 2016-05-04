@@ -1,5 +1,8 @@
+.img-large {
+    max-width: 300px;
+}
+
 #single-post-view {
-   
     height: calc(100vh - 100px);
     @media screen and (min-width: $break-medium) {
         padding-left: 100px;
@@ -22,30 +25,29 @@
             }
         }
     }
-   
-//    #image-preview {
-//        @media screen and (min-width: $break-medium) {
-//            img {
-//                max-height: 100%;
-//                max-width: 100%;
-//                display: block;
-//            }
-//        }
-//        @media screen and (max-width: $break-medium) and (min-width: $break-small) {
-//            img {
-//                max-height: 50%;
-//                max-width: 50%;
-//                display: block;
-//            }
-//        }
-//        @media screen and (max-width: $break-small) {
-//            img {
-//                max-height: 50%;
-//                max-width: 80%;
-//                display: block;
-//            }
-//        }
-//    }
+    //    #image-preview {
+    //        @media screen and (min-width: $break-medium) {
+    //            img {
+    //                max-height: 100%;
+    //                max-width: 100%;
+    //                display: block;
+    //            }
+    //        }
+    //        @media screen and (max-width: $break-medium) and (min-width: $break-small) {
+    //            img {
+    //                max-height: 50%;
+    //                max-width: 50%;
+    //                display: block;
+    //            }
+    //        }
+    //        @media screen and (max-width: $break-small) {
+    //            img {
+    //                max-height: 50%;
+    //                max-width: 80%;
+    //                display: block;
+    //            }
+    //        }
+    //    }
     .margin-top-bottom {
         margin-top: 15px;
     }
@@ -55,10 +57,6 @@
         &:hover {
             cursor: pointer;
         }
-    }
-    .img-large{
-        max-width: 200px;
-        height: auto;
     }
     .inner-padding {
         min-height: 100%;
@@ -70,7 +68,7 @@
             .left {
                 @include clearfix;
                 display: block;
-                 position: relative;
+                position: relative;
                 float: left;
                 width: 50%;
             }

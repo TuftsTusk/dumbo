@@ -11,21 +11,13 @@
         <md-content class="md-padding" layout-xs="column" layout="row">
             <div flex-xs="" flex-gt-xs="50" layout="column">
                 <md-card>
-                    <div class="col-sm-2" id="thumbnail">
-                        <a class="img-thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index"><img ng-src={{link.photo_url}}>
-                        </a>
-
-                    </div>
-                    <div class="col-sm-10" id="image-preview">
-                        <img class="img-large" ng-src={{source}}>
-                    </div>
                     <md-card-title>
-                        <md-card-title-text>
+                        <md-card-title-text layout="row" class="float-left">
                             <span class="md-headline">{{listing.title}}</span>
                             <span class="md-subhead">{{listing.description}}</span>
                         </md-card-title-text>
                         <md-card-title-media>
-                            <div class="md-media-lg card-media"><img id="view-pic" class="img-large" ng-src={{source}}>
+                            <div layout="row"><img id="view-pic" class="img-large" ng-src={{source}}>
                             </div>
                         </md-card-title-media>
                     </md-card-title>
@@ -33,17 +25,12 @@
                         <md-button>Action 1</md-button>
                         <md-button>Action 2</md-button>
                     </md-card-actions>
-                </md-card>
-                <div class="right">
-                    <h1>{{listing.title}}</h1>
-                    <h3>${{listing.price}} </h3>
-                    <h4>Description</h4>
-                    <p>{{listing.description}}</p>
-
-                    <div>
-                        <a class="btn btn-primary" ng-click="contactSeller()">Contact Seller</a>
+                    <div class="right col-sm-2" id="thumbnail">
+                        <a class="img-thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index"><img ng-src={{link.photo_url}}>
+                        </a>
                     </div>
-                </div>
+                </md-card>
+
             </div>
 
 

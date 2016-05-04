@@ -9,6 +9,10 @@ body {
     font-family: $font-main;
    
 }
+
+.right{
+    float:right;
+}
 .blue{
     background: $darkblue;
     min-height: calc(100vh - 100px);

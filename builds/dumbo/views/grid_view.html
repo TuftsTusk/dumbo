@@ -3,8 +3,84 @@
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
-    <div class="col-md-3"></div>
-    <div class="grid col-md-9" ng-if="!listings.error">
+   
+    <div class="white-wrap" ng-if="!listings.error">
+        <!-- card html -->
+
+        <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
+            <md-grid-tile md-rowspan="3" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" >
+               <md-card  ng-repeat="data in listings" style="width:40%;">
+                    <img ng-src="{{data.listing.photo_urls[0].photo_url}}" class="md-card-image img-large">
+                    <md-card-content>
+                        <h2>{{data.listing.title}}</h2>
+                        <p>{{data.listing.description}}</p>
+                    </md-card-content>
+                    <div class="md-actions" layout="row" layout-align="end center">
+                        <a class="btn btn-primary">
+                            Save
+                        </a><a class="btn btn-primary right">
+                            More...
+                        </a>
+                       
+                    </div>
+                </md-card>
+            </md-grid-tile>
+           
+        </md-grid-list>
+  
+
+
+
+
+
+    <!--
+        <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-lg="8" md-cols-gt-lg="12" ...>
+            <div ng-repeat="data in listings">
+-->
+
+    <!--
+            <div class='md-padding' layout="row" layout-wrap>
+                <md-card style="width: 200px;" ng-repeat="data in listings">
+                    <img ng-src="{{data.listing.photo_urls[0].photo_url}}" class="md-card-image img-large">
+                    <md-card-content>
+                        <h2>{{data.listing.title}}</h2>
+                        <p>{{data.listing.description}}</p>
+                    </md-card-content>
+                    <div class="md-actions" layout="row" layout-align="end center">
+                        <a class="btn btn-primary">
+                            Save
+                        </a><a class="btn btn-primary right">
+                            More...
+                        </a>
+                       
+                    </div>
+                </md-card>
+            </div>
+-->
+
+    <!--
+                <md-grid-tile>
+                    <md-card style="width: 200px;" ng-repeat="data in listings">
+                        <img ng-src="{{data.listing.photo_urls[0].photo_url}}" class="md-card-image img-large">
+                        <md-card-content>
+                            <h2>{{data.listing.title}}</h2>
+                            <p>{{data.listing.description}}</p>
+                        </md-card-content>
+                        <div class="md-actions" layout="row" layout-align="end center">
+                            <a class="btn btn-primary">
+                            Save
+                        </a><a class="btn btn-primary right">
+                            More...
+                        </a>
+
+                        </div>
+                    </md-card>
+
+                </md-grid-tile>-->
+
+
+    <!-- old html -->
+    <!--
         <div ng-repeat="data in listings" class="item">
 
             <div ng-repeat="photo in data.listing.photo_urls">
@@ -16,8 +92,9 @@
             <p class="truncate">{{data.listing.description}}</p>
             <h4>${{data.listing.price}}</h4>
             <a class="btn btn-primary right" href="#/listing/{{data.listing._id}}">View Item</a>
-        </div>
-    </div>
+        </div> -->
+</div>
+
 </div>
 <!--
 
