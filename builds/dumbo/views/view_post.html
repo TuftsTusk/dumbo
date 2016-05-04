@@ -1,16 +1,16 @@
-<div id="single-post-view" ng-app="dumboApp" ng-controller="ViewCtrl" class="container-fluid blue block" ng-init=init()>
+<div id="single-post-view" ng-app="dumboApp" ng-cloak ng-controller="ViewCtrl" class="container-fluid blue block" ng-init=init()>
     <div ng-if="listing.error">
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
     <div class="margin-top-bottom inner-padding " ng-if="!listing.error">
         <div class="left">
-            <div class="col-sm-2" id="thumbnail">
-                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index"><img ng-src={{link.photo_url}}>
+            <div id="thumbnail">
+                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + link.photo_url + ')'}"></div>
                 </a>
 
             </div>
-            <div class="col-sm-10" id="image-preview">
+            <div id="image-preview">
                 <img id="view-pic" ng-src={{source}}>
             </div>
 

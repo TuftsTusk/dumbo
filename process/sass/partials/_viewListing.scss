@@ -1,5 +1,4 @@
 #single-post-view {
-   
     height: calc(100vh - 100px);
     @media screen and (min-width: $break-medium) {
         padding-left: 100px;
@@ -14,18 +13,26 @@
         padding-right: 15px;
     }
     #thumbnail {
+        float: left;
+        display: inline-block;
         a {
-            img {
-                width: 60px;
-                height: auto;
-                margin-bottom: 10%;
+            float: left;
+            div {
+               height: 80px;
+               width: 80px;
+                margin: 5px;
+                border: 1px solid $grey5;
+//                background-color: $grey3;
+//                background-size: 80px 80px;
             }
         }
     }
-   
     #image-preview {
+        float: right;
+        display: inline-block;
         @media screen and (min-width: $break-medium) {
             img {
+            
                 max-height: 100%;
                 max-width: 100%;
                 display: block;
@@ -33,15 +40,15 @@
         }
         @media screen and (max-width: $break-medium) and (min-width: $break-small) {
             img {
-                max-height: 50%;
-                max-width: 50%;
+                max-height: 100%;
+                max-width: 100%;
                 display: block;
             }
         }
         @media screen and (max-width: $break-small) {
             img {
-                max-height: 50%;
-                max-width: 80%;
+                max-height: 100%;
+                max-width: 100%;
                 display: block;
             }
         }
@@ -53,6 +60,7 @@
         &:hover {
             cursor: pointer;
         }
+        display: block;
     }
     .inner-padding {
         min-height: 100%;
@@ -64,7 +72,7 @@
             .left {
                 @include clearfix;
                 display: block;
-                 position: relative;
+                position: relative;
                 float: left;
                 width: 50%;
             }
