@@ -1,5 +1,9 @@
 <div class="container-fluid" id="content-border" ng-controller="NewListingCtrl" ng-init=init()>
-	<h1> {{newListingFormData.type}} </h1>
+	<div ng-if="isLoading">
+        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
+        <span>Loading...</span>
+    </div>
+	<h1 ng-if="newListingFormData.type"> {{newListingFormData.type}} </h1>
 	<div class="col-md-3"></div>
 	<div class="col-md-6" id="newListing">
 		<button ng-if="!isDataEmpty()" ng-click="deleteSavedData()" class="btn btn-primary pull-right"> Clear Form </button>
@@ -41,7 +45,9 @@
 
 		</div>
 		<div class="subit-form">
-			<button type="submit" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-primary" ng-click="submit()">Create</button>
+			<!-- if id then editing a post, otherwise this is a new post -->
+			<button type="submit" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-primary" ng-click="submit()">Publish</button>
+			<button type="submit" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-warning" ng-click="submit()">Publish Edits</button>
 			<img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
 		</div>
 

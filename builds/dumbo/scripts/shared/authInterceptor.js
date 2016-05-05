@@ -4,7 +4,7 @@ angular.module('dumboApp')
         responseError: function(rejection) {
             console.log("change")
             if (rejection.status === 403) {
-                $location.path('/login').search('returnTo', $location.path());
+                $location.path('/login/existinguser').search('returnTo', $location.path());
             }
             return $q.reject(rejection);
         }

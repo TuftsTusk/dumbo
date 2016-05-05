@@ -9,6 +9,9 @@ angular.module('dumboApp')
     this.newListing = function(listing) {
         return $http.post(host + listingPath, listing);
     }
+    this.editListing = function(id, listing) {
+        return $http.post(host + listingPath + '/' + id, listing);
+    }
     this.getListings = function() {
         return $http.get(host + listingPath);
     }
