@@ -166,3 +166,7 @@ app.config(['ngToastProvider', function(ngToast) {
 		animation: "fade"
 	});
 }]);
+
+app.config(['$httpProvider', function($httpProvider) {
+	$httpProvider.defaults.withCredentials = true;
+}]);
