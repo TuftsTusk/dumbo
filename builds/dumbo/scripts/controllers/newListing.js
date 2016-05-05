@@ -76,7 +76,7 @@ angular.module('dumboApp')
 					function success(res){
 						$scope.dataLoading = false;
 						SweetAlert.swal("Congrats!", "Your changes are now submitted for approval", "success");
-						localStorageService.remove(localStorageKey);
+						$location.path('/');
 					},
 					function failure(res){
 						$scope.dataLoading = false;
