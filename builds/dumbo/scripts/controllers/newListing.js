@@ -127,6 +127,9 @@ angular.module('dumboApp')
 
 			$scope.loadSavedData = function() {
 				$scope.listing = localStorageService.get(localStorageKey) || {};
+				if ($scope.listing.photo_urls){
+					$scope.photos = $scope.listing.photo_urls;
+				}
 			}
 
 			$scope.deleteSavedData = function() {
