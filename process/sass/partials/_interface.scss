@@ -371,6 +371,14 @@
 
 }
 
+.disabled {
+	&.fa {
+		color: $grey3;
+		cursor: not-allowed;
+	}
+}
+
+
 .blur {
 	-webkit-filter: blur($blur-size);
 	-moz-filter: blur($blur-size);

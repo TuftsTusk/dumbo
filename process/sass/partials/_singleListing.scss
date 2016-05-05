@@ -6,13 +6,13 @@
 	}
 
 	.disabled {
-		cursor: pointer;
-		background-color: $grey4;
-		border-color: $grey5;
-		pointer-events: all;
+		&.btn {
+			cursor: pointer;
+			background-color: $grey4;
+			border-color: $grey5;
+			pointer-events: all;
+		}
 	}
-
-
 
 	.panel-tusk {
 		border-color: #ddd;
@@ -92,7 +92,7 @@
 			display: initial;
 		}
 	}
-	// 
+	//
 	// .full button span {
 	// 	background-color: limegreen;
 	// 	border-radius: 32px;

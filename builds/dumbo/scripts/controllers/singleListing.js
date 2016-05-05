@@ -8,6 +8,7 @@ angular.module('dumboApp')
 
 	$scope.errorLog = {};
 	$scope.warningLog = {};
+	$scope.maxRooms = 10;
 
 	var emptyData = {
 		view: {
@@ -283,29 +284,34 @@ angular.module('dumboApp')
 	$scope.newRoom = function() {
 
 		var length = $scope.listingData.bedrooms.length;
-		var newIndex = length;
-		var r = {
-			title: 'Room ' + (newIndex + 1),
-			photos: []
-		};
-		$scope.listingData.bedrooms.push(r);
-		length = $scope.listingData.bedrooms.length;
+		if (length < $scope.maxRooms) {
+			var newIndex = length;
+			var r = {
+				title: 'Room ' + (newIndex + 1),
+				photos: []
+			};
+			$scope.listingData.bedrooms.push(r);
+			length = $scope.listingData.bedrooms.length;
 
-		if (length == 1) {
-			$scope.loadRoom(0);
+			if (length == 1) {
+				$scope.loadRoom(0);
+			}
+			$scope.save();
+		} else {
+			alert("You have too many rooms!");
 		}
-		$scope.save();
 	}
 
 	$scope.copyRoom = function() {
-		var r = angular.copy($scope.room);
-
-		r.title = r.title + ' copy';
-
-		// var temp = $scope.listingData.bedrooms[$scope.selectedRoom];
-
-		$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
-		$scope.save();
+		var length = $scope.listingData.bedrooms.length;
+		if (length < $scope.maxRooms) {
+			var r = angular.copy($scope.room);
+			r.title = r.title + ' copy';
+			$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
+			$scope.save();
+		} else {
+			alert("You have too many rooms!");
+		}
 	}
 
 	$scope.initializeRoom = function() {

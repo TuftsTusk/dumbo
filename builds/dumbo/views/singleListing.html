@@ -138,7 +138,7 @@
 						<i class="rightIcon fa fa-angle-right fa-lg"></i>
 					</div>
 				</button>
-				<button ng-if="editing" type="button" class="list-group-item nofocus" ng-class="{'list-group-item-danger': errorLog.bedrooms == true}" ng-click="newRoom()">
+				<button ng-if="editing" type="button" class="list-group-item nofocus" ng-class="{'list-group-item-danger': errorLog.bedrooms == true, 'disabled': tooManyRooms}" ng-click="newRoom()">
 					<img src="images/skinnyplus.svg" class="isizeMed">
 					Add room
 				</button>
@@ -146,8 +146,10 @@
 		</div>
 	</div>
 	<div class="col-md-6" ng-show="listingData.bedrooms.length > 0">
+
 		<form id="roomForm" class="tForm" name="rForm" novalidate autocomplete="off">
 			<div class="panel panel-tusk p1">
+				{{tooManyRooms=(listingData.bedrooms.length >= maxRooms);""}}
 				<div class="formBlurBox">
 					<div class="formBlurMsg">
 						<div>Are you sure?</div>
@@ -157,9 +159,8 @@
 				</div>
 				<div class="panel-heading">
 					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
-
 					<div class="upperRightIcon">
-						<button type="button" ng-if="editing" class="fa fa-clone" title="Copy" ng-click="copyRoom()"></button>
+						<button type="button" ng-if="editing" class="fa fa-clone" title="Copy" ng-click="copyRoom()" ng-class="{disabled: tooManyRooms}" ng-attr-title="{{tooManyRooms && 'Too many rooms' || 'Copy'}}"></button>
 						<button type="button" ng-if="editing" class="fa fa-trash-o" title="Delete" ng-click="confirmDelete()"></button>
 					</div>
 					<div class="panel-title">
