@@ -12,6 +12,7 @@ body {
 .blue{
     background: $darkblue;
     min-height: calc(100vh - 100px);
+    
 }
 *:focus {
     outline: none;
@@ -42,7 +43,9 @@ body {
 }
 
 .white-wrap{
-    background: white;
+    background-color: white;
+
+
 }
 html,
 body {

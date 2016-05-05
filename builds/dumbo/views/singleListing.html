@@ -77,6 +77,44 @@
 		<!-- <pre>apt = {{aptForm | json}}</pre> -->
 	</form>
 
+
+	<!--
+	<pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+	<h4>Popup</h4>
+	<div class="row">
+		<div class="col-md-6">
+			<p class="input-group">
+				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+		</div>
+
+		<div class="col-md-6">
+			<p class="input-group">
+				<input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<label>Format: <span class="muted-text">(manual alternate <em>{{altInputFormats[0]}}</em>)</span></label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
+		</div>
+	</div>
+
+	<hr />
+	<button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+	<button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
+	<button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+	<button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
+ -->
+
+
+
 </div>
 <div id="bedroomsScreen" class="page" ng-show="currentPage=='bedrooms'">
 	<div class="col-sm-10">
@@ -100,7 +138,7 @@
 						<i class="rightIcon fa fa-angle-right fa-lg"></i>
 					</div>
 				</button>
-				<button ng-if="editing" type="button" class="list-group-item nofocus" ng-class="{'list-group-item-danger': errorLog.bedrooms == true}" ng-click="newRoom()">
+				<button ng-if="editing" type="button" class="list-group-item nofocus" ng-class="{'list-group-item-danger': errorLog.bedrooms == true, 'disabled': tooManyRooms}" ng-click="newRoom()">
 					<img src="images/skinnyplus.svg" class="isizeMed">
 					Add room
 				</button>
@@ -108,8 +146,10 @@
 		</div>
 	</div>
 	<div class="col-md-6" ng-show="listingData.bedrooms.length > 0">
+
 		<form id="roomForm" class="tForm" name="rForm" novalidate autocomplete="off">
 			<div class="panel panel-tusk p1">
+				{{tooManyRooms=(listingData.bedrooms.length >= maxRooms);""}}
 				<div class="formBlurBox">
 					<div class="formBlurMsg">
 						<div>Are you sure?</div>
@@ -119,9 +159,8 @@
 				</div>
 				<div class="panel-heading">
 					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
-
 					<div class="upperRightIcon">
-						<button type="button" ng-if="editing" class="fa fa-clone" title="Copy" ng-click="copyRoom()"></button>
+						<button type="button" ng-if="editing" class="fa fa-clone" title="Copy" ng-click="copyRoom()" ng-class="{disabled: tooManyRooms}" ng-attr-title="{{tooManyRooms && 'Too many rooms' || 'Copy'}}"></button>
 						<button type="button" ng-if="editing" class="fa fa-trash-o" title="Delete" ng-click="confirmDelete()"></button>
 					</div>
 					<div class="panel-title">
@@ -250,6 +289,9 @@
 			</div>
 		</div>
 	</form>
+
+
+
 	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
 
 </div>

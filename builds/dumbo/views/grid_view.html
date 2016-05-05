@@ -1,24 +1,27 @@
-<div ng-controller="GridCtrl" class="container-fluid" ng-init="init()">
+<div ng-controller="GridCtrl" class="container-fluid " ng-init="init()">
     <div ng-if="listings.error">
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
-    <div class="col-md-3"></div>
-    <div class="grid col-md-9" ng-if="!listings.error">
-        <div ng-repeat="data in listings" class="item">
 
-            <div ng-repeat="photo in data.listing.photo_urls">
-                <img ng-src={{photo.photo_url}}>
-            </div>
+
+    <div class="grid white-wrap" ng-if="!listings.error">
+        <div ng-repeat="data in listings" class="item" ng-cloak>
+
+
+            <img ng-src={{data.listing.photo_urls[0].photo_url}} alt="  " width="300" height="200">
+
             <h3>{{data.listing.title}}</h3>
 
 
             <p class="truncate">{{data.listing.description}}</p>
-            <h4>${{data.listing.price}}</h4>
-            <a class="btn btn-primary right" href="#/listing/{{data.listing._id}}">View Item</a>
+            <br>
+            <h4 id="price">${{data.listing.price}}</h4>
+            <a id="view-item-buttom" class="btn btn-primary right" href="#/listing/{{data.listing._id}}">View Item</a>
         </div>
     </div>
 </div>
+
 <!--
 
 <div id="single-post-view " >

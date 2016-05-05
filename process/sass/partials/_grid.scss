@@ -1,18 +1,41 @@
 .grid {
     @include clearfix;
     .item {
+        background-color: white;
+      
         float: left;
-        margin-top: 15px;
-        @include imageGrid(3, 1%, 1%);
-        border: 1px solid lightgray;
+        position: relative;
+        margin-top: 5px;
+        width: 300px;
+        height: 380px;
+        @media screen and (max-width: $break-small-half) {
+
+            @include imageGrid(1, 1%, 1%);
+        }
+        @media screen and (min-width: $break-small-half) and (max-width: $break-small) {
+
+            @include imageGrid(2, 1%, 1%);
+        }
+        @media screen and (min-width: $break-small) and (max-width: $break-medium) {
+
+            @include imageGrid(3, 1%, 1%);
+        }
+        @media screen and (min-width: $break-medium) {
+
+            @include imageGrid(4, 1%, 1%);
+        }
+        border: 1px solid $grey2;
+       
         padding: 5px;
         img {
+            
             display: block;
             align-content: center;
             max-width: 100%;
             min-width: 200px;
             min-height: 200px;
-            background: lightgray;
+            height: auto;
+            background-color: lightgray;
         }
         h1,
         h2,
@@ -23,19 +46,32 @@
             display: inline-block;
         }
         .right {
-            float: right;  
+            float: right;
         }
-        
     }
 }
 
 .truncate {
     width: 100%;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
-#see_more{
+#see_more {
     text-emphasis: underline;
+}
+
+#view-item-buttom {
+    right: 5px;
+    bottom: 5px;
+    position: absolute;
+    
+}
+#price {
+    left: 5px;
+    bottom: 5px;
+    position: absolute;
+    
 }

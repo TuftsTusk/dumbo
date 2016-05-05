@@ -8,6 +8,7 @@ angular.module('dumboApp')
 
 	$scope.errorLog = {};
 	$scope.warningLog = {};
+	$scope.maxRooms = 10;
 
 	var emptyData = {
 		view: {
@@ -283,29 +284,34 @@ angular.module('dumboApp')
 	$scope.newRoom = function() {
 
 		var length = $scope.listingData.bedrooms.length;
-		var newIndex = length;
-		var r = {
-			title: 'Room ' + (newIndex + 1),
-			photos: []
-		};
-		$scope.listingData.bedrooms.push(r);
-		length = $scope.listingData.bedrooms.length;
+		if (length < $scope.maxRooms) {
+			var newIndex = length;
+			var r = {
+				title: 'Room ' + (newIndex + 1),
+				photos: []
+			};
+			$scope.listingData.bedrooms.push(r);
+			length = $scope.listingData.bedrooms.length;
 
-		if (length == 1) {
-			$scope.loadRoom(0);
+			if (length == 1) {
+				$scope.loadRoom(0);
+			}
+			$scope.save();
+		} else {
+			alert("You have too many rooms!");
 		}
-		$scope.save();
 	}
 
 	$scope.copyRoom = function() {
-		var r = angular.copy($scope.room);
-
-		r.title = r.title + ' copy';
-
-		// var temp = $scope.listingData.bedrooms[$scope.selectedRoom];
-
-		$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
-		$scope.save();
+		var length = $scope.listingData.bedrooms.length;
+		if (length < $scope.maxRooms) {
+			var r = angular.copy($scope.room);
+			r.title = r.title + ' copy';
+			$scope.listingData.bedrooms.splice($scope.selectedRoom + 1, 0, r);
+			$scope.save();
+		} else {
+			alert("You have too many rooms!");
+		}
 	}
 
 	$scope.initializeRoom = function() {
@@ -575,6 +581,132 @@ angular.module('dumboApp')
 		}
 		if ($scope.editing) validateData();
 	}
+
+
+
+	//
+	// var ctrl = this;
+	// ctrl.dateRange = {};
+	//
+	// //ctrl scope functions
+	// ctrl.setDateConstraint = function () {
+	// 	if (ctrl.dateRange.startDate) {
+	// 		//next day should be min
+	// 		ctrl.dateRange.minDate = addDays(ctrl.dateRange.startDate, 1);
+	// 		//7 max days
+	// 		ctrl.dateRange.maxDate = addDays(ctrl.dateRange.startDate, 365);
+	// 	}
+	// }
+	//
+	// //private functions
+	// function addDays(date, days) {
+	// 	//make sure is date type
+	// 	var tmpDate = typeof (date) != 'Date' ? new Date(date) : date;
+	// 	tmpDate.setDate(tmpDate.getDate() + days);
+	// 	return tmpDate;
+	// }
+
+
+
+
+
+
+	//
+	// $scope.today = function() {
+	// 	$scope.dt = new Date();
+	// };
+	// $scope.today();
+	//
+	// $scope.clear = function() {
+	// 	$scope.dt = null;
+	// };
+	//
+	// $scope.inlineOptions = {
+	// 	customClass: getDayClass,
+	// 	minDate: new Date(),
+	// 	showWeeks: true
+	// };
+	//
+	// $scope.dateOptions = {
+	// 	dateDisabled: disabled,
+	// 	formatYear: 'yy',
+	// 	maxDate: new Date(2020, 5, 22),
+	// 	minDate: new Date(),
+	// 	startingDay: 0
+	// };
+	//
+	// // Disable weekend selection
+	// function disabled(data) {
+	// 	var date = data.date,
+	// 	mode = data.mode;
+	// 	return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+	// }
+	//
+	// $scope.toggleMin = function() {
+	// 	$scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+	// 	$scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+	// };
+	//
+	// $scope.toggleMin();
+	//
+	// $scope.open1 = function() {
+	// 	$scope.popup1.opened = true;
+	// };
+	//
+	// $scope.open2 = function() {
+	// 	$scope.popup2.opened = true;
+	// };
+	//
+	// $scope.setDate = function(year, month, day) {
+	// 	$scope.dt = new Date(year, month, day);
+	// };
+	//
+	// $scope.formats = ['MMMM d, yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	// $scope.format = $scope.formats[0];
+	// $scope.altInputFormats = ['M!/d!/yyyy', 'MMMM d, yyyy', 'MMM d, yyyy'];
+	//
+	// $scope.popup1 = {
+	// 	opened: false
+	// };
+	//
+	// $scope.popup2 = {
+	// 	opened: false
+	// };
+	//
+	// var tomorrow = new Date();
+	// tomorrow.setDate(tomorrow.getDate() + 1);
+	// var afterTomorrow = new Date();
+	// afterTomorrow.setDate(tomorrow.getDate() + 1);
+	// $scope.events = [
+	// 	{
+	// 		date: tomorrow,
+	// 		status: 'full'
+	// 	},
+	// 	{
+	// 		date: afterTomorrow,
+	// 		status: 'partially'
+	// 	}
+	// ];
+	//
+	// function getDayClass(data) {
+	// 	var date = data.date,
+	// 	mode = data.mode;
+	// 	if (mode === 'day') {
+	// 		var dayToCheck = new Date(date).setHours(0,0,0,0);
+	//
+	// 		for (var i = 0; i < $scope.events.length; i++) {
+	// 			var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+	//
+	// 			if (dayToCheck === currentDay) {
+	// 				return $scope.events[i].status;
+	// 			}
+	// 		}
+	// 	}
+	//
+	// 	return '';
+	// }
+
+
 
 
 
