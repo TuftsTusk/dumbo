@@ -54,7 +54,10 @@ angular.module('dumboApp')
 						$scope.newListingFormData = listingMap.getFieldsByType(res.data.listing.type);
 						$scope.newListingFormData.type = listingMap.getListingTypeByType($scope.type);
 						$scope.listing = res.data.listing;
-						$scope.photos = res.data.listing.photo_urls;
+						if (res.data.listing.photo_urls){
+							$scope.photos = res.data.listing.photo_urls;
+						}
+
 				}, function failure(){
 						$scope.isLoading = false;
 						SweetAlert.swal("Woops", "Please check the URL and try again.", "error");
