@@ -1,57 +1,59 @@
-<div class="container-fluid" id="content-border" ng-controller="NewListingCtrl" ng-init=init()>
-	<div ng-if="isLoading">
-        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
-        <span>Loading...</span>
+<div class="container-fluid white-wrap" id="content-border" ng-controller="NewListingCtrl" ng-init=init()>
+    <div class="white-wrap">
+        <div ng-if="isLoading">
+            <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
+            <span>Loading...</span>
+        </div>
+        <h1 ng-if="newListingFormData.type"> Post New {{newListingFormData.type}} Item</h1>
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " id="newListing">
+            <button ng-if="!isDataEmpty()" ng-click="deleteSavedData()" class="btn btn-primary pull-right"> Clear Form </button>
+            <form name="newListing" role="form" >
+                <div class="form-group" ng-repeat="field in newListingFormData" ng-class="{ 'has-error': newListing.description.$dirty && newListing.description.$error.required }">
+                    <ng-form name="modularField">
+                        <label>{{ field.displayName }}</label>
+                        <input type="{{ field.type }}" ng-class="field.class" name="data" ng-model="listing[field.name]" ng-required='field.required' ng-change="save()">
+                        <p class="help-block" ng-show="modularField.data.$invalid">{{field.displayName}} Required</p>
+                    </ng-form>
+                </div>
+                <div class="photoUploadWrapper">
+                    <a ng-if="photos.length == 0 && !uploading" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
+                        <div class="photoUploadTitle">
+                            <img src="images/skinnyplus.svg" class="isizeMed">
+                            <!-- <input type="file" id="photoUploadInput" ng-file-select multiple style="visibility:hidden;position:absolute"/> -->
+                            Add photos
+                        </div>
+                    </a>
+                    <div ng-if="photos.length || uploading">
+                        <div class="imageHolder">
+                            <a class="photoUploadBox" ng-repeat="image in photos track by $index" target="_blank">
+                                <div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
+                                <i class="fa fa-times deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
+                            </a>
+                            <div ng-if="uploading" class="photoUploadBox inProgress">
+                                <div class="scaledImage photoUploadImage">
+                                    <div class="spinner">
+                                        <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="photoUploadMore" ng-if="photos.length">
+                            <button class="btn btn-default" ng-click="initiatePhotoUpload()">Add more photos</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-	<h1 ng-if="newListingFormData.type"> {{newListingFormData.type}} </h1>
-	<div class="col-md-3"></div>
-	<div class="col-md-6" id="newListing">
-		<button ng-if="!isDataEmpty()" ng-click="deleteSavedData()" class="btn btn-primary pull-right"> Clear Form </button>
-		<form name="newListing" role="form">
-			<div class="form-group" ng-repeat="field in newListingFormData" ng-class="{ 'has-error': newListing.description.$dirty && newListing.description.$error.required }">
-				<ng-form name="modularField">
-					<label>{{ field.displayName }}</label>
-					<input type="{{ field.type }}" ng-class="field.class" name="data" ng-model="listing[field.name]" ng-required='field.required' ng-change="save()">
-					<p class="help-block" ng-show="modularField.data.$invalid">{{field.displayName}} Required</p>
-				</ng-form>
-			</div>
-			<div class="photoUploadWrapper">
-				<a ng-if="photos.length == 0 && !uploading" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
-					<div class="photoUploadTitle">
-						<img src="images/skinnyplus.svg" class="isizeMed">
-						<!-- <input type="file" id="photoUploadInput" ng-file-select multiple style="visibility:hidden;position:absolute"/> -->
-						Add photos
-					</div>
-				</a>
-				<div ng-if="photos.length || uploading">
-					<div class="imageHolder">
-						<a class="photoUploadBox" ng-repeat="image in photos track by $index" target="_blank">
-							<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
-							<i class="fa fa-times deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
-						</a>
-						<div ng-if="uploading" class="photoUploadBox inProgress">
-							<div class="scaledImage photoUploadImage">
-								<div class="spinner">
-									<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="photoUploadMore" ng-if="photos.length">
-						<button class="btn btn-default" ng-click="initiatePhotoUpload()">Add more photos</button>
-					</div>
-				</div>
-			</div>
+    <div class="subit-form">
+        <!-- if id then editing a post, otherwise this is a new post -->
+        <button type="submit" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-primary" ng-click="submit()">Publish</button>
+        <button type="submit" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-warning" ng-click="submit()">Publish Edits</button>
+        <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
 
-		</div>
-		<div class="subit-form">
-			<!-- if id then editing a post, otherwise this is a new post -->
-			<button type="submit" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-primary" ng-click="submit()">Publish</button>
-			<button type="submit" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" class="btn btn-warning" ng-click="submit()">Publish Edits</button>
-			<img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-		</div>
-
-	</form>
-	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
-
+    </form>
+    <input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden" />
+</div>
 </div>
