@@ -3,19 +3,21 @@
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
-    <div class="margin-top-bottom inner-padding " ng-if="!listing.error">
-        <div class="left">
-            <div id="thumbnail">
-                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + link.photo_url + ')'}"></div>
+    <div class="margin-top-bottom inner-padding " ng-if="!listing.error" layout="row" layout-xs="column">
+        
+        
+        <div >
+            <div id="thumbnail" class="grid1" flex>
+                <a class="thumb item" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + link.photo_url + ')'}"></div>
                 </a>
 
             </div>
-            <div id="image-preview">
+            <div id="image-preview" flex>
                 <img id="view-pic" ng-src={{source}}>
             </div>
 
         </div>
-        <div class="right">
+        <div class="right" flex >
             <h1>{{listing.title}}</h1>
             <h3>${{listing.price}} </h3>
             <h4>Description</h4>

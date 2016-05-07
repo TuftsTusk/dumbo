@@ -1,4 +1,7 @@
 #single-post-view {
+    a{
+        color: white;
+    }
     height: calc(100vh - 100px);
     @media screen and (min-width: $break-medium) {
         padding-left: 100px;

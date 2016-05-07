@@ -1,3 +1,16 @@
+.grid1 {
+    .item{
+         @media screen and (min-width: $break-medium) {
+
+            @include imageGrid(1, 1%, 1%);
+        }
+        @media screen and (max-width: $break-small-half) {
+
+            @include imageGrid(3, 1%, 1%);
+        }
+    }
+}
+
 .grid {
     @include clearfix;
     .item {
@@ -7,10 +20,14 @@
         position: relative;
         margin-top: 5px;
         width: 300px;
-        height: 380px;
+        height: 400px;
         @media screen and (max-width: $break-small-half) {
 
             @include imageGrid(1, 1%, 1%);
+            img{
+                margin: auto;
+                align-self: center;
+            }
         }
         @media screen and (min-width: $break-small-half) and (max-width: $break-small) {
 
@@ -32,6 +49,7 @@
             display: block;
             align-content: center;
             max-width: 100%;
+            max-height: 300px;
             min-width: 200px;
             min-height: 200px;
             height: auto;
@@ -67,6 +85,7 @@
     right: 5px;
     bottom: 5px;
     position: absolute;
+    color: white;
     
 }
 #price {

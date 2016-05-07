@@ -1,107 +1,25 @@
-#view_sublet {
-	$image-width: 160px;
-	.sublet-map {
-	    #map {
-	        height: 100%;
-	        width: 100%;
-	        display: inline-block;
-	        position: fixed;
-	    }
-	    .overflow-scroll {
-	        height: 100%;
-	        height: 100%;
-	        overflow: scroll;
-	        padding-bottom: 50px;
-	        padding-top: 50px;
-	    }
-	    #map-wrap,
-	    #sublet-wrap {
-	        display: inline-block;
-	    }
-	    #map-wrap {
-	        overflow: hidden;
-	        max-height: inherit;
-	        position: fixed;
-	        display: inline-block;
-	        float: right;
-	        bottom: 50px;
-	        top: 50px;
-	    }
-	    #angular-view {
-	        padding-top: 50px;
-	    }
-	    .infowindow {
-	        width: 100px;
-	    }
-	    .thumbnail {
-	        background: rgba(0, 0, 0, 0);
-	    }
-	    .sublet-listings {
-	        display: block;
-	        float: left;
-	        width: 110%;
-	        padding-right: 10%;
-	        &:hover {
-	            background: rgba(51, 122, 183, .5);
-	            // padding-bottom: 50px;
-	            border: none;
-	            box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
-	        }
-	        &:first-of-type {
-	            margin-top: 15px;
-	            border: none;
-	        }
-	        a {
-	            float: right;
-	            margin: 5px;
-	            margin-top: -50px;
-	        }
-	        img {
-	            max-width: $image-width;
-	            margin-bottom: 0px;
-	        }
-	        h1,
-	        h2,
-	        h3,
-	        h4,
-	        h5,
-	        h6,
-	        img {
-	            display: inline-block;
-	        }
-	        #price {
-	            float: right;
-	        }
-	        border-top: 1px solid black;
-	        .thumbnail {
-	            max-width: $image-width;
-	            display: inline-block;
-	            float: left;
-	            border: none;
-	            background-color: clear;
-	        }
-	        .sub-info {
-	            margin-left: 180px;
-	            display: block;
-	            width: 70%;
-	        }
-	    }
-	    .sublet-listings:before,
-	    .sublet-listings:after {
-	        clear: both;
-	    }
-	}
+#map{
+    height: calc(100vh - 100px);
+}
+.sublet-listings{
+    .thumb{
+        height:100px;
+        max-width: 150px;
+    }
+    
+    .sub-info{
+        margin-left: 200px;
+        position: relative;
+    }
+    
+    height: 100px;
+    margin: 2px;
+    border: 1px solid black;
+}
 
-	.navbar-default {
-	    width: 100%;
-	    position: fixed;
-	    z-index: 1;
-	}
-
-	.highlight {
-	    background: rgba(51, 122, 183, .5);
-	    border: none;
-	    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
-	}
-
+a{
+    color: white;
+    position: absolute;
+    right:5px;
+    bottom:5px;
 }

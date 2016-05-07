@@ -24,11 +24,18 @@
                 "rent": 667,
                 "title": "Jackson's room",
                 "photos": [
-                    "http://www.pawderosa.com/images/puppies.jpg",
-                    "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-                    "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
-                ],
+                    {
+                        "photo_url": "http://www.pawderosa.com/images/puppies.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"
+                    },
+                    {
+                        "photo_url": "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
+                }],
                 "op_details": {
                     "pre_furnished": true,
                     "incl_air_conditioning": true
@@ -67,7 +74,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -93,11 +100,18 @@
                 "rent": 667,
                 "title": "Jackson's room",
                 "photos": [
-                    "http://www.pawderosa.com/images/puppies.jpg",
-                    "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-                ],
+                    {
+                        "photo_url": "http://www.pawderosa.com/images/puppies.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"
+                    },
+                    {
+                        "photo_url": "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
+                }],
                 "op_details": {
                     "pre_furnished": true,
                     "incl_air_conditioning": true
@@ -126,7 +140,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -137,7 +151,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -163,11 +177,18 @@
                 "rent": 667,
                 "title": "Jackson's room",
                 "photos": [
-                    "http://www.pawderosa.com/images/puppies.jpg",
-                    "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-                ],
+                    {
+                        "photo_url": "http://www.pawderosa.com/images/puppies.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"
+                    },
+                    {
+                        "photo_url": "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
+                }],
                 "op_details": {
                     "pre_furnished": true,
                     "incl_air_conditioning": true
@@ -196,7 +217,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -207,7 +228,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -233,11 +254,18 @@
                 "rent": 667,
                 "title": "Jackson's room",
                 "photos": [
-                    "http://www.pawderosa.com/images/puppies.jpg",
-                    "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-                ],
+                    {
+                        "photo_url": "http://www.pawderosa.com/images/puppies.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"
+                    },
+                    {
+                        "photo_url": "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
+                }],
                 "op_details": {
                     "pre_furnished": true,
                     "incl_air_conditioning": true
@@ -266,7 +294,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -277,7 +305,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -303,11 +331,18 @@
                 "rent": 667,
                 "title": "Jackson's room",
                 "photos": [
-                    "http://www.pawderosa.com/images/puppies.jpg",
-                    "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-                ],
+                    {
+                        "photo_url": "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"
+                    }, {
+                        "photo_url": "http://www.pawderosa.com/images/puppies.jpg"
+                    },
+
+                    {
+                        "photo_url": "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
+                }],
                 "op_details": {
                     "pre_furnished": true,
                     "incl_air_conditioning": true
@@ -336,7 +371,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -347,7 +382,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -373,11 +408,18 @@
                 "rent": 667,
                 "title": "Jackson's room",
                 "photos": [
-                    "http://www.pawderosa.com/images/puppies.jpg",
-                    "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-                ],
+                    {
+                        "photo_url": "http://www.pawderosa.com/images/puppies.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"
+                    },
+                    {
+                        "photo_url": "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
+                }],
                 "op_details": {
                     "pre_furnished": true,
                     "incl_air_conditioning": true
@@ -406,7 +448,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -417,7 +459,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -443,11 +485,19 @@
                 "rent": 667,
                 "title": "Jackson's room",
                 "photos": [
-                    "http://www.pawderosa.com/images/puppies.jpg",
-                    "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg",
-                    "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-                ],
+                    {
+                        "photo_url": "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.pawderosa.com/images/puppies.jpg"
+                    },
+                    {
+                        "photo_url": "http://www.pamperedpetz.net/wp-content/uploads/2015/09/Puppy1.jpg"
+                    },
+
+                    {
+                        "photo_url": "http://www.cdc.gov/features/salmonellababybirds/salmonellababybirds_456px.jpg"
+                }],
                 "op_details": {
                     "pre_furnished": true,
                     "incl_air_conditioning": true
@@ -476,7 +526,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -487,7 +537,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -546,7 +596,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -557,7 +607,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -616,7 +666,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -627,7 +677,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -686,7 +736,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -697,7 +747,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -756,7 +806,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -767,7 +817,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -826,7 +876,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
@@ -837,7 +887,7 @@
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
             ]
         }
-},{
+}, {
         "user_id": "2",
         "apt_info": {
             "address": "454545 Professors Row",
@@ -896,7 +946,7 @@
             "living_room": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
                 "http://cdn.skim.gs/image/upload/v1456344012/msi/Puppy_2_kbhb4a.jpg"
-               
+
             ],
             "bathroom": [
                 "http://www.fndvisions.org/img/cutecat.jpg",
