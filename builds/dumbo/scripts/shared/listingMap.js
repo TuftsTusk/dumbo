@@ -71,9 +71,16 @@ angular.module('dumboApp')
             },
                {
               displayName:'Author',
-              name:'author',
+              name:'authors',
               required:true,
               type:'text',
+              class:'form-control'
+            },
+              {
+              displayName: 'Price',
+              name:'price',
+              required:'true',
+              type:'number',
               class:'form-control'
             },
                {
