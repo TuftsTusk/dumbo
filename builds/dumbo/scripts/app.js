@@ -104,9 +104,9 @@ var app = angular
 	})
 	.when('/listing/:id', {
 		templateUrl: 'views/view_post.html',
-//		resolve: {
-//			loggedIn: requireLogin
-//		}
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/settings', {
 		redirectTo: '/settings/account',
@@ -133,15 +133,18 @@ var app = angular
 		templateUrl: 'views/privacy.html'
 	})
 	.when('/books' , {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/grid_view.html',
+        controller: 'BookCtrl',
 		resolve: {
 			loggedIn: requireLogin
 		}
 	})
 	.when('/misc' , {
 		templateUrl: 'views/grid_view.html',
+        controller: 'MiscCtrl',
 		resolve: {
 			loggedIn: requireLogin
+            
 		}
 	})
 	.when('/furniture' , {

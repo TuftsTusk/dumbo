@@ -65,21 +65,35 @@ angular.module('dumboApp')
             {
               displayName: 'Title',
               name:'title',
-              required:'true',
+              required:true,
+              type:'text',
+              class:'form-control'
+            },
+               {
+              displayName:'Author',
+              name:'author',
+              required:true,
+              type:'text',
+              class:'form-control'
+            },
+               {
+              displayName:'Edition',
+              name:'edition',
+              required:false,
               type:'text',
               class:'form-control'
             },
             {
               displayName:'ISBN',
               name:'isbn',
-              required:'true',
+              required:false,
               type:'text',
               class:'form-control'
             },
             {
-              displayName:'Class Name',
-              name:'classname',
-              required:'false',
+              displayName:'Course Title (ex. PSY 17)',
+              name:'pertinent_class',
+              required:false,
               type:'text',
               class:'form-control'
             }

@@ -15,6 +15,9 @@ angular.module('dumboApp')
     this.getListings = function() {
         return $http.get(host + listingPath);
     }
+    this.getListingsByType = function(l_type) {
+        return $http.get(host + listingPath + "?type=" + l_type);
+    }
     this.getListingById = function(id) {
         return $http.get(host + listingPath + '/' + id);
     }
