@@ -124,6 +124,11 @@ angular.module('dumboApp')
 				};
 			}
 
+			$scope.getThumbnail = function(photo_url){
+				console.log(photo_url.replace('tuskphotos','tuskphotos-output'));
+				return photo_url.replace('tuskphotos','tuskphotos-output');
+			}
+
 
 			$scope.loadSavedData = function() {
 				$scope.listing = localStorageService.get(localStorageKey) || {};
