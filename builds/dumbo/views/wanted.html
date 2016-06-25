@@ -1,0 +1,23 @@
+<div ng-controller="WantedCtrl" class="container-fluid" id="wantedPage" ng-init="init()">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1 class="wantedTitle">I want a
+                <input class="wantedInputBox btn-{{nextRandomButtonColor}} " ng-keypress="addToWanted($event)" ng-model="wantedInput"></input>
+        </h1>
+        <hr>
+    	<span ng-repeat="wanted in wanteds">
+            <div class="btn-group wantedItem">
+              <button type="button" class="btn btn-{{::randomButtonColor}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{wanted.text}}
+                  <span class="badge">1</span>
+
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Like</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Sell One</a></li>
+              </ul>
+            </div>
+    	</span>
+    </div>
+</div>

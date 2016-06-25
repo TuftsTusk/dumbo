@@ -150,6 +150,12 @@ var app = angular
 			loggedIn: requireLogin
 		}
 	})
+	.when('/wanted', {
+		templateUrl: 'views/wanted.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
+	})
 	.otherwise({
 		templateUrl: '404.html'
 	});

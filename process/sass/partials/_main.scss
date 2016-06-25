@@ -7,12 +7,12 @@
 }
 body {
     font-family: $font-main;
-   
+
 }
 .blue{
     background: $darkblue;
     min-height: calc(100vh - 100px);
-    
+
 }
 *:focus {
     outline: none;
@@ -34,7 +34,7 @@ body {
 .footer {
     text-align: center;
     margin: auto;
-   
+
 }
 /* sticky footer info */
 
@@ -50,7 +50,7 @@ body {
 html,
 body {
     height: 100%;
-    
+
 }
 
 .page-wrap {

@@ -1,0 +1,18 @@
+/********* _wanted.scss *********/
+/* used for wanted page elements */
+
+.wantedInputBox {
+    border-radius: 2em;
+    border: none;
+    margin: 0.4em;
+    padding: 0.4em;
+
+    box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%)
+}
+
+.wantedTitle {
+    text-align: center;
+}
+.wantedItem {
+    margin-bottom:0.5em;
+}

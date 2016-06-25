@@ -24,11 +24,8 @@ angular.module('dumboApp')
 		var text;
 
 		$scope.initiatePhotoUpload = function() {
+			alert("HEY");
 			$('#photoUploadInput').click();
-			//probably don't need these checks, but for now
-			//    if ($scope.listingData.bedrooms[$scope.selectedRoom] == undefined) {
-			// 	   $scope.listingData.bedrooms[$scope.selectedRoom].photos = [];
-			//    }
 			$scope.currentUploadTarget = $scope.photos;
 
 
@@ -36,6 +33,7 @@ angular.module('dumboApp')
 
 		$scope.deletePhoto = function(index) {
 			$scope.photos.splice(index, 1);
+			$scope.save();
 		}
 
 		$scope.save = function() {
