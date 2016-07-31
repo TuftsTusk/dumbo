@@ -24,7 +24,6 @@ angular.module('dumboApp')
 		var text;
 
 		$scope.initiatePhotoUpload = function() {
-			alert("HEY");
 			$('#photoUploadInput').click();
 			$scope.currentUploadTarget = $scope.photos;
 
@@ -86,8 +85,8 @@ angular.module('dumboApp')
 							SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
 						} else {
 							var errorMessage;
-							if (!res.data && res.data.message && res.data.message.message) {
-								errorMessage = res.data.message.message;
+							if (res.data && res.data.message && res.data.message) {
+								errorMessage = res.data.message;
 								SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
 							}
 							else {
@@ -110,8 +109,9 @@ angular.module('dumboApp')
 							SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
 						} else {
 							var errorMessage;
-							if (!res.data && res.data.message && res.data.message.message) {
-								errorMessage = res.data.message.message;
+							console.log(res);
+							if (res.data && res.data.message && res.data.message) {
+								errorMessage = res.data.message;
 								SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
 							}
 							else {

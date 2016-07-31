@@ -1,0 +1,35 @@
+<div ng-controller="multiLayout" ng-cloak ng-init="init()" >
+    <div ng-if="listings.error">
+        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
+        <span>Loading...</span>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+
+
+    <div class="grid col-md-10" ng-if="!listings.error">
+        <div ng-repeat="data in listings" ng-cloak>
+            <md-card class="col-md-4">
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{data.listing.title}}</span>
+                  <span class="md-subhead">{{data.listing.description}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-md card-media">
+                      <img ng-src={{data.listing.photo_urls[0].photo_url}}>
+                  </div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button href="#/listing/{{data.listing._id}}">View</md-button>
+              </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+    <div  class="col-md-1 requestSidebar">
+    </div>
+
+
+</div>

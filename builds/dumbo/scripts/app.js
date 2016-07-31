@@ -34,14 +34,14 @@ var app = angular
 	'ngResource',
 	'ngRoute',
 	'ngSanitize',
-	'ngTouch',
 	'oitozero.ngSweetAlert',
 	'dumboApp.config',
 	'LocalStorageModule',
 	'underscore',
 	'ui.bootstrap',
 	'angular-loading-bar',
-	'ngToast'
+	'ngToast',
+	'ngMaterial'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
@@ -64,7 +64,7 @@ var app = angular
 		templateUrl: 'views/about.html'
 	})
 	.when('/listing', {
-		templateUrl: 'views/grid_view.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
@@ -139,7 +139,7 @@ var app = angular
 		}
 	})
 	.when('/misc' , {
-		templateUrl: 'views/grid_view.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
 		}

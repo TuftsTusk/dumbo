@@ -2,7 +2,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <h1 class="wantedTitle">I want a
-                <input class="wantedInputBox btn-{{nextRandomButtonColor}} " ng-keypress="addToWanted($event)" ng-model="wantedInput"></input>
+                <input class="wantedInputBox btn-{{nextRandomButtonColor}}" ng-keypress="addToWanted($event)" ng-model="wantedInput"></input>
         </h1>
         <hr>
     	<span ng-repeat="wanted in wanteds">
@@ -13,9 +13,9 @@
 
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">Like</a></li>
+                <li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Want One</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Sell One</a></li>
+                <li><a href="#"><i class="fa fa-money" aria-hidden="true"></i> Sell One</a></li>
               </ul>
             </div>
     	</span>

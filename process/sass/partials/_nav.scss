@@ -193,6 +193,15 @@ $flyArrowHeight: 11px;
     	}
     }
 
+	.flyArrow {
+		background-image: url(../images/flyArrow-01.svg);
+		background-repeat: no-repeat;
+		position: absolute;
+		height: $flyArrowHeight;
+		width: 20px;
+		top: -$flyArrowHeight;
+	}
+
     .flyHeader {
     	width: 100%;
 	    text-align: center;
