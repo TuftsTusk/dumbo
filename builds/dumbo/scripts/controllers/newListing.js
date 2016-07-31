@@ -85,7 +85,7 @@ angular.module('dumboApp')
 							SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
 						} else {
 							var errorMessage;
-							if (res.data && res.data.message && res.data.message) {
+							if (res.data && res.data.message) {
 								errorMessage = res.data.message;
 								SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
 							}
@@ -109,8 +109,7 @@ angular.module('dumboApp')
 							SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
 						} else {
 							var errorMessage;
-							console.log(res);
-							if (res.data && res.data.message && res.data.message) {
+							if (res.data && res.data.message) {
 								errorMessage = res.data.message;
 								SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
 							}
