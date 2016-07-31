@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('dumboApp')
-	.controller('multiLayout', function ($scope, listingDataService) {
+	.controller('multiLayout', function ($scope, listingDataService, $route) {
         $scope.listings = {};
         $scope.listings.error = true;
+		$scope.listingType = $route.current.$$route.listingType;
 
         $scope.init = function(){
             listingDataService.getListings()
             .then(function success(request){
-                console.log(request.data);
+                console.log(request);
                 $scope.listings = request.data;
                 $scope.listings.error = false;
 

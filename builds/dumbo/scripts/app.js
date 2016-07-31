@@ -63,7 +63,7 @@ var app = angular
 	.when('/about', {
 		templateUrl: 'views/about.html'
 	})
-	.when('/listing', {
+	.when('/listing/', {
 		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
@@ -121,10 +121,11 @@ var app = angular
 		}
 	})
 	.when('/sublet' , {
-		templateUrl: 'views/view_sublet.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'sublet'
 	})
 	.when('/terms' , {
 		templateUrl: 'views/terms.html'
@@ -133,22 +134,25 @@ var app = angular
 		templateUrl: 'views/privacy.html'
 	})
 	.when('/books' , {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'books'
 	})
 	.when('/misc' , {
 		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'misc'
 	})
 	.when('/furniture' , {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'furniture'
 	})
 	.when('/wanted', {
 		templateUrl: 'views/wanted.html',
