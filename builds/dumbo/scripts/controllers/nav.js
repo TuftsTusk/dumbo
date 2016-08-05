@@ -32,6 +32,12 @@ angular.module('dumboApp')
 				flyout.toggleClass('hidden');
 			});
 
+            $('.autotoggle').each(function(i, e) {
+                $(e).click(function() {
+                    $('.navbar-toggle').click();
+                });
+            });
+
 			$(document).mouseup(function (e) {
 				var flyouts = $('.flyoutWrapper');
 				flyouts.each(function(index, flyout) {
