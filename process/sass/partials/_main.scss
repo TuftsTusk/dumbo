@@ -4,7 +4,8 @@
 
 #angular-view > div{
     height: calc(100vh - 100px);
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 body {
     font-family: $font-main;

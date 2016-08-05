@@ -246,7 +246,8 @@ $flyArrowHeight: 11px;
 }
 
 #newListing .toggleFlyout {
-	width: 372px;
+	min-width: 192px;
+    margin-right: 15px;
 	background: whitesmoke;
 
 
