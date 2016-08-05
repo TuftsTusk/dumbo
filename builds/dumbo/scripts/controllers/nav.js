@@ -2,8 +2,8 @@
 
 angular.module('dumboApp')
 	.controller('NavCtrl', function ($scope, userService, userDataService) {
-		$scope.isLoggedin = function(){
-		 	return userService.isLoggedin();
+		$scope.isLoggedIn = function(){
+		 	return userService.isLoggedIn();
 		}
 		$scope.logout = function(){
 			userService.setLoggedOut();
