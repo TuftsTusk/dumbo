@@ -246,8 +246,6 @@ $flyArrowHeight: 11px;
 }
 
 #newListing .toggleFlyout {
-	min-width: 192px;
-    margin-right: 15px;
 	background: whitesmoke;
 
 
@@ -264,6 +262,12 @@ $flyArrowHeight: 11px;
 		float: left;
 		padding: 10px;
     }
+}
+
+.toggleFlyout {
+	min-width: 192px;
+	max-width: 374px;
+    width: calc(100vw - 45px);
 }
 
 .alert {
