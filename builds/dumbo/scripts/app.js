@@ -120,7 +120,7 @@ var app = angular
 			loggedIn: requireLogin
 		}
 	})
-	.when('/sublet' , {
+	.when('/sublets' , {
 		templateUrl: 'views/view_sublet.html',
 		resolve: {
 			loggedIn: requireLogin
