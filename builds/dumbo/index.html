@@ -112,9 +112,9 @@
                             </div>
                         </div>
                     </li>
-                    <li ng-show="isLoggedin() == false" ng-cloak id="register"><a href="#" ng-href="#/login/newuser">Register</a>
+                    <li ng-show="isLoggedin() == false" ng-cloak id="register"><a class="autotoggle" href="#" ng-href="#/login/newuser">Register</a>
                     </li>
-                    <li ng-show="isLoggedin() == false" ng-cloak id="signIn"><a href="#" ng-href="#/login/existinguser">Sign in</a>
+                    <li ng-show="isLoggedin() == false" ng-cloak id="signIn"><a class="autotoggle" href="#" ng-href="#/login/existinguser">Sign in</a>
                     </li>
                     <li ng-show="isLoggedin() != false" ng-cloak id="account" class="flyoutWrapper">
                         <a id="accountButton" class="flyoutButton" href="#" ng-href="">{{requestEmail()}}</a>
