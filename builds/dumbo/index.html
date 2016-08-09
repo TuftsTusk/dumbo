@@ -62,13 +62,13 @@
                         <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
                         <ul class="nav navbar-nav">
 
-                            <li><a class="autotoggle" href="#/sublets" >Sublets<span class="sr-only">(current)</span></a>
+                            <li><a href="#/SubletListing" >Sublets<span class="sr-only">(current)</span></a>
                             </li>
-                            <li><a class="autotoggle" href="#/books" >Books</a>
+                            <li><a href="#/books" >Books</a>
                             </li>
-                            <li><a class="autotoggle" href="#/furniture" >Furniture</a>
+                            <li><a href="#/furniture" >Furniture</a>
                             </li>
-                            <li><a class="autotoggle" href="#/misc" onClick=" ">Miscellaneous</a>
+                            <li><a href="#/misc">Miscellaneous</a>
                             </li>
                         </ul>
                     </li>
@@ -112,11 +112,11 @@
                             </div>
                         </div>
                     </li>
-                    <li ng-show="isLoggedIn() == false" ng-cloak id="register"><a class="autotoggle" href="#" ng-href="#/login/newuser">Register</a>
+                    <li ng-show="isLoggedin() == false" ng-cloak id="register"><a href="#" ng-href="#/login/newuser">Register</a>
                     </li>
-                    <li ng-show="isLoggedIn() == false" ng-cloak id="signIn"><a class="autotoggle" href="#" ng-href="#/login/existinguser">Sign in</a>
+                    <li ng-show="isLoggedin() == false" ng-cloak id="signIn"><a href="#" ng-href="#/login/existinguser">Sign in</a>
                     </li>
-                    <li ng-show="isLoggedIn() == true" ng-cloak id="account" class="flyoutWrapper">
+                    <li ng-show="isLoggedin() != false" ng-cloak id="account" class="flyoutWrapper">
                         <a id="accountButton" class="flyoutButton" href="#" ng-href="">{{requestEmail()}}</a>
                         <div class="toggleFlyout hidden">
                             <div>

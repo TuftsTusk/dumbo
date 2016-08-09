@@ -3,7 +3,7 @@
     <div class="col-md-4">
         <h2 ng-show="newuser==false">Login</h2>
         <h2 ng-show="newuser==true">Register</h2>
-        <form name="form" role="form" ng-submit="handleForm('submit')">
+        <form name="form" role="form">
             <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" class="form-control" ng-model="user.email" required />
@@ -11,6 +11,7 @@
             </div>
             Do you have a Tusk Marketplace Account?
             <br>
+            <form>
                 <input id="existing" type="radio" ng-model="newuser" name="action" ng-value="false" value="Yes"  checked="checked">
                 <label for="existing">Yes</label>
                 <br>
@@ -18,6 +19,7 @@
                 <label for="newuser">No, I am a new user</label>
                 <br>
                 <div ng-show="existing">
+            <form>
             <tt>{{newuser}}</tt><br/>
             </div>
             <div ng-show="newuser==false">
@@ -40,8 +42,8 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button ng-show="newuser==false" ng-click="handleForm('login')" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Login</button>
-                <button ng-show="newuser==true" ng-click="handleForm('register')" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Register</button>
+                <button ng-show="newuser==false" ng-click="login()" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Login</button>
+                <button ng-show="newuser==true" ng-click="register()" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Register</button>
                 <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                 <a ng-click="forgotPassword()" class="btn btn-link">Forgot your password?</a>
             </div>

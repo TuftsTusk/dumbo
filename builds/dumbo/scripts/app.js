@@ -15,7 +15,7 @@ underscore.factory('_', function () {
 });
 
 var requireLogin = function(userService, $location, ngToast){
-	if (!userService.isLoggedIn()){
+	if (!userService.isLoggedin()){
 		$location.path('/login/existing');
 		ngToast.create({
 		  className: 'info',
@@ -120,7 +120,7 @@ var app = angular
 			loggedIn: requireLogin
 		}
 	})
-	.when('/sublets' , {
+	.when('/sublet' , {
 		templateUrl: 'views/view_sublet.html',
 		resolve: {
 			loggedIn: requireLogin

@@ -8,8 +8,6 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-  	.controller('HomeCtrl', function ($scope, userService) {
-        $scope.isLoggedIn = function() {
-            return userService.isLoggedIn();
-        }
+  	.controller('HomeCtrl', function ($scope) {
+
   	});
