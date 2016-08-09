@@ -163,6 +163,7 @@
   		&:hover {
   			color: $lightblue;
   		}
+        cursor: pointer;
   	}
 }
 
@@ -245,7 +246,6 @@ $flyArrowHeight: 11px;
 }
 
 #newListing .toggleFlyout {
-	width: 372px;
 	background: whitesmoke;
 
 
@@ -262,6 +262,12 @@ $flyArrowHeight: 11px;
 		float: left;
 		padding: 10px;
     }
+}
+
+.toggleFlyout {
+	min-width: 192px;
+	max-width: 374px;
+    width: calc(100vw - 45px);
 }
 
 .alert {

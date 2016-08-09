@@ -20,8 +20,12 @@ angular.module('dumboApp')
     this.logout = function() {
         return $http.post(host + logout);
     }
+    var _confirmAccountURL = function(id, key) {
+        return host + user + id + confirm + key;
+    }
+    this._confirmAccountURL = _confirmAccountURL;
     this.confirmAccount = function(id, key) {
-        return $http.get(host + user + id + confirm + key);
+        return $http.get(_confirmAccountURL(id, key));
     }
     this.resendConfirmation = function(email) {
         return $http.post(host + resendConfirmation, {'email': email});

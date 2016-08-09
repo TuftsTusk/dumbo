@@ -4,12 +4,7 @@
         <h1>The online marketplace for students.</h1>
         <p style="font-style: italic; font-size:1.08em;">Introducing Tusk: a peer-to-peer marketplace designed specifically for the Tufts community. Find Sublets, Textbooks, Furniture, and more! Don’t let your stuff turn to junk. What's in your trunk?</p>
         <br>
-        <a href="/#/login/newuser" class="btn btn-primary btn-extend">Create Account!</a>
-
-
+        <a ng-cloak ng-show="isLoggedIn() == false" href="/#/login/newuser" class="btn btn-primary btn-extend">Create Account!</a>
+        <p ng-cloak style="font-size:1.08em;" ng-show="isLoggedIn() == true">You're already signed in and ready to go!</p>
     </div>
-
-
-
-
 </div>

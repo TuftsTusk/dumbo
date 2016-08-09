@@ -7,8 +7,9 @@ angular.module('dumboApp')
     setLoggedIn : function(userEmail){
       $cookies.put('email', userEmail);
     },
-    isLoggedin : function() {
-      return ($cookies.get('email') != undefined);
+    isLoggedIn : function() {
+      var c = $cookies.get('email');
+      return (c != null && c != "undefined");
     },
     requestEmail : function() {
       return $cookies.get('email');

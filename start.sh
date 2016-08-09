@@ -1,7 +1,7 @@
 #!/bin/bash
 
-npm install;
-npm install -g bower
+sudo npm install
+sudo npm install -g bower
 (cd builds/dumbo && bower install)
 
 if $PROD;
