@@ -41,7 +41,8 @@ var app = angular
 	'underscore',
 	'ui.bootstrap',
 	'angular-loading-bar',
-	'ngToast'
+	'ngToast',
+	'ngMaterial'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
@@ -139,7 +140,7 @@ var app = angular
 		}
 	})
 	.when('/misc' , {
-		templateUrl: 'views/grid_view.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
