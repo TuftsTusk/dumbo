@@ -3,12 +3,11 @@
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
-    <pre>{{listingType}}</pre>
 
     <div ng-if="!listings.error" layout="row">
         <div ng-cloak>
-            <div class='md-padding' layout="row" layout-wrap>
-                <md-card style="width: 350px;" class="_md" ng-repeat="data in listings" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
+            <div class='md-padding' layout="row" layout-wrap layout-align="start space-around">
+                <md-card flex-xs="100" flex-sm="30" flex-gt-sm="15" class="_md" ng-repeat="data in listings" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
                     <img ng-if=data.listing.photo_urls[0].photo_url src="{{data.listing.photo_urls[0].photo_url}}" class="md-card-image" alt="user image">
                     <md-card-title>
                       <md-card-title-text>
