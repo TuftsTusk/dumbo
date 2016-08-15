@@ -1,0 +1,30 @@
+<div ng-controller="multiLayout" ng-cloak ng-init="init()" >
+    <div ng-if="listings.error">
+        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
+        <span>Loading...</span>
+    </div>
+
+    <div ng-if="!listings.error" layout="row">
+        <div ng-cloak>
+            <div class='md-padding' layout="row" layout-wrap layout-align="start space-around">
+                <md-card flex-xs="100" flex-sm="30" flex-gt-sm="15" class="_md" ng-repeat="data in listings" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
+                    <img ng-if=data.listing.photo_urls[0].photo_url src="{{data.listing.photo_urls[0].photo_url}}" class="md-card-image" alt="user image">
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">{{data.listing.title}}</span>
+                      </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>
+                            {{data.listing.description}}
+                        </p>
+                    </md-card-content>
+                    <div class="md-actions" layout="column" layout-align="start">
+                        <md-button href="#/listing/{{data.listing._id}}">View</md-button>
+                    </div>
+                </md-card>
+            </div>
+        </div>
+    </div>
+
+</div>
