@@ -26,7 +26,7 @@
 				<div ng-if="photos.length || uploading">
 					<div class="imageHolder">
 						<a class="photoUploadBox" ng-repeat="image in photos track by $index" target="_blank">
-							<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
+							<div ng-style="{'background-image':'url(' + (image.photo_url | thumbnail) + ')'}" class="scaledImage photoUploadImage"></div>
 							<i class="fa fa-times deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
 						</a>
 						<div ng-if="uploading" class="photoUploadBox inProgress">

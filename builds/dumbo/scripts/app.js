@@ -134,22 +134,25 @@ var app = angular
 		templateUrl: 'views/privacy.html'
 	})
 	.when('/books' , {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'books'
 	})
 	.when('/misc' , {
 		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'misc'
 	})
 	.when('/furniture' , {
-		templateUrl: 'views/coming_soon.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'furniture'
 	})
 	.otherwise({
 		templateUrl: '404.html'
