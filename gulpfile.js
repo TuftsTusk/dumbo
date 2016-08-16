@@ -29,9 +29,9 @@ gulp.task('fonts', ['copy-bs-fonts'], function () {
     .pipe(gulp.dest('/fonts/'));
 });
 
-gulp.task('bowertusk', ['fonts'], injectBowerAndTusk);
+gulp.task('injectDepedencies', ['fonts'], injectDepedencies);
 
-function injectBowerAndTusk() {
+function injectVendorAndApp(appStream) {
     var target = gulp.src('./index.html');
     var js = gulp.src(wiredep().js);
     var css = gulp.src(wiredep().css);
@@ -39,9 +39,6 @@ function injectBowerAndTusk() {
     var vendorStream = js.pipe(concat('bower.js'))
                             .pipe(uglify())
                             .pipe(gulp.dest('./generated'));
-    var appStream = gulp.src('./scripts/**/*.js');
-
-
     return target
         .pipe(inject(series(vendorStream, appStream)))
         .pipe(inject(css.pipe(concat('bower.css'))
@@ -50,7 +47,10 @@ function injectBowerAndTusk() {
         .pipe(gulp.dest('./'));
 }
 
-
+function injectDepedencies() {
+    var appStream = gulp.src('./scripts/**/*.js');
+    injectVendorAndApp(appStream);
+}
 
 gulp.task('express', function(){
     var express = require('express');
@@ -120,14 +120,14 @@ gulp.task('watch', function() {
     gulp.watch(['process/sass/**/*'], ['sass']);
 });
 
-gulp.task('serve', ['sass', 'bowertusk', 'express'], function() {
+gulp.task('serve', ['sass','injectDepedencies', 'express'], function() {
     connect.server({
         livereload: true,
         root: './'
     });
 });
 
-gulp.task('production',['productionEnv', 'bowertusk', 'sass'], function(){
+gulp.task('production',['sass', 'injectDepedencies', 'productionEnv'], function(){
     var port = process.env.PORT || 8080;
     var express = require('express');
     var app = express();
@@ -135,7 +135,7 @@ gulp.task('production',['productionEnv', 'bowertusk', 'sass'], function(){
     app.listen(port);
 });
 
-gulp.task('staging',['stagingEnv', 'bowertusk', 'sass'], function(){
+gulp.task('staging',['sass', 'injectDepedencies', 'stagingEnv'], function(){
     var port = process.env.PORT || 8080;
     var express = require('express');
     var app = express();
