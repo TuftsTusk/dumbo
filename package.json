@@ -9,7 +9,8 @@
     "jasmine-core": "^2.4.1",
     "jshint-stylish": "^1.0.0",
     "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "*"
+    "karma-phantomjs-launcher": "*",
+    "minijasminenode2": "^1.0.0"
   },
   "engines": {
     "node": ">=4.0.0"
