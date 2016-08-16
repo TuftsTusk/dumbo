@@ -6,4 +6,7 @@ node_modules
 /.sass-cache
 bower_components
 scripts/config.js
+scripts/bower.js
 styles/style.css
+styles/bower.css
+fonts/
