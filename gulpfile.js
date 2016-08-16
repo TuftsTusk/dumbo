@@ -11,7 +11,9 @@ filter = require('gulp-filter'),
 flatten = require('gulp-flatten'),
 uglify = require('gulp-uglify'),
 uglifycss = require('gulp-minify-css'),
-series = require('stream-series');
+series = require('stream-series')
+uuid = require('node-uuid'),
+clean = require('gulp-clean');
 
 
 
@@ -29,19 +31,24 @@ gulp.task('fonts', ['copy-bs-fonts'], function () {
     .pipe(gulp.dest('/fonts/'));
 });
 
-gulp.task('injectDepedencies', ['fonts'], injectDepedencies);
+gulp.task('cleanGenerated', function () {
+    return gulp.src('./generated', {read: false})
+        .pipe(clean());
+});
+
+gulp.task('injectDepedencies', ['cleanGenerated','fonts'], injectDepedencies);
 
 function injectVendorAndApp(appStream) {
     var target = gulp.src('./index.html');
     var js = gulp.src(wiredep().js);
     var css = gulp.src(wiredep().css);
 
-    var vendorStream = js.pipe(concat('bower.js'))
+    var vendorStream = js.pipe(concat('bower-'+ uuid.v4() +'.js'))
                             .pipe(uglify())
                             .pipe(gulp.dest('./generated'));
     return target
         .pipe(inject(series(vendorStream, appStream)))
-        .pipe(inject(css.pipe(concat('bower.css'))
+        .pipe(inject(css.pipe(concat('bower-'+ uuid.v4() +'.css'))
             .pipe(uglifycss())
             .pipe(gulp.dest('./generated'))))
         .pipe(gulp.dest('./'));
