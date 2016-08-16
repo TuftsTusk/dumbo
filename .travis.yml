@@ -7,5 +7,6 @@ notifications:
   slack: tusk-team:ynSOmPRqK9JqxJJtTmQptqHR
 install:
     - npm install
+    - npm install jasmine-core
     - npm install -g bower
     - bower install
