@@ -5,3 +5,7 @@ node_js:
 before_script:
 notifications:
   slack: tusk-team:ynSOmPRqK9JqxJJtTmQptqHR
+install:
+    - npm install
+    - npm install -g bower
+    - bower install
