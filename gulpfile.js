@@ -8,7 +8,11 @@ inject = require('gulp-inject'),
 concat = require('gulp-concat'),
 wiredep = require('wiredep'),
 filter = require('gulp-filter'),
-flatten = require('gulp-flatten');
+flatten = require('gulp-flatten'),
+uglify = require('gulp-uglify'),
+uglifycss = require('gulp-minify-css'),
+series = require('stream-series');
+
 
 
 gulp.task('copy-bs-fonts', function(){
@@ -25,16 +29,24 @@ gulp.task('fonts', ['copy-bs-fonts'], function () {
     .pipe(gulp.dest('/fonts/'));
 });
 
-gulp.task('bower', ['fonts'], injectBower);
+gulp.task('bowertusk', ['fonts'], injectBowerAndTusk);
 
-function injectBower() {
+function injectBowerAndTusk() {
     var target = gulp.src('./index.html');
     var js = gulp.src(wiredep().js);
     var css = gulp.src(wiredep().css);
 
+    var vendorStream = js.pipe(concat('bower.js'))
+                            .pipe(uglify())
+                            .pipe(gulp.dest('./generated'));
+    var appStream = gulp.src('./scripts/**/*.js');
+
+
     return target
-        .pipe(inject(js.pipe(concat('bower.js')).pipe(gulp.dest('./scripts'))))
-        .pipe(inject(css.pipe(concat('bower.css')).pipe(gulp.dest('./styles'))))
+        .pipe(inject(series(vendorStream, appStream)))
+        .pipe(inject(css.pipe(concat('bower.css'))
+            .pipe(uglifycss())
+            .pipe(gulp.dest('./generated'))))
         .pipe(gulp.dest('./'));
 }
 
@@ -108,14 +120,14 @@ gulp.task('watch', function() {
     gulp.watch(['process/sass/**/*'], ['sass']);
 });
 
-gulp.task('serve', ['express'], function() {
+gulp.task('serve', ['sass', 'bowertusk', 'express'], function() {
     connect.server({
         livereload: true,
         root: './'
     });
 });
 
-gulp.task('production',['productionEnv', 'bower', 'sass'], function(){
+gulp.task('production',['productionEnv', 'bowertusk', 'sass'], function(){
     var port = process.env.PORT || 8080;
     var express = require('express');
     var app = express();
@@ -123,7 +135,7 @@ gulp.task('production',['productionEnv', 'bower', 'sass'], function(){
     app.listen(port);
 });
 
-gulp.task('staging',['stagingEnv', 'bower', 'sass'], function(){
+gulp.task('staging',['stagingEnv', 'bowertusk', 'sass'], function(){
     var port = process.env.PORT || 8080;
     var express = require('express');
     var app = express();
@@ -132,4 +144,4 @@ gulp.task('staging',['stagingEnv', 'bower', 'sass'], function(){
 
 });
 
-gulp.task('default', ['sass', 'bower', 'watch', 'serve', 'developmentEnv']);
+gulp.task('default', ['watch', 'serve', 'developmentEnv']);
