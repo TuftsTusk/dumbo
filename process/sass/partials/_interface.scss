@@ -1,5 +1,87 @@
 /********* _interface.scss *********/
 /* buttons, filters */
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.gridList {
+  margin: 10px 10px 10px 10px;
+}
+.gridList md-grid-tile-footer {
+	align-items: center;
+	background: $blue;
+	opacity:0.85;
+}
+
+.gridList md-grid-tile-header {
+	align-items: center;
+	background: rgba(0, 0, 0, 0.55);
+}
+
+.listingComponent {
+	font-weight: 600;
+}
+
+
+.gridList md-grid-tile-footer figcaption {
+	width: 100%;
+}
+
+.gridList md-grid-tile-header figcaption {
+	width: 100%;
+}
+
+.listingTitle md-grid-tile-header figcaption span{
+  margin: 0;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  }
+
+.gridList md-grid-tile-footer figcaption h3 {
+  margin: 0;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  }
+
+.listingTitle{
+	text-align: center;
+	width:100%;
+	display:inline-block;
+}
+
+.priceLabel {
+	font-size:100%;
+	float:right;
+}
+
+.multiListingImage {
+	width:100%;
+	height:100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.gridList md-grid-tile {
+  transition: all 200ms ease-out 50ms;
+}
+
+.gridList md-grid-tile {
+  transition: all 200ms ease-out 50ms;
+}
+
+.transition{
+    transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    -webkit-transition: all .25s
+}
 
 .btn:focus, button:focus {
 	outline: none !important;
