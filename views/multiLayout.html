@@ -1,30 +1,25 @@
-<div ng-controller="multiLayout" ng-cloak ng-init="init()" >
+<div ng-controller="multiLayout" ng-cloak ng-init="init()"  >
     <div ng-if="listings.error">
         <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
         <span>Loading...</span>
     </div>
 
-    <div ng-if="!listings.error" layout="row">
-        <div ng-cloak>
-            <div class='md-padding' layout="row" layout-wrap layout-align="start space-around">
-                <md-card flex-xs="100" flex-sm="30" flex-gt-sm="15" class="_md" ng-repeat="data in listings" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
-                    <img ng-if=data.listing.photo_urls[0].photo_url src="{{data.listing.photo_urls[0].photo_url}}" class="md-card-image" alt="user image">
-                    <md-card-title>
-                      <md-card-title-text>
-                        <span class="md-headline">{{data.listing.title}}</span>
-                      </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                        <p>
-                            {{data.listing.description}}
-                        </p>
-                    </md-card-content>
-                    <div class="md-actions" layout="column" layout-align="start">
-                        <md-button href="#/listing/{{data.listing._id}}">View</md-button>
-                    </div>
-                </md-card>
-            </div>
-        </div>
-    </div>
+    <md-grid-list class="gridList"
+          md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+          md-row-height-gt-md="1:1" md-row-height="2:2"
+          md-gutter="12px" md-gutter-gt-sm="8px" ng-if="!listings.error" >
+      <md-grid-tile ng-repeat="data in listings">
+        <md-grid-tile-header class="listingComponent">
+          <span class="listingTitle">{{data.listing.title}} </span> <span class="label label-primary priceLabel">${{data.listing.price}}</span>
+
+
+
+        </md-grid-tile-header>
+        <span class="multiListingImage md-whiteframe-z2"  ng-style="{'background-image':'url({{data.listing.photo_urls[0].photo_url}})'}" ><span>
+        <md-grid-tile-footer md-ink-ripple class="transition" ng-click="viewListing('{{data.listing._id}}')" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
+          <h3 class="noselect">VIEW</h3>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+    </md-grid-list>
 
 </div>
