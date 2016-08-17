@@ -42,7 +42,8 @@ var app = angular
 	'ui.bootstrap',
 	'angular-loading-bar',
 	'ngToast',
-	'ngMaterial'
+	'ngMaterial',
+	'infinite-scroll'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
@@ -154,12 +155,23 @@ var app = angular
 		},
 		listingType: 'furniture'
 	})
+	.when('/gridlist' , {
+		templateUrl: 'views/gridList.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
+	})
 	.otherwise({
 		templateUrl: '404.html'
 	});
 	$httpProvider.defaults.withCredentials = true;
 	$httpProvider.interceptors.push('authInterceptor');
 });
+
+
+app.constant("LISTING", {
+	"MAXSUMMARYLENGTH": "200"
+})
 
 
 app.config(['ngToastProvider', function(ngToast) {

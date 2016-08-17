@@ -2,7 +2,7 @@
 
 sudo npm install
 sudo npm install -g bower
-(cd builds/dumbo && bower install)
+bower install
 
 if $PROD;
 then gulp production;

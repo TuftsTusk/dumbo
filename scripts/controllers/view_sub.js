@@ -17,14 +17,14 @@ var mylng;
 
 angular.module('dumboApp')
     .controller('SubCtrl', function ($scope, $http) {
-        $http.get('../../housing.json').then(function (result) {
+        $http.get('../../fixtures/housing.json').then(function (result) {
             $scope.listings = result.data;
 
             initMap(42.4059385, -71.1197832);
         });
         var test;
         var markers = [];
-        $http.get('../../housing.json').then(function (result) {
+        $http.get('../../fixtures/housing.json').then(function (result) {
             $scope.places = result.data;
 
             for (var i = 0; i < $scope.places.length; i++) {

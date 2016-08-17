@@ -1,0 +1,25 @@
+<div ng-controller="multiLayout" ng-cloak ng-init="init()"  >
+    <div ng-if="listings.error">
+        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
+        <span>Loading...</span>
+    </div>
+
+    <md-grid-list class="gridList"
+          md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+          md-row-height-gt-md="1:1" md-row-height="2:2"
+          md-gutter="12px" md-gutter-gt-sm="8px" ng-if="!listings.error" >
+      <md-grid-tile ng-repeat="data in listings">
+        <md-grid-tile-header class="listingComponent">
+          <span class="listingTitle">{{data.listing.title}} </span> <span class="label label-primary priceLabel">${{data.listing.price}}</span>
+
+
+
+        </md-grid-tile-header>
+        <span class="multiListingImage md-whiteframe-z2"  ng-style="{'background-image':'url({{data.listing.photo_urls[0].photo_url | thumbnail}})'}" ><span>
+        <md-grid-tile-footer md-ink-ripple class="transition" ng-click="viewListing('{{data.listing._id}}')" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
+          <h3 class="noselect">VIEW</h3>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+    </md-grid-list>
+
+</div>
