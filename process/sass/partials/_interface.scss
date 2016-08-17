@@ -10,6 +10,11 @@
                                   not supported by any browser */
 }
 
+.fastScroll {
+	// fast scroll for mobile, needed for iOS
+	-webkit-overflow-scrolling:touch
+}
+
 .gridList {
   margin: 10px 10px 10px 10px;
 }
