@@ -10,14 +10,6 @@
 angular.module('dumboApp')
     .controller('ViewCtrl', function ($scope, $http, $routeParams, listingDataService, $location) {
         $scope.id = $routeParams.id;
-
-//        $http.get('/listing/' + $scope.id).then(function (result) {
-//            $scope.listing = result.data.listing;
-//            $scope.isOwner = result.data.owner;
-//            $scope.source = result.data.listing.photo_urls[0].photo_url;
-//            console.log($scope.source);
-//
-//        });
         $scope.listing = {};
         $scope.listing.error = true;
 
@@ -32,7 +24,6 @@ angular.module('dumboApp')
                     if (result.data.listing.photo_urls && result.data.listing.photo_urls.length > 0){
                         $scope.source = result.data.listing.photo_urls[0].photo_url;
                     }
-                    console.log($scope.source);
                 }, function (result) {
                     $scope.listing.error = true;
                 })

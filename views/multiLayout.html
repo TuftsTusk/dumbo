@@ -15,7 +15,7 @@
 
 
         </md-grid-tile-header>
-        <span class="multiListingImage md-whiteframe-z2"  ng-style="{'background-image':'url({{data.listing.photo_urls[0].photo_url}})'}" ><span>
+        <span class="multiListingImage md-whiteframe-z2"  ng-style="{'background-image':'url({{data.listing.photo_urls[0].photo_url | thumbnail}})'}" ><span>
         <md-grid-tile-footer md-ink-ripple class="transition" ng-click="viewListing('{{data.listing._id}}')" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
           <h3 class="noselect">VIEW</h3>
         </md-grid-tile-footer>

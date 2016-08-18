@@ -6,7 +6,7 @@
     <div class="margin-top-bottom inner-padding " ng-if="!listing.error">
         <div class="left">
             <div id="thumbnail">
-                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + link.photo_url + ')'}"></div>
+                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + (link.photo_url | thumbnail) + ')'}"></div>
                 </a>
 
             </div>
