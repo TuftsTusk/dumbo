@@ -1,10 +1,41 @@
-<div ng-controller="HomeCtrl" class="container" id="homebody">
+<div ng-controller="HomeCtrl" class="container" id="homebody" ng-init="init()">
     <div class="div1">
         <img src="../images/combination-mark-white.svg">
-        <h1>The online marketplace for students.</h1>
-        <p style="font-style: italic; font-size:1.08em;">Introducing Tusk: a peer-to-peer marketplace designed specifically for the Tufts community. Find Sublets, Textbooks, Furniture, and more! Don’t let your stuff turn to junk. What's in your trunk?</p>
+        <h1 ng-show="isLoggedIn() == false">The online marketplace for students.</h1>
+        <div ng-cloak ng-show="isLoggedIn() == true">
+          <br>
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <span layout-align="center">{{selectionFlowTitle}}</span>
+              <span flex> </span>
+              <md-button ng-click="goBack()" ng-show="canGoBack">
+                <md-icon>autorenew</md-icon> Start Over
+              </md-button>
+            </div>
+
+            </md-toolbar>
+          <md-grid-list class="welcomeGrid"
+                md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+                md-row-height-gt-md="1:1" md-gutter="8px" md-row-height="2:2"
+                ng-if="!listings.error" >
+                <md-grid-tile
+
+                              md-rowspan="{{action.row}}"
+                              md-colspan="{{action.col}}"
+                              ng-repeat = "action in actionItems"
+                              class="welcomeBox {{action.class}}"
+                              md-ink-ripple class="transition"
+                              ng-click="selectAction(action)"
+                              ng-mouseenter="hover = 'md-whiteframe-z2'"
+                              ng-mouseleave="hover = ''" ng-class="hover">
+                  <md-icon md-svg-icon="{{action.icon}}"></md-icon>
+                  <md-grid-tile-footer >{{action.name}}</md-grid-tile-footer>
+                </md-grid-tile>
+          </md-grid-list>
+
+        </div>
+        <p ng-show="isLoggedIn() == false" style="font-style: italic; font-size:1.08em;">Introducing Tusk: a peer-to-peer marketplace designed specifically for the Tufts community. Find Sublets, Textbooks, Furniture, and more! Don’t let your stuff turn to junk. What's in your trunk?</p>
         <br>
         <a ng-cloak ng-show="isLoggedIn() == false" href="/#/login/newuser" class="btn btn-primary btn-extend">Create Account!</a>
-        <p ng-cloak style="font-size:1.08em;" ng-show="isLoggedIn() == true">You're already signed in and ready to go!</p>
     </div>
 </div>
