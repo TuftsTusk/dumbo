@@ -6,7 +6,7 @@
           <br>
           <md-toolbar>
             <div class="md-toolbar-tools">
-              <span layout-align="center">{{selectionFlowTitle}}</span>
+              <span layout-align="center" class="noselect">{{selectionFlowTitle}}</span>
               <span flex> </span>
               <md-button ng-click="goBack()" ng-show="canGoBack">
                 <md-icon>autorenew</md-icon> Start Over
@@ -29,7 +29,7 @@
                               ng-mouseenter="hover = 'md-whiteframe-z2'"
                               ng-mouseleave="hover = ''" ng-class="hover">
                   <md-icon md-svg-icon="{{action.icon}}"></md-icon>
-                  <md-grid-tile-footer >{{action.name}}</md-grid-tile-footer>
+                  <md-grid-tile-footer class="noselect">{{action.name}}</md-grid-tile-footer>
                 </md-grid-tile>
           </md-grid-list>
 

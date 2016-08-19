@@ -56,6 +56,27 @@ var app = angular
 	.when('/login/:loginType', {
 		templateUrl: 'views/login.html'
 	})
+	.when('/books/new', {
+		templateUrl: 'views/newListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		},
+		listingType:'BookListing'
+	})
+	.when('/furniture/new', {
+		templateUrl: 'views/newListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		},
+		listingType:'FurnitureListing'
+	})
+	.when('/misc/new', {
+		templateUrl: 'views/newListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		},
+		listingType:'MiscListing'
+	})
 	.when('/newListing', {
 		templateUrl: 'views/newListing.html',
 		resolve: {
@@ -86,19 +107,19 @@ var app = angular
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
-	.when('/SubletListing', {
-		redirectTo: '/subletListing/new',
+	.when('/sublets', {
+		redirectTo: '/sublet/new',
 		resolve: {
 			loggedIn: requireLogin
 		}
 	})
-	.when('/SubletListing/:action', {
+	.when('/sublets/:action', {
 		templateUrl: 'views/singleListing.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
 	})
-	.when('/SubletListing/:id/:action', {
+	.when('/sublets/:id/:action', {
 		templateUrl: 'views/singleListing.html',
 		resolve: {
 			loggedIn: requireLogin

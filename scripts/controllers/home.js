@@ -29,7 +29,7 @@ angular.module('dumboApp')
                             'icon': '../images/furniture.svg',
                             'class': 'deepBlue',
                             'nextAction': 'sell',
-                            'nextActionLink': 'newListing',
+                            'nextActionLink': 'new',
                             'row': 1,
                             'col': 2
                           }
@@ -46,7 +46,7 @@ angular.module('dumboApp')
     $scope.canGoBack = true;
     $scope.selectionFlowTitle = action.name;
     if (action.nextAction === 'open'){
-      $location.url(action.actionLinkType)
+      $location.url(action.actionLinkType + '/' + action.actionLink)
     }
     $scope.actionItems = [
                           { 'name': 'Sublets',
