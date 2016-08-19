@@ -14,8 +14,8 @@ angular.module('dumboApp')
   }
 
   $scope.init = function() {
-    $scope.canGoBack = false;
-    $scope.selectionFlowTitle = null;
+    $scope.optionChosen = false;
+    $scope.selectionFlowTitle = 'Welcome';
     $scope.actionItems = [
                           { 'name': 'Shop',
                             'icon': '../images/ic_shopping_cart_black_24px.svg',
@@ -36,7 +36,7 @@ angular.module('dumboApp')
                         ]
   }
 
-  $scope.goBack = function(){
+  $scope.startOver = function(){
     $scope.init();
   }
 
@@ -46,7 +46,7 @@ angular.module('dumboApp')
     if (action.nextAction === 'open'){
       $location.url(action.actionLinkType + '/' + action.actionLink)
     } else {
-      $scope.canGoBack = true;
+      $scope.optionChosen = true;
       $scope.selectionFlowTitle = action.name;
       $scope.actionItems = [
                             { 'name': 'Sublets',
