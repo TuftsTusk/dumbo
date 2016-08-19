@@ -1,22 +1,28 @@
 <div ng-controller="HomeCtrl" class="container" id="homebody" ng-init="init()">
     <div class="div1">
-        <img src="../images/combination-mark-white.svg">
+        <img ng-show="isLoggedIn() == false" src="../images/combination-mark-white.svg">
         <h1 ng-show="isLoggedIn() == false">The online marketplace for students.</h1>
         <div ng-cloak ng-show="isLoggedIn() == true">
           <br>
-          <md-toolbar>
-            <div class="md-toolbar-tools">
-              <span layout-align="center" class="noselect">{{selectionFlowTitle}}</span>
-              <span flex> </span>
-              <md-button ng-click="goBack()" ng-show="canGoBack">
-                <md-icon>autorenew</md-icon> Start Over
-              </md-button>
+          <md-toolbar layout="row" layout-align="center center">
+            <div class="toolbar">
+              <div id="container">
+                <div class="col-xs-4">
+                  <md-button class="pull-left md-raised" ng-click="goBack()" ng-if="canGoBack" aria-label="Go Back" >
+                    BACK
+                  </md-button>
+                </div>
+                <div class="col-xs-4">
+                  <span class="noselect" class="toolbarText" style="font-size: 30px;" ng-if="selectionFlowTitle">{{selectionFlowTitle}}</span>
+                  <md-icon class="toolbarIcon" md-svg-icon="../images/combination-mark-white.svg" ng-if="!selectionFlowTitle"></md-icon>
+                </div>
+                <div class="col-xs-4"></div>
+              </div>
             </div>
-
-            </md-toolbar>
+          </md-toolbar>
           <md-grid-list class="welcomeGrid"
-                md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
-                md-row-height-gt-md="1:1" md-gutter="8px" md-row-height="2:2"
+                md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+                md-row-height-gt-md="1:1" md-gutter="8px" md-row-height="1:1"
                 ng-if="!listings.error" >
                 <md-grid-tile
 
@@ -28,7 +34,8 @@
                               ng-click="selectAction(action)"
                               ng-mouseenter="hover = 'md-whiteframe-z2'"
                               ng-mouseleave="hover = ''" ng-class="hover">
-                  <md-icon md-svg-icon="{{action.icon}}"></md-icon>
+                  <md-icon ng-if="action.mdIcon">{{action.mdIcon}}</md-icon>
+                  <md-icon ng-if="action.icon" md-svg-icon="{{action.icon}}"></md-icon>
                   <md-grid-tile-footer class="noselect">{{action.name}}</md-grid-tile-footer>
                 </md-grid-tile>
           </md-grid-list>

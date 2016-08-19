@@ -15,10 +15,10 @@ angular.module('dumboApp')
 
   $scope.init = function() {
     $scope.canGoBack = false;
-    $scope.selectionFlowTitle = "Welcome";
+    $scope.selectionFlowTitle = null;
     $scope.actionItems = [
                           { 'name': 'Shop',
-                            'icon': '../images/furniture.svg',
+                            'icon': '../images/ic_shopping_cart_black_24px.svg',
                             'class': 'purple',
                             'nextAction': 'buy',
                             'nextActionLink': '',
@@ -26,7 +26,7 @@ angular.module('dumboApp')
                             'col': 2
                           },
                           { 'name': 'Sell',
-                            'icon': '../images/furniture.svg',
+                            'icon': '../images/ic_monetization_on_black_24px.svg',
                             'class': 'deepBlue',
                             'nextAction': 'sell',
                             'nextActionLink': 'new',
@@ -43,53 +43,53 @@ angular.module('dumboApp')
 
 
   $scope.selectAction = function(action){
-    $scope.canGoBack = true;
-    $scope.selectionFlowTitle = action.name;
     if (action.nextAction === 'open'){
       $location.url(action.actionLinkType + '/' + action.actionLink)
+    } else {
+      $scope.canGoBack = true;
+      $scope.selectionFlowTitle = action.name;
+      $scope.actionItems = [
+                            { 'name': 'Sublets',
+                              'icon': '../images/sublet.svg',
+                              'class': 'purple',
+                              'actionType': action.nextAction,
+                              'nextAction': 'open',
+                              'actionLink': action.nextActionLink,
+                              'actionLinkType': 'sublets',
+                              'row': 1,
+                              'col': 1
+                            },
+                            { 'name': 'Books',
+                              'icon': '../images/book.svg',
+                              'class': 'deepBlue',
+                              'actionType': action.nextAction,
+                              'nextAction': 'open',
+                              'actionLink': action.nextActionLink,
+                              'actionLinkType': 'books',
+                              'row': 1,
+                              'col': 1
+                            },
+                            { 'name': 'Furniture',
+                              'icon': '../images/furniture.svg',
+                              'class': 'lightPurple',
+                              'actionType': action.nextAction,
+                              'nextAction': 'open',
+                              'actionLink': action.nextActionLink,
+                              'actionLinkType': 'furniture',
+                              'row': 1,
+                              'col': 1
+                            },
+                            { 'name': 'Miscellaneous',
+                              'icon': '../images/everything_else2.svg',
+                              'class': 'red',
+                              'actionType': action.nextAction,
+                              'nextAction': 'open',
+                              'actionLink': action.nextActionLink,
+                              'actionLinkType': 'misc',
+                              'row': 1,
+                              'col': 1
+                            }
+                          ];
     }
-    $scope.actionItems = [
-                          { 'name': 'Sublets',
-                            'icon': '../images/sublet.svg',
-                            'class': 'purple',
-                            'actionType': action.nextAction,
-                            'nextAction': 'open',
-                            'actionLink': action.nextActionLink,
-                            'actionLinkType': 'sublets',
-                            'row': 1,
-                            'col': 1
-                          },
-                          { 'name': 'Books',
-                            'icon': '../images/book.svg',
-                            'class': 'deepBlue',
-                            'actionType': action.nextAction,
-                            'nextAction': 'open',
-                            'actionLink': action.nextActionLink,
-                            'actionLinkType': 'books',
-                            'row': 1,
-                            'col': 1
-                          },
-                          { 'name': 'Furniture',
-                            'icon': '../images/furniture.svg',
-                            'class': 'lightPurple',
-                            'actionType': action.nextAction,
-                            'nextAction': 'open',
-                            'actionLink': action.nextActionLink,
-                            'actionLinkType': 'furniture',
-                            'row': 1,
-                            'col': 1
-                          },
-                          { 'name': 'Miscellaneous',
-                            'icon': '../images/everything_else2.svg',
-                            'class': 'red',
-                            'actionType': action.nextAction,
-                            'nextAction': 'open',
-                            'actionLink': action.nextActionLink,
-                            'actionLinkType': 'misc',
-                            'row': 1,
-                            'col': 1
-                          }
-                        ];
-
   }
 });

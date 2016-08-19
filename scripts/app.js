@@ -86,8 +86,8 @@ var app = angular
 	.when('/about', {
 		templateUrl: 'views/about.html'
 	})
-	.when('/listing', {
-		templateUrl: 'views/grid_view.html',
+	.when('/listing' , {
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
