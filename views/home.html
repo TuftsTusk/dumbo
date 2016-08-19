@@ -1,8 +1,8 @@
 <div ng-controller="HomeCtrl" class="container" id="homebody" ng-init="init()">
     <div class="div1">
-        <img ng-show="isLoggedIn() == false" src="../images/combination-mark-white.svg">
-        <h1 ng-show="isLoggedIn() == false">The online marketplace for students.</h1>
-        <div ng-cloak ng-show="isLoggedIn() == true">
+        <img ng-show="!isLoggedIn()" src="../images/combination-mark-white.svg">
+        <h1 ng-show="!isLoggedIn()">The online marketplace for students.</h1>
+        <div ng-cloak ng-show="isLoggedIn()">
           <br>
           <md-toolbar>
              <div class="md-toolbar-tools">
@@ -34,8 +34,8 @@
           </md-grid-list>
 
         </div>
-        <p ng-show="isLoggedIn() == false" style="font-style: italic; font-size:1.08em;">Introducing Tusk: a peer-to-peer marketplace designed specifically for the Tufts community. Find Sublets, Textbooks, Furniture, and more! Don’t let your stuff turn to junk. What's in your trunk?</p>
+        <p ng-show="!isLoggedIn()" style="font-style: italic; font-size:1.08em;">Introducing Tusk: a peer-to-peer marketplace designed specifically for the Tufts community. Find Sublets, Textbooks, Furniture, and more! Don’t let your stuff turn to junk. What's in your trunk?</p>
         <br>
-        <a ng-cloak ng-show="isLoggedIn() == false" href="/#/login/newuser" class="btn btn-primary btn-extend">Create Account!</a>
+        <a ng-cloak ng-show="!isLoggedIn()" href="/#/login/newuser" class="btn btn-primary btn-extend">Create Account!</a>
     </div>
 </div>
