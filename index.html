@@ -21,7 +21,7 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/generated/bower-08b6a61a-2196-4f3a-bf02-26312dcb0f98.css">
+    <link rel="stylesheet" href="/generated/bower-2d715f68-b570-4067-9d11-b55a004502f0.css">
     <!-- endinject -->
     <link rel="stylesheet" href="styles/style.css">
 
@@ -53,7 +53,7 @@
 
               <li id="newListing" class="flyoutWrapper">
                   <a id="newListingButton" ng-href="" class="btn btn-primary flyoutButton" ng-click="openNewFlyout()" role="button">New Listing</a>
-                  <div class="toggleFlyout" ng-if="newFlyoutOpen">
+                  <div class="toggleFlyout" ng-if="newFlyoutOpen" ng-cloak>
                       <div>
                           <div class="flyArrowWrapper">
                               <div class="flyArrow">
@@ -82,13 +82,13 @@
                       </div>
                   </div>
               </li>
-              <li ng-show="isLoggedIn() == false" ng-cloak id="register"><a class="autotoggle" href="#" ng-href="#/login/newuser">Register</a>
+              <li data-match-route="#/login/newuser" ng-show="isLoggedIn() == false" ng-cloak id="register"><a class="autotoggle" href="#" ng-href="#/login/newuser">Register</a>
               </li>
-              <li ng-show="isLoggedIn() == false" ng-cloak id="signIn"><a class="autotoggle" href="#" ng-href="#/login/existinguser">Sign in</a>
+              <li data-match-route="#/login/existinguser" ng-show="isLoggedIn() == false" ng-cloak id="signIn"><a class="autotoggle" href="#" ng-href="#/login/existinguser">Sign in</a>
               </li>
               <li ng-show="isLoggedIn() == true" ng-cloak id="account" class="flyoutWrapper">
                   <a id="accountButton" class="flyoutButton" href="#" ng-href="" ng-click="openSettingsFlyout()">{{requestEmail()}}</a>
-                  <div class="toggleFlyout" ng-show="settingsFlyoutOpen">
+                  <div class="toggleFlyout" ng-show="settingsFlyoutOpen" ng-cloak>
                       <div>
                           <div class="flyArrowWrapper">
                               <div class="flyArrow">
@@ -214,7 +214,8 @@
         </div>
     </nav> -->
     <toast></toast>
-    <div id="angular-view" class="page-wrap" ng-view="">
+    <div ng-show="AILoading" class="DottedWhite"></div>
+    <div ng-hide="AILoading" id="angular-view" class="page-wrap" ng-view=""></div>
     </div>
     <div class="footer">
         <div class="container-fluid">
@@ -226,7 +227,7 @@
     </div>
 
     <!-- inject:js -->
-    <script src="/generated/bower-2f82b4b6-9178-4816-a244-60ff5c54b8eb.js"></script>
+    <script src="/generated/bower-e4afb72e-31f7-4624-8772-ef95c1a9b3a6.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/config.js"></script>
     <script src="/scripts/controllers/about.js"></script>
