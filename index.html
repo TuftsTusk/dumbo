@@ -11,7 +11,6 @@
     <meta name="google" value="notranslate">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <script src="https://use.typekit.net/yiw1fez.js"></script>
     <script>
     try {
         Typekit.load({
@@ -22,7 +21,7 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/generated/bower-b5e4796d-3080-446b-98b5-7514bcf8d58e.css">
+    <link rel="stylesheet" href="/generated/bower-6570a4c9-222e-49cb-8325-5d69d9369c98.css">
     <!-- endinject -->
     <link rel="stylesheet" href="styles/style.css">
 
@@ -31,103 +30,85 @@
 
 </head>
 
-<body ng-app="dumboApp">
-    <nav class="navbar navbar-default" ng-controller="NavCtrl">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" ng-href="#/home"></a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbarMain">
-                    <li class="dropdown navbarShop">
-                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
-                        <ul class="nav navbar-nav">
-
-                            <li><a class="autotoggle" href="#/sublets" >Sublets<span class="sr-only">(current)</span></a>
-                            </li>
-                            <li><a class="autotoggle" href="#/books" >Books</a>
-                            </li>
-                            <li><a class="autotoggle" href="#/furniture" >Furniture</a>
-                            </li>
-                            <li><a class="autotoggle" href="#/misc" onClick=" ">Miscellaneous</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="searchbar navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        <input type="text" class="input-field" placeholder="Search">
-                    </div>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li id="newListing" class="flyoutWrapper">
-                        <a id="newListingButton" ng-href="" class="btn btn-primary flyoutButton" role="button">New Listing</a>
-                        <div class="toggleFlyout hidden">
-                            <div>
-                                <div class="flyArrowWrapper">
-                                    <div class="flyArrow">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flyHeader">What are you posting?
-                            </div>
-                            <div class="flyContent">
-                                <a href="#/sublets/new" class="flyButton">
-									<div ng-include="'../images/sublet.svg'" alt="sublet"></div>
-									Sublet
-                                </a>
-                                <a href="#/books/new" class="flyButton">
-									<div ng-include="'../images/book.svg'" alt="book"></div>
-									Book
-                                </a>
-                                <a href="#/furniture/new" class="flyButton">
-                                    <div ng-include="'../images/furniture.svg'" alt="furniture"></div>
-									Furniture
-                                </a>
-                                <a href="#/misc/new" class="flyButton">
-                                    <div ng-include="'../images/everything_else2.svg'" alt="other"></div>
-									Other
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li ng-show="isLoggedIn() == false" ng-cloak id="register"><a class="autotoggle" href="#" ng-href="#/login/newuser">Register</a>
-                    </li>
-                    <li ng-show="isLoggedIn() == false" ng-cloak id="signIn"><a class="autotoggle" href="#" ng-href="#/login/existinguser">Sign in</a>
-                    </li>
-                    <li ng-show="isLoggedIn() == true" ng-cloak id="account" class="flyoutWrapper">
-                        <a id="accountButton" class="flyoutButton" href="#" ng-href="">{{requestEmail()}}</a>
-                        <div class="toggleFlyout hidden">
-                            <div>
-                                <div class="flyArrowWrapper">
-                                    <div class="flyArrow">
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="flyContent">
-								<li><a href="#/me/listing" class="flyButton">My posts</a></li>
-								<li><a href="" class="flyButton">Saved listings</a></li>
-								<li><a href="#/settings" class="flyButton">Settings</a></li>
-								<li><a href="#/" ng-click="logout()" id="logout" class="flyButton">Log out</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+<body ng-app="dumboApp" ng-init="init();">
+  <nav class="navbar navbar-default navbarMain" role="navigation" ng-controller="NavCtrl" ng-init="init()">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/"></a>
         </div>
+        <div uib-collapse="isCollapsed" class="navbar-collapse bs-js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li data-match-route="/sublets"><a href="#/sublets">Sublets</a></li>
+            <li data-match-route="/books"><a href="#/books">Books</a></li>
+            <li data-match-route="/furniture"><a href="#/furniture">Furniture</a></li>
+            <li data-match-route="/misc"><a href="#/misc">Miscellaneous</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+
+              <li id="newListing" class="flyoutWrapper">
+                  <a id="newListingButton" ng-href="" class="btn btn-primary flyoutButton" ng-click="openNewFlyout()" role="button">New Listing</a>
+                  <div class="toggleFlyout" ng-if="newFlyoutOpen" ng-cloak>
+                      <div>
+                          <div class="flyArrowWrapper">
+                              <div class="flyArrow">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="flyHeader">What are you posting?
+                      </div>
+                      <div class="flyContent">
+                          <a href="#/SubletListing/new" class="flyButton">
+            <div ng-include="'../images/sublet.svg'" alt="sublet"></div>
+            Sublet
+                          </a>
+                          <a href="#/newListing#BookListing" class="flyButton">
+            <div ng-include="'../images/book.svg'" alt="book"></div>
+            Book
+                          </a>
+                          <a href="#/newListing#FurnitureListing" class="flyButton">
+                              <div ng-include="'../images/furniture.svg'" alt="furniture"></div>
+            Furniture
+                          </a>
+                          <a href="#/newListing#MiscListing" class="flyButton">
+                              <div ng-include="'../images/everything_else2.svg'" alt="other"></div>
+            Other
+                          </a>
+                      </div>
+                  </div>
+              </li>
+              <li data-match-route="#/login/newuser" ng-show="isLoggedIn() == false" ng-cloak id="register"><a class="autotoggle" href="#" ng-href="#/login/newuser">Register</a>
+              </li>
+              <li data-match-route="#/login/existinguser" ng-show="isLoggedIn() == false" ng-cloak id="signIn"><a class="autotoggle" href="#" ng-href="#/login/existinguser">Sign in</a>
+              </li>
+              <li ng-show="isLoggedIn() == true" ng-cloak id="account" class="flyoutWrapper">
+                  <a id="accountButton" class="flyoutButton" href="#" ng-href="" ng-click="openSettingsFlyout()">{{requestEmail()}}</a>
+                  <div class="toggleFlyout" ng-show="settingsFlyoutOpen" ng-cloak>
+                      <div>
+                          <div class="flyArrowWrapper">
+                              <div class="flyArrow">
+                              </div>
+                          </div>
+                      </div>
+                      <ul class="flyContent">
+          <li><a href="#/me/listing" class="flyButton">My posts</a></li>
+          <li><a href="" class="flyButton">Saved listings</a></li>
+          <li><a href="#/settings" class="flyButton">Settings</a></li>
+          <li><a href="#/" ng-click="logout()" id="logout" class="flyButton">Log out</a></li>
+                      </ul>
+                  </div>
+              </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
     <toast></toast>
-    <div id="angular-view" class="page-wrap" ng-view="">
-    </div>
+    <div id="angular-view" class="page-wrap" ng-view=""></div>
     <div class="footer">
         <div class="container-fluid">
             <a ng-href="#/about">About</a>
@@ -138,7 +119,7 @@
     </div>
 
     <!-- inject:js -->
-    <script src="/generated/bower-171c7dfd-9cb3-4f81-b286-e80ac487e091.js"></script>
+    <script src="/generated/bower-3875337b-ecc1-4624-a2bd-64f5a34ae6bb.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/config.js"></script>
     <script src="/scripts/controllers/about.js"></script>
@@ -165,6 +146,7 @@
     <script src="/scripts/shared/thumbnailFilter.js"></script>
     <script src="/scripts/shared/userDataService.js"></script>
     <script src="/scripts/shared/userService.js"></script>
+    <script src="/scripts/shared/yiw1fez.js"></script>
     <!-- endinject -->
 
 
