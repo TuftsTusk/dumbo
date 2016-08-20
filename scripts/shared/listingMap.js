@@ -95,6 +95,14 @@ angular.module('dumboApp')
               name:'title',
               required:'true',
               type:'text',
+              class:'form-control',
+              minlength:5
+            },
+            {
+              displayName: 'Price ($)',
+              name:'price',
+              required:'true',
+              type:'number',
               class:'form-control'
             },
             {
@@ -103,14 +111,7 @@ angular.module('dumboApp')
               required:'true',
               type:'textarea',
               class:'form-control'
-            },
-            {
-              displayName: 'Price',
-              name:'price',
-              required:'true',
-              type:'number',
-              class:'form-control'
-            },
+            }
           ];
         }
     };

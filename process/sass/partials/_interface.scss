@@ -5,6 +5,13 @@
   display: none !important;
 }
 
+//prevent auto input zoom for iOS
+input[type="text"], input[type="password"], input[type="date"],
+input[type="datetime"], input[type="datetime-local"], input[type="month"],
+input[type="week"], input[type="email"], input[type="number"],
+input[type="search"], input[type="tel"], input[type="time"],
+input[type="url"], textarea
+    { font-size: 16px; }
 .preloader {
     padding: 25%;
     background: url('../images/preloader.gif') no-repeat 50% 50% transparent;

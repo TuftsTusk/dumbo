@@ -39,7 +39,6 @@ angular.module('dumboApp')
 		}
 
 		$scope.save = function() {
-			console.log('saving');
 			$scope.listing.photo_urls = $scope.photos;
 			localStorageService.set(localStorageKey, $scope.listing);
 		}
@@ -72,7 +71,6 @@ angular.module('dumboApp')
 
 
 		$scope.submit = function() {
-			console.log('submitting');
 			$scope.dataLoading = true;
 			$scope.listing.type = $scope.type;
 			if ($scope.id){
