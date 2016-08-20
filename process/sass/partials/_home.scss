@@ -34,8 +34,8 @@
             padding-bottom:0px;
             text-align: center;
         }
-       
-        
+
+
         //background: rgba(79, 147, 206, 1);
         p {
             font-family: $font-main;
@@ -44,7 +44,7 @@
             overflow: visible;
             margin: auto;
         }
-       
+
     }
     .container {
         width: 100%;
@@ -79,17 +79,17 @@
                 display: block;
                 margin: auto;
                 margin-top: 15px;
-                
+
             }
-            
+
             background: $darkblue;
             width:100vw;
             padding:50px;
             padding-bottom:0px;
             text-align: center;
         }
-        
-       
+
+
         //background: rgba(79, 147, 206, 1);
         p {
             font-family: $font-main;
@@ -98,7 +98,7 @@
             overflow: visible;
             margin: auto;
         }
-        
+
     }
     .container {
         width: 100%;
@@ -137,7 +137,7 @@
                 width: 100%;
                 overflow: visible;
             }
-            
+
             background: $darkblue;
             width:100vw;
             padding:50px;
@@ -147,7 +147,7 @@
         a{
            width:auto;
         }
-        
+
         //background: rgba(79, 147, 206, 1);
         p {
             font-family: $font-main;
@@ -162,3 +162,33 @@
     }
 }
 
+.welcomeBox{
+  text-align:center;
+  cursor: pointer;
+}
+
+
+.welcomeBox md-icon {
+  width: 50%;
+  height: 30%; }
+
+.welcomeBox md-grid-tile-footer figcaption {
+	width: 100%;
+  font-size:14pt;
+  color:black;
+}
+
+.gray {
+  background: #f5f5f5; }
+.darkBlue {
+  background: #80d8ff; }
+.deepBlue {
+  background: #448aff; }
+.purple {
+  background: #b388ff; }
+.lightPurple {
+  background: #8c9eff; }
+.red {
+  background: #ff8a80; }
+.pink {
+  background: #ff80ab; }

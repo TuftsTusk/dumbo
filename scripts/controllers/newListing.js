@@ -9,17 +9,17 @@
 */
 angular.module('dumboApp')
 .controller('NewListingCtrl', function ($scope, $http, listingMap,
-	listingDataService, SweetAlert,
-	localStorageService, _, userDataService,
-	imageUploadService, $window, fileReader,
-	$routeParams, $location) {
+																				listingDataService, SweetAlert,
+																				localStorageService, _, userDataService,
+																				imageUploadService, $window, fileReader,
+																				$routeParams, $location, $route) {
 		var localStorageKey = 'listingform';
 		var url = window.location.hash;
 		$scope.id = $routeParams.id;
 
 		$scope.userDataService = userDataService;
 		$scope.imageUploadService = imageUploadService;
-		$scope.type = url.split('#')[2];
+		$scope.type = $route.current.$$route.listingType;
 		$scope.photos = [];
 		var text;
 
