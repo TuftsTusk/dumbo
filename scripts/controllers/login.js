@@ -145,6 +145,7 @@ angular.module('dumboApp').controller('LoginCtrl',
                                 }, 2000);
                             });
                         } else {
+                            $scope.passwordMistake = true;
                             SweetAlert.swal("I'm sorry I can't do that", res.data.message, "error");
                         }
                     }

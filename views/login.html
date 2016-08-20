@@ -1,4 +1,4 @@
-<div class="container-fluid" id="content-border" ng-controller="LoginCtrl" ng-init="init()">
+<div class="container-fluid" id="login" ng-controller="LoginCtrl" ng-init="init()">
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <h2 ng-show="newuser==false">Login</h2>
@@ -9,22 +9,12 @@
                 <input type="text" name="email" id="email" class="form-control" ng-model="user.email" required />
                 <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
             </div>
-            Do you have a Tusk Marketplace Account?
-            <br>
-                <input id="existing" type="radio" ng-model="newuser" name="action" ng-value="false" value="Yes"  checked="checked">
-                <label for="existing">Yes</label>
-                <br>
-                <input id="newuser" type="radio" ng-model="newuser" name="action" ng-value="true" value="No, I am a new user">
-                <label for="newuser">No, I am a new user</label>
-                <br>
-                <div ng-show="existing">
-            <tt>{{newuser}}</tt><br/>
-            </div>
             <div ng-show="newuser==false">
                 <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-required="newuser==false" />
                     <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                    <div ng-show="passwordMistake" class="forgot-password"><a ng-click="forgotPassword()" class="btn btn-link">Forgot your password?</a></div>
                 </div>
             </div>
             <div ng-show="newuser==true">
@@ -43,7 +33,8 @@
                 <button ng-show="newuser==false" ng-click="handleForm('login')" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Login</button>
                 <button ng-show="newuser==true" ng-click="handleForm('register')" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Register</button>
                 <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                <a ng-click="forgotPassword()" class="btn btn-link">Forgot your password?</a>
+                <div ng-show="newuser==true" class="secondary-text">Already have an account? <a ng-click="newuser = false">Sign in.</a></div>
+                <div ng-show="newuser==false" class="secondary-text">Don't have an account? <a ng-click="newuser = true">Create one.</a></div>
             </div>
         </form>
     </div>
