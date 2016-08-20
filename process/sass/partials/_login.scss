@@ -1,0 +1,30 @@
+#login {
+    .login-header {
+        text-align: center;
+    }
+
+    .form-actions .btn-primary {
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .secondary-text {
+        color: $grey4;
+        margin-top: 80px;
+        margin-bottom: 40px;
+        text-align: center;
+
+        @media screen and (max-width:$break-small) {
+            margin-top: 50px;
+        }
+    }
+
+    .forgot-password {
+        text-align: right;
+        margin-top: 5px;
+    }
+
+    .forgot-password a {
+        padding: 0;
+    }
+}
