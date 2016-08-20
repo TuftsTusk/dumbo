@@ -1,6 +1,11 @@
 #login {
+    .login-header {
+        text-align: center;
+    }
+
     .form-actions .btn-primary {
         width: 100%;
+        font-weight: bold;
     }
 
     .secondary-text {
@@ -12,6 +17,11 @@
         @media screen and (max-width:$break-small) {
             margin-top: 50px;
         }
+    }
+
+    .forgot-password {
+        text-align: right;
+        margin-top: 5px;
     }
 
     .forgot-password a {
