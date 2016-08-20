@@ -126,9 +126,9 @@ angular.module('dumboApp').controller('LoginCtrl',
                     } else {
                         if (res.data.type == 'USER_NOT_CONFIRMED_FAILURE') {
                             swal({
-                                title: "Looks like your account isn't confirmed",
-                                text: "Click to resend confirmation email",
+                                title: "Your account isn't confirmed yet.",
                                 type: "info",
+                                confirmButtonText: "Resend confirmation email",
                                 showCancelButton: true,
                                 closeOnConfirm: false,
                                 showLoaderOnConfirm: true
@@ -165,11 +165,9 @@ angular.module('dumboApp').controller('LoginCtrl',
                         SweetAlert.swal({
                                 title: "Proceed to Account Confirmation?",
                                 text: "This will confirm your new account.",
-                                type: "warning",
                                 showCancelButton: true,
                                 confirmButtonColor: "#DD6B55",
                                 confirmButtonText: "Yes, confirm it!",
-                                cancelButtonText: "No, don't confirm it!",
                                 closeOnConfirm: false,
                                 closeOnCancel: true
                             },
@@ -196,7 +194,7 @@ angular.module('dumboApp').controller('LoginCtrl',
                     if (res.status === -1) {
                         SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
                     } else {
-                        SweetAlert.swal("One little thing", res.data.message, "error");
+                        SweetAlert.swal("One little thing...", res.data.message, "error");
                     }
                 }
             );
@@ -213,4 +211,3 @@ angular.module('dumboApp').controller('LoginCtrl',
         }
     }
 );
-
