@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-	.controller('NavCtrl', function ($scope, userService, userDataService, $activityIndicator, $timeout) {
+	.controller('NavCtrl', function ($scope, userService, userDataService) {
 
 		$scope.init = function(){
 			$scope.closeFlyouts();

@@ -5,6 +5,12 @@
   display: none !important;
 }
 
+.preloader {
+    padding: 25%;
+    background: url('../images/preloader.gif') no-repeat 50% 50% transparent;
+}
+
+
 .noselect {
 	-webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
