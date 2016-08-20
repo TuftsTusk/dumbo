@@ -34,7 +34,6 @@ var app = angular
 	'ngResource',
 	'ngRoute',
 	'ngSanitize',
-	'ngTouch',
 	'oitozero.ngSweetAlert',
 	'dumboApp.config',
 	'LocalStorageModule',
@@ -43,7 +42,8 @@ var app = angular
 	'angular-loading-bar',
 	'ngToast',
 	'ngMaterial',
-	'infinite-scroll'
+	'infinite-scroll',
+	'mgcrea.ngStrap'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider

@@ -1,6 +1,25 @@
 /********* _nav.scss *********/
 /* elements in the navbar */
 
+.navbar-default .navbar-nav>li>a {
+	color:white;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+	background:$blue;
+	color:blue;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: white;
+    color: black;
+}
+
+.navbar-default .navbar-nav>.hover>a {
+	background:blue;
+	color:blue;
+}
+
 .navbar.navbar-default {
 	font-size: 14px;
 	font-weight: 400;
@@ -191,6 +210,7 @@ $flyArrowHeight: 11px;
 		    height: $flyArrowHeight;
 		    width: 20px;
 		    top: -$flyArrowHeight;
+				left: 300px;
     	}
     }
 
