@@ -1,157 +1,22 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('editSubletCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $timeout) {
+.controller('editSubletCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, subletService, _, $timeout) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
-	var localStorageKey = 'SubletListing';
 
 	$scope.errorLog = {};
 	$scope.warningLog = {};
 	$scope.maxRooms = 10;
 
-	var emptyData = {
-		view: {
-			general: {
-				open: false
-			},
-			bedrooms: {
-				open: false
-			}
-		},
-		form: {
-			id: id,
-			type: 'SubletListing',
-			apt_info: {
-				op_details: {}
-			},
-			bedrooms: [],
-			common_area_photos: {
-				living_room: [],
-				kitchen: [],
-				bathroom: [],
-				other: []
-			}
-		}
-	};
-
-	$scope.validation = {
-		apt_info: {
-			op_details: {
-				required: false,
-				recommended: false
-			},
-			address: {
-				required: true,
-				recommended: true
-			},
-			num_occupants: {
-				required: true,
-				recommended: true
-			}
-		},
-		room: {
-			date_start: {
-				required: true,
-				recommended: true
-			},
-			date_end: {
-				required: true,
-				recommended: true
-			},
-			rent: {
-				required: true,
-				recommended: true
-			},
-			title: {
-				required: true,
-				recommended: true
-			},
-			photos: {
-				required: false,
-				recommended: true
-			},
-			op_details: {
-				required: false,
-				recommended: false
-			},
-			date_start_is_flexible: {
-				required: false,
-				recommended: false
-			},
-			date_end_is_flexible: {
-				required: false,
-				recommended: false
-			}
-		},
-		common_area_photos: {
-			kitchen: {
-				required: false,
-				recommended: true
-			},
-			living_room: {
-				required: false,
-				recommended: true
-			},
-			bathroom: {
-				required: false,
-				recommended: true
-			},
-			other: {
-				required: false,
-				recommended: false
-			}
-		}
-	}
-
-	$scope.aptDetailsModel = [
-		{
-			'Furnished': 'pre_furnished',
-			'Air conditioning': 'incl_air_conditioning',
-			'Washing machine': 'incl_washing_machine',
-			'Dryer': 'incl_dryer',
-			'Dishwasher': 'incl_dishwasher',
-		},
-		{
-			'Pets allowed': 'pets_permitted',
-			'Parking': 'on_premises_parking',
-			'Handicap accessible': 'handicap_accessible',
-			'Smoking permitted': 'smoking_permitted'
-		}
-	];
-
-	$scope.commonAreaPhotoFields = [
-		{ name: 'Living Room',
-		  variable: 'living_room'},
-
-		{ name: 'Kitchen',
-		  variable: 'kitchen'},
-
-		{ name: 'Bathroom(s)',
-		  variable: 'bathroom'},
-
-		{ name: 'Other',
-		  variable: 'other'}
-	];
-
-	$scope.aptDetailsChecklist = [];
-	$.each($scope.aptDetailsModel, function(index) {
-		$.each($scope.aptDetailsModel[index], function(key, value) {
-			$scope.aptDetailsChecklist.push(value);
-		})
-	});
+    $scope.validation = subletService.getValidationData();
+    $scope.fieldMap = subletService.getFieldMap();
 
 	$scope.init = function() {
 		$scope.selectedRoom = 0;
 
 		$scope.newListing = false;
-		$scope.editing = false;
 		$scope.owner = false;
-
-		$scope.roomDetailsChecklist = {
-			'Furnished': 'pre_furnished',
-			'Air conditioning': 'incl_air_conditioning'
-		}
 
 		// set min and max dates
 		var dmin = new Date(),
@@ -161,38 +26,32 @@ angular.module('dumboApp')
 		$scope.dateMax = dmax.toISOString().substring(0, 10);
 
 
-			// TODO: also retrieve listing if action is a UUID
-		if (id) {
-			if (action == 'edit') {
-				// get listing data from server
-				listingDataService.getListingById(id).then(
-					function success(res){
-						prepareView(res.data);
-					},
-					function failure(res){
-						console.log("ERROR");
-						console.log('res',res);
-					});
-			} else {
-				$scope.redirectTo('view');
-			}
+        if (id) {
+			// get listing data from server
+			listingDataService.getListingById(id).then(
+				function success(res){
+					var data = subletService.prepareView(res.data);
+					$scope.listingData = data.listingData;
+					$scope.owner = data.owner;
 
-		} else if (action == 'new') {
+					dataPrep();
+				},
+				function failure(res){
+					console.log("ERROR");
+					console.log('res',res);
+				});
 
-			// New listing
+
+		} else {
+
+			// New listing or editing a local listing
 
 			// Check local storage for new listing data
 				// If no saved data, get ID from server
 				// Create DOM and save to local storage
 			$scope.newListing = true;
-			$scope.editing = true;
 			$scope.owner = true;
 			loadSavedData();
-		}
-		else {
-			// action is actually ID because there was no action
-			id = action;
-			$location.path($location.path().split('/')[1] + '/' + id + '/view');
 		}
 
         renderScreen($location.hash());
@@ -218,13 +77,10 @@ angular.module('dumboApp')
 	}
 
 	$scope.save = function() {
-		if ($scope.editing) {
-			console.log(JSON.stringify($scope.listingData));
-			console.log('saving');
-			updateSavedData();
-			validateData();
-			// updateErrorLog();
-		}
+		console.log(JSON.stringify($scope.listingData));
+		console.log('saving');
+		updateSavedData();
+		validateData();
 	}
 
 	$scope.saveButton = function() {
@@ -232,14 +88,14 @@ angular.module('dumboApp')
 		SweetAlert.swal("Saved!", "Feel free to come back to this later.", "success");
 	}
 
-	$scope.submitApt = function() {
+    $scope.submitApt = function() {
 		console.log($scope.listingData);
 		listingDataService.newListing($scope.listingData)
 		.then(
 		function success(res){
 		  $scope.dataLoading = false;
 		  SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
-		  localStorageService.remove(localStorageKey);
+		  subletService.removeLocalData();
 		},
 		function failure(res){
 		  $scope.dataLoading = false;
@@ -256,13 +112,11 @@ angular.module('dumboApp')
 	}
 
 	$scope.setCurrentPage = function(page) {
-		if ($scope.editing) {
-			updateSavedData();
-		}
+		updateSavedData();
         $location.hash(page);
 	}
 
-	$scope.loadRoom = function(index) {
+    $scope.loadRoom = function(index) {
 		var length = $scope.listingData.bedrooms.length;
 		if (index >= 0 && length > 0 && length > index) {
 			$scope.selectedRoom = index;
@@ -324,23 +178,21 @@ angular.module('dumboApp')
 	}
 
 	$scope.confirmDelete = function() {
-		if ($scope.editing) {
-			var room = $scope.listingData.bedrooms[$scope.selectedRoom];
-			console.log($scope.selectedRoom);
-			var empty = true;
-			console.log(room);
-			$.each(room, function(key, value) {
-				if (key != 'title' && key != 'photos' && key != '$$hashKey') {
-					empty = false;
-				} else if (key == 'photos' && !(_.isEmpty(value))) {
-					empty = false;
-				}
-			});
-			if (!empty) {
-				$('#roomForm .panel').addClass('formBlur');
-			} else {
-				$scope.deleteRoom();
+		var room = $scope.listingData.bedrooms[$scope.selectedRoom];
+		console.log($scope.selectedRoom);
+		var empty = true;
+		console.log(room);
+		$.each(room, function(key, value) {
+			if (key != 'title' && key != 'photos' && key != '$$hashKey') {
+				empty = false;
+			} else if (key == 'photos' && !(_.isEmpty(value))) {
+				empty = false;
 			}
+		});
+		if (!empty) {
+			$('#roomForm .panel').addClass('formBlur');
+		} else {
+			$scope.deleteRoom();
 		}
 	}
 	$scope.cancelDelete = function() {
@@ -348,21 +200,16 @@ angular.module('dumboApp')
 	}
 
 	$scope.deleteRoom = function() {
+		$('#roomForm .panel').removeClass('formBlur');
+		var index = $scope.selectedRoom;
+		$scope.listingData.bedrooms.splice(index, 1);
 
-		if ($scope.editing) {
-			$('#roomForm .panel').removeClass('formBlur');
-			var index = $scope.selectedRoom;
-			$scope.listingData.bedrooms.splice(index, 1);
+		var length = $scope.listingData.bedrooms.length,
+			newIndex = 0;
+		newIndex = length <= index ? index - 1 : index;
 
-			var length = $scope.listingData.bedrooms.length,
-				newIndex = 0;
-			newIndex = length <= index ? index - 1 : index;
-
-			$scope.loadRoom(newIndex);
-			$scope.save();
-		}
-
-
+		$scope.loadRoom(newIndex);
+		$scope.save();
 	}
 
 	$scope.deleteRoomPhoto = function(index) {
@@ -374,61 +221,21 @@ angular.module('dumboApp')
 		$scope.listingData.common_area_photos[type].splice(index, 1);
 	}
 
-	$scope.modifyAllApt = function(bool) {
+    $scope.modifyAllApt = function(bool) {
 		if (typeof bool === 'boolean') {
-			$.each($scope.aptDetailsChecklist, function(index, value) {
-				$scope.apt.op_details[value] = bool;
+			$.each($scope.fieldMap.apt_op_details, function(index, field) {
+				$scope.apt.op_details[field.variable] = bool;
 			});
 		}
 	}
 
-	$scope.initiatePhotoUpload = function(type) {
+    $scope.initiatePhotoUpload = function(type) {
 		$('#photoUploadInput').click();
 		$scope.currentUploadType = type;
 		if (type == 'room') {
 			$scope.currentUploadTarget = $scope.listingData.bedrooms[$scope.selectedRoom].photos;
 		} else {
 			$scope.currentUploadTarget = $scope.listingData.common_area_photos[type];
-		}
-
-	}
-
-
-	function prepareView(data) {
-		console.log('data', data);
-		var listing = data.listing;
-		var owner = data.owner;
-		if (listing && listing.type == 'SubletListing') {
-			// check owner
-			$scope.listingData = {};
-			$scope.listingData.apt_info = listing.apt_info;
-			$scope.listingData.bedrooms = listing.bedrooms;
-			$scope.listingData.common_area_photos = listing.common_area_photos;
-			$scope.listingData.id = listing._id;
-			$scope.listingData.type = 'SubletListing';
-
-			$.each($scope.listingData.bedrooms, function(index) {
-				$.each($scope.listingData.bedrooms[index], function(key, value) {
-					if (key == 'date_start' || key == 'date_end') {
-						// TODO: different format
-						$scope.listingData.bedrooms[index][key] = new Date(value);
-					}
-				});
-			});
-
-			$scope.apt = $scope.listingData.apt_info;
-
-			$scope.owner = owner;
-
-			if (action == 'edit' && $scope.owner) {
-				$scope.editing = true;
-			} else if (action == 'view') {
-				$scope.editing = false;
-			}
-
-			dataPrep();
-		} else {
-			// listing not found
 		}
 	}
 
@@ -442,46 +249,31 @@ angular.module('dumboApp')
 		$('#' + page).addClass('visible');
 	}
 
-	function loadSavedData() {
-		var savedData = localStorageService.get(localStorageKey);
-		if (savedData) {
-			var form = savedData.form;
-			var view = savedData.view;
-			if (form) {
-				$.each(form.bedrooms, function(index) {
-					$.each(form.bedrooms[index], function(key, value) {
-						if (key == 'date_start' || key == 'date_end') {
-							// TODO: different format
-							form.bedrooms[index][key] = new Date(value);
-						}
-					});
-				});
-			}
-			$scope.listingData = form;
-			$scope.viewData = view;
-		} else {
-			$scope.listingData = emptyData.form;
-			$scope.viewData = emptyData.view;
-		}
+    function loadSavedData() {
+		var data = subletService.loadLocalData();
+		$scope.listingData = data.form;
+		$scope.viewData = data.view;
+
 		dataPrep();
-
 	}
 
-	function deleteSavedData() {
-		localStorageService.remove(localStorageKey);
-		$scope.listingData = emptyData;
+    function deleteSavedData() {
+		subletService.removeLocalData();
+		var d = subletService.getEmptyData();
+		$scope.listingData = d.form;
+		$scope.viewData = d.view;
 	}
 
-	function updateSavedData() {
+    function updateSavedData() {
 		var localStorageObject = {
 			form: $scope.listingData,
 			view: $scope.viewData
 		}
-		localStorageService.set(localStorageKey, localStorageObject);
+		subletService.setLocalData(localStorageObject);
 	};
 
 
-	function validateData() {
+    function validateData() {
 		$scope.listingValidation = {
 			alert: false,
 			warning: ''
@@ -494,9 +286,6 @@ angular.module('dumboApp')
 		$scope.errorLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos, 'required');
 		$scope.warningLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos, 'recommended');
 
-		console.log($scope.errorLog);
-		console.log($scope.warningLog);
-
 		var err = $scope.errorLog;
 		$scope.listingValidation.alert = (err.apt_info || err.bedrooms || err.common_area_photos) ? true : false;
 		if (!$scope.listingValidation.alert) {
@@ -504,7 +293,7 @@ angular.module('dumboApp')
 		}
 	}
 
-	function validateBedrooms(tempListingData, fieldType) {
+    function validateBedrooms(tempListingData, fieldType) {
 		var bedroomError = false;
 		var logType = (fieldType == 'required') ? 'errorLog' : (fieldType == 'recommended') ? 'warningLog' : 'BAD';
 		$scope[logType].bedrooms = [];
@@ -520,7 +309,7 @@ angular.module('dumboApp')
 		if (!bedroomError) $scope[logType].bedrooms = null;
 	}
 
-	function validateField(field, inputData, fieldType) {
+    function validateField(field, inputData, fieldType) {
 
 		if (fieldType != 'required' && fieldType != 'recommended') {
 			console.log('ERROR');
@@ -566,142 +355,14 @@ angular.module('dumboApp')
 		$scope.showAlert = false;
 	}
 
-	function dataPrep() {
+    function dataPrep() {
 		$scope.apt = $scope.listingData.apt_info;
 		if ($scope.listingData.bedrooms.length > 0) {
 			$scope.loadRoom(0);
 		} else {
 			$scope.initializeRoom();
 		}
-		if ($scope.editing) validateData();
+		validateData();
 	}
-
-
-
-	//
-	// var ctrl = this;
-	// ctrl.dateRange = {};
-	//
-	// //ctrl scope functions
-	// ctrl.setDateConstraint = function () {
-	// 	if (ctrl.dateRange.startDate) {
-	// 		//next day should be min
-	// 		ctrl.dateRange.minDate = addDays(ctrl.dateRange.startDate, 1);
-	// 		//7 max days
-	// 		ctrl.dateRange.maxDate = addDays(ctrl.dateRange.startDate, 365);
-	// 	}
-	// }
-	//
-	// //private functions
-	// function addDays(date, days) {
-	// 	//make sure is date type
-	// 	var tmpDate = typeof (date) != 'Date' ? new Date(date) : date;
-	// 	tmpDate.setDate(tmpDate.getDate() + days);
-	// 	return tmpDate;
-	// }
-
-
-
-
-
-
-	//
-	// $scope.today = function() {
-	// 	$scope.dt = new Date();
-	// };
-	// $scope.today();
-	//
-	// $scope.clear = function() {
-	// 	$scope.dt = null;
-	// };
-	//
-	// $scope.inlineOptions = {
-	// 	customClass: getDayClass,
-	// 	minDate: new Date(),
-	// 	showWeeks: true
-	// };
-	//
-	// $scope.dateOptions = {
-	// 	dateDisabled: disabled,
-	// 	formatYear: 'yy',
-	// 	maxDate: new Date(2020, 5, 22),
-	// 	minDate: new Date(),
-	// 	startingDay: 0
-	// };
-	//
-	// // Disable weekend selection
-	// function disabled(data) {
-	// 	var date = data.date,
-	// 	mode = data.mode;
-	// 	return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-	// }
-	//
-	// $scope.toggleMin = function() {
-	// 	$scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-	// 	$scope.dateOptions.minDate = $scope.inlineOptions.minDate;
-	// };
-	//
-	// $scope.toggleMin();
-	//
-	// $scope.open1 = function() {
-	// 	$scope.popup1.opened = true;
-	// };
-	//
-	// $scope.open2 = function() {
-	// 	$scope.popup2.opened = true;
-	// };
-	//
-	// $scope.setDate = function(year, month, day) {
-	// 	$scope.dt = new Date(year, month, day);
-	// };
-	//
-	// $scope.formats = ['MMMM d, yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-	// $scope.format = $scope.formats[0];
-	// $scope.altInputFormats = ['M!/d!/yyyy', 'MMMM d, yyyy', 'MMM d, yyyy'];
-	//
-	// $scope.popup1 = {
-	// 	opened: false
-	// };
-	//
-	// $scope.popup2 = {
-	// 	opened: false
-	// };
-	//
-	// var tomorrow = new Date();
-	// tomorrow.setDate(tomorrow.getDate() + 1);
-	// var afterTomorrow = new Date();
-	// afterTomorrow.setDate(tomorrow.getDate() + 1);
-	// $scope.events = [
-	// 	{
-	// 		date: tomorrow,
-	// 		status: 'full'
-	// 	},
-	// 	{
-	// 		date: afterTomorrow,
-	// 		status: 'partially'
-	// 	}
-	// ];
-	//
-	// function getDayClass(data) {
-	// 	var date = data.date,
-	// 	mode = data.mode;
-	// 	if (mode === 'day') {
-	// 		var dayToCheck = new Date(date).setHours(0,0,0,0);
-	//
-	// 		for (var i = 0; i < $scope.events.length; i++) {
-	// 			var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-	//
-	// 			if (dayToCheck === currentDay) {
-	// 				return $scope.events[i].status;
-	// 			}
-	// 		}
-	// 	}
-	//
-	// 	return '';
-	// }
-
-
-
-
 
 });
