@@ -107,23 +107,19 @@ var app = angular
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
-	.when('/sublets', {
-		redirectTo: '/sublet/new',
+    .when('/sublets/:action', {
+        templateUrl: 'views/editSublet.html',
+        resolve: {
+            loggedIn: requireLogin,
+        },
+        reloadOnSearch: false
+    })
+	.when('/sublets/:action/:id', {
+		templateUrl: 'views/editSublet.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
-	})
-	.when('/sublets/:action', {
-		templateUrl: 'views/singleListing.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
-	.when('/sublets/:id/:action', {
-		templateUrl: 'views/singleListing.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
+		},
+        reloadOnSearch: false
 	})
 	.when('/listing/:id', {
 		templateUrl: 'views/view_post.html',

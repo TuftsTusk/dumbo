@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $timeout) {
+.controller('editSubletCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $timeout) {
 	var id = $routeParams.id;
 	var action = $routeParams.action;
 	var localStorageKey = 'SubletListing';
@@ -163,7 +163,7 @@ angular.module('dumboApp')
 
 			// TODO: also retrieve listing if action is a UUID
 		if (id) {
-			if (action == 'edit' || action == 'view') {
+			if (action == 'edit') {
 				// get listing data from server
 				listingDataService.getListingById(id).then(
 					function success(res){
@@ -188,11 +188,6 @@ angular.module('dumboApp')
 			$scope.editing = true;
 			$scope.owner = true;
 			loadSavedData();
-		} else if (action == 'preview') {
-			$scope.previewing = true;
-			$scope.editing = false;
-			$scope.owner = true;
-			loadSavedData();
 		}
 		else {
 			// action is actually ID because there was no action
@@ -200,9 +195,12 @@ angular.module('dumboApp')
 			$location.path($location.path().split('/')[1] + '/' + id + '/view');
 		}
 
-		renderScreen('general');
+        renderScreen($location.hash());
 	}
 
+    $scope.$on('$locationChangeSuccess', function() {
+        renderScreen($location.hash());
+    })
 
 	$scope.loadPreview = function() {
 		if ($scope.listingValidation.alert) {
@@ -214,15 +212,9 @@ angular.module('dumboApp')
 
 	$scope.redirectTo = function(path) {
 		var pathArr = $location.path().split('/');
-
-		if (pathArr[2] === id) {
-			$location.path(pathArr[1] + '/' + id + '/' + path);
-		} else {
-			if (path == 'edit') {
-				path = 'new';
-			}
-			$location.path(pathArr[1] + '/' + path);
-		}
+        var url = pathArr[1] + '/' + path;
+        if (id) url += '/' + id;
+        $location.path(url);
 	}
 
 	$scope.save = function() {
@@ -263,12 +255,11 @@ angular.module('dumboApp')
 		});
 	}
 
-	$scope.setCurrentPage = function(screen) {
+	$scope.setCurrentPage = function(page) {
 		if ($scope.editing) {
 			updateSavedData();
 		}
-		$scope.currentPage = screen;
-		renderScreen(screen);
+        $location.hash(page);
 	}
 
 	$scope.loadRoom = function(index) {
@@ -441,11 +432,14 @@ angular.module('dumboApp')
 		}
 	}
 
-	function renderScreen(screen) {
-		// Hides other pages and shows the starting screen.
-		$scope.currentPage = screen;
-		$('.page').not($('#' + screen)).removeClass('visible');
-		$('#' + screen).addClass('visible');
+	function renderScreen(page) {
+		// Hides other pages and shows the starting page.
+
+        page = page && page != '' ? page : 'general';
+
+		$scope.currentPage = page;
+		$('.page').not($('#' + page)).removeClass('visible');
+		$('#' + page).addClass('visible');
 	}
 
 	function loadSavedData() {

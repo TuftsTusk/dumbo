@@ -1,4 +1,4 @@
-<div ng-controller="singleListingCtrl" class="container-fluid" id="singleListing" ng-init="init()">
+<div ng-controller="editSubletCtrl" class="container-fluid" id="edit-sublet" ng-init="init()">
 <div class="row headerbar">
 	<div class="container-fluid">
 		<div id="label" class="block text first borderRight paddingRight">
@@ -12,7 +12,6 @@
 				<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
 				<div class="block" ng-if="!editing && owner"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
 			</div>
-			<div class="block" ng-if="!editing && !previewing"><a href="" class=" btn btn-primary btn-lg">Contact seller</a></div>
 		</div>
 	</div>
 </div>
@@ -41,12 +40,12 @@
 			</div>
 			<div class="panel-body">
 				<fieldset class="formGroup">
-					<label ng-if="editing">What is your address?</label>
+					<label ng-if="editing">Your address</label>
 					<label ng-if="!editing">Address</label>
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label ng-if="editing">How many bedrooms total?</label>
+					<label ng-if="editing">Number of bedrooms in house/apartment</label>
 					<label ng-if="!editing">Total number of bedrooms</label>
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
@@ -177,11 +176,11 @@
 								Add photos
 							</div>
 						</a>
-						<div ng-if="!editing || room.photos.length || uploading">
+						<div ng-if="room.photos.length || uploading">
 							<div class="imageHolder">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
-									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
+									<i class="fa fa-times deleteImage" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
 								</a>
 								<div ng-if="uploading" class="photoUploadBox inProgress">
 									<div class="scaledImage photoUploadImage">
