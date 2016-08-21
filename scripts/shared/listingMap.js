@@ -67,21 +67,29 @@ angular.module('dumboApp')
               name:'title',
               required:'true',
               type:'text',
-              class:'form-control'
+              class:'largeBtn',
+              minlength:5
+            },
+            {
+              displayName: 'Price ($)',
+              name:'price',
+              required:'true',
+              type:'number',
+              class:'smallBtn'
             },
             {
               displayName:'ISBN',
               name:'isbn',
               required:'true',
               type:'text',
-              class:'form-control'
+              class:'md-block'
             },
             {
               displayName:'Class Name',
               name:'classname',
               required:'false',
               type:'text',
-              class:'form-control'
+              class:'md-block'
             }
           ];
         },
@@ -95,7 +103,7 @@ angular.module('dumboApp')
               name:'title',
               required:'true',
               type:'text',
-              class:'form-control',
+              class:'largeBtn',
               minlength:5
             },
             {
@@ -103,14 +111,14 @@ angular.module('dumboApp')
               name:'price',
               required:'true',
               type:'number',
-              class:'form-control'
+              class:'smallBtn'
             },
             {
               displayName: 'Description',
               name:'description',
               required:'true',
               type:'textarea',
-              class:'form-control'
+              class:'md-block'
             }
           ];
         }

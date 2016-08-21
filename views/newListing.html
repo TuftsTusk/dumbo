@@ -5,38 +5,34 @@
     </div>
 	<md-toolbar layout="row" layout-align="center center">
 	  <div flex><md-button ng-if="!isDataEmpty()" ng-click="deleteSavedData()"><md-icon>delete</md-icon>Clear</md-button></div>
-	  <div flex class="listingTypeTitle truncate">{{newListingFormData.type}}</div>
+	  <div flex class="listingTypeTitle">{{newListingFormData.type}}</div>
 		<div flex>
-			<md-button type="submit" class="md-raised pull-right" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()">Publish</md-button>
-			<md-button type="submit" class="md-raised pull-right" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()">Make Changes</md-button>
 		</div>
 	</md-toolbar>
 	<div id="newListing">
 		<form name="newListing" role="form">
-			<div class="form-group" ng-repeat="field in newListingFormData">
-				<md-content layout-padding>
-					<md-input-container class="md-block">
-						<label>{{ field.displayName }}</label>
+			<md-content layout-padding>
+				<md-input-container class="{{field.class}}" ng-repeat="field in newListingFormData">
+					<label>{{ field.displayName }}</label>
 
-						<textarea minlength="{{ field.minlength }}"
-											maxlength="{{ field.maxlength }}"
-											required='{{field.required}}'
-											md-no-asterisk
-											type="{{ field.type }}"
-											name="{{field.name}}"
-											ng-model="listing[field.name]"
-											ng-change="save()"
-											type="{{ field.type }}">
-						</textarea>
-						<div ng-messages="newListing[field.name].$error">
-							<div ng-message="required">{{field.displayName}} is required.</div>
-							<div ng-message="maxlength">The description must be less than {{ field.maxlength }} characters long.</div>
-							<div ng-message="minlength">The description must be at least {{ field.minlength }} characters long.</div>
-							<div ng-message="number">{{field.displayName}} must be a number.</div>
-						</div>
-					</md-input-container>
-				</md-content>
-			</div>
+					<textarea minlength="{{ field.minlength }}"
+										maxlength="{{ field.maxlength }}"
+										ng-required="{{field.required}}"
+										md-no-asterisk
+										type="{{ field.type }}"
+										name="{{field.name}}"
+										ng-model="listing[field.name]"
+										ng-change="save()"
+										type="{{ field.type }}">
+					</textarea>
+					<div ng-messages="newListing[field.name].$error">
+						<div ng-message="required">{{field.displayName}} is required.</div>
+						<div ng-message="maxlength">The description must be less than {{ field.maxlength }} characters long.</div>
+						<div ng-message="minlength">The description must be at least {{ field.minlength }} characters long.</div>
+						<div ng-message="number">{{field.displayName}} must be a number.</div>
+					</div>
+				</md-input-container>
+			</md-content>
 			<div>
 				<div class="photoUploadWrapper">
 					<a ng-if="photos.length == 0 && !uploading" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
@@ -67,6 +63,10 @@
 		</div>
 
 	</form>
+	<section layout="column">
+      <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()" flex>Publish</md-button>
+			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()" flex>Make Changes</md-button>
+  </section>
 	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
 
 </div>
