@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('editSubletCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, subletService, _, $timeout) {
-	var id = $routeParams.id;
+.controller('EditSubletCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, subletService, _, $timeout, Page) {
+
+    Page.setTitle('hi')
+    var id = $routeParams.id;
 	var action = $routeParams.action;
 
 	$scope.errorLog = {};

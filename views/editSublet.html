@@ -1,4 +1,4 @@
-<div ng-controller="editSubletCtrl" class="container-fluid" id="edit-sublet" ng-init="init()">
+<div ng-controller="EditSubletCtrl" class="container-fluid" id="edit-sublet" ng-init="init()">
 <div class="row headerbar">
 	<div class="container-fluid">
 		<div id="label" class="block text first borderRight paddingRight">
@@ -38,11 +38,11 @@
 			</div>
 			<div class="panel-body">
 				<fieldset class="formGroup">
-					<label>What is your address?</label>
+					<label>Your address</label>
 					<input ng-blur="save()" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label>How many bedrooms total?</label>
+					<label>Total number of bedrooms in apartment/house</label>
 					<input ng-blur="save()" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
 				<fieldset class="formGroup accordion" >

@@ -1,9 +1,9 @@
 <!doctype html>
-<html>
+<html ng-app="dumboApp" ng-controller="MainCtrl">
 
 <head>
     <meta charset="utf-8">
-    <title>Tusk</title>
+    <title ng-bind="Page.title()"></title>
     <meta name="description" content="">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/generated/bower-9e136606-9dce-4dd0-99b3-bcc2f3d7143e.css">
+    <link rel="stylesheet" href="/generated/bower-714619fa-5006-4c6a-a55a-2197b69c7911.css">
     <!-- endinject -->
     <link rel="stylesheet" href="styles/style.css">
 
@@ -22,7 +22,7 @@
 
 </head>
 
-<body ng-app="dumboApp" ng-init="init();">
+<body ng-init="init();">
   <nav class="navbar navbar-default navbarMain" role="navigation" ng-controller="NavCtrl" ng-init="init()">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -111,21 +111,10 @@
     </div>
 
     <!-- inject:js -->
-    <script src="/generated/bower-6d868640-8c9a-4ec3-9c77-f9ce778a303a.js"></script>
+    <script src="/generated/bower-7322fd79-aa10-4f76-ab82-d73f799f3017.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/config.js"></script>
-    <script src="/scripts/controllers/about.js"></script>
-    <script src="/scripts/controllers/editSublet.js"></script>
-    <script src="/scripts/controllers/gridList.js"></script>
-    <script src="/scripts/controllers/home.js"></script>
-    <script src="/scripts/controllers/login.js"></script>
-    <script src="/scripts/controllers/multiLayout.js"></script>
-    <script src="/scripts/controllers/myListings.js"></script>
-    <script src="/scripts/controllers/nav.js"></script>
-    <script src="/scripts/controllers/newListing.js"></script>
-    <script src="/scripts/controllers/settings.js"></script>
-    <script src="/scripts/controllers/view_post.js"></script>
-    <script src="/scripts/controllers/view_sub.js"></script>
+    <script src="/scripts/shared/Page.js"></script>
     <script src="/scripts/shared/authInterceptor.js"></script>
     <script src="/scripts/shared/bootcards.js"></script>
     <script src="/scripts/shared/fileReader.js"></script>
@@ -134,12 +123,26 @@
     <script src="/scripts/shared/listingDataService.js"></script>
     <script src="/scripts/shared/listingMap.js"></script>
     <script src="/scripts/shared/ngFileSelect.js"></script>
+    <script src="/scripts/shared/subletService.js"></script>
     <script src="/scripts/shared/swal-forms.js"></script>
     <script src="/scripts/shared/thumbnailFilter.js"></script>
     <script src="/scripts/shared/userDataService.js"></script>
     <script src="/scripts/shared/userService.js"></script>
-    <script src="/scripts/shared/subletService.js"></script>
     <script src="/scripts/shared/yiw1fez.js"></script>
+
+    <script src="/scripts/controllers/main.js"></script>
+    <script src="/scripts/controllers/nav.js"></script>
+    <script src="/scripts/controllers/about.js"></script>
+    <script src="/scripts/controllers/editSublet.js"></script>
+    <script src="/scripts/controllers/gridList.js"></script>
+    <script src="/scripts/controllers/home.js"></script>
+    <script src="/scripts/controllers/login.js"></script>
+    <script src="/scripts/controllers/multiLayout.js"></script>
+    <script src="/scripts/controllers/myListings.js"></script>
+    <script src="/scripts/controllers/newListing.js"></script>
+    <script src="/scripts/controllers/settings.js"></script>
+    <script src="/scripts/controllers/view_post.js"></script>
+    <script src="/scripts/controllers/view_sub.js"></script>
     <!-- endinject -->
 
 
