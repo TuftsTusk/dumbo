@@ -19,7 +19,6 @@ angular.module('dumboApp')
 	};
 
 	$scope.viewListing = function(uid){
-		console.log(uid);
 		$location.path('/listing/' + uid);
 	};
 
