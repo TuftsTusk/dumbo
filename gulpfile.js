@@ -56,7 +56,7 @@ function injectVendorAndApp(appStream) {
 
 function injectDepedencies() {
     var appStream = gulp.src('./scripts/**/*.js');
-    injectVendorAndApp(appStream);
+    return injectVendorAndApp(appStream);
 }
 
 gulp.task('express', function(){
