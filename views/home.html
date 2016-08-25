@@ -3,8 +3,9 @@
         <img ng-show="!isLoggedIn()" src="../images/combination-mark-white.svg">
         <h1 ng-show="!isLoggedIn()" style="padding-bottom:0px">The online marketplace for students.</h1>
 
-        <div class="clock-wrapper">
-          <div ng-cloak ng-show="EnvironmentConfig.locked" class="countdown"></div>
+        <div class="clock-wrapper" ng-show="EnvironmentConfig.locked">
+          <div ng-cloak class="countdown hide-xs hide-sm"></div>
+          <br class="show-xs show-sm">
         </div>
         <h2 ng-cloak ng-show="EnvironmentConfig.locked" style="margin-top:-8px">We're almost here.</h2>
 
