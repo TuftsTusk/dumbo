@@ -5,6 +5,11 @@ angular.module('dumboApp')
     var title = 'Tusk';
     return {
         title: function() { return title; },
-        setTitle: function(newTitle) { title = newTitle; }
+        setTitle: function(newTitle, addTusk) {
+            title = newTitle;
+            if (addTusk == undefined || addTusk) {
+                title += ' | Tusk';
+            }
+        }
     };
 });
