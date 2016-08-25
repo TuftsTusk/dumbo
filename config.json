@@ -1,7 +1,8 @@
 {
   "development": {
     "EnvironmentConfig": {
-      "api": "http://localhost"
+      "api": "http://localhost",
+      "locked":true
     }
   },
   "staging": {
@@ -11,7 +12,8 @@
   },
   "production": {
     "EnvironmentConfig": {
-      "api": "https://tuftstusk.herokuapp.com"
+      "api": "https://tuftstusk.herokuapp.com",
+      "locked":true
     }
   }
 }
