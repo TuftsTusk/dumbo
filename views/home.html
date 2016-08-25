@@ -40,8 +40,8 @@
           </md-grid-list>
 
         </div>
-        <p ng-cloak ng-hide="EnvironmentConfig.locked" ng-show="!isLoggedIn()" style="font-style: italic; font-size:1.08em;">Introducing Tusk: a peer-to-peer marketplace designed specifically for the Tufts community. Find Sublets, Textbooks, Furniture, and more! Don’t let your stuff turn to junk. What's in your trunk?</p>
+        <p ng-cloak ng-hide="EnvironmentConfig.locked || isLoggedIn()" ng-show="!isLoggedIn()" style="font-style: italic; font-size:1.08em;">Introducing Tusk: a peer-to-peer marketplace designed specifically for the Tufts community. Find Sublets, Textbooks, Furniture, and more! Don’t let your stuff turn to junk. What's in your trunk?</p>
         <br>
-        <a ng-cloak ng-hide="EnvironmentConfig.locked" ng-show="!isLoggedIn()" href="/#/login/newuser" class="btn btn-primary btn-extend">Create Account!</a>
+        <a ng-cloak ng-hide="EnvironmentConfig.locked || isLoggedIn()" ng-show="!isLoggedIn()" href="/#/login/newuser" class="btn btn-primary btn-extend">Create Account!</a>
     </div>
 </div>
