@@ -1,8 +1,7 @@
 {
   "development": {
     "EnvironmentConfig": {
-      "api": "http://localhost",
-      "locked":true
+      "api": "http://localhost"
     }
   },
   "staging": {
