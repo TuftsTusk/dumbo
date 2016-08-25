@@ -43,8 +43,7 @@ var app = angular
 	'ngToast',
 	'ngMaterial',
 	'infinite-scroll',
-	'mgcrea.ngStrap',
-	'circle.countdown'
+	'mgcrea.ngStrap'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
