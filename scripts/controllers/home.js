@@ -8,10 +8,27 @@
 * Controller of the dumboApp
 */
 angular.module('dumboApp')
-.controller('HomeCtrl', function ($scope, userService, $location) {
+.controller('HomeCtrl', function ($scope, userService, $location, EnvironmentConfig) {
+  $scope.EnvironmentConfig = EnvironmentConfig;
   $scope.isLoggedIn = function() {
     return userService.isLoggedIn();
   }
+
+  function timeToLaunch(){
+    // Sept 6th
+    var date  = new Date(2016, 8, 6, 13);
+    var now   = new Date();
+    var diff  = date.getTime()/1000 - now.getTime()/1000;
+    if (diff < 0) {
+      diff = 0;
+    }
+    return diff;
+  }
+
+  var clock = $('.countdown').FlipClock(timeToLaunch(), {
+    clockFace: 'DailyCounter',
+    countdown: true
+  });
 
   $scope.init = function() {
     $scope.optionChosen = false;
@@ -39,7 +56,6 @@ angular.module('dumboApp')
   $scope.startOver = function(){
     $scope.init();
   }
-
 
 
   $scope.selectAction = function(action){

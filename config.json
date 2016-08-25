@@ -11,7 +11,8 @@
   },
   "production": {
     "EnvironmentConfig": {
-      "api": "https://tuftstusk.herokuapp.com"
+      "api": "https://tuftstusk.herokuapp.com",
+      "locked":true
     }
   }
 }

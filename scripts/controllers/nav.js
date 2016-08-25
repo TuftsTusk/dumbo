@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-	.controller('NavCtrl', function ($scope, userService, userDataService) {
+	.controller('NavCtrl', function ($scope, userService, userDataService, EnvironmentConfig) {
 
 		$scope.init = function(){
 			$scope.closeFlyouts();
@@ -37,4 +37,6 @@ angular.module('dumboApp')
 			$scope.newFlyoutOpen = false;
 			$scope.settingsFlyoutOpen = !$scope.settingsFlyoutOpen;
 		};
+
+		$scope.EnvironmentConfig = EnvironmentConfig;
 	});

@@ -22,7 +22,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/generated/bower-5549226a-94a2-4fec-a946-2c3ba124d0e5.css">
+    <link rel="stylesheet" href="/generated/bower-4f0bf735-f3a4-40a7-9d85-778ac2023a80.css">
     <!-- endinject -->
     <link rel="stylesheet" href="styles/style.css">
 
@@ -33,7 +33,7 @@
 
 <body ng-app="dumboApp" ng-init="init();">
   <nav class="navbar navbar-default navbarMain" role="navigation" ng-controller="NavCtrl" ng-init="init()">
-      <div class="container-fluid">
+      <div ng-hide="EnvironmentConfig.locked" ng-cloak class="container-fluid">
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -112,15 +112,15 @@
     <div id="angular-view" class="page-wrap" ng-view=""></div>
     <div class="footer">
         <div class="container-fluid">
-            <a ng-href="#/about">About</a>
-            <a ng-href="#/privacy">Privacy Policy</a>
-            <a ng-href="#/terms">Terms of Service</a>
+            <a ng-href="#/about" ng-hide="EnvironmentConfig.locked" ng-cloak>About</a>
+            <a ng-href="#/privacy" ng-hide="EnvironmentConfig.locked" ng-cloak>Privacy Policy</a>
+            <a ng-href="#/terms" ng-hide="EnvironmentConfig.locked" ng-cloak>Terms of Service</a>
             <p>&copy; Tusk Marketplace, Inc. 2016</p>
         </div>
     </div>
 
     <!-- inject:js -->
-    <script src="/generated/bower-d61bb238-8fa4-449f-be98-437f7998ecb7.js"></script>
+    <script src="/generated/bower-ea3cf6ad-6b01-47de-8431-9fc315f0c9b4.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/config.js"></script>
     <script src="/scripts/controllers/about.js"></script>
@@ -149,6 +149,8 @@
     <script src="/scripts/shared/userService.js"></script>
     <script src="/scripts/shared/yiw1fez.js"></script>
     <!-- endinject -->
+    <link rel="stylesheet" href="bower_components/angular-circle-countdown/dist/angular_circle_countdown.css">
+<script src="bower_components/angular-circle-countdown/dist/angular_circle_countdown.js"></script>
 
 
 </body>
