@@ -43,7 +43,8 @@ var app = angular
 	'ngToast',
 	'ngMaterial',
 	'infinite-scroll',
-	'mgcrea.ngStrap'
+	'mgcrea.ngStrap',
+	'circle.countdown'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
@@ -187,6 +188,21 @@ var app = angular
 	});
 	$httpProvider.defaults.withCredentials = true;
 	$httpProvider.interceptors.push('authInterceptor');
+});
+
+app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
+	$rootScope.$on( "$routeChangeStart", function(event, next, current) {
+		if (EnvironmentConfig.locked){
+			if ($location.path() != '/'){
+				ngToast.create({
+					className: 'info',
+					content: "Happy you're excited too! We will be here soon!",
+					timeout: 5000
+				});
+			}
+			$location.path('/');
+		}
+	});
 });
 
 

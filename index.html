@@ -22,7 +22,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/generated/bower-2dd01d6a-6530-46be-bb33-a7241b4b0762.css">
     <!-- endinject -->
     <link rel="stylesheet" href="styles/style.css">
 
@@ -33,7 +32,7 @@
 
 <body ng-app="dumboApp" ng-init="init();">
   <nav class="navbar navbar-default navbarMain" role="navigation" ng-controller="NavCtrl" ng-init="init()">
-      <div class="container-fluid">
+      <div ng-hide="EnvironmentConfig.locked" ng-cloak class="container-fluid">
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -112,42 +111,14 @@
     <div id="angular-view" class="page-wrap" ng-view=""></div>
     <div class="footer">
         <div class="container-fluid">
-            <a ng-href="#/about">About</a>
-            <a ng-href="#/privacy">Privacy Policy</a>
-            <a ng-href="#/terms">Terms of Service</a>
+            <a ng-href="#/about" ng-hide="EnvironmentConfig.locked" ng-cloak>About</a>
+            <a ng-href="#/privacy" ng-hide="EnvironmentConfig.locked" ng-cloak>Privacy Policy</a>
+            <a ng-href="#/terms" ng-hide="EnvironmentConfig.locked" ng-cloak>Terms of Service</a>
             <p>&copy; Tusk Marketplace, Inc. 2016</p>
         </div>
     </div>
 
     <!-- inject:js -->
-    <script src="/generated/bower-02d7a420-dc97-4e6c-9d9f-c695ec74c63a.js"></script>
-    <script src="/scripts/app.js"></script>
-    <script src="/scripts/config.js"></script>
-    <script src="/scripts/controllers/about.js"></script>
-    <script src="/scripts/controllers/gridList.js"></script>
-    <script src="/scripts/controllers/home.js"></script>
-    <script src="/scripts/controllers/login.js"></script>
-    <script src="/scripts/controllers/multiLayout.js"></script>
-    <script src="/scripts/controllers/myListings.js"></script>
-    <script src="/scripts/controllers/nav.js"></script>
-    <script src="/scripts/controllers/newListing.js"></script>
-    <script src="/scripts/controllers/settings.js"></script>
-    <script src="/scripts/controllers/singleListing.js"></script>
-    <script src="/scripts/controllers/view_post.js"></script>
-    <script src="/scripts/controllers/view_sub.js"></script>
-    <script src="/scripts/shared/authInterceptor.js"></script>
-    <script src="/scripts/shared/bootcards.js"></script>
-    <script src="/scripts/shared/fileReader.js"></script>
-    <script src="/scripts/shared/imageUploadService.js"></script>
-    <script src="/scripts/shared/interface.js"></script>
-    <script src="/scripts/shared/listingDataService.js"></script>
-    <script src="/scripts/shared/listingMap.js"></script>
-    <script src="/scripts/shared/ngFileSelect.js"></script>
-    <script src="/scripts/shared/swal-forms.js"></script>
-    <script src="/scripts/shared/thumbnailFilter.js"></script>
-    <script src="/scripts/shared/userDataService.js"></script>
-    <script src="/scripts/shared/userService.js"></script>
-    <script src="/scripts/shared/yiw1fez.js"></script>
     <!-- endinject -->
 
 
