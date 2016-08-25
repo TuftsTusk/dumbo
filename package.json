@@ -16,7 +16,8 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "test": "gulp test:unit"
+    "test": "gulp test:unit",
+    "preinstall":"npm install && bower install"
   },
   "dependencies": {
     "bower": "^1.7.5",
