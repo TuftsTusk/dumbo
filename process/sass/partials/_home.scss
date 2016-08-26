@@ -210,7 +210,6 @@
 .clock-wrapper {
     text-align: center;
     margin: 0 auto;
-    zoom:0.50;
     margin-top: 2em;
 }
 
@@ -218,15 +217,11 @@
   color:white;
 }
 
-@media screen and (max-width: 980px)
-{
-      .clock-wrapper {
-        zoom:0.40;
-      }
-}
-@media screen and (max-width: 375px)
- {
-      .clock-wrapper {
-        zoom:0.30;
-      }
+#clock-small {
+  color:grey;
+  font-size:8pt;
+  span {
+    font-size:17pt;
+    font-weight: bold;
+  }
 }

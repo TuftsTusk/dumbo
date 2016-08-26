@@ -51,6 +51,14 @@ angular.module('dumboApp')
                             'col': 2
                           }
                         ]
+    $('#clock-small').countdown('2016/09/06 13:00:00', function(event) {
+      $(this).html(event.strftime(''
+    + '<span>%-w</span> week%!w '
+    + '<span>%-d</span> day%!d '
+    + '<span>%H</span> hr '
+    + '<span>%M</span> min '
+    + '<span>%S</span> sec'));
+    });
   }
 
   $scope.startOver = function(){

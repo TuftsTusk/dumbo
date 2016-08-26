@@ -5,7 +5,10 @@
 
         <div class="clock-wrapper" ng-show="EnvironmentConfig.locked">
           <div ng-cloak class="countdown hide-xs hide-sm"></div>
-          <br class="show-xs show-sm">
+          <div class="show-xs show-sm hide-gt-sm">
+            <div id="clock-small"></div>
+            <br>
+          </div>
         </div>
         <h2 ng-cloak ng-show="EnvironmentConfig.locked" style="margin-top:-8px">We're almost here.</h2>
 
