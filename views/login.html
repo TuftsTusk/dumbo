@@ -5,29 +5,40 @@
         <h3 class="login-header" ng-show="newuser==true">Register</h3>
         <form name="form" role="form" ng-submit="handleForm('submit')">
             <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="form-control" ng-model="user.email" required />
-                <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+                <md-input-container class="md-block">
+                  <label>Tufts Email</label>
+                  <input type="text" name="email" id="email" pattern="[\w.%+-]+@tufts\.edu" class="form-control" ng-model="user.email" required>
+                  <div ng-messages="form.email.$error">
+        						<div ng-message="required">Tufts Email Address is required.</div>
+                    <div ng-message="pattern">@tufts.edu email is required.</div>
+        					</div>
+                </md-input-container>
             </div>
             <div ng-show="newuser==false">
-                <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-required="newuser==false" />
-                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
-                    <div class="forgot-password"><a ng-click="forgotPassword()" class="btn btn-link">Forgot your password?</a></div>
+              <md-input-container class="md-block">
+                <label>Password</label>
+                <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-required="newuser==false" />
+                <div ng-messages="form.email.$error">
+                  <div ng-message="required">Password is required.</div>
                 </div>
+                <div class="forgot-password"><a ng-click="forgotPassword()" class="btn btn-link">Forgot your password?</a></div>
+              </md-input-container>
             </div>
             <div ng-show="newuser==true">
-                <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-required="newuser==true" />
-                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+              <md-input-container class="md-block">
+                <label>Password</label>
+                <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-required="newuser==true" />
+                <div ng-messages="form.email.$error">
+                  <div ng-message="required">Password is required.</div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': form.confirmpass.$dirty && form.confirmpass.$error.required }">
-                    <label for="confirmpass">Confirm Password</label>
-                    <input type="password" name="confirmpass" id="confirmpass" class="form-control" ng-model="user.confirmpass" ng-required="newuser==true" />
-                    <span ng-show="form.confirmpass.$dirty && form.confirmpass.$error.required" class="help-block">Password Confirmation is required</span>
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Confirm Password</label>
+                <input type="password" name="confirmpass" id="confirmpass" class="form-control" ng-model="user.confirmpass" ng-required="newuser==true" />
+                <div ng-messages="form.email.$error">
+                  <div ng-message="required">Password confirmation is required.</div>
                 </div>
+              </md-input-container>
             </div>
             <div class="form-actions">
                 <button ng-show="newuser==false" ng-click="handleForm('login')" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-lg">Log in</button>
