@@ -1,18 +1,22 @@
 {
   "development": {
     "EnvironmentConfig": {
-      "api": "http://localhost"
+      "api": "http://localhost",
+      "production": false
+
     }
   },
   "staging": {
     "EnvironmentConfig": {
-      "api": "https://ringmasterstaging.herokuapp.com"
+      "api": "https://ringmasterstaging.herokuapp.com",
+      "production": false
     }
   },
   "production": {
     "EnvironmentConfig": {
       "api": "https://tuftstusk.herokuapp.com",
-      "locked":true
+      "locked":true,
+      "production": true
     }
   }
 }
