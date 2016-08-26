@@ -2,6 +2,7 @@
   "development": {
     "EnvironmentConfig": {
       "api": "http://localhost",
+      "locked":true,
       "production": false
 
     }

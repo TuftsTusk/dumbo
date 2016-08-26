@@ -1,7 +1,7 @@
 <div ng-controller="HomeCtrl" class="container" id="homebody" ng-init="init()">
     <div class="div1">
-        <img ng-show="!isLoggedIn()" src="../images/combination-mark-white.svg">
-        <h1 ng-show="!isLoggedIn()" style="padding-bottom:0px">The online marketplace for students.</h1>
+        <img ng-show="EnvironmentConfig.locked || !isLoggedIn()" src="../images/combination-mark-white.svg">
+        <h1 ng-show="EnvironmentConfig.locked || !isLoggedIn()" style="padding-bottom:0px">The online marketplace for students.</h1>
 
         <div class="clock-wrapper" ng-show="EnvironmentConfig.locked">
           <div ng-cloak class="countdown hide-xs hide-sm"></div>
@@ -12,7 +12,7 @@
         </div>
         <h2 ng-cloak ng-show="EnvironmentConfig.locked" style="margin-top:-8px">We're almost here.</h2>
 
-        <div ng-cloak ng-show="isLoggedIn()">
+        <div ng-cloak ng-show="isLoggedIn() && !EnvironmentConfig.locked">
           <br>
           <md-toolbar>
              <div class="md-toolbar-tools">
