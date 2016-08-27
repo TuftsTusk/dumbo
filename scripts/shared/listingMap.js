@@ -24,27 +24,27 @@ angular.module('dumboApp')
               name:'title',
               required:'true',
               type:'text',
-              class:'form-control'
+              class:''
             },
             {
               displayName: 'Address',
               name:'address',
               required:'true',
               type:'text',
-              class:'form-control'
+              class:''
             },
             {
               displayName: 'Description',
               name:'description',
               required:'true',
               type:'textarea',
-              class:'form-control'
+              class:''
             },
             {
               displayName: 'Utilities',
               name:'utilities',
               type:'text',
-              class:'form-control'
+              class:''
             },
             {
               displayName: 'Parking',
@@ -56,7 +56,7 @@ angular.module('dumboApp')
               name:'movein',
               required:true,
               type:'datetime-local',
-              class:'form-control'
+              class:''
             }
           ];
         },
