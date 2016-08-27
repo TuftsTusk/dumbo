@@ -63,12 +63,26 @@ var app = angular
 		},
 		listingType:'BookListing'
 	})
+	.when('/books' , {
+		templateUrl: 'views/multiLayout.html',
+		resolve: {
+			loggedIn: requireLogin
+		},
+		listingType: 'BookListing'
+	})
 	.when('/furniture/new', {
 		templateUrl: 'views/newListing.html',
 		resolve: {
 			loggedIn: requireLogin
 		},
 		listingType:'FurnitureListing'
+	})
+	.when('/furniture' , {
+		templateUrl: 'views/multiLayout.html',
+		resolve: {
+			loggedIn: requireLogin
+		},
+		listingType: 'FurnitureListing'
 	})
 	.when('/misc/new', {
 		templateUrl: 'views/newListing.html',
@@ -77,14 +91,40 @@ var app = angular
 		},
 		listingType:'MiscListing'
 	})
-	.when('/newListing', {
-		templateUrl: 'views/newListing.html',
+	.when('/misc' , {
+		templateUrl: 'views/multiLayout.html',
+		resolve: {
+			loggedIn: requireLogin
+		},
+		listingType: 'MiscListing'
+	})
+	.when('/sublets' , {
+		templateUrl: 'views/multiLayout.html',
+		resolve: {
+			loggedIn: requireLogin
+		},
+		listingType: 'SubletListing'
+	})
+	.when('/sublets/:action', {
+		templateUrl: 'views/singleListing.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
+	})
+	.when('/sublets/:id/:action', {
+		templateUrl: 'views/singleListing.html',
 		resolve: {
 			loggedIn: requireLogin
 		}
 	})
 	.when('/about', {
 		templateUrl: 'views/about.html'
+	})
+	.when('/listing/:id', {
+		templateUrl: 'views/view_post.html',
+//		resolve: {
+//			loggedIn: requireLogin
+//		}
 	})
 	.when('/listing' , {
 		templateUrl: 'views/multiLayout.html',
@@ -107,30 +147,6 @@ var app = angular
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
-	.when('/sublets', {
-		redirectTo: '/sublet/new',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
-	.when('/sublets/:action', {
-		templateUrl: 'views/singleListing.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
-	.when('/sublets/:id/:action', {
-		templateUrl: 'views/singleListing.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
-	.when('/listing/:id', {
-		templateUrl: 'views/view_post.html',
-//		resolve: {
-//			loggedIn: requireLogin
-//		}
-	})
 	.when('/settings', {
 		redirectTo: '/settings/account',
 		resolve: {
@@ -143,44 +159,11 @@ var app = angular
 			loggedIn: requireLogin
 		}
 	})
-	.when('/sublets' , {
-		templateUrl: 'views/view_sublet.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
 	.when('/terms' , {
 		templateUrl: 'views/terms.html'
 	})
 	.when('/privacy' , {
 		templateUrl: 'views/privacy.html'
-	})
-	.when('/books' , {
-		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		},
-		listingType: 'books'
-	})
-	.when('/misc' , {
-		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		},
-		listingType: 'misc'
-	})
-	.when('/furniture' , {
-		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		},
-		listingType: 'furniture'
-	})
-	.when('/gridlist' , {
-		templateUrl: 'views/gridList.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
 	})
 	.otherwise({
 		templateUrl: '404.html'

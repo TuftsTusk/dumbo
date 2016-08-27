@@ -1,15 +1,16 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('multiLayout', function ($scope, listingDataService, $route, LISTING, $location) {
+.controller('multiLayout', function ($scope, listingDataService, listingMap, $route, LISTING, $location) {
 	$scope.listings = {};
 	$scope.listings.error = true;
 	$scope.listingType = $route.current.$$route.listingType;
+	$scope.listingDisplayType = listingMap.getListingTypeByType($scope.listingType);
 	$scope.LISTING = LISTING;
 
 
 	$scope.init = function(){
-		listingDataService.getListings()
+		listingDataService.getListingsByType($scope.listingType)
 		.then(function success(request){
 			$scope.listings = request.data;
 			$scope.listings.error = false;
@@ -19,7 +20,12 @@ angular.module('dumboApp')
 	};
 
 	$scope.viewListing = function(uid){
-		$location.path('/listing/' + uid);
+		if ($scope.listingType == 'SubletListing'){
+			$location.path('/sublets/' + uid);
+		} else {
+			$location.path('/listing/' + uid);
+		}
+
 	};
 
 })

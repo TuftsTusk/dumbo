@@ -2,7 +2,7 @@
     @include clearfix;
     .item {
         background-color: white;
-      
+
         float: left;
         position: relative;
         margin-top: 5px;
@@ -25,10 +25,10 @@
             @include imageGrid(4, 1%, 1%);
         }
         border: 1px solid $grey2;
-       
+
         padding: 5px;
         img {
-            
+
             display: block;
             align-content: center;
             max-width: 100%;
@@ -51,14 +51,6 @@
     }
 }
 
-.truncate {
-    width: 100%;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
 #see_more {
     text-emphasis: underline;
 }
@@ -67,11 +59,11 @@
     right: 5px;
     bottom: 5px;
     position: absolute;
-    
+
 }
 #price {
     left: 5px;
     bottom: 5px;
     position: absolute;
-    
+
 }
