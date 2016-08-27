@@ -1,22 +1,25 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('multiLayout', function ($scope, listingDataService, listingMap, $route, LISTING, $location, ngToast) {
+.controller('multiLayout', function ($scope, listingDataService, listingMap, $route, LISTING, $location, ngToast, $routeParams) {
 	$scope.listings = {};
 	$scope.listings.error = true;
 	$scope.listingType = $route.current.$$route.listingType;
 	$scope.listingDisplayType = listingMap.getListingTypeByType($scope.listingType);
 	$scope.LISTING = LISTING;
+	$scope.searchTerm = $routeParams.searchTerm;
 
 
 	$scope.init = function(){
-		listingDataService.getListingsByType($scope.listingType)
+		listingDataService.getListingsByType($scope.listingType, $scope.searchTerm)
 		.then(function success(request){
 			$scope.listings = request.data;
 			$scope.listings.error = false;
 		}, function failure(request){
 			$scope.listings.error = true;
 		})
+		//update UI for searching
+		$scope.searchInput = $scope.searchTerm;
 	};
 
 	$scope.viewListing = function(uid){
