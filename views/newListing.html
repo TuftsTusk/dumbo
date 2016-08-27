@@ -27,8 +27,8 @@
 					</textarea>
 					<div ng-messages="newListing[field.name].$error">
 						<div ng-message="required">{{field.displayName}} is required.</div>
-						<div ng-message="maxlength">The description must be less than {{ field.maxlength }} characters long.</div>
-						<div ng-message="minlength">The description must be at least {{ field.minlength }} characters long.</div>
+						<div ng-message="maxlength">{{field.displayName}} must be less than {{ field.maxlength }} characters long.</div>
+						<div ng-message="minlength">{{field.displayName}} must be at least {{ field.minlength }} characters long.</div>
 						<div ng-message="number">{{field.displayName}} must be a number.</div>
 					</div>
 				</md-input-container>
@@ -64,8 +64,7 @@
 
 	</form>
 	<section layout="column">
-      <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()" flex>Publish</md-button>
-			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()" flex>Make Changes</md-button>
+      <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()">Publish</md-button>
   </section>
 	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
 
