@@ -12,7 +12,7 @@
 				<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
 				<div class="block" ng-if="!editing && owner"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
 			</div>
-			<div class="block" ng-if="!editing && !previewing"><a href="" class=" btn btn-primary btn-lg">Contact seller</a></div>
+			<div class="block" ng-if="!editing && !owner && !previewing" ng-click="contactSeller(id)"><a href="" class=" btn btn-primary btn-lg">Contact seller</a></div>
 		</div>
 	</div>
 </div>

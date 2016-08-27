@@ -10,12 +10,12 @@
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
 	background:$blue;
-	color:blue;
+	color:black
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: $blue;
-    color: black;
+  background-color: $blue;
+  color: black;
 }
 
 .navbar-default .navbar-nav>.hover>a {

@@ -22,7 +22,7 @@
             <p>{{listing.description}}</p>
 
             <div>
-                <a class="btn btn-primary" ng-show="!isOwner" ng-click="contactSeller()">Contact Seller</a>
+                <a class="btn btn-primary" ng-show="!isOwner" ng-click="contactSeller(id)">Contact Seller</a>
                 <a class="btn btn-warning" ng-show="isOwner" ng-click="editListing()">Edit</a>
             </div>
         </div>

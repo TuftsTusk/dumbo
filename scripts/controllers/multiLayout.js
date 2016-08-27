@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('multiLayout', function ($scope, listingDataService, listingMap, $route, LISTING, $location) {
+.controller('multiLayout', function ($scope, listingDataService, listingMap, $route, LISTING, $location, ngToast) {
 	$scope.listings = {};
 	$scope.listings.error = true;
 	$scope.listingType = $route.current.$$route.listingType;
@@ -20,12 +20,20 @@ angular.module('dumboApp')
 	};
 
 	$scope.viewListing = function(uid){
-		if ($scope.listingType == 'SubletListing'){
-			$location.path('/sublets/' + uid);
+		if (uid == undefined || uid ==null){
+			///TODO: Send Goolge Analytics event for this failure
+			ngToast.create({
+				className: 'warning',
+				content: "Post is currently unavailable. Please try again later.",
+				timeout: 3000
+			});
 		} else {
-			$location.path('/listing/' + uid);
+			if ($scope.listingType == 'SubletListing'){
+				$location.path('/sublets/' + uid);
+			} else {
+				$location.path('/listing/' + uid);
+			}
 		}
-
 	};
 
 })
