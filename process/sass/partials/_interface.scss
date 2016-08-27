@@ -17,6 +17,14 @@ input[type="url"], textarea
     background: url('../images/preloader.gif') no-repeat 50% 50% transparent;
 }
 
+.truncate {
+    width: 80%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 
 .noselect {
 	-webkit-touch-callout: none; /* iOS Safari */

@@ -56,10 +56,11 @@ angular.module('dumboApp')
     + '<span>%-w</span> week%!w '
     + '<span>%-d</span> day%!d '
     + '<span>%H</span> hr '
-    + '<span>%M</span> min '
-    + '<span>%S</span> sec'));
+    + '<span>%M</span> m '
+    + '<span>%S</span> s'));
     });
   }
+
 
   $scope.startOver = function(){
     $scope.init();
