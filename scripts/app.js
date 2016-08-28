@@ -109,13 +109,15 @@ var app = angular
 		templateUrl: 'views/singleListing.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'SubletListing'
 	})
 	.when('/sublets/:id/:action', {
 		templateUrl: 'views/singleListing.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		listingType: 'SubletListing'
 	})
 	.when('/about', {
 		templateUrl: 'views/about.html'
@@ -127,6 +129,12 @@ var app = angular
 //		}
 	})
 	.when('/listing/search/:searchTerm' , {
+		templateUrl: 'views/multiLayout.html',
+		resolve: {
+			loggedIn: requireLogin
+		}
+	})
+	.when('/listing/search/:searchTerm/type/:listingType' , {
 		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin

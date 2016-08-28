@@ -4,7 +4,7 @@ angular.module('dumboApp')
 .controller('multiLayout', function ($scope, listingDataService, listingMap, $route, LISTING, $location, ngToast, $routeParams) {
 	$scope.listings = {};
 	$scope.listings.error = true;
-	$scope.listingType = $route.current.$$route.listingType;
+	$scope.listingType = $route.current.$$route.listingType || $routeParams.listingType;
 	$scope.listingDisplayType = listingMap.getListingTypeByType($scope.listingType);
 	$scope.LISTING = LISTING;
 	$scope.searchTerm = $routeParams.searchTerm;

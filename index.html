@@ -30,7 +30,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/generated/bower-15f702a1-478b-453e-ac2a-a4bda2e4e9e0.css">
+    <link rel="stylesheet" href="/generated/bower-0c96b5b2-440f-45d8-ad70-6cc553146e22.css">
     <!-- endinject -->
     <link rel="stylesheet" href="styles/style.css">
 
@@ -50,13 +50,13 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#/"></a>
+          <form class="searchbar navbar-form show-xs show-sm hide-gt-sm" role="search">
+            <div class="form-group">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              <input type="text" class="input-field" placeholder="Search {{listingDisplayName || 'All'}}" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
+            </div>
+          </form>
         </div>
-        <form class="searchbar navbar-form show-xs show-sm hide-gt-sm" role="search">
-          <div class="form-group">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            <input type="text" class="input-field" placeholder="Search" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
-          </div>
-        </form>
         <div uib-collapse="isCollapsed" class="navbar-collapse bs-js-navbar-collapse">
           <ul class="nav navbar-nav">
             <li ng-class="{ active: isActive('/sublets')}"><a href="#/sublets">Sublets</a></li>
@@ -69,7 +69,7 @@
                 <form class="searchbar navbar-form" role="search">
                   <div class="form-group">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    <input type="text" class="input-field" placeholder="Search" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
+                    <input type="text" class="input-field" placeholder="Search {{listingDisplayName || 'All'}}" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
                   </div>
                 </form>
               </li>
@@ -142,7 +142,7 @@
     </div>
 
     <!-- inject:js -->
-    <script src="/generated/bower-efd0b2ae-cfc4-4c25-b4be-f74a66083633.js"></script>
+    <script src="/generated/bower-424bfc4c-8c0f-4761-9f86-c2e7a71bb2d6.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/config.js"></script>
     <script src="/scripts/controllers/about.js"></script>
