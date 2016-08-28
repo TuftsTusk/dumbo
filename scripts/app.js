@@ -126,7 +126,7 @@ var app = angular
 //			loggedIn: requireLogin
 //		}
 	})
-	.when('/listing' , {
+	.when('/listing/search/:searchTerm' , {
 		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin

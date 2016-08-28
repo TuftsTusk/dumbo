@@ -9,7 +9,15 @@ angular.module('dumboApp')
 			$scope.$on('$routeChangeSuccess', function () {
         $scope.isCollapsed = true;
 				$scope.closeFlyouts();
+				$scope.searchInput = '';
     	});
+		};
+
+		$scope.search = function(input){
+			if (input != ''){
+				$location.path('/listing/search/' + input);
+			}
+
 		};
 
 		$scope.isActive = function (viewLocation) {

@@ -12,8 +12,8 @@ angular.module('dumboApp')
     this.editListing = function(id, listing) {
         return $http.post(host + listingPath + '/' + id, listing);
     }
-    this.getListingsByType = function(type) {
-        return $http.get(host + listingPath, {params:{'type':type}});
+    this.getListingsByType = function(type, searchTerm) {
+        return $http.get(host + listingPath, {params:{'type':type, 'search':searchTerm}});
     }
     this.getListings = function() {
         return $http.get(host + listingPath);
