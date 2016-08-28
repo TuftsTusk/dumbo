@@ -1,23 +1,24 @@
 'use strict';
 
 angular.module('dumboApp')
-	.controller('NavCtrl', function ($scope, userService, userDataService, EnvironmentConfig, $location) {
+	.controller('NavCtrl', function ($scope, userService, userDataService, EnvironmentConfig, $location, listingMap, $route) {
 
 		$scope.init = function(){
 			$scope.closeFlyouts();
 			$scope.isCollapsed = true;
-			$scope.$on('$routeChangeSuccess', function () {
+			$scope.$on('$routeChangeSuccess', function (e, current, pre) {
         $scope.isCollapsed = true;
 				$scope.closeFlyouts();
 				$scope.searchInput = '';
+				$scope.listingType = $route.current.$$route.listingType;
+				$scope.listingDisplayName = ($scope.listingType) ? listingMap.getListingTypeByType($scope.listingType) : null;
     	});
 		};
 
 		$scope.search = function(input){
 			if (input != ''){
-				$location.path('/listing/search/' + input);
+				$location.path('/listing/search/' + input + ($scope.listingType ? '/type/' + $scope.listingType : ''));
 			}
-
 		};
 
 		$scope.isActive = function (viewLocation) {

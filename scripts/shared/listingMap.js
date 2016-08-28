@@ -3,10 +3,10 @@ angular.module('dumboApp')
     var defaultField = 'MiscListing';
     var categories = {
         'SubletListing': function() {
-          return 'Sublet';
+          return 'Sublets';
         },
         'BookListing': function() {
-          return 'Book';
+          return 'Books';
         },
         'FurnitureListing': function() {
             return 'Furniture';
