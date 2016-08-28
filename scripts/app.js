@@ -147,10 +147,11 @@ var app = angular
 		}
 	})
 	.when('/me/listing', {
-		templateUrl: 'views/myListings.html',
+		templateUrl: 'views/multiLayout.html',
 		resolve: {
 			loggedIn: requireLogin
-		}
+		},
+		myListings: true
 	})
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'

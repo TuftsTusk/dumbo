@@ -17,7 +17,7 @@ angular.module('dumboApp')
 
 		$scope.search = function(input){
 			if (input != ''){
-				$location.path('/listing/search/' + input + '/type/' + $scope.listingType);
+				$location.path('/listing/search/' + input + ($scope.listingType ? '/type/' + $scope.listingType : ''));
 			}
 		};
 

@@ -8,16 +8,28 @@ angular.module('dumboApp')
 	$scope.listingDisplayType = listingMap.getListingTypeByType($scope.listingType);
 	$scope.LISTING = LISTING;
 	$scope.searchTerm = $routeParams.searchTerm;
+	$scope.myListings = $route.current.$$route.myListings;
 
 
 	$scope.init = function(){
-		listingDataService.getListingsByType($scope.listingType, $scope.searchTerm)
-		.then(function success(request){
-			$scope.listings = request.data;
-			$scope.listings.error = false;
-		}, function failure(request){
-			$scope.listings.error = true;
-		})
+		if ($scope.myListings){
+			listingDataService.getMeListing()
+			.then(function success(request){
+				$scope.listings = request.data;
+				$scope.listings.error = false;
+			}, function failure(request){
+				$scope.listings.error = true;
+			})
+		} else {
+			listingDataService.getListingsByType($scope.listingType, $scope.searchTerm)
+			.then(function success(request){
+				$scope.listings = request.data;
+				$scope.listings.error = false;
+			}, function failure(request){
+				$scope.listings.error = true;
+			})
+		}
+
 		//update UI for searching
 		$scope.searchInput = $scope.searchTerm;
 	};

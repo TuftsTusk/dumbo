@@ -7,7 +7,7 @@
           md-row-height-gt-md="1:1" md-row-height="2:2"
           md-gutter="12px" md-gutter-gt-sm="8px" ng-if="!listings.error" >
       <div ng-if="listings.length < 1" layout="row" layout-align="center center">
-        <span ng-if="!searchTerm"> We're fresh out of {{listingDisplayType | lowercase}}. Would you like to  <a href="/#/{{listingDisplayType | lowercase}}/new"> add a {{listingDisplayType | lowercase}} listing? </a></span>
+        <span ng-if="!searchTerm"> We're fresh out of {{listingDisplayType | lowercase}} listings. Would you like to  <a href="/#/{{listingDisplayType | lowercase}}/new"> add a {{listingDisplayType | lowercase}} listing? </a></span>
         <span ng-if="searchTerm"> No listings found for &#39;{{searchTerm}}&#39;</a></span>
       </div>
       <md-grid-tile ng-repeat="data in listings">

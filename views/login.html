@@ -6,7 +6,7 @@
         <form name="form" role="form" ng-submit="handleForm('submit')">
           <md-input-container class="md-block">
             <label>Tufts Email</label>
-            <input type="text" name="email" id="email" pattern="[\w.%+-]+@tufts\.edu" class="form-control" ng-model="user.email" required>
+            <input type="text" name="email" id="email" pattern="[\w.%+-]+@tufts\.edu" ng-model="user.email" required>
             <div ng-messages="form.email.$error">
               <div ng-message="required">Tufts Email Address is required.</div>
               <div ng-message="pattern">@tufts.edu email is required.</div>
@@ -14,7 +14,7 @@
           </md-input-container>
           <md-input-container class="md-block" ng-show="!newuser">
             <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-required="newuser==false" />
+            <input type="password" name="password" id="password" ng-model="user.password" ng-required="newuser==false" />
             <div ng-messages="form.email.$error">
               <div ng-message="required">Password is required.</div>
             </div>
@@ -22,14 +22,14 @@
           </md-input-container>
           <md-input-container class="md-block" ng-show="newuser">
             <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-required="newuser==true" />
+            <input type="password" name="password" id="password" ng-model="user.password" ng-required="newuser==true" />
             <div ng-messages="form.email.$error">
               <div ng-message="required">Password is required.</div>
             </div>
           </md-input-container>
           <md-input-container class="md-block" ng-show="newuser">
             <label>Confirm Password</label>
-            <input type="password" name="confirmpass" id="confirmpass" class="form-control" ng-model="user.confirmpass" ng-required="newuser==true" />
+            <input type="password" name="confirmpass" id="confirmpass" ng-model="user.confirmpass" ng-required="newuser==true" />
             <div ng-messages="form.email.$error">
               <div ng-message="required">Password confirmation is required.</div>
             </div>
