@@ -10,12 +10,22 @@
         <span ng-if="!searchTerm"> We're fresh out of {{listingDisplayType | lowercase}}. Would you like to  <a href="/#/{{listingDisplayType | lowercase}}/new"> add a {{listingDisplayType | lowercase}} listing? </a></span>
         <span ng-if="searchTerm"> No listings found for &#39;{{searchTerm}}&#39;</a></span>
       </div>
-      <md-grid-tile ng-repeat="data in listings">
-        <md-grid-tile-header class="listingComponent">
-          <span class="listingTitle">{{data.listing.title || data.listing.apt_info.address}} </span> <span class="label label-primary priceLabel">${{data.listing.price || data.listing.bedrooms[0].rent}}</span>
+      <md-grid-tile ng-repeat="data in listings" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
+        <md-grid-tile-header>
+          <span ng-show="data.listing.type != 'SubletListing'" ng-cloak>
+            <span class="listingTitle"> {{data.listing.title}} </span>
+            <span class="label label-primary priceLabel pull-right">${{data.listing.price}}</span>
+          </span>
+          <span ng-show="data.listing.type == 'SubletListing'" ng-cloak>
+            <span class="listingTitle"> {{data.listing.apt_info.address}} </span>
+            <ng-pluralize class="label priceLabel pull-left" count="data.listing.bedrooms.length"
+                          when="{ '1':'{} Room','other': '{} Rooms'}"></ng-pluralize>
+            <span class="label label-primary priceLabel pull-right">${{data.listing.bedrooms.getMinimumRent().rent}}{{(data.listing.bedrooms.rentValuesSame()) ? '+': ''}}</span>
+
+          </span>
         </md-grid-tile-header>
         <span class="multiListingImage md-whiteframe-z2"  ng-style="{'background-image':'url({{data.listing.photo_urls[0].photo_url || data.listing.bedrooms[0].photos[0].photo_url | thumbnail}})'}" ><span>
-        <md-grid-tile-footer md-ink-ripple class="transition" ng-click="viewListing(data.listing._id)" ng-mouseenter="hover = 'md-whiteframe-z2'" ng-mouseleave="hover = ''" ng-class="hover">
+        <md-grid-tile-footer md-ink-ripple class="transition" ng-click="viewListing(data.listing._id)" ng-mouseenter="hover = 'md-whiteframe-z3'" ng-mouseleave="hover = ''" ng-class="hover">
           <h3 class="noselect">VIEW</h3>
         </md-grid-tile-footer>
       </md-grid-tile>

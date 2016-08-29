@@ -44,7 +44,7 @@ angular.module('dumboApp')
 			});
 		} else {
 			if ($scope.listingType == 'SubletListing'){
-				$location.path('/sublets/' + uid);
+				$location.path('/sublets/' + uid + '/view');
 			} else {
 				$location.path('/listing/' + uid);
 			}

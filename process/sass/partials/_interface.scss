@@ -55,9 +55,6 @@ input[type="url"], textarea
 	background: rgba(0, 0, 0, 0.55);
 }
 
-.listingComponent {
-	font-weight: 600;
-}
 
 
 .gridList md-grid-tile-footer figcaption {
@@ -84,14 +81,15 @@ input[type="url"], textarea
 
 .listingTitle{
 	text-align: center;
+  padding-left:2%;
 	width:100%;
 	display:inline-block;
+  @include ellipsis;
 }
 
 .priceLabel {
 	font-size:100%;
-	float:right;
-	margin: 5px;
+  padding-right:2%;
 }
 
 .multiListingImage {
@@ -100,9 +98,6 @@ input[type="url"], textarea
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
-}
-.gridList md-grid-tile {
-  transition: all 200ms ease-in 50ms;
 }
 
 .transition{
