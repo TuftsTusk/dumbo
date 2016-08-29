@@ -65,6 +65,7 @@
 	</form>
 	<section layout="column">
       <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()">Publish</md-button>
+			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()">Publish Edits</md-button>
   </section>
 	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
 

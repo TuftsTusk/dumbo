@@ -1,0 +1,13 @@
+branch-defaults:
+  aws-testing:
+    environment: dumbo
+  search-improvements:
+    environment: dumbo
+    group_suffix: null
+global:
+  application_name: dumbo
+  default_ec2_keyname: tuskmarketplace
+  default_platform: Node.js
+  default_region: us-west-2
+  profile: eb-cli
+  sc: git
