@@ -11,3 +11,8 @@ styles/style.css
 styles/bower.css
 fonts/
 generated
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -17,7 +17,8 @@
   },
   "scripts": {
     "test": "gulp test:unit",
-    "preinstall":"bower install"
+    "prestart":"node_modules/bower/bin/bower install && npm install -g gulp",
+    "start":"gulp production"
   },
   "dependencies": {
     "bower": "^1.7.5",
