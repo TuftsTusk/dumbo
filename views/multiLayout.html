@@ -20,7 +20,7 @@
             <span class="listingTitle"> {{data.listing.apt_info.address}} </span>
             <ng-pluralize class="label priceLabel pull-left" count="data.listing.bedrooms.length"
                           when="{ '1':'{} Room','other': '{} Rooms'}"></ng-pluralize>
-            <span class="label label-primary priceLabel pull-right">${{data.listing.bedrooms.getMinimumRent().rent}}{{(data.listing.bedrooms.rentValuesSame()) ? '+': ''}}</span>
+            <span class="label label-primary priceLabel pull-right">${{data.listing.bedrooms.getMinimumRent().rent}}{{(data.listing.bedrooms.rentValuesSame()) ? '':'+'}}</span>
 
           </span>
         </md-grid-tile-header>
