@@ -183,6 +183,7 @@ var app = angular
 
 app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
 	$rootScope.$on( "$routeChangeStart", function(event, next, current) {
+		$rootScope.loaded = false;
 		if (EnvironmentConfig.locked){
 			if ($location.path() != '/'){
 				ngToast.create({
@@ -193,6 +194,9 @@ app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
 			}
 			$location.path('/');
 		}
+	});
+	$rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
+		$rootScope.loaded = true;
 	});
 });
 
