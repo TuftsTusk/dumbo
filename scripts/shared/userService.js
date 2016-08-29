@@ -15,7 +15,11 @@ angular.module('dumboApp')
       return $cookies.get('email');
     },
     setLoggedOut: function(userEmail){
-      $cookies.remove('email');
+      //clear all cookies
+      var cookies = $cookies.getAll();
+      angular.forEach(cookies, function (v, k) {
+          $cookies.remove(k);
+      });
     }
   }
 });

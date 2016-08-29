@@ -1,5 +1,5 @@
 angular.module('dumboApp').controller('LoginCtrl',
-    function ($scope, userDataService, SweetAlert, userService,$routeParams, $location, ngToast) {
+    function ($scope, userDataService, SweetAlert, userService,$routeParams, $location, ngToast, $cookies, userService) {
         var id = $routeParams.id;
         var key = $routeParams.key;
         var action = $routeParams.action;
@@ -201,6 +201,8 @@ angular.module('dumboApp').controller('LoginCtrl',
         }
 
         $scope.handleForm = function(context) {
+            //clear any old data
+            userService.setLoggedOut();
             if ($scope.newuser) {
                 //Assume register
                 register();

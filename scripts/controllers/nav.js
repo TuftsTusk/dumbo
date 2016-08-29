@@ -34,8 +34,9 @@ angular.module('dumboApp')
 		 	return userService.isLoggedIn();
 		}
 		$scope.logout = function(){
-			userService.setLoggedOut();
-			userDataService.logout();
+			userDataService.logout().then(function(){
+				userService.setLoggedOut();
+			});
 		}
 		$scope.requestEmail = function(){
 			return userService.requestEmail();
