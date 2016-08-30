@@ -89,7 +89,7 @@ angular.module('dumboApp')
 		$scope.searchInput = $scope.searchTerm;
 	};
 
-	$scope.viewListing = function(uid){
+	$scope.viewListing = function(uid, type){
 		if (uid == undefined || uid ==null){
 			///TODO: Send Google Analytics event for this failure
 			ngToast.create({
@@ -98,7 +98,7 @@ angular.module('dumboApp')
 				timeout: 3000
 			});
 		} else {
-			if ($scope.listingType == 'SubletListing'){
+			if (type == 'SubletListing'){
 				$location.path('/sublets/' + uid + '/view');
 			} else {
 				$location.path('/listing/' + uid);

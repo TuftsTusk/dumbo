@@ -1,8 +1,6 @@
 <div id="content-border" ng-controller="NewListingCtrl" ng-init=init()>
-	<div ng-if="isLoading">
-        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
-        <span>Loading...</span>
-    </div>
+	<div ng-if="isLoading" class="preloader">
+  </div>
 	<md-toolbar layout="row" layout-align="center center">
 	  <div flex><md-button ng-if="!isDataEmpty()" ng-click="deleteSavedData()"><md-icon>delete</md-icon> Clear</md-button></div>
 	  <div flex class="listingTypeTitle">{{newListingFormData.type}}</div>
@@ -44,12 +42,12 @@
 						<div class="imageHolder">
 							<a class="photoUploadBox" ng-repeat="image in photos track by $index" target="_blank">
 								<div ng-style="{'background-image':'url(' + image.photo_url  + ')'}" class="scaledImage photoUploadImage"></div>
-								<i class="fa fa-times deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
+								<i class="glyphicon glyphicon-remove deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
 							</a>
-							<div ng-if="uploading" class="photoUploadBox inProgress">
+							<div class="photoUploadBox inProgress">
 								<div class="scaledImage photoUploadImage">
 									<div class="spinner">
-										<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+										<i class="preloader preloader-small" aria-hidden="true"></i>
 									</div>
 								</div>
 							</div>
@@ -64,8 +62,8 @@
 
 	</form>
 	<section layout="column">
-      <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()">Publish</md-button>
-			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading" ng-click="submit()">Publish Edits</md-button>
+      <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish</md-button>
+			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish Edits</md-button>
   </section>
 	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
 
