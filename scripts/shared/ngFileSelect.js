@@ -25,7 +25,9 @@ angular.module('dumboApp')
         var files = (e.srcElement || e.target).files;
 		$scope.numFilesToUpload = files.length;
 		$scope.numFilesTotal = files.length;
-		$scope.uploading = true;
+    if ($scope.numFilesTotal > 0){
+      $scope.uploading = true;
+    }
 		$.each(files, function(index, file){
 
 			imageUploadService.uploadImage(file, index, doneUploadingOneImage);

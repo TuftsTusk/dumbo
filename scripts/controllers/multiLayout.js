@@ -41,6 +41,12 @@ angular.module('dumboApp')
 			}
 		};
 
+		$scope.clickListing = function(listing){
+			var marker = $scope.map.markers.find(function (o) { return o.id == listing._id; });
+			$scope.map.window.listing = listing;
+			$scope.map.markersEvents.click(null, null, marker);
+		}
+
 		uiGmapGoogleMapApi.then(function(maps) {
 			$timeout(function(){
 				$scope.mapLoaded = true;
@@ -63,7 +69,6 @@ angular.module('dumboApp')
 					//add markers
 					if ($scope.listingType == 'SubletListing'){
 						for (var i=0; i < $scope.listings.length; i++){
-							console.log($scope.listings[i]);
 							var ret = {
 								id:$scope.listings[i].listing._id,
 								latitude: $scope.listings[i].listing.apt_info.lat,
@@ -84,7 +89,7 @@ angular.module('dumboApp')
 		$scope.searchInput = $scope.searchTerm;
 	};
 
-	$scope.viewListing = function(uid){
+	$scope.viewListing = function(uid, type){
 		if (uid == undefined || uid ==null){
 			///TODO: Send Google Analytics event for this failure
 			ngToast.create({
@@ -93,7 +98,7 @@ angular.module('dumboApp')
 				timeout: 3000
 			});
 		} else {
-			if ($scope.listingType == 'SubletListing'){
+			if (type == 'SubletListing'){
 				$location.path('/sublets/' + uid + '/view');
 			} else {
 				$location.path('/listing/' + uid);

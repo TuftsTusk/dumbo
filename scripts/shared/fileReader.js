@@ -47,7 +47,6 @@ angular.module('dumboApp')
             return errorMessage ("Photo Upload Failed",  "Please Try Again")
           }
           if (file.type.match('(jpeg|jpg|gif|png)') == null || file.size > 5000000){
-            console.log(file.type);
             return errorMessage ("Photo Upload Failed", "We accept JPEG, JPG, GIF, or PNG files up to a max size of 5MB.")
           }
           return deferred.promise;
