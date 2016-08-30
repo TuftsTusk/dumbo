@@ -44,7 +44,7 @@
 								<div ng-style="{'background-image':'url(' + image.photo_url  + ')'}" class="scaledImage photoUploadImage"></div>
 								<i class="glyphicon glyphicon-remove deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
 							</a>
-							<div class="photoUploadBox inProgress">
+							<div ng-if="uploading" class="photoUploadBox inProgress">
 								<div class="scaledImage photoUploadImage">
 									<div class="spinner">
 										<i class="preloader preloader-small" aria-hidden="true"></i>
