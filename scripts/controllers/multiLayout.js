@@ -41,6 +41,12 @@ angular.module('dumboApp')
 			}
 		};
 
+		$scope.clickListing = function(listing){
+			var marker = $scope.map.markers.find(function (o) { return o.id == listing._id; });
+			$scope.map.window.listing = listing;
+			$scope.map.markersEvents.click(null, null, marker);
+		}
+
 		uiGmapGoogleMapApi.then(function(maps) {
 			$timeout(function(){
 				$scope.mapLoaded = true;
@@ -63,7 +69,6 @@ angular.module('dumboApp')
 					//add markers
 					if ($scope.listingType == 'SubletListing'){
 						for (var i=0; i < $scope.listings.length; i++){
-							console.log($scope.listings[i]);
 							var ret = {
 								id:$scope.listings[i].listing._id,
 								latitude: $scope.listings[i].listing.apt_info.lat,
