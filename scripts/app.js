@@ -43,7 +43,8 @@ var app = angular
 	'ngToast',
 	'ngMaterial',
 	'infinite-scroll',
-	'mgcrea.ngStrap'
+	'mgcrea.ngStrap',
+	'uiGmapgoogle-maps'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider
@@ -214,6 +215,7 @@ app.config(['ngToastProvider', function(ngToast) {
 		animation: "fade"
 	});
 }]);
+
 
 app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.withCredentials = true;
