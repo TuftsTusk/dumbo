@@ -55,7 +55,30 @@ input[type="url"], textarea
 	background: rgba(0, 0, 0, 0.55);
 }
 
+.selected {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 20px #9ecaed;
+  border: 2px solid $blue;
+}
 
+.map {
+  height:40%;
+}
+
+.scrollable-sublet {
+    height: 60%; /* or any value */
+    overflow-y: auto;
+}
+.scrollable-other {
+    height: 100%; /* or any value */
+    overflow-y: auto;
+}
+
+.angular-google-map,
+.angular-google-map-container {
+  height: 100%;
+}
 
 .gridList md-grid-tile-footer figcaption {
 	width: 100%;
