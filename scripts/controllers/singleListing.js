@@ -145,6 +145,7 @@ angular.module('dumboApp')
 	});
 
 	$scope.init = function() {
+		$scope.showRoomList = true;
 		$scope.selectedRoom = 0;
 
 		$scope.newListing = false;
@@ -160,8 +161,8 @@ angular.module('dumboApp')
 		var dmin = new Date(),
 			dmax = new Date();
 		dmax.setFullYear(dmin.getFullYear() + 2);
-		$scope.dateMin = dmin.toISOString().substring(0, 10);
-		$scope.dateMax = dmax.toISOString().substring(0, 10);
+		$scope.dateMin = dmin;
+		$scope.dateMax = dmax;
 
 
 			// TODO: also retrieve listing if action is a UUID
@@ -226,6 +227,22 @@ angular.module('dumboApp')
 			}
 			$location.path(pathArr[1] + '/' + path);
 		}
+	}
+
+	$scope.deleteSavedData = function() {
+		SweetAlert.swal({title: "Are you sure?",
+		text: "You will not be able to recover this listing draft!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, start over!",
+		closeOnConfirm: true },
+		function(isConfirm){
+			if (isConfirm){
+				deleteSavedData();
+				$scope.init();
+			}
+		});
 	}
 
 	$scope.save = function() {
