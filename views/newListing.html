@@ -12,17 +12,48 @@
 			<md-content layout-padding>
 				<md-input-container class="{{field.class}}" ng-repeat="field in newListingFormData">
 					<label>{{ field.displayName }}</label>
-
-					<textarea minlength="{{ field.minlength }}"
-										maxlength="{{ field.maxlength }}"
-										ng-required="{{field.required}}"
-										md-no-asterisk
-										type="{{ field.type }}"
-										name="{{field.name}}"
-										ng-model="listing[field.name]"
-										ng-change="save()"
-										type="{{ field.type }}">
-					</textarea>
+					<span ng-if=field.subField>
+						<textarea ng-if="field.type == 'textarea'"
+											minlength="{{ field.minlength }}"
+											maxlength="{{ field.maxlength }}"
+											ng-required="{{field.required}}"
+											md-no-asterisk
+											name="{{field.name}}"
+											ng-model="listing[field.subField][field.name]"
+											ng-change="save()">
+						</textarea>
+						<input ng-if="field.type != 'textarea'"
+											minlength="{{ field.minlength }}"
+											maxlength="{{ field.maxlength }}"
+											ng-required="{{field.required}}"
+											md-no-asterisk
+											type="{{ field.type }}"
+											name="{{field.name}}"
+											ng-model="listing[field.subField][field.name]"
+											ng-change="save()">
+						</input>
+					</span>
+					<span ng-if=!field.subField>
+						<textarea ng-if="field.type == 'textarea'"
+											minlength="{{ field.minlength }}"
+											maxlength="{{ field.maxlength }}"
+											ng-required="{{field.required}}"
+											md-no-asterisk
+											name="{{field.name}}"
+											ng-model="listing[field.name]"
+											ng-change="save()">
+						</textarea>
+						<input ng-if="field.type != 'textarea'"
+											minlength="{{ field.minlength }}"
+											maxlength="{{ field.maxlength }}"
+											ng-required="{{field.required}}"
+											md-no-asterisk
+											type="{{ field.type }}"
+											name="{{field.name}}"
+											ng-model="listing[field.name]"
+											ng-change="save()">
+						</input>
+					</span>
 					<div ng-messages="newListing[field.name].$error">
 						<div ng-message="required">{{field.displayName}} is required.</div>
 						<div ng-message="maxlength">{{field.displayName}} must be less than {{ field.maxlength }} characters long.</div>
@@ -31,7 +62,6 @@
 					</div>
 				</md-input-container>
 			</md-content>
-			<div>
 				<div class="photoUploadWrapper">
 					<a ng-if="photos.length == 0 && !uploading" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
 						<div class="photoUploadTitle">

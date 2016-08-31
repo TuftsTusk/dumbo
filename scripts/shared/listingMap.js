@@ -18,45 +18,28 @@ angular.module('dumboApp')
     var fields = {
         'SubletListing': function() {
           return [
-
-            {
-              displayName: 'Title',
-              name:'title',
-              required:'true',
-              type:'text',
-              class:''
-            },
             {
               displayName: 'Address',
               name:'address',
+              subField:'apt_info',
               required:'true',
               type:'text',
-              class:''
+              class:'md-block'
             },
             {
-              displayName: 'Description',
+              displayName: 'Total Number of Occupants',
+              name:'num_occupants',
+              subField:'apt_info',
+              required:'true',
+              type:'number',
+              class:'largeBtn'
+            },
+            {
+              displayName: 'Number of Available Rooms',
               name:'description',
               required:'true',
-              type:'textarea',
-              class:''
-            },
-            {
-              displayName: 'Utilities',
-              name:'utilities',
-              type:'text',
-              class:''
-            },
-            {
-              displayName: 'Parking',
-              name:'parking',
-              type:'checkbox'
-            },
-            {
-              displayName:'Move in Date',
-              name:'movein',
-              required:true,
-              type:'datetime-local',
-              class:''
+              type:'number',
+              class:'largeBtn'
             }
           ];
         },
