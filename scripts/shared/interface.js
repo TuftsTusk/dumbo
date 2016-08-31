@@ -15,10 +15,6 @@ Array.prototype.rentValuesSame = function() {
 
 Array.prototype.getMinimumRent = function() {
   return this.reduce(function (p, v) {
-    if (v == null || v == undefined){
-      return p.rent;
-    } else {
-      return ( p.rent < v ? p.rent : v );
-    }
-  });
+    return p.rent < v.rent ? p : v;
+    })
 }
