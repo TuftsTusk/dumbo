@@ -33,7 +33,7 @@
                       ng-mouseleave="hover = ''"
                       ng-class="hover"
                       ng-repeat="data in listings"
-                      ng-click="clickListing(data.listing)">
+                      ng-click="clickListing(data.listing, data.listing.type)">
           <md-grid-tile-header>
             <span ng-show="data.listing.type != 'SubletListing'" ng-cloak>
               <span class="listingTitle"> {{data.listing.title}} </span>

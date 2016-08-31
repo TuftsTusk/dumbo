@@ -41,7 +41,10 @@ angular.module('dumboApp')
 			}
 		};
 
-		$scope.clickListing = function(listing){
+		$scope.clickListing = function(listing, type){
+			if (type != 'SubletListing'){
+				return;
+			}
 			var marker = $scope.map.markers.find(function (o) { return o.id == listing._id; });
 			$scope.map.window.listing = listing;
 			$scope.map.markersEvents.click(null, null, marker);
