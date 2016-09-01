@@ -67,11 +67,18 @@ input[type="url"], textarea
 
 .map {
   height:40%;
+
+  @media only screen and (min-width : 768px),  (orientation:landscape){
+    height:100%;
+  }
 }
 
 .scrollable-sublet {
-    height: 60%; /* or any value */
     overflow-y: auto;
+    height:60%;
+    @media only screen and (min-width : 768px), (orientation:landscape){
+      height:100%;
+    }
 }
 .scrollable-other {
     height: 100%; /* or any value */
