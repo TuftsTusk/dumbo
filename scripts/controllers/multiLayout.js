@@ -36,15 +36,18 @@ angular.module('dumboApp')
 			zoom: 14,
 			markers: [],
 			markersEvents: {
-				click: function(marker, eventName, listing) {
-					$scope.map.center = listing;
-					$scope.map.window.listing = listing;
+				click: function(clickEvent, eventName, marker) {
+					$scope.map.center = marker
+					$scope.map.window.listing = marker;
 					$scope.map.window.show = true;
-					$("#" + listing.id)[0].scrollIntoView({
-						behavior: "smooth",
-						block: "start"
-					});
-					$scope.selectedId = listing.id;
+					if (clickEvent != null){
+						//didn't come from click on map so don't scroll to listing
+						$("#" + marker.id)[0].scrollIntoView({
+							behavior: "smooth",
+							block: "start"
+						});
+					}
+					$scope.selectedId = marker.id;
 				}
 			},
 			window: {

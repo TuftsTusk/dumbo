@@ -1,7 +1,7 @@
 <div class="row" ng-controller="multiLayout" ng-cloak ng-init="init()" class="fastScroll">
     <div ng-if="listings.error" class="preloader">
     </div>
-    <div class="map col-lg-6 col-md-6 col-sm-6" ng-class="{'col-xs-6': Math.abs(window.orientation) == 90 }" ng-if="mapLoaded && listingType == 'SubletListing'">
+    <div class="map col-lg-6 col-md-6 col-sm-6 row-no-padding-right-desktop" ng-class="{'col-xs-6 row-no-padding-right': Math.abs(window.orientation) == 90 }" ng-if="mapLoaded && listingType == 'SubletListing'">
       <ui-gmap-google-map center='map.center' zoom='map.zoom'>
         <ui-gmap-window
         show="map.window.show"
@@ -18,7 +18,7 @@
         </ui-gmap-markers>
       </ui-gmap-google-map>
     </div>
-    <div class="scrollable-other" ng-class="{ 'scrollable-sublet col-lg-6 col-md-6 col-sm-6 col-xs-12': (listingType=='SubletListing'), 'col-xs-6': Math.abs(window.orientation) ==90 }">
+    <div class="fastScroll row-no-padding-left-desktop" ng-class="{ 'scrollable-sublet col-lg-6 col-md-6 col-sm-6 col-xs-12': (listingType=='SubletListing'), 'scrollable-other': (listingType!='SubletListing'), 'col-xs-6 row-no-padding-left': Math.abs(window.orientation) ==90 }">
       <md-grid-list class="gridList"
             md-cols-xs="1" md-cols-sm="{{(listingType=='SubletListing') ? 1:2}}" md-cols-md="{{(listingType=='SubletListing') ? 2:4}}" md-cols-gt-md="{{(listingType=='SubletListing') ? 2:4}}"
             md-row-height-gt-md="1:1" md-row-height="5:4"
@@ -44,10 +44,15 @@
               <ng-pluralize class="label priceLabel pull-left" count="data.listing.bedrooms.length"
                             when="{ '1':'{} Room','other': '{} Rooms'}"></ng-pluralize>
               <span class="label label-primary priceLabel pull-right">${{data.listing.bedrooms.getMinimumRent().rent}}{{(data.listing.bedrooms.rentValuesSame()) ? '':'+'}}</span>
-
             </span>
           </md-grid-tile-header>
-          <span class="multiListingImage md-whiteframe-z2"  ng-style="{'background-image':'url({{data.listing.photo_urls[0].photo_url || data.listing.bedrooms[0].photos[0].photo_url | thumbnail}})'}" ></span>
+          <span class="noselect"
+                ng-if="!data.listing.photo_urls[0].photo_url && !data.listing.bedrooms[0].photos[0].photo_url"
+                layout="column" layout-align="center center">
+                  <md-icon flex md-font-icon="glyphicon glyphicon-picture"></md-icon>
+                  <span flex>No Image</span>
+          </span>
+          <span ng-if="data.listing.photo_urls[0].photo_url || data.listing.bedrooms[0].photos[0].photo_url" class="multiListingImage md-whiteframe-z2"  ng-style="{'background-image':'url({{data.listing.photo_urls[0].photo_url || data.listing.bedrooms[0].photos[0].photo_url | thumbnail}})'}" ></span>
           <md-grid-tile-footer md-ink-ripple class="transition" ng-click="viewListing(data.listing._id, data.listing.type)" ng-mouseenter="hover = 'md-whiteframe-z3'" ng-mouseleave="hover = ''" ng-class="hover">
             <h3 class="noselect">VIEW</h3>
           </md-grid-tile-footer>
