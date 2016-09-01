@@ -30,8 +30,6 @@ angular.module('dumboApp')
 			// 	   $scope.listingData.bedrooms[$scope.selectedRoom].photos = [];
 			//    }
 			$scope.currentUploadTarget = $scope.photos;
-
-
 		}
 
 		$scope.deletePhoto = function(index) {
