@@ -1,7 +1,20 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('multiLayout', function ($scope, listingDataService, listingMap, $route, LISTING, $location, $anchorScroll, ngToast, $routeParams, uiGmapGoogleMapApi, uiGmapIsReady, $timeout) {
+.controller('multiLayout', function (
+		$scope,
+		listingDataService,
+		listingMap,
+		$route,
+		LISTING,
+		$location,
+		$anchorScroll,
+		ngToast,
+		$routeParams,
+		uiGmapGoogleMapApi,
+		uiGmapIsReady,
+		$timeout,
+		$window) {
 	$scope.listings = {};
 	$scope.listings.error = true;
 	$scope.listingType = $route.current.$$route.listingType || $routeParams.listingType;
@@ -9,6 +22,9 @@ angular.module('dumboApp')
 	$scope.LISTING = LISTING;
 	$scope.searchTerm = $routeParams.searchTerm;
 	$scope.myListings = $route.current.$$route.myListings;
+
+	$scope.window = $window;
+	$scope.Math = window.Math;
 
 	$scope.init = function(){
 		$scope.mapLoaded = false;
