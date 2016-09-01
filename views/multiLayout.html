@@ -1,7 +1,7 @@
 <div class="row" ng-controller="multiLayout" ng-cloak ng-init="init()" class="fastScroll">
     <div ng-if="listings.error" class="preloader">
     </div>
-    <div ng-if="!listings.error" class="map col-lg-6 col-md-6 col-sm-6 row-no-padding-right-desktop" ng-class="{'col-xs-6 row-no-padding-right': Math.abs(window.orientation) == 90 }" ng-if="mapLoaded && listingType == 'SubletListing'">
+    <div ng-if="!listings.error && listingType == 'SubletListing'" class="map col-lg-6 col-md-6 col-sm-6 row-no-padding-right-desktop" ng-class="{'col-xs-6 row-no-padding-right': Math.abs(window.orientation) == 90 }" ng-if="mapLoaded && listingType == 'SubletListing'">
       <ui-gmap-google-map center='map.center' zoom='map.zoom'>
         <ui-gmap-window
         show="map.window.show"
