@@ -17,7 +17,7 @@ angular.module('dumboApp')
 				latitude: 42.4074843,
 				longitude: -71.1190232
 			},
-			zoom: 12,
+			zoom: 14,
 			markers: [],
 			markersEvents: {
 				click: function(marker, eventName, listing) {

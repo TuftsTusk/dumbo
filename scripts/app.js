@@ -44,7 +44,8 @@ var app = angular
 	'ngMaterial',
 	'infinite-scroll',
 	'mgcrea.ngStrap',
-	'uiGmapgoogle-maps'
+	'uiGmapgoogle-maps',
+	'google.places'
 ])
 .config(function ($routeProvider, $httpProvider) {
 	$routeProvider

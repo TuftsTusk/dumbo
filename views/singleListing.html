@@ -44,7 +44,7 @@
 				<fieldset class="formGroup">
 					<label ng-if="editing">What is your address?</label>
 					<label ng-if="!editing">Address</label>
-					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
+					<input ng-blur="save()" g-places-autocomplete force-selection="true" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label ng-if="editing">How many bedrooms total?</label>
@@ -205,15 +205,7 @@
 						<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.date_start.$invalid && rForm.date_start.$touched}">
 							<label>Start date</label>
 							<md-datepicker md-placeholder="Start Date" ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_start" type="date" md-min-date="dateMin" md-max-date="dateMax"  ng-model="room.date_start" ></md-datepicker>
-							<span class="errorMsg" ng-show="rForm.date_start.$error.maxdate">Must be before {{dateMax | date : format : timezone}}.</span>
-
-							<div ng-messages="rForm.room.date_start.$error">
-								<div ng-message="valid">The entered value is not a date!</div>
-								<div ng-message="required">This date is required!</div>
-								<div ng-message="mindate">Date is too early!</div>
-								<div ng-message="maxdate">Date is too late!</div>
-							</div>
-							<span class="errorMsg" ng-show="rForm.date_start.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+							<div class="errorMsg" ng-show="rForm.date_start.$invalid">Must be after {{dateMin | date : 'MM/dd/yyyy' : timezone}} and before {{dateMax | date : 'MM/dd/yyyy' : timezone}}.</div>
 							<div class="formCheckbox optional">
 								<div ng-if="!editing" class="fauxCheckbox"></div>
 								<input ng-blur="save()" name="date_start_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_start_is_flexible">
@@ -223,8 +215,8 @@
 						<div class="formGroup" ng-class="{'fieldInvalid': rForm.date_end.$invalid && rForm.date_start.$touched}">
 							<label>End date</label>
 							<md-datepicker md-placeholder="Start Date" ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_end" type="date" md-min-date="room.date_start || dateMin" md-max-date="dateMax" ng-model="room.date_end"></md-datepicker>
-							<span class="errorMsg" ng-show="rForm.date_end.$error.min">Must be after {{room.date_start | date : format : timezone}}.</span>
-							<span class="errorMsg" ng-show="rForm.date_end.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+							<div class="errorMsg" ng-show="rForm.date_end.$invalid">Must be after {{room.date_start || dateMin | date : 'MM/dd/yyyy' : timezone}} and before {{dateMax | date : 'MM/dd/yyyy' : timezone}}.</div>
+
 							<div class="formCheckbox optional">
 								<div ng-if="!editing" class="fauxCheckbox"></div>
 								<input ng-blur="save()" name="date_end_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_end_is_flexible">
