@@ -77,7 +77,79 @@ angular.module('dumboApp')
           ];
         },
         'FurnitureListing': function() {
-            return [];
+            return [
+              {
+                displayName:'Title',
+                name:'title',
+                required:'true',
+                type:'text',
+                class:'largeBtn',
+                minlength:5
+              },
+              {
+                displayName: 'Price ($)',
+                name:'price',
+                required:'true',
+                type:'number',
+                class:'smallBtn'
+              },
+              {
+                displayName: 'Condition',
+                name:'condition',
+                required:'true',
+                type:'text',
+                class:'smallBtn'
+              },
+              {
+                displayName: 'Description',
+                name:'description',
+                required:'true',
+                type:'textarea',
+                class:'largeBtn'
+              },
+              {
+                displayName: 'Length (feet)',
+                name:'length',
+                subField:'dimensions',
+                required:'false',
+                type:'number',
+                class:'smallBtn'
+              },
+              {
+                displayName: 'Width (feet)',
+                name:'width',
+                subField:'dimensions',
+                required:'false',
+                type:'number',
+                class:'smallBtn'
+              },
+              {
+                displayName: 'Height (feet)',
+                name:'height',
+                subField:'dimensions',
+                required:'false',
+                type:'number',
+                class:'smallBtn'
+              },
+              {
+                displayName: 'Manufacturer',
+                name:'manufacturer',
+                subField:'model_info',
+                required:'false',
+                type:'text',
+                class:'smallBtn'
+              },
+              {
+                displayName: 'Model Name',
+                name:'model_name',
+                subField:'model_info',
+                required:'false',
+                type:'text',
+                class:'smallBtn'
+              }
+
+
+            ];
         },
         'MiscListing': function() {
           return [
