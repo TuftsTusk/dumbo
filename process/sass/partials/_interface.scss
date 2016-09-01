@@ -44,6 +44,41 @@ input[type="url"], textarea
 	-webkit-overflow-scrolling:touch
 }
 
+// Extra small screen / phone
+$screen-xs:                  480px !default;
+
+// Small screen / tablet
+$screen-sm:                  768px !default;
+
+// Medium screen / desktop
+$screen-md:                  992px !default;
+
+// Large screen / wide desktop
+$screen-lg:                  1200px !default;
+
+
+md-grid-tile {
+  background-color:lightgrey;
+}
+
+.row-no-padding-right {
+    padding-right: 0 !important;
+}
+.row-no-padding-left {
+    padding-left: 0 !important;
+}
+
+.row-no-padding-right-desktop {
+  @media (min-width: $screen-sm) {
+        padding-right: 0 !important;
+  }
+}
+.row-no-padding-left-desktop {
+  @media (min-width: $screen-sm) {
+        padding-left: 0 !important;
+  }
+}
+
 .gridList {
   margin: 10px 10px 10px 10px;
 }
@@ -606,6 +641,5 @@ uib-accordion {
 		margin-bottom: 10px;
 	}
 }
-
 
 /* end interface.scss */
