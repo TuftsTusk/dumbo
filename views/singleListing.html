@@ -7,6 +7,7 @@
 		</div>
 		<div id="actions" class="highlight paddingLeft">
 			<div ng-if="owner">
+				<div class="block text" ng-if="editing" ng-click="deleteSavedData()"><a href="">Clear</a></div>
 				<div class="block text" ng-if="editing"><a href="" ng-click="saveButton()">Save</a></div>
 				<div class="block" ng-if="editing"><a href="" class=" btn btn-primary btn-lg" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a></div>
 				<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
@@ -43,7 +44,7 @@
 				<fieldset class="formGroup">
 					<label ng-if="editing">What is your address?</label>
 					<label ng-if="!editing">Address</label>
-					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
+					<input ng-blur="save()" g-places-autocomplete force-selection="true" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="apt.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
 					<label ng-if="editing">How many bedrooms total?</label>
@@ -52,7 +53,7 @@
 				</fieldset>
 				<fieldset class="formGroup accordion" >
 					<div class="heading" ng-click="viewData.general.open = !viewData.general.open;">
-						<label>Optional details <i class="fa fa-lg" ng-class="viewData.general.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
+						<label>Optional details <i class="fa glyphicon" ng-class="viewData.general.open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"></i></label>
 					</div>
 					<div class="body" ng-show="viewData.general.open">
 						<div class="row">
@@ -127,7 +128,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="roomList" class="col-md-5 col-lg-4">
+	<div id="roomList" class="col-md-5 col-lg-4" ng-if="showRoomList">
 		<div class="panel panel-tusk">
 			<div class="list-group panelGroup">
 				<button type="button" class="list-group-item panelGroupItem animate" ng-repeat="rm in listingData.bedrooms" ng-class="{'active': $index==selectedRoom, 'list-group-item-danger': errorLog.bedrooms && errorLog.bedrooms[$index]}" ng-click="switchRoom(room, $index)">
@@ -135,11 +136,11 @@
 					</div>
 					<div class="pad">
 						{{rm.title}}
-						<i class="rightIcon fa fa-angle-right fa-lg"></i>
+						<i class="rightIcon fa glyphicon glyphicon-menu-right"></i>
 					</div>
 				</button>
 				<button ng-if="editing" type="button" class="list-group-item nofocus" ng-class="{'list-group-item-danger': errorLog.bedrooms == true, 'disabled': tooManyRooms}" ng-click="newRoom()">
-					<img src="images/skinnyplus.svg" class="isizeMed">
+					<img src="images/skinnyplus.svg" class="isizeMed"></img>
 					Add room
 				</button>
 			</div>
@@ -158,10 +159,10 @@
 					</div>
 				</div>
 				<div class="panel-heading">
-					<button type="submit" id="roomBackButton" class="leftIcon fa fa-angle-left fa-lg" ng-click="saveRoom()"></button>
+					<!-- <button type="submit" id="roomBackButton" class="leftIcon glyphicon glyphicon-menu-left" ng-click="saveRoom()"></button> -->
 					<div class="upperRightIcon">
-						<button type="button" ng-if="editing" class="fa fa-clone" title="Copy" ng-click="copyRoom()" ng-class="{disabled: tooManyRooms}" ng-attr-title="{{tooManyRooms && 'Too many rooms' || 'Copy'}}"></button>
-						<button type="button" ng-if="editing" class="fa fa-trash-o" title="Delete" ng-click="confirmDelete()"></button>
+						<button type="button" ng-if="editing" class="fa glyphicon glyphicon-duplicate" title="Copy" ng-click="copyRoom()" ng-class="{disabled: tooManyRooms}" ng-attr-title="{{tooManyRooms && 'Too many rooms' || 'Copy'}}"></button>
+						<button type="button" ng-if="editing" class="fa glyphicon glyphicon-trash" title="Delete" ng-click="confirmDelete()"></button>
 					</div>
 					<div class="panel-title">
 						<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="title" type="text" ng-model="room.title" >
@@ -181,12 +182,11 @@
 							<div class="imageHolder">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
-									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
+									<i class="fa glyphicon glyphicon-delete deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
 								</a>
 								<div ng-if="uploading" class="photoUploadBox inProgress">
 									<div class="scaledImage photoUploadImage">
-										<div class="spinner">
-											<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+										<div class="spinner preloader preloader-small">
 										</div>
 									</div>
 								</div>
@@ -204,8 +204,8 @@
 					<fieldset class="double">
 						<div class="formGroup bRight" ng-class="{'fieldInvalid': rForm.date_start.$invalid && rForm.date_start.$touched}">
 							<label>Start date</label>
-							<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_start" type="date" min={{dateMin}} ng-model="room.date_start" ng-change="checkDate(room)">
-							<span class="errorMsg" ng-show="rForm.date_start.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+							<md-datepicker md-placeholder="Start Date" ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_start" type="date" md-min-date="dateMin" md-max-date="dateMax"  ng-model="room.date_start" ></md-datepicker>
+							<div class="errorMsg" ng-show="rForm.date_start.$invalid">Must be after {{dateMin | date : 'MM/dd/yyyy' : timezone}} and before {{dateMax | date : 'MM/dd/yyyy' : timezone}}.</div>
 							<div class="formCheckbox optional">
 								<div ng-if="!editing" class="fauxCheckbox"></div>
 								<input ng-blur="save()" name="date_start_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_start_is_flexible">
@@ -214,9 +214,9 @@
 						</div>
 						<div class="formGroup" ng-class="{'fieldInvalid': rForm.date_end.$invalid && rForm.date_start.$touched}">
 							<label>End date</label>
-							<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_end" type="date" min={{room.date_start}} max={{dateMax}} ng-model="room.date_end" ng-change="checkDate()">
-							<span class="errorMsg" ng-show="rForm.date_end.$error.min">Must be after {{room.date_start | date : format : timezone}}.</span>
-							<span class="errorMsg" ng-show="rForm.date_end.$error.max">Must be before {{dateMax | date : format : timezone}}.</span>
+							<md-datepicker md-placeholder="Start Date" ng-blur="save()" ng-disabled="!editing" class="formInput" required name="date_end" type="date" md-min-date="room.date_start || dateMin" md-max-date="dateMax" ng-model="room.date_end"></md-datepicker>
+							<div class="errorMsg" ng-show="rForm.date_end.$invalid">Must be after {{room.date_start || dateMin | date : 'MM/dd/yyyy' : timezone}} and before {{dateMax | date : 'MM/dd/yyyy' : timezone}}.</div>
+
 							<div class="formCheckbox optional">
 								<div ng-if="!editing" class="fauxCheckbox"></div>
 								<input ng-blur="save()" name="date_end_is_flexible" type="checkbox" tabindex="-1" ng-model="room.date_end_is_flexible">
@@ -227,7 +227,7 @@
 					</fieldset>
 					<fieldset class="formGroup accordion">
 						<div class="heading" ng-click="viewData.bedrooms.open = !viewData.bedrooms.open">
-							<label>Optional details <i class="fa fa-lg" ng-class="viewData.bedrooms.open ? 'fa-angle-up' : 'fa-angle-down'"></i></label>
+							<label>Optional details <i class="fa glyphicon" ng-class="viewData.bedrooms.open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"></i></label>
 						</div>
 						<div class="body" ng-show="viewData.bedrooms.open">
 							<div class="formCheckbox" ng-repeat="(key, value) in roomDetailsChecklist">
@@ -268,12 +268,11 @@
 							<div class="imageHolder">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
-									<i class="fa fa-times deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
+									<i class="fa glyphicon glyphicon-delete deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
 								</a>
 								<div ng-if="uploading && currentUploadType == field.variable" class="photoUploadBox inProgress">
 									<div class="scaledImage photoUploadImage">
-										<div class="spinner">
-											<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+										<div class="preloader preloader-small">
 										</div>
 									</div>
 								</div>
