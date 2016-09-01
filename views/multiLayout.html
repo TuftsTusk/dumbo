@@ -1,7 +1,7 @@
 <div class="row" ng-controller="multiLayout" ng-cloak ng-init="init()" class="fastScroll">
     <div ng-if="listings.error" class="preloader">
     </div>
-    <div class="map col-lg-6 col-md-6 col-sm-6 row-no-padding-right-desktop" ng-class="{'col-xs-6 row-no-padding-right': Math.abs(window.orientation) == 90 }" ng-if="mapLoaded && listingType == 'SubletListing'">
+    <div ng-if="!listings.error" class="map col-lg-6 col-md-6 col-sm-6 row-no-padding-right-desktop" ng-class="{'col-xs-6 row-no-padding-right': Math.abs(window.orientation) == 90 }" ng-if="mapLoaded && listingType == 'SubletListing'">
       <ui-gmap-google-map center='map.center' zoom='map.zoom'>
         <ui-gmap-window
         show="map.window.show"
@@ -18,7 +18,7 @@
         </ui-gmap-markers>
       </ui-gmap-google-map>
     </div>
-    <div class="fastScroll row-no-padding-left-desktop" ng-class="{ 'scrollable-sublet col-lg-6 col-md-6 col-sm-6 col-xs-12': (listingType=='SubletListing'), 'scrollable-other': (listingType!='SubletListing'), 'col-xs-6 row-no-padding-left': Math.abs(window.orientation) ==90 }">
+    <div ng-if="!listings.error" class="fastScroll row-no-padding-left-desktop" ng-class="{ 'scrollable-sublet col-lg-6 col-md-6 col-sm-6 col-xs-12': (listingType=='SubletListing'), 'scrollable-other': (listingType!='SubletListing'), 'col-xs-6 row-no-padding-left': Math.abs(window.orientation) ==90 }">
       <md-grid-list class="gridList"
             md-cols-xs="1" md-cols-sm="{{(listingType=='SubletListing') ? 1:2}}" md-cols-md="{{(listingType=='SubletListing') ? 2:4}}" md-cols-gt-md="{{(listingType=='SubletListing') ? 2:4}}"
             md-row-height-gt-md="1:1" md-row-height="5:4"
