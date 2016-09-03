@@ -9,7 +9,7 @@
         options="map.window.options"
         closeClick="map.window.closeClick()"
         templateParameter="map.window">
-            <div>{{map.window.listing.listing.apt_info.address}}</div>
+            <div>{{map.window.listing.listing.geotag.address}}</div>
         </ui-gmap-window>
         <ui-gmap-markers models="map.markers"
         coords="'self'"
@@ -40,7 +40,7 @@
               <span class="label label-primary priceLabel pull-right">${{data.listing.price}}</span>
             </span>
             <span ng-show="data.listing.type == 'SubletListing'" ng-cloak>
-              <span class="listingTitle"> {{data.listing.apt_info.address}} </span>
+              <span class="listingTitle"> {{data.listing.geotag.address}} </span>
               <ng-pluralize class="label priceLabel pull-left" count="data.listing.bedrooms.length"
                             when="{ '1':'{} Room','other': '{} Rooms'}"></ng-pluralize>
               <span class="label label-primary priceLabel pull-right">${{data.listing.bedrooms.getMinimumRent().rent}}{{(data.listing.bedrooms.rentValuesSame()) ? '':'+'}}</span>

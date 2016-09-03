@@ -6,7 +6,7 @@
             <div class="thumbnail"><img ng-src={{listing.bedrooms[0].photos[0]}}>
             </div>
             <div class="sub-info">
-                <h3>{{listing.apt_info.address}}</h3>
+                <h3>{{listing.geotag.address}}</h3>
                 <h2 id="price">${{listing.bedrooms[0].rent}}</h2>
                 <ul>
                     <li><strong>Bedrooms Available:  </strong>{{listing.bedrooms.length}}</li>

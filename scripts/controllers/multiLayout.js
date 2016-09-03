@@ -93,8 +93,8 @@ angular.module('dumboApp')
 						for (var i=0; i < $scope.listings.length; i++){
 							var ret = {
 								id:$scope.listings[i].listing._id,
-								latitude: $scope.listings[i].listing.apt_info.lat,
-								longitude: $scope.listings[i].listing.apt_info.lng,
+								latitude: $scope.listings[i].listing.geotag.lat,
+								longitude: $scope.listings[i].listing.geotag.lng,
 								listing:$scope.listings[i].listing
 							};
 							$scope.map.markers.push(ret);
