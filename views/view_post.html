@@ -2,27 +2,77 @@
     <div ng-if="listing.error" class="preloader">
     </div>
     <div class="margin-top-bottom inner-padding postBackground" ng-if="!listing.error">
-      <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{listing.title}}</span>
-            <span class="md-subhead">${{listing.price}}</span>
-          </md-card-title-text>
-          <br>
-          <span class="noselect"
-                ng-if="!listing.photo_urls[0].photo_url"
-                layout="column" layout-align="center center">
-                  <md-icon flex md-font-icon="glyphicon glyphicon-picture"></md-icon>
-                  <span flex>No Image</span>
-          </span>
-          <span ng-if="listing.photo_urls[0].photo_url" class="md-card-image"  ng-style="{'background-image':'url({{listing.photo_urls[0].photo_url}})'}">
-        </md-card-title>
-        <md-card-content>
-          <p>{{listing.description}}</p>
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-show="isOwner" ng-click="editListing()">Edit</md-button>
-          <md-button ng-show="!isOwner" ng-click="contactSeller(id)">Contact Seller</md-button>
-        </md-card-actions>
-      </md-card>
+      <md-content class="md-padding postBackground" layout-align="center center">
+        <md-card>
+          <div class="">
+            <div id="thumbnail">
+                  <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + (link.photo_url | thumbnail) + ')'}"></div>
+                  </a>
+            </div>
+            <div id="image-preview" layout="row" layout-align="center center">
+              <span class="noselect noPhotoIcon"
+                    ng-if="!listing.photo_urls || listing.photo_urls.length < 1"
+                    layout="column" layout-align="center center">
+                      <span flex></span>
+                      <md-icon md-font-icon="glyphicon glyphicon-picture"></md-icon>
+                      <span flex>No Image</span>
+              </span>
+              <img ng-if="listing.photo_urls && listing.photo_urls.length >= 1" id="view-pic" ng-src={{source}}>
+            </div>
+          </div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{listing.title}} <span class="label label-primary pull-right">${{listing.price}}</span></span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <div class="col-md-6" ng-if="listing.type != 'MiscListing'">
+              <table class="table table-hover table-condensed table-striped">
+                <tr ng-if="listing.isbn">
+                  <td class="title">ISBN</td>
+                  <td>{{listing.isbn}}</td>
+                </tr>
+                <tr ng-if="listing.pertinent_class && listing.pertinent_class != 'UNK'">
+                  <td class="title">Relevant Class</td>
+                  <td>{{listing.pertinent_class}}</td>
+                </tr>
+                <tr ng-if="listing.condition">
+                  <td class="title">Condition</td>
+                  <td>{{listing.condition}}</td>
+                </tr>
+                <tr ng-if="listing.dimensions.length || listing.dimensions.width || listing.dimensions.height">
+                  <td class="title">Dimensions</td>
+                  <td>
+                      <table class="table table-condensed">
+                        <tr>
+                        <td>Length</td>
+                        <td>Width</td>
+                        <td>Height</td>
+                      </tr>
+                        <td>{{listing.dimensions.length}} ft</td>
+                        <td>{{listing.dimensions.width}} ft</td>
+                        <td>{{listing.dimensions.height}} ft</td>
+                      </table>
+                  </td>
+                </tr>
+                <tr ng-if="listing.model_info.manufacturer">
+                  <td class="title">Manufacturer</td>
+                  <td>{{listing.model_info.manufacturer}}</td>
+                </tr>
+                <tr ng-if="listing.model_info.model_name">
+                  <td class="title">Model</td>
+                  <td>{{listing.model_info.model_name}}</td>
+                </tr>
+
+              </table>
+            </div>
+
+            <p>{{listing.description}}</p>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-show="isOwner" ng-click="editListing()">Edit</md-button>
+            <md-button ng-show="!isOwner" ng-click="contactSeller(id)">Contact Seller</md-button>
+          </md-card-actions>
+        </md-card>
+      </md-content>
 </div>
