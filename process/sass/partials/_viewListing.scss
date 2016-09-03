@@ -1,121 +1,126 @@
-#single-post-view {
-    height: calc(100vh - 100px);
-    @media screen and (min-width: $break-medium) {
-        padding-left: 100px;
-        padding-right: 100px;
-    }
-    @media screen and (max-width: $break-medium) and (min-width: $break-small) {
-        padding-left: 50px;
-        padding-right: 50px;
-    }
-    @media screen and (max-width: $break-small) {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    #thumbnail {
-        float: left;
-        display: inline-block;
-        a {
-            float: left;
-            div {
-               height: 80px;
-               width: 80px;
-                margin: 5px;
-                border: 1px solid $grey5;
-//                background-color: $grey3;
-//                background-size: 80px 80px;
-            }
-        }
-    }
-    #image-preview {
-        float: right;
-        display: inline-block;
-        @media screen and (min-width: $break-medium) {
-            img {
-            
-                max-height: 100%;
-                max-width: 100%;
-                display: block;
-            }
-        }
-        @media screen and (max-width: $break-medium) and (min-width: $break-small) {
-            img {
-                max-height: 100%;
-                max-width: 100%;
-                display: block;
-            }
-        }
-        @media screen and (max-width: $break-small) {
-            img {
-                max-height: 100%;
-                max-width: 100%;
-                display: block;
-            }
-        }
-    }
-    .margin-top-bottom {
-        margin-top: 15px;
-    }
-    .thumb {
-        &:hover {
-            cursor: pointer;
-        }
-        display: block;
-    }
-    .inner-padding {
-        min-height: 100%;
-        overflow: hidden;
-        padding: 15px;
-        background: white;
-        @media screen and (min-width: $break-medium) {
-            padding-bottom: 20%;
-            .left {
-                @include clearfix;
-                display: block;
-                position: relative;
-                float: left;
-                width: 50%;
-            }
-            .right {
-                @include clearfix;
-                display: block;
-                position: relative;
-                float: right;
-                margin-left: 15px;
-                width: 45%;
-                h4 {
-                    max-height: 100px;
-                    overflow: hidden;
-                }
-            }
-        }
-        @media screen and (max-width: $break-medium) and (min-width: $break-small) {
-            .left {
-                @include clearfix;
-                display: block;
-                width: 100%;
-            }
-            .right {
-                @include clearfix;
-                display: block;
-                width: 100%;
-                h4 {
-                    max-height: 50px;
-                    overflow: hidden;
-                }
-            }
-        }
-        @media screen and (max-width: $break-small) {
-            .right {
-                @include clearfix;
-                display: inline-block;
-                float: right;
-                width: 100%;
-                h4 {
-                    max-height: 100px;
-                    overflow: visible;
-                }
-            }
-        }
-    }
+.md-card-image {
+  height:200px;
+  width:200px;
+  background-size: contain;
 }
+// #single-post-view {
+//     height: calc(100vh - 100px);
+//     @media screen and (min-width: $break-medium) {
+//         padding-left: 100px;
+//         padding-right: 100px;
+//     }
+//     @media screen and (max-width: $break-medium) and (min-width: $break-small) {
+//         padding-left: 50px;
+//         padding-right: 50px;
+//     }
+//     @media screen and (max-width: $break-small) {
+//         padding-left: 15px;
+//         padding-right: 15px;
+//     }
+//     #thumbnail {
+//         float: left;
+//         display: inline-block;
+//         a {
+//             float: left;
+//             div {
+//                height: 80px;
+//                width: 80px;
+//                 margin: 5px;
+//                 border: 1px solid $grey5;
+// //                background-color: $grey3;
+// //                background-size: 80px 80px;
+//             }
+//         }
+//     }
+//     #image-preview {
+//         float: right;
+//         display: inline-block;
+//         @media screen and (min-width: $break-medium) {
+//             img {
+//
+//                 max-height: 100%;
+//                 max-width: 100%;
+//                 display: block;
+//             }
+//         }
+//         @media screen and (max-width: $break-medium) and (min-width: $break-small) {
+//             img {
+//                 max-height: 100%;
+//                 max-width: 100%;
+//                 display: block;
+//             }
+//         }
+//         @media screen and (max-width: $break-small) {
+//             img {
+//                 max-height: 100%;
+//                 max-width: 100%;
+//                 display: block;
+//             }
+//         }
+//     }
+//     .margin-top-bottom {
+//         margin-top: 15px;
+//     }
+//     .thumb {
+//         &:hover {
+//             cursor: pointer;
+//         }
+//         display: block;
+//     }
+//     .inner-padding {
+//         min-height: 100%;
+//         overflow: hidden;
+//         padding: 15px;
+//         background: $darkblue;
+//         @media screen and (min-width: $break-medium) {
+//             padding-bottom: 20%;
+//             .left {
+//                 @include clearfix;
+//                 display: block;
+//                 position: relative;
+//                 float: left;
+//                 width: 50%;
+//             }
+//             .right {
+//                 @include clearfix;
+//                 display: block;
+//                 position: relative;
+//                 float: right;
+//                 margin-left: 15px;
+//                 width: 45%;
+//                 h4 {
+//                     max-height: 100px;
+//                     overflow: hidden;
+//                 }
+//             }
+//         }
+//         @media screen and (max-width: $break-medium) and (min-width: $break-small) {
+//             .left {
+//                 @include clearfix;
+//                 display: block;
+//                 width: 100%;
+//             }
+//             .right {
+//                 @include clearfix;
+//                 display: block;
+//                 width: 100%;
+//                 h4 {
+//                     max-height: 50px;
+//                     overflow: hidden;
+//                 }
+//             }
+//         }
+//         @media screen and (max-width: $break-small) {
+//             .right {
+//                 @include clearfix;
+//                 display: inline-block;
+//                 float: right;
+//                 width: 100%;
+//                 h4 {
+//                     max-height: 100px;
+//                     overflow: visible;
+//                 }
+//             }
+//         }
+//     }
+// }

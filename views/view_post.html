@@ -1,41 +1,28 @@
 <div id="single-post-view" ng-app="dumboApp" ng-cloak ng-controller="ViewCtrl" class="container-fluid blue block" ng-init=init()>
-    <div ng-if="listing.error">
-        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
-        <span>Loading...</span>
+    <div ng-if="listing.error" class="preloader">
     </div>
-    <div class="margin-top-bottom inner-padding " ng-if="!listing.error">
-        <div class="left">
-            <div id="thumbnail">
-                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + (link.photo_url | thumbnail) + ')'}"></div>
-                </a>
-
-            </div>
-            <div id="image-preview">
-                <img id="view-pic" ng-src={{source}}>
-            </div>
-
-        </div>
-        <div class="right">
-            <h1>{{listing.title}}</h1>
-            <h3>${{listing.price}} </h3>
-            <h4>Description</h4>
-            <p>{{listing.description}}</p>
-
-            <div>
-                <a class="btn btn-primary" ng-show="!isOwner" ng-click="contactSeller(id)">Contact Seller</a>
-                <a class="btn btn-warning" ng-show="isOwner" ng-click="editListing()">Edit</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        $(document).ready(function () {
-            $('.thumb').click(function () {
-                $('#view-pic').attr(
-                    'src', this.firstChild.src);
-            });
-
-        });
-    </script>
-
+    <div class="margin-top-bottom inner-padding postBackground" ng-if="!listing.error">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{listing.title}}</span>
+            <span class="md-subhead">${{listing.price}}</span>
+          </md-card-title-text>
+          <br>
+          <span class="noselect"
+                ng-if="!listing.photo_urls[0].photo_url"
+                layout="column" layout-align="center center">
+                  <md-icon flex md-font-icon="glyphicon glyphicon-picture"></md-icon>
+                  <span flex>No Image</span>
+          </span>
+          <span ng-if="listing.photo_urls[0].photo_url" class="md-card-image"  ng-style="{'background-image':'url({{listing.photo_urls[0].photo_url}})'}">
+        </md-card-title>
+        <md-card-content>
+          <p>{{listing.description}}</p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-show="isOwner" ng-click="editListing()">Edit</md-button>
+          <md-button ng-show="!isOwner" ng-click="contactSeller(id)">Contact Seller</md-button>
+        </md-card-actions>
+      </md-card>
 </div>
