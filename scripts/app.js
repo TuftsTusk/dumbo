@@ -67,9 +67,6 @@ var app = angular
 	})
 	.when('/books' , {
 		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		},
 		listingType: 'BookListing'
 	})
 	.when('/furniture/new', {
@@ -81,9 +78,6 @@ var app = angular
 	})
 	.when('/furniture' , {
 		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		},
 		listingType: 'FurnitureListing'
 	})
 	.when('/misc/new', {
@@ -93,18 +87,19 @@ var app = angular
 		},
 		listingType:'MiscListing'
 	})
-	.when('/misc' , {
-		templateUrl: 'views/multiLayout.html',
+	.when('/miscellaneous/new', {
+		templateUrl: 'views/newListing.html',
 		resolve: {
 			loggedIn: requireLogin
 		},
+		listingType:'MiscListing'
+	})
+	.when('/misc' , {
+		templateUrl: 'views/multiLayout.html',
 		listingType: 'MiscListing'
 	})
 	.when('/sublets' , {
 		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		},
 		listingType: 'SubletListing'
 	})
 	.when('/sublets/:action', {
@@ -126,21 +121,15 @@ var app = angular
 	})
 	.when('/listing/:id', {
 		templateUrl: 'views/view_post.html',
-//		resolve: {
-//			loggedIn: requireLogin
-//		}
+		resolve: {
+			loggedIn: requireLogin
+		}
 	})
 	.when('/listing/search/:searchTerm' , {
 		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
 	})
 	.when('/listing/search/:searchTerm/type/:listingType' , {
 		templateUrl: 'views/multiLayout.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
 	})
 	.when('/listing/:id/edit',{
 		templateUrl: 'views/newListing.html',

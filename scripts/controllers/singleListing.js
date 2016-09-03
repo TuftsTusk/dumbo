@@ -25,6 +25,8 @@ angular.module('dumboApp')
 		form: {
 			id: id,
 			type: 'SubletListing',
+			geotag: {
+			},
 			apt_info: {
 				op_details: {}
 			},
@@ -44,11 +46,13 @@ angular.module('dumboApp')
 				required: false,
 				recommended: false
 			},
-			address: {
+			num_occupants: {
 				required: true,
 				recommended: true
-			},
-			num_occupants: {
+			}
+		},
+		geotag: {
+			address: {
 				required: true,
 				recommended: true
 			}
@@ -499,6 +503,9 @@ angular.module('dumboApp')
 	}
 
 	function updateSavedData() {
+		if ($scope.listingData.geotag.address && $scope.listingData.geotag.address.formatted_address != null){
+			$scope.listingData.geotag.address = $scope.listingData.geotag.address.formatted_address;
+		}
 		var localStorageObject = {
 			form: $scope.listingData,
 			view: $scope.viewData
