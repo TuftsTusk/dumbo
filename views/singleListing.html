@@ -182,7 +182,7 @@
 							<div class="imageHolder">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in room.photos track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
-									<i class="fa glyphicon glyphicon-delete deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
+									<i class="fa glyphicon glyphicon-remove deleteImage" ng-if="editing" ng-click="deleteRoomPhoto($index)" aria-hidden="true"></i>
 								</a>
 								<div ng-if="uploading" class="photoUploadBox inProgress">
 									<div class="scaledImage photoUploadImage">
@@ -268,7 +268,7 @@
 							<div class="imageHolder">
 								<a class="photoUploadBox" ng-attr-href="{{!editing && image.photo_url || undefined}}" ng-repeat="image in listingData.common_area_photos[field.variable] track by $index" target="_blank">
 									<div ng-style="{'background-image':'url(' + image.photo_url + ')'}" class="scaledImage photoUploadImage"></div>
-									<i class="fa glyphicon glyphicon-delete deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
+									<i class="fa glyphicon glyphicon-remove deleteImage" ng-if="editing" ng-click="deleteCommonAreaPhoto(field.variable,$index)" aria-hidden="true"></i>
 								</a>
 								<div ng-if="uploading && currentUploadType == field.variable" class="photoUploadBox inProgress">
 									<div class="scaledImage photoUploadImage">
