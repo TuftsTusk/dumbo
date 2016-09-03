@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $timeout, sellerContactService) {
+.controller('singleListingCtrl', function ($scope, $routeParams, $location, listingDataService, SweetAlert, localStorageService, _, $timeout, sellerContactService, ngToast) {
 	var id = $routeParams.id;
 	$scope.id = id;
 	var action = $routeParams.action;
@@ -178,8 +178,12 @@ angular.module('dumboApp')
 						prepareView(res.data);
 					},
 					function failure(res){
-						console.log("ERROR");
-						console.log('res',res);
+						ngToast.create({
+							className: 'danger',
+							content: "Sorry we were unable to complete your request. Please check the link and try again.",
+							timeout: 2000
+						});
+						$location.path('/');
 					});
 			} else {
 				$scope.redirectTo('view');
@@ -437,6 +441,7 @@ angular.module('dumboApp')
 			$scope.listingData.apt_info = listing.apt_info;
 			$scope.listingData.bedrooms = listing.bedrooms;
 			$scope.listingData.common_area_photos = listing.common_area_photos;
+			$scope.listingData.geotag = listing.geotag;
 			$scope.listingData.id = listing._id;
 			$scope.listingData.type = 'SubletListing';
 
@@ -450,6 +455,7 @@ angular.module('dumboApp')
 			});
 
 			$scope.apt = $scope.listingData.apt_info;
+			console.log($scope.listingData);
 
 			$scope.owner = owner;
 

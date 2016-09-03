@@ -8,7 +8,7 @@
  * Controller of the dumboApp
  */
 angular.module('dumboApp')
-    .controller('ViewCtrl', function ($scope, $http, $routeParams, listingDataService, $location, sellerContactService) {
+    .controller('ViewCtrl', function ($scope, $http, $routeParams, listingDataService, $location, sellerContactService, ngToast) {
     $scope.id = $routeParams.id;
     $scope.listing = {};
     $scope.listing.error = true;
@@ -24,6 +24,12 @@ angular.module('dumboApp')
                 }
             }, function (result) {
                 $scope.listing.error = true;
+                ngToast.create({
+    							className: 'danger',
+    							content: "Sorry we were unable to complete your request. Please check the link and try again.",
+    							timeout: 2000
+    						});
+    						$location.path('/');
             })
     };
 
