@@ -1,3 +1,43 @@
+.md-card-image {
+  width:  40%; /*or 70%, or what you want*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#thumbnail {
+  background:$blue;
+  width:100%;
+  border:0px;
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+     border: 5px;
+}
+
+.title {
+  font-weight:bold;
+}
+#view-pic {
+  padding:5px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  height:100%;
+  width:100%;
+}
+#image-preview {
+  display: block;
+  width: 100%;
+  height: 300px;
+  background-color:grey;
+}
+.noPhotoIcon {
+  height:100%;
+}
+.postBackground {
+  background: $darkblue;
+}
 #single-post-view {
     height: calc(100vh - 100px);
     @media screen and (min-width: $break-medium) {
@@ -28,30 +68,7 @@
         }
     }
     #image-preview {
-        float: right;
         display: inline-block;
-        @media screen and (min-width: $break-medium) {
-            img {
-            
-                max-height: 100%;
-                max-width: 100%;
-                display: block;
-            }
-        }
-        @media screen and (max-width: $break-medium) and (min-width: $break-small) {
-            img {
-                max-height: 100%;
-                max-width: 100%;
-                display: block;
-            }
-        }
-        @media screen and (max-width: $break-small) {
-            img {
-                max-height: 100%;
-                max-width: 100%;
-                display: block;
-            }
-        }
     }
     .margin-top-bottom {
         margin-top: 15px;
@@ -66,7 +83,7 @@
         min-height: 100%;
         overflow: hidden;
         padding: 15px;
-        background: white;
+        background: $darkblue;
         @media screen and (min-width: $break-medium) {
             padding-bottom: 20%;
             .left {

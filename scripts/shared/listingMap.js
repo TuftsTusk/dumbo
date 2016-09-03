@@ -69,7 +69,7 @@ angular.module('dumboApp')
             },
             {
               displayName:'Class Name',
-              name:'classname',
+              name:'pertinent_class',
               required:'false',
               type:'text',
               class:'md-block'

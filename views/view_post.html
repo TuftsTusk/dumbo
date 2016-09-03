@@ -1,41 +1,78 @@
 <div id="single-post-view" ng-app="dumboApp" ng-cloak ng-controller="ViewCtrl" class="container-fluid blue block" ng-init=init()>
-    <div ng-if="listing.error">
-        <i class="fa fa-spinner icon-large fa-spin fa-3x fa-fw margin-bottom"></i>
-        <span>Loading...</span>
+    <div ng-if="listing.error" class="preloader">
     </div>
-    <div class="margin-top-bottom inner-padding " ng-if="!listing.error">
-        <div class="left">
+    <div class="margin-top-bottom inner-padding postBackground" ng-if="!listing.error">
+      <md-content class="md-padding postBackground" layout-align="center center">
+        <md-card>
+          <div class="">
             <div id="thumbnail">
-                <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + (link.photo_url | thumbnail) + ')'}"></div>
-                </a>
-
+                  <a class="thumb" ng-click="switch_source($index)" ng-repeat="link in listing.photo_urls track by $index">   <div class="photoUploadImage scaledImage block" ng-style="{'background-image':'url(' + (link.photo_url | thumbnail) + ')'}"></div>
+                  </a>
             </div>
-            <div id="image-preview">
-                <img id="view-pic" ng-src={{source}}>
+            <div id="image-preview" layout="row" layout-align="center center">
+              <span class="noselect noPhotoIcon"
+                    ng-if="!listing.photo_urls || listing.photo_urls.length < 1"
+                    layout="column" layout-align="center center">
+                      <span flex></span>
+                      <md-icon md-font-icon="glyphicon glyphicon-picture"></md-icon>
+                      <span flex>No Image</span>
+              </span>
+              <img ng-if="listing.photo_urls && listing.photo_urls.length >= 1" id="view-pic" ng-src={{source}}>
+            </div>
+          </div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{listing.title}} <span class="label label-primary pull-right">${{listing.price}}</span></span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <div class="col-md-6" ng-if="listing.type != 'MiscListing'">
+              <table class="table table-hover table-condensed table-striped">
+                <tr ng-if="listing.isbn">
+                  <td class="title">ISBN</td>
+                  <td>{{listing.isbn}}</td>
+                </tr>
+                <tr ng-if="listing.pertinent_class && listing.pertinent_class != 'UNK'">
+                  <td class="title">Relevant Class</td>
+                  <td>{{listing.pertinent_class}}</td>
+                </tr>
+                <tr ng-if="listing.condition">
+                  <td class="title">Condition</td>
+                  <td>{{listing.condition}}</td>
+                </tr>
+                <tr ng-if="listing.dimensions.length || listing.dimensions.width || listing.dimensions.height">
+                  <td class="title">Dimensions</td>
+                  <td>
+                      <table class="table table-condensed">
+                        <tr>
+                        <td>Length</td>
+                        <td>Width</td>
+                        <td>Height</td>
+                      </tr>
+                        <td>{{listing.dimensions.length}} ft</td>
+                        <td>{{listing.dimensions.width}} ft</td>
+                        <td>{{listing.dimensions.height}} ft</td>
+                      </table>
+                  </td>
+                </tr>
+                <tr ng-if="listing.model_info.manufacturer">
+                  <td class="title">Manufacturer</td>
+                  <td>{{listing.model_info.manufacturer}}</td>
+                </tr>
+                <tr ng-if="listing.model_info.model_name">
+                  <td class="title">Model</td>
+                  <td>{{listing.model_info.model_name}}</td>
+                </tr>
+
+              </table>
             </div>
 
-        </div>
-        <div class="right">
-            <h1>{{listing.title}}</h1>
-            <h3>${{listing.price}} </h3>
-            <h4>Description</h4>
             <p>{{listing.description}}</p>
-
-            <div>
-                <a class="btn btn-primary" ng-show="!isOwner" ng-click="contactSeller(id)">Contact Seller</a>
-                <a class="btn btn-warning" ng-show="isOwner" ng-click="editListing()">Edit</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        $(document).ready(function () {
-            $('.thumb').click(function () {
-                $('#view-pic').attr(
-                    'src', this.firstChild.src);
-            });
-
-        });
-    </script>
-
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-show="isOwner" ng-click="editListing()">Edit</md-button>
+            <md-button ng-show="!isOwner" ng-click="contactSeller(id)">Contact Seller</md-button>
+          </md-card-actions>
+        </md-card>
+      </md-content>
 </div>
