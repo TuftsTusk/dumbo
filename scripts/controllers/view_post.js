@@ -18,6 +18,9 @@ angular.module('dumboApp')
             .then(function (result) {
                 $scope.listing.error = false;
                 $scope.listing = result.data.listing;
+                if ($scope.listing.type == 'SubletListing'){
+                  $location.path('/sublets/'+$scope.id +'/view');
+                }
                 $scope.isOwner = result.data.owner;
                 if (result.data.listing.photo_urls && result.data.listing.photo_urls.length > 0){
                     $scope.source = result.data.listing.photo_urls[0].photo_url;
