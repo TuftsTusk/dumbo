@@ -147,18 +147,6 @@ var app = angular
 	.when('/me/:action/:id/:key/', {
 		templateUrl: 'views/login.html'
 	})
-	.when('/settings', {
-		redirectTo: '/settings/account',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
-	.when('/settings/:page', {
-		templateUrl: 'views/settings.html',
-		resolve: {
-			loggedIn: requireLogin
-		}
-	})
 	.when('/terms' , {
 		templateUrl: 'views/terms.html'
 	})

@@ -269,27 +269,55 @@ angular.module('dumboApp')
 	}
 
 	$scope.submitApt = function() {
-		console.log($scope.listingData);
-		listingDataService.newListing($scope.listingData)
-		.then(
-		function success(res){
-		  $scope.dataLoading = false;
-		  SweetAlert.swal("Congrats!", "Your listing has been succesfully created!", "success");
-			$location.path('/listing/' + res.data.rsc_id);
-		  localStorageService.remove(localStorageKey);
-		},
-		function failure(res){
-		  $scope.dataLoading = false;
-		  if (res.status === -1) {
-			SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
-		  } else {
-			var errorMessage;
-			if (!res.data && res.data.message && res.data.message.message) {
-			  errorMessage = res.data.message.message;
-			  SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
-			}
-		  }
-		});
+		if ($scope.id){
+			listingDataService.editListing($scope.id, $scope.listingData).then(
+				function success(res){
+					$scope.dataLoading = false;
+					localStorageService.remove(localStorageKey);
+					SweetAlert.swal("Congrats!", "Your listing has been succesfully updated!", "success");
+					$location.path('/listing/' + $scope.id);
+				},
+				function failure(res){
+					$scope.dataLoading = false;
+					if (res.status === -1) {
+						SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+					} else {
+						var errorMessage;
+						if (res.data && res.data.message) {
+							errorMessage = res.data.message;
+							SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+						}
+						else {
+							SweetAlert.swal("I'm sorry I ran into a problem", "We're on it.", "error");
+						}
+					}
+				});
+
+		} else {
+			listingDataService.newListing($scope.listingData).then(
+				function success(res){
+					console.log(res);
+					$scope.dataLoading = false;
+					SweetAlert.swal("Congrats!", "Your listing has been succesfully created!", "success");
+					localStorageService.remove(localStorageKey);
+					$location.path('/listing/' + res.data.rsc_id);
+				},
+				function failure(res){
+					$scope.dataLoading = false;
+					if (res.status === -1) {
+						SweetAlert.swal("Woops", "Looks like someone unplugged us. Please try again in a few.", "error");
+					} else {
+						var errorMessage;
+						if (res.data && res.data.message) {
+							errorMessage = res.data.message;
+							SweetAlert.swal("I'm sorry I can't do that", errorMessage, "error");
+						}
+						else {
+							SweetAlert.swal("I'm sorry I ran into a problem", "We're on it.", "error");
+						}
+					}
+				});
+			};
 	}
 
 	$scope.setCurrentPage = function(screen) {

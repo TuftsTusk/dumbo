@@ -77,8 +77,9 @@ angular.module('dumboApp')
 				listingDataService.editListing($scope.id, $scope.listing).then(
 					function success(res){
 						$scope.dataLoading = false;
+						localStorageService.remove(localStorageKey);
 						SweetAlert.swal("Congrats!", "Your listing has been succesfully updated!", "success");
-						$location.path('/listing/' + res.data.rsc_id);
+						$location.path('/listing/' + $scope.id);
 					},
 					function failure(res){
 						$scope.dataLoading = false;
