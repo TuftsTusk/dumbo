@@ -75,8 +75,8 @@ angular.module('dumboApp')
 				listingDataService.editListing($scope.id, $scope.listing).then(
 					function success(res){
 						$scope.dataLoading = false;
-						SweetAlert.swal("Congrats!", "Your changes are now submitted for approval", "success");
-						$location.path('/');
+						SweetAlert.swal("Congrats!", "Your listing has been succesfully updated!", "success");
+						$location.path('/listing/' + res.data.rsc_id);
 					},
 					function failure(res){
 						$scope.dataLoading = false;
@@ -97,10 +97,11 @@ angular.module('dumboApp')
 			} else {
 				listingDataService.newListing($scope.listing).then(
 					function success(res){
+						console.log(res);
 						$scope.dataLoading = false;
-						SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
+						SweetAlert.swal("Congrats!", "Your listing has been succesfully created!", "success");
 						localStorageService.remove(localStorageKey);
-						$location.path('/');
+						$location.path('/listing/' + res.data.rsc_id);
 					},
 					function failure(res){
 						$scope.dataLoading = false;

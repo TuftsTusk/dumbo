@@ -274,7 +274,8 @@ angular.module('dumboApp')
 		.then(
 		function success(res){
 		  $scope.dataLoading = false;
-		  SweetAlert.swal("Congrats!", "Your post is now submitted for approval", "success");
+		  SweetAlert.swal("Congrats!", "Your listing has been succesfully created!", "success");
+			$location.path('/listing/' + res.data.rsc_id);
 		  localStorageService.remove(localStorageKey);
 		},
 		function failure(res){
