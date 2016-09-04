@@ -20,20 +20,21 @@ angular.module('dumboApp')
 		$scope.userDataService = userDataService;
 		$scope.imageUploadService = imageUploadService;
 		$scope.type = $route.current.$$route.listingType;
-		$scope.photos = [];
+		if(navigator.userAgent.match(/iPhone/i) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i))) {
+		  $scope.iphone = true;
+		} else {
+			$scope.iphone = false;
+		}
+
 		var text;
 
 		$scope.initiatePhotoUpload = function() {
 			$('#photoUploadInput').click();
-			//probably don't need these checks, but for now
-			//    if ($scope.listingData.bedrooms[$scope.selectedRoom] == undefined) {
-			// 	   $scope.listingData.bedrooms[$scope.selectedRoom].photos = [];
-			//    }
-			$scope.currentUploadTarget = $scope.photos;
 		}
 
 		$scope.deletePhoto = function(index) {
 			$scope.photos.splice(index, 1);
+			$scope.save();
 		}
 
 		$scope.save = function() {
@@ -42,6 +43,7 @@ angular.module('dumboApp')
 		}
 
 		$scope.init = function(){
+			$scope.photos = [];
 			if ($scope.id){
 				$scope.isLoading = true;
 				listingDataService.getListingById($scope.id).then(
@@ -127,6 +129,7 @@ angular.module('dumboApp')
 				if ($scope.listing.photo_urls){
 					$scope.photos = $scope.listing.photo_urls;
 				}
+				$scope.currentUploadTarget = $scope.photos;
 			}
 
 			$scope.deleteSavedData = function() {

@@ -63,7 +63,7 @@
 				</md-input-container>
 			</md-content>
 				<div class="photoUploadWrapper">
-					<a ng-if="photos.length == 0 && !uploading" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
+					<a ng-if="photos.length == 0 && !uploading && !iphone" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
 						<div class="photoUploadTitle">
 							<img src="images/skinnyplus.svg" class="isizeMed"> Add photos
 						</div>
@@ -82,9 +82,12 @@
 								</div>
 							</div>
 						</div>
-						<div class="photoUploadMore" ng-if="photos.length">
+						<div class="photoUploadMore" ng-if="photos.length && !iphone">
 							<button class="btn btn-default" ng-click="initiatePhotoUpload()">Add more photos</button>
 						</div>
+					</div>
+					<div ng-if="iphone">
+							<input type="file" id="photoUploadInput" required ng-file-select multiple/>
 					</div>
 				</div>
 			</div>
@@ -93,6 +96,7 @@
       <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish</md-button>
 			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish Edits</md-button>
   </section>
-	<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
-
+	<div ng-if="!iphone">
+			<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
+	</div>
 </div>
