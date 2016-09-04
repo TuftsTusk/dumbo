@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dumboApp')
-	.controller('NavCtrl', function ($scope, userService, userDataService, EnvironmentConfig, $location, listingMap, $route) {
+	.controller('NavCtrl', function ($scope, userService, userDataService, EnvironmentConfig, $location, listingMap, $route, $routeParams) {
 
 		$scope.init = function(){
 			$scope.closeFlyouts();
@@ -9,7 +9,7 @@ angular.module('dumboApp')
 			$scope.$on('$routeChangeSuccess', function (e, current, pre) {
         $scope.isCollapsed = true;
 				$scope.closeFlyouts();
-				$scope.listingType = $route.current.$$route.listingType;
+				$scope.listingType = $route.current.$$route.listingType || $routeParams.listingType;
 				$scope.listingDisplayName = ($scope.listingType) ? listingMap.getListingTypeByType($scope.listingType) : null;
     	});
 		};
