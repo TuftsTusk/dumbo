@@ -9,12 +9,14 @@ angular.module('dumboApp')
 			$scope.$on('$routeChangeSuccess', function (e, current, pre) {
         $scope.isCollapsed = true;
 				$scope.closeFlyouts();
-				$scope.searchInput = '';
 				$scope.listingType = $route.current.$$route.listingType;
 				$scope.listingDisplayName = ($scope.listingType) ? listingMap.getListingTypeByType($scope.listingType) : null;
     	});
 		};
 
+		$scope.$on('SEARCH_TERM', function(event, query) {
+			$scope.searchInput = query;
+		});
 		$scope.search = function(input){
 			if (input != ''){
 				$location.path('/listing/search/' + input + ($scope.listingType ? '/type/' + $scope.listingType : ''));

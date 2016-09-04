@@ -25,7 +25,7 @@
             md-gutter="8px" md-gutter-gt-sm="12px" ng-if="!listings.error">
         <div ng-if="listings.length < 1" layout="row" layout-align="center center">
           <span ng-if="!searchTerm"> We're fresh out of {{listingDisplayType | lowercase}}. Would you like to  <a href="/#/{{listingDisplayType | lowercase}}/new"> add a {{listingDisplayType | lowercase}} listing? </a></span>
-          <span ng-if="searchTerm"> No listings found for &#39;{{searchTerm}}&#39;</a></span>
+          <span ng-if="searchTerm"> No listings found for &#39;{{searchTerm}}&#39; in {{listingDisplayType | lowercase}}.</span>
         </div>
         <md-grid-tile id="{{data.listing._id}}"
                       ng-class="(data.listing._id==selectedId) ? 'selected' : ''"

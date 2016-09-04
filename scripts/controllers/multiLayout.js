@@ -14,7 +14,8 @@ angular.module('dumboApp')
 		uiGmapGoogleMapApi,
 		uiGmapIsReady,
 		$timeout,
-		$window) {
+		$window,
+		$rootScope) {
 	$scope.listings = {};
 	$scope.listings.error = true;
 	$scope.listingType = $route.current.$$route.listingType || $routeParams.listingType;
@@ -22,6 +23,8 @@ angular.module('dumboApp')
 	$scope.LISTING = LISTING;
 	$scope.searchTerm = $routeParams.searchTerm;
 	$scope.myListings = $route.current.$$route.myListings;
+
+	$rootScope.$broadcast('SEARCH_TERM', $scope.searchTerm);
 
 	$scope.window = $window;
 	$scope.Math = window.Math;
