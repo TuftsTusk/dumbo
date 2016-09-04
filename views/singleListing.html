@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div id="label" class="block text first borderRight paddingRight">
 			<span ng-if="newListing">New Sublet Listing</span>
-			<span ng-cloak ng-if="!newListing">{{listingData.geotag.address}}</span>
+			<span ng-cloak ng-if="!newListing">{{listingData.geotag.address.formatted_address || listingData.geotag.address}}</span>
 		</div>
 		<div id="actions" class="highlight paddingLeft">
 			<div ng-if="owner">
