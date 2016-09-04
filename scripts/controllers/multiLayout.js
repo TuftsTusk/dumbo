@@ -116,19 +116,10 @@ angular.module('dumboApp')
 	};
 
 	$scope.viewListing = function(uid, type){
-		if (uid == undefined || uid ==null){
-			///TODO: Send Google Analytics event for this failure
-			ngToast.create({
-				className: 'warning',
-				content: "Post is currently unavailable. Please try again later.",
-				timeout: 3000
-			});
+		if (type == 'SubletListing'){
+			$location.path('/sublets/' + uid + '/view');
 		} else {
-			if (type == 'SubletListing'){
-				$location.path('/sublets/' + uid + '/view');
-			} else {
-				$location.path('/listing/' + uid);
-			}
+			$location.path('/listing/' + uid);
 		}
 	};
 

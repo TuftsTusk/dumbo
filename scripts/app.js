@@ -14,13 +14,17 @@ underscore.factory('_', function () {
 	return window._; //Underscore should be loaded on the page
 });
 
-var requireLogin = function(userService, $location, ngToast){
+var requireLogin = function(userService, userDataService, $location, ngToast){
 	if (!userService.isLoggedIn()){
-		$location.path('/login/existing');
-		ngToast.create({
-		  className: 'info',
-		  content: 'Please login or register to continue',
-		  timeout: 3000
+		userService.setLoggedOut();
+		userDataService.logout().then(function(){
+			var prevUrl = $location.path();
+			$location.path('/login/existinguser').search('returnTo', prevUrl);
+			ngToast.create({
+				className: 'info',
+				content: 'Please login or register to continue',
+				timeout: 3000
+			});
 		});
 	}
 }
@@ -156,14 +160,13 @@ var app = angular
 	.otherwise({
 		templateUrl: '404.html'
 	});
-	$httpProvider.defaults.withCredentials = true;
 	$httpProvider.interceptors.push('authInterceptor');
 });
 
 app.config(['ngToastProvider', function(ngToast) {
 	ngToast.configure({
-		verticalPosition: 'bottom',
-		horizontalPosition: 'right',
+		verticalPosition: 'top',
+		horizontalPosition: 'center',
 		maxNumber: 3,
 		animation: "fade",
 		combineDuplications:true
