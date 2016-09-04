@@ -172,6 +172,17 @@ var app = angular
 	$httpProvider.interceptors.push('authInterceptor');
 });
 
+app.config(['ngToastProvider', function(ngToast) {
+	ngToast.configure({
+		verticalPosition: 'bottom',
+		horizontalPosition: 'right',
+		maxNumber: 3,
+		animation: "fade",
+		combineDuplications:true
+	});
+}]);
+
+
 app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
 	$rootScope.$on( "$routeChangeStart", function(event, next, current) {
 		$rootScope.loaded = false;
@@ -195,17 +206,6 @@ app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
 app.constant("LISTING", {
 	"MAXSUMMARYLENGTH": "200"
 })
-
-
-app.config(['ngToastProvider', function(ngToast) {
-	ngToast.configure({
-		verticalPosition: 'top',
-		horizontalPosition: 'center',
-		maxNumber: 3,
-		animation: "fade"
-	});
-}]);
-
 
 app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.withCredentials = true;
