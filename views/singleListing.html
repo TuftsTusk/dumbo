@@ -3,17 +3,19 @@
 	<div class="container-fluid">
 		<div id="label" class="block text first borderRight paddingRight">
 			<span ng-if="newListing">New Sublet Listing</span>
-			<span ng-if="!newListing">{{listingData.geotag.address}}</span>
+			<span ng-cloak ng-if="!newListing">{{listingData.geotag.address}}</span>
 		</div>
 		<div id="actions" class="highlight paddingLeft">
 			<div ng-if="owner">
-				<div class="block text" ng-if="editing" ng-click="deleteSavedData()"><a href="">Clear</a></div>
-				<div class="block text" ng-if="editing"><a href="" ng-click="saveButton()">Save</a></div>
-				<div class="block" ng-if="editing"><a href="" class=" btn btn-primary btn-lg" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a></div>
-				<div class="block text" ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
-				<div class="block" ng-if="!editing && owner"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
+				<div class="block text" ng-cloak ng-if="editing" ng-click="deleteSavedData()"><a href="">Clear</a></div>
+				<div class="block text" ng-cloak ng-if="editing && !id"><a href="" ng-click="saveButton()">Save</a></div>
+				<div class="block" ng-cloak ng-if="editing && !id"><a href="" class=" btn btn-primary btn-lg" ng-click="loadPreview()" ng-class="{disabled: listingValidation.alert}">Preview</a></div>
+				<div class="block text" ng-cloak ng-if="!editing && owner"><a href="" ng-click="redirectTo('edit')">Edit</a></div>
+				<div class="block" ng-cloak ng-if="!editing && owner && !id"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish</a></div>
+				<div class="block" ng-cloak ng-if="editing && owner && id"><a href="" class=" btn btn-primary btn-lg" ng-click="submitApt()">Publish Changes</a></div>
+
 			</div>
-			<div class="block" ng-if="!editing && !owner && !previewing" ng-click="contactSeller(id)"><a href="" class=" btn btn-primary btn-lg">Contact seller</a></div>
+			<div class="block" ng-cloak ng-if="!editing && !owner && !previewing" ng-click="contactSeller(id)"><a href="" class=" btn btn-primary btn-lg">Contact seller</a></div>
 		</div>
 	</div>
 </div>
@@ -47,7 +49,7 @@
 					<input ng-blur="save()" g-places-autocomplete force-selection="true" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="listingData.geotag.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label ng-if="editing">How many bedrooms total?</label>
+					<label ng-if="editing">How many bedrooms are in the house?</label>
 					<label ng-if="!editing">Total number of bedrooms</label>
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
