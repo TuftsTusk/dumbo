@@ -6,7 +6,7 @@ angular.module('dumboApp')
   return {
     setLoggedIn : function(userEmail){
       var expiration = new Date();
-      expiration.setDate(expiration.getDate() + 7);
+      expiration.setDate(expiration.getDate() + 6);
       $cookies.put('email', userEmail, {'expires':expiration});
     },
     isLoggedIn : function() {
