@@ -5,7 +5,9 @@ angular.module('dumboApp')
   var email = null;
   return {
     setLoggedIn : function(userEmail){
-      $cookies.put('email', userEmail);
+      var expiration = new Date();
+      expiration.setDate(expiration.getDate() + 7);
+      $cookies.put('email', userEmail, {'expires':expiration});
     },
     isLoggedIn : function() {
       var c = $cookies.get('email');
@@ -15,7 +17,10 @@ angular.module('dumboApp')
       return $cookies.get('email');
     },
     setLoggedOut: function(userEmail){
-      $cookies.remove('email');
+      var cookies = $cookies.getAll();
+      angular.forEach(cookies, function (v, k) {
+          $cookies.remove(k);
+      });
     }
   }
 });
