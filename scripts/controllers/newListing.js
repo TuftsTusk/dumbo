@@ -44,6 +44,7 @@ angular.module('dumboApp')
 
 		$scope.init = function(){
 			$scope.photos = [];
+			$scope.uploading = false;
 			if ($scope.id){
 				$scope.isLoading = true;
 				listingDataService.getListingById($scope.id).then(
@@ -53,9 +54,8 @@ angular.module('dumboApp')
 						$scope.newListingFormData = listingMap.getFieldsByType(res.data.listing.type);
 						$scope.newListingFormData.type = listingMap.getListingTypeByType($scope.type);
 						$scope.listing = res.data.listing;
-						if (res.data.listing.photo_urls){
-							$scope.photos = res.data.listing.photo_urls;
-						}
+						$scope.photos = res.data.listing.photo_urls || [];
+						$scope.currentUploadTarget = $scope.photos;
 
 				}, function failure(){
 						$scope.isLoading = false;
@@ -126,11 +126,14 @@ angular.module('dumboApp')
 
 
 			$scope.loadSavedData = function() {
-				$scope.listing = localStorageService.get(localStorageKey) || {};
-				if ($scope.listing.photo_urls){
-					$scope.photos = $scope.listing.photo_urls;
+				//no local storage on edit existing post
+				if (!$scope.id){
+					$scope.listing = localStorageService.get(localStorageKey) || {};
+					if ($scope.listing.photo_urls){
+						$scope.photos = $scope.listing.photo_urls;
+					}
+					$scope.currentUploadTarget = $scope.photos;
 				}
-				$scope.currentUploadTarget = $scope.photos;
 			}
 
 			$scope.deleteSavedData = function() {

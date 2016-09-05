@@ -86,9 +86,7 @@
 							<button class="btn btn-default" ng-click="initiatePhotoUpload()">Add more photos</button>
 						</div>
 					</div>
-					<div ng-if="iphone">
-							<input type="file" id="photoUploadInput" required ng-file-select multiple/>
-					</div>
+					<input type="file" id="photoUploadInput" ng-file-select multiple ng-style="{'visibility': iphone ? 'shown':'hidden'}"/>
 				</div>
 			</div>
 	</form>
@@ -96,7 +94,5 @@
       <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish</md-button>
 			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish Edits</md-button>
   </section>
-	<div ng-if="!iphone">
-			<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
-	</div>
+	<!-- <input ng-if="!iphone" type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/> -->
 </div>
