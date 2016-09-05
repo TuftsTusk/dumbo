@@ -112,7 +112,8 @@ angular.module('dumboApp').controller('LoginCtrl',
                 function success(res) {
                     userService.setLoggedIn($scope.user.email);
                     $scope.dataLoading = false;
-                    $location.path('/');
+                    var returnTo = $routeParams.returnTo;
+                    $location.path(returnTo || '/');
                     ngToast.create({
                         className: 'success',
                         content: 'You have succesfully logged in',

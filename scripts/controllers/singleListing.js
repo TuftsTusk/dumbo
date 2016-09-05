@@ -183,7 +183,6 @@ angular.module('dumboApp')
 							content: "Sorry we were unable to complete your request. Please check the link and try again.",
 							timeout: 2000
 						});
-						$location.path('/');
 					});
 			} else {
 				$scope.redirectTo('view');
@@ -255,8 +254,6 @@ angular.module('dumboApp')
 
 	$scope.save = function() {
 		if ($scope.editing) {
-			console.log(JSON.stringify($scope.listingData));
-			console.log('saving');
 			updateSavedData();
 			validateData();
 			// updateErrorLog();
@@ -296,7 +293,6 @@ angular.module('dumboApp')
 		} else {
 			listingDataService.newListing($scope.listingData).then(
 				function success(res){
-					console.log(res);
 					$scope.dataLoading = false;
 					SweetAlert.swal("Congrats!", "Your listing has been succesfully created!", "success");
 					localStorageService.remove(localStorageKey);
@@ -392,9 +388,7 @@ angular.module('dumboApp')
 	$scope.confirmDelete = function() {
 		if ($scope.editing) {
 			var room = $scope.listingData.bedrooms[$scope.selectedRoom];
-			console.log($scope.selectedRoom);
 			var empty = true;
-			console.log(room);
 			$.each(room, function(key, value) {
 				if (key != 'title' && key != 'photos' && key != '$$hashKey') {
 					empty = false;
@@ -461,7 +455,6 @@ angular.module('dumboApp')
 
 
 	function prepareView(data) {
-		console.log('data', data);
 		var listing = data.listing;
 		var owner = data.owner;
 		if (listing && listing.type == 'SubletListing') {
@@ -484,7 +477,6 @@ angular.module('dumboApp')
 			});
 
 			$scope.apt = $scope.listingData.apt_info;
-			console.log($scope.listingData);
 
 			$scope.owner = owner;
 
@@ -562,9 +554,6 @@ angular.module('dumboApp')
 		$scope.errorLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos, 'required');
 		$scope.warningLog.common_area_photos = validateField('common_area_photos', tempListingData.common_area_photos, 'recommended');
 
-		console.log($scope.errorLog);
-		console.log($scope.warningLog);
-
 		var err = $scope.errorLog;
 		$scope.listingValidation.alert = (err.apt_info || err.bedrooms || err.common_area_photos) ? true : false;
 		if (!$scope.listingValidation.alert) {
@@ -590,10 +579,6 @@ angular.module('dumboApp')
 
 	function validateField(field, inputData, fieldType) {
 
-		if (fieldType != 'required' && fieldType != 'recommended') {
-			console.log('ERROR');
-		}
-
 		var data = angular.copy(inputData);
 
 		var response = {};
@@ -616,13 +601,7 @@ angular.module('dumboApp')
 			}
 			if (key in data) delete data[key];
 		});
-
-		if (!(_.isEmpty(data))) {
-			// listingData not empty: data contains extraneous fields
-
-			console.log('NOT EMPTY');
-			console.log(data);
-		}
+		
 		if (_.isEmpty(response)) {
 			response = null;
 		}

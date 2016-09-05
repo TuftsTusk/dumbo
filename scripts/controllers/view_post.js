@@ -32,7 +32,6 @@ angular.module('dumboApp')
     							content: "Sorry we were unable to complete your request. Please check the link and try again.",
     							timeout: 2000
     						});
-    						$location.path('/');
             })
     };
 

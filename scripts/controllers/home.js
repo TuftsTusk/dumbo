@@ -16,7 +16,7 @@ angular.module('dumboApp')
 
   function timeToLaunch(){
     // Sept 6th
-    var date  = new Date(2016, 8, 6, 13);
+    var date  = new Date(2016, 8, 6, 18);
     var now   = new Date();
     var diff  = date.getTime()/1000 - now.getTime()/1000;
     if (diff < 0) {
@@ -32,26 +32,26 @@ angular.module('dumboApp')
 
   $scope.init = function() {
     $scope.optionChosen = false;
-    $scope.selectionFlowTitle = 'Welcome';
+    $scope.selectionFlowTitle = 'What would you like to do?';
     $scope.actionItems = [
                           { 'name': 'Shop',
-                            'icon': '../images/ic_shopping_cart_black_24px.svg',
-                            'class': 'purple',
+                            'icon': '../images/ic_shopping_cart_24px.svg',
+                            'class': 'shop',
                             'nextAction': 'buy',
                             'nextActionLink': '',
                             'row': 1,
                             'col': 2
                           },
                           { 'name': 'Sell',
-                            'icon': '../images/ic_monetization_on_black_24px.svg',
-                            'class': 'deepBlue',
+                            'icon': '../images/ic_monetization_24px.svg',
+                            'class': 'sell',
                             'nextAction': 'sell',
                             'nextActionLink': 'new',
                             'row': 1,
                             'col': 2
                           }
                         ]
-    $('#clock-small').countdown('2016/09/06 13:00:00', function(event) {
+    $('#clock-small').countdown('2016/09/06 18:00:00', function(event) {
       $(this).html(event.strftime(''
     + '<span>%-w</span> week%!w '
     + '<span>%-d</span> day%!d '
@@ -76,7 +76,7 @@ angular.module('dumboApp')
       $scope.actionItems = [
                             { 'name': 'Sublets',
                               'icon': '../images/sublet.svg',
-                              'class': 'purple',
+                              'class': 'sublets',
                               'actionType': action.nextAction,
                               'nextAction': 'open',
                               'actionLink': action.nextActionLink,
@@ -86,7 +86,7 @@ angular.module('dumboApp')
                             },
                             { 'name': 'Books',
                               'icon': '../images/book.svg',
-                              'class': 'deepBlue',
+                              'class': 'books',
                               'actionType': action.nextAction,
                               'nextAction': 'open',
                               'actionLink': action.nextActionLink,
@@ -96,7 +96,7 @@ angular.module('dumboApp')
                             },
                             { 'name': 'Furniture',
                               'icon': '../images/furniture.svg',
-                              'class': 'lightPurple',
+                              'class': 'furniture',
                               'actionType': action.nextAction,
                               'nextAction': 'open',
                               'actionLink': action.nextActionLink,
@@ -106,7 +106,7 @@ angular.module('dumboApp')
                             },
                             { 'name': 'Miscellaneous',
                               'icon': '../images/everything_else2.svg',
-                              'class': 'red',
+                              'class': 'misc',
                               'actionType': action.nextAction,
                               'nextAction': 'open',
                               'actionLink': action.nextActionLink,

@@ -93,7 +93,6 @@ angular.module('dumboApp')
                 });
 
                 infowindow.addListener('closeclick', function () {
-                    console.log("clicked!");
                     $(".sublet-listings").removeClass("highlight");
                 })
             }
@@ -151,11 +150,9 @@ angular.module('dumboApp')
                             lat: mylat,
                             lng: mylng
                         });
-                        console.log(this.lat);
 
                     });
                 }, function (err) {
-                    console.log(err);
                 });
 
 
