@@ -2,7 +2,6 @@
   "development": {
     "EnvironmentConfig": {
       "api": "http://localhost",
-      "locked": true,
       "production": false
 
     }
@@ -16,7 +15,7 @@
   "production": {
     "EnvironmentConfig": {
       "api": "https://tuftstusk.herokuapp.com",
-      "locked": true,
+      "locked": false,
       "production": true
     }
   }
