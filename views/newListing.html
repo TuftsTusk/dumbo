@@ -12,9 +12,9 @@
 			<md-content layout-padding>
 				<div layout="column" layout-align="center center" ng-if="id">
 					<div class="visbilityPanel" layout="column" layout-align="center center">
-						<p>Sold your item or no longer selling it? </p>
-						<md-switch class="visibilityToggle" ng-model="listing.visibility" aria-label="Visibility">
-							{{ listing.visibility ? 'Available':'No Longer for Sale/Hidden' }}
+						<p>Sold your item or no longer for sale? </p>
+						<md-switch class="visibilityToggle" ng-cloak ng-model="listing.integrity.visible" aria-label="Visibility">
+							{{ listing.integrity.visible ? 'Available':'No Longer for Sale/Hidden' }}
 						</md-switch>
 					</div>
 				</div>
