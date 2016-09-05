@@ -32,7 +32,7 @@ angular.module('dumboApp')
 
   $scope.init = function() {
     $scope.optionChosen = false;
-    $scope.selectionFlowTitle = 'Welcome';
+    $scope.selectionFlowTitle = 'What would you like to do?';
     $scope.actionItems = [
                           { 'name': 'Shop',
                             'icon': '../images/ic_shopping_cart_24px.svg',
