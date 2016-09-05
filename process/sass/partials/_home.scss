@@ -164,20 +164,36 @@
     }
 }
 
-.welcomeBox{
-  text-align:center;
-  cursor: pointer;
+.featureNav {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcomeBox {
+    text-align: center;
+    cursor: pointer;
+    background: rgba(0,0,0,.18);
 }
 
 
 .welcomeBox md-icon {
-  width: 50%;
-  height: 30%; }
+    width: 50%;
+    height: 30%;
+    color: white;
+}
+
+.welcomeBox md-grid-tile-footer {
+    background: transparent;
+}
 
 .welcomeBox md-grid-tile-footer figcaption {
-	width: 100%;
-  font-size:14pt;
-  color:black;
+    width: 100%;
+    font-size: 14pt;
+    color: white;
+}
+
+.md-toolbar-tools {
+    background: #337ab7;
 }
 
 .gray {
