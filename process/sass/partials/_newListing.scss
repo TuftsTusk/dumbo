@@ -16,3 +16,19 @@ md-input-container label {
 .layout-padding {
   padding-top: 1em;
 }
+
+.visbilityPanel {
+  text-align:center;
+  border: 1px solid black;
+  margin-bottom: 20px;
+  display:inline-block;
+  padding: 10px;
+}
+
+.visibilityToggle {
+  margin:0px;
+}
+
+.statusLabel {
+  margin:5px;
+}
