@@ -63,7 +63,7 @@ angular.module('dumboApp')
             {
               displayName:'ISBN',
               name:'isbn',
-              required:'true',
+              required:'false',
               type:'text',
               class:'md-block'
             },

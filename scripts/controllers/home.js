@@ -16,7 +16,7 @@ angular.module('dumboApp')
 
   function timeToLaunch(){
     // Sept 6th
-    var date  = new Date(2016, 8, 6, 13);
+    var date  = new Date(2016, 8, 6, 18);
     var now   = new Date();
     var diff  = date.getTime()/1000 - now.getTime()/1000;
     if (diff < 0) {
@@ -51,7 +51,7 @@ angular.module('dumboApp')
                             'col': 2
                           }
                         ]
-    $('#clock-small').countdown('2016/09/06 13:00:00', function(event) {
+    $('#clock-small').countdown('2016/09/06 18:00:00', function(event) {
       $(this).html(event.strftime(''
     + '<span>%-w</span> week%!w '
     + '<span>%-d</span> day%!d '
