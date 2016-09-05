@@ -100,7 +100,6 @@ angular.module('dumboApp')
 			} else {
 				listingDataService.newListing($scope.listing).then(
 					function success(res){
-						console.log(res);
 						$scope.dataLoading = false;
 						SweetAlert.swal("Congrats!", "Your listing has been succesfully created!", "success");
 						localStorageService.remove(localStorageKey);
