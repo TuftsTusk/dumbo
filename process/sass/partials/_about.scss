@@ -1,0 +1,35 @@
+#about-wrap {
+    @media screen and (min-width: $break-medium) {
+        width: 50%;
+    }
+    @media screen and (min-width: $break-small) and (max-width: $break-medium){
+        width: 80%;
+    }
+    @media screen and (max-width: $break-small) {
+        width: 100%;
+        h3{
+            font-size: 1.3em;
+        }
+    }
+    
+    padding-top: 100px;
+    align-content: center;
+    height:calc(100vh - 100px);
+    img {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+    h3 {
+        color: white;
+        text-align: center;
+    }
+}
+
+.white {
+    background-color: white;
+}
+
+#text-wrap{
+    width:80%;
+}
