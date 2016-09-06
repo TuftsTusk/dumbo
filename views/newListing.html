@@ -14,7 +14,7 @@
         <div layout="column" layout-align="center center" ng-if="id">
             <div class="visbilityPanel" layout="column" layout-align="center center">
                 <p>Your listing is currently {{ listing.integrity.visible ? 'Public':'Unlisted' }}</p>
-                <md-switch class="visibilityToggle" ng-cloak ng-model="listing.integrity.visible" aria-label="Visibility">
+                <md-switch class="visibilityToggle md-primary" ng-cloak ng-model="listing.integrity.visible" aria-label="Visibility">
                     {{ listing.integrity.visible ? 'Public':'Unlisted' }}
                 </md-switch>
             </div>
@@ -101,6 +101,4 @@
 
         </form>
     </div>
-
-    <!-- <input ng-if="!iphone" type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/> -->
 </div>
