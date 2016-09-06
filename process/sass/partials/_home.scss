@@ -39,11 +39,7 @@
 
         //background: rgba(79, 147, 206, 1);
         p {
-            font-family: $font-main;
-            color: white;
-            width: 50%;
-            overflow: visible;
-            margin: auto;
+
         }
 
     }
@@ -88,16 +84,6 @@
             padding:50px;
             padding-bottom:0px;
             text-align: center;
-        }
-
-
-        //background: rgba(79, 147, 206, 1);
-        p {
-            font-family: $font-main;
-            color: white;
-            width: 50%;
-            overflow: visible;
-            margin: auto;
         }
 
     }
@@ -149,15 +135,11 @@
            width:auto;
         }
 
-        //background: rgba(79, 147, 206, 1);
-        p {
-            font-family: $font-main;
-            color: white;
-            width:80%;
+        .promo-message {
+            width: 100%;
             max-width: 300px;
-            overflow: visible;
-            margin: auto;
         }
+
     }
     .container {
         width: 100%;
@@ -226,6 +208,18 @@
 
 .flip-clock-divider .flip-clock-label {
   color:white;
+}
+
+.promo-message {
+    font-style: italic;
+    font-size:1.08em;
+    max-width: 352px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: $font-main;
+    color: white;
+    overflow: visible;
 }
 
 #clock-small {
