@@ -1,18 +1,43 @@
 /********* _newListing.scss *********/
 /* elements on the newListing page */
 
-.listingTypeTitle {
-  text-align: center;
-}
-.largeBtn {
-  min-width: 70%
-}
-.smallBtn {
-  min-width: 30%
-}
-md-input-container label {
-  font-size:14pt;
-}
-.layout-padding {
-  padding-top: 1em;
+#newListing {
+    .listing-type-title {
+        text-align: center;
+    }
+    .clear-button {
+        position: absolute;
+        left: 0;
+    }
+
+    .photoUploadWrapper .photoUpload {
+        margin: 0 auto;
+        width: 200px;
+        border: 2px solid rgba(0, 0, 0, 0.117647);
+        border-radius: 10px;
+        background: transparent;
+    }
+
+    .largeBtn {
+        min-width: 70%;
+    }
+    .smallBtn {
+        min-width: 30%;
+    }
+    md-input-container label {
+        font-size:14pt;
+    }
+    .layout-padding {
+        padding-top: 1em;
+    }
+
+    button {
+        width: 100%;
+        padding: 2px 6px 3px;
+        margin: 0;
+    }
+
+    md-content {
+        margin-bottom: 60px;
+    }
 }
