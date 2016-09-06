@@ -11,6 +11,15 @@
             <div class="listing-type-title">{{newListingFormData.type}}</div>
         </md-toolbar>
 
+        <div layout="column" layout-align="center center" ng-if="id">
+            <div class="visbilityPanel" layout="column" layout-align="center center">
+                <p>Your listing is currently {{ listing.integrity.visible ? 'Public':'Unlisted' }}</p>
+                <md-switch class="visibilityToggle" ng-cloak ng-model="listing.integrity.visible" aria-label="Visibility">
+                    {{ listing.integrity.visible ? 'Public':'Unlisted' }}
+                </md-switch>
+            </div>
+        </div>
+
         <form name="newListing" role="form" class="col-md-8 col-md-offset-2">
             <md-content layout-padding>
                 <md-input-container class="{{field.class}}" ng-repeat="field in newListingFormData">
@@ -95,3 +104,4 @@
 
     <!-- <input ng-if="!iphone" type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/> -->
 </div>
+>>>>>>> master

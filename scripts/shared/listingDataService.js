@@ -13,7 +13,7 @@ angular.module('dumboApp')
         return $http.post(host + listingPath + '/' + id, listing);
     }
     this.getListingsByType = function(type, searchTerm) {
-        return $http.get(host + listingPath, {params:{'type':type, 'search':searchTerm}});
+        return $http.get(host + listingPath, {params:{'type':type, 'search_query':searchTerm}});
     }
     this.getListings = function() {
         return $http.get(host + listingPath);

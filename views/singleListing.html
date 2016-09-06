@@ -19,6 +19,14 @@
 		</div>
 	</div>
 </div>
+<div layout="column" layout-align="center center" ng-if="editing && id">
+    <div class="visbilityPanel" layout="column" layout-align="center center">
+        <p>Your listing is currently {{ listingData.integrity.visible ? 'Public':'Unlisted' }}</p>
+        <md-switch class="visibilityToggle" ng-cloak ng-model="listingData.integrity.visible" aria-label="Visibility">
+            {{ listingData.integrity.visible ? 'Public':'Unlisted' }}
+        </md-switch>
+    </div>
+</div>
 <uib-alert type="danger" ng-if="showAlert" close="closeAlert()">You are missing some required fields. Please fill them out before continuing.</uib-alert>
 
 <ul class="sideNav col-md-2 list-group">
