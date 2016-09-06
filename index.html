@@ -48,7 +48,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#/"></a>
-          <form class="searchbar navbar-form show-xs show-sm hide-gt-sm" role="search">
+          <form id="search-small" class="searchbar navbar-form" role="search">
             <div class="form-group">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
               <input type="text" class="input-field" style="max-width:150px" placeholder="Search {{listingDisplayName || 'All'}}" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
@@ -63,7 +63,7 @@
             <li ng-class="{ active: isActive('/misc')}"><a href="#/misc">Miscellaneous</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li class="hide-xs hide-sm show-gt-sm">
+              <li id="search-large">
                 <form class="searchbar navbar-form" role="search">
                   <div class="form-group">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
