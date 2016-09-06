@@ -4,7 +4,10 @@
 
     <div id="newListing">
         <md-toolbar layout="row" layout-align="center center">
-            <div class="clear-button"><md-button ng-if="!isDataEmpty()" ng-click="deleteSavedData()"><md-icon>delete</md-icon> Clear</md-button></div>
+            <div class="clear-button">
+                <md-button ng-if="!isDataEmpty()" ng-click="deleteSavedData()">
+                    <md-icon>delete</md-icon> Clear</md-button>
+            </div>
             <div class="listing-type-title">{{newListingFormData.type}}</div>
         </md-toolbar>
 
@@ -17,7 +20,6 @@
                             minlength="{{ field.minlength }}"
                             maxlength="{{ field.maxlength }}"
                             ng-required="{{field.required}}"
-                            md-no-asterisk
                             name="{{field.name}}"
                             ng-model="listing[field.subField][field.name]"
                             ng-change="save()">
@@ -26,7 +28,6 @@
                         minlength="{{ field.minlength }}"
                         maxlength="{{ field.maxlength }}"
                         ng-required="{{field.required}}"
-                        md-no-asterisk
                         type="{{ field.type }}"
                         name="{{field.name}}"
                         ng-model="listing[field.subField][field.name]"
@@ -37,7 +38,6 @@
                             minlength="{{ field.minlength }}"
                             maxlength="{{ field.maxlength }}"
                             ng-required="{{field.required}}"
-                            md-no-asterisk
                             name="{{field.name}}"
                             ng-model="listing[field.name]"
                             ng-change="save()">
@@ -46,7 +46,6 @@
                         minlength="{{ field.minlength }}"
                         maxlength="{{ field.maxlength }}"
                         ng-required="{{field.required}}"
-                        md-no-asterisk
                         type="{{ field.type }}"
                         name="{{field.name}}"
                         ng-model="listing[field.name]"
@@ -83,7 +82,7 @@
                             <button class="btn btn-default" ng-click="initiatePhotoUpload()">Add more photos</button>
                         </div>
                     </div>
-                    <input type="file" id="photoUploadInput" ng-file-select multiple ng-style="{'visibility': iphone ? 'shown':'hidden'}"/>
+                    <input type="file" id="photoUploadInput" ng-file-select multiple ng-style="{'visibility': iphone ? 'shown':'hidden'}" />
                 </div>
                 <div class="buttons">
                     <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish</md-button>
@@ -94,5 +93,5 @@
         </form>
     </div>
 
-<!-- <input ng-if="!iphone" type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/> -->
+    <!-- <input ng-if="!iphone" type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/> -->
 </div>
