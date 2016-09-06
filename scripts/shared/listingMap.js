@@ -158,8 +158,7 @@ angular.module('dumboApp')
               name:'title',
               required:'true',
               type:'text',
-              class:'largeBtn',
-              minlength:5
+              class:'largeBtn'
             },
             {
               displayName: 'Price ($)',
