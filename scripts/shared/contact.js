@@ -35,7 +35,7 @@ angular.module('dumboApp')
                 if (res && res.data && res.data.message) {
                     swal("I'm sorry I can't do that", res.data.message, "error");
                 } else {
-                    swal("Sorry it looks like someone unplugged us", "We're working on resolving the issue", "error");
+                    swal("We're unable to contact the seller. We have been notified. Please try again later.", "We're working on resolving the issue", "error");
                 }
 
             }
