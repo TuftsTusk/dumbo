@@ -175,7 +175,6 @@
     background: rgba(0,0,0,.18);
 }
 
-
 .welcomeBox md-icon {
     width: 50%;
     height: 30%;
@@ -191,6 +190,16 @@
     width: 100%;
     font-size: 14pt;
     color: white;
+}
+
+.welcomeBox:hover {
+    md-icon {
+        color: $lightblue;
+    }
+
+    figcaption {
+        color: $lightblue;
+    }
 }
 
 .md-toolbar-tools {
