@@ -12,9 +12,9 @@
 			<md-content layout-padding>
 				<div layout="column" layout-align="center center" ng-if="id">
 					<div class="visbilityPanel" layout="column" layout-align="center center">
-						<p>Sold your item or no longer for sale? </p>
+						<p>Your listing is currently {{ listing.integrity.visible ? 'Public':'Unlisted' }}</p>
 						<md-switch class="visibilityToggle" ng-cloak ng-model="listing.integrity.visible" aria-label="Visibility">
-							{{ listing.integrity.visible ? 'Available':'No Longer for Sale/Hidden' }}
+							{{ listing.integrity.visible ? 'Public':'Unlisted' }}
 						</md-switch>
 					</div>
 				</div>
