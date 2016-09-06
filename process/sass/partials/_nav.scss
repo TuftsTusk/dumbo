@@ -166,7 +166,7 @@
 		color: white !important;
 		border: 0px;
 		border-radius: 3px;
-		padding: 6px 12px 6px 12px !important;
+		padding: 6px 12px 4px 12px !important;
 
 		&:focus {
 			background-color: $blue;
@@ -186,6 +186,10 @@
   		}
         cursor: pointer;
   	}
+
+    input {
+        font-size: 14px;
+    }
 }
 
 
