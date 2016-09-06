@@ -3,16 +3,16 @@
 angular.module('dumboApp')
 	.controller('NavCtrl', function ($scope, userService, userDataService, EnvironmentConfig, $location, listingMap, $route, $routeParams) {
 
-		$scope.init = function(){
-			$scope.closeFlyouts();
-			$scope.isCollapsed = true;
-			$scope.$on('$routeChangeSuccess', function (e, current, pre) {
-        $scope.isCollapsed = true;
-				$scope.closeFlyouts();
-				$scope.listingType = $route.current.$$route.listingType || $routeParams.listingType;
-				$scope.listingDisplayName = ($scope.listingType) ? listingMap.getListingTypeByType($scope.listingType) : null;
-    	});
-		};
+        $scope.init = function(){
+            $scope.closeFlyouts();
+            $scope.isCollapsed = true;
+            $scope.$on('$routeChangeSuccess', function (e, current, pre) {
+                $scope.isCollapsed = true;
+                $scope.closeFlyouts();
+                $scope.listingType = $route.current.$$route.listingType || $routeParams.listingType;
+                $scope.listingDisplayName = ($scope.listingType) ? listingMap.getListingTypeByType($scope.listingType) : null;
+            });
+        };
 
 		$scope.$on('SEARCH_TERM', function(event, query) {
 			if (query){
@@ -27,9 +27,9 @@ angular.module('dumboApp')
 			}
 		};
 
-		$scope.isActive = function (viewLocation) {
-        return viewLocation === $location.path();
-    };
+        $scope.isActive = function (viewLocation) {
+            return viewLocation === $location.path();
+        };
 
 		$scope.closeFlyouts = function(){
 			$scope.newFlyoutOpen = false;
