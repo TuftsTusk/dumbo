@@ -43,6 +43,10 @@ input[type="url"], textarea
 	-webkit-overflow-scrolling:touch
 }
 
+button, html, input, md-bottom-sheet .md-subheader, select, textarea {
+    font-family: $font-main;
+}
+
 // Extra small screen / phone
 $screen-xs:                  480px !default;
 

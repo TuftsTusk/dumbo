@@ -7,6 +7,7 @@
             <div class="clear-button"><md-button ng-if="!isDataEmpty()" ng-click="deleteSavedData()"><md-icon>delete</md-icon> Clear</md-button></div>
             <div class="listing-type-title">{{newListingFormData.type}}</div>
         </md-toolbar>
+
         <form name="newListing" role="form" class="col-md-8 col-md-offset-2">
             <md-content layout-padding>
                 <md-input-container class="{{field.class}}" ng-repeat="field in newListingFormData">
