@@ -464,6 +464,7 @@ angular.module('dumboApp')
 			$scope.listingData.bedrooms = listing.bedrooms;
 			$scope.listingData.common_area_photos = listing.common_area_photos;
 			$scope.listingData.geotag = listing.geotag;
+            $scope.listingData.integrity = listing.integrity;
 			$scope.listingData.id = listing._id;
 			$scope.listingData.type = 'SubletListing';
 
@@ -601,7 +602,7 @@ angular.module('dumboApp')
 			}
 			if (key in data) delete data[key];
 		});
-		
+
 		if (_.isEmpty(response)) {
 			response = null;
 		}
