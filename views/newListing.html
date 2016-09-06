@@ -96,6 +96,7 @@
                 <div class="buttons">
                     <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish</md-button>
                     <md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish Edits</md-button>
+                    <md-progress-linear ng-if="dataLoading || uploading" md-mode="indeterminate"></md-progress-linear>
                 </div>
             </md-content>
 
