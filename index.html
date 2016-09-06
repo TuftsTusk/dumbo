@@ -12,11 +12,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <script>
-      try {
-          Typekit.load({
-              async: true
-          });
-      } catch (e) {}
 
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,9 +26,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- inject:css -->
 
-    <link rel="stylesheet" href="/generated/bower-ad9debe1-b074-4b66-83dc-b8d52152015d.css">
+<link rel="stylesheet" href="/generated/bower-bb3fc748-7a75-46a2-bc82-998f8434eea9.css">
 
-    <!-- endinject -->
+<!-- endinject -->
+
     <link rel="stylesheet" href="styles/style.css">
 
 
@@ -54,9 +50,8 @@
           <a class="navbar-brand" href="#/"></a>
           <form class="searchbar navbar-form show-xs show-sm hide-gt-sm" role="search">
             <div class="form-group">
-              <span class="glyphicon glyphicon-search" aria-hidden="true">
-                <input type="text" class="input-field" style="max-width:150px" placeholder="Search {{listingDisplayName || 'All'}}" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
-              </span>
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              <input type="text" class="input-field" style="max-width:150px" placeholder="Search {{listingDisplayName || 'All'}}" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
             </div>
           </form>
         </div>
@@ -71,9 +66,8 @@
               <li class="hide-xs hide-sm show-gt-sm">
                 <form class="searchbar navbar-form" role="search">
                   <div class="form-group">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true">
-                      <input type="text" class="input-field" placeholder="Search {{listingDisplayName || 'All'}}" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
-                    </span>
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    <input type="text" class="input-field" placeholder="Search {{listingDisplayName || 'All'}}" ng-model="searchInput" ng-keyup="$event.keyCode == 13 && search(searchInput)">
 
                   </div>
                 </form>
@@ -92,20 +86,20 @@
                       </div>
                       <div class="flyContent">
                           <a href="#/sublets/new" class="flyButton">
-            <div ng-include="'../images/sublet.svg'" alt="sublet"></div>
-            Sublet
+                              <div ng-include="'../images/sublet.svg'" alt="sublet"></div>
+                              Sublet
                           </a>
                           <a href="#/books/new" class="flyButton">
-            <div ng-include="'../images/book.svg'" alt="book"></div>
-            Book
+                              <div ng-include="'../images/book.svg'" alt="book"></div>
+                              Book
                           </a>
                           <a href="#/furniture/new" class="flyButton">
                               <div ng-include="'../images/furniture.svg'" alt="furniture"></div>
-            Furniture
+                              Furniture
                           </a>
                           <a href="#/misc/new" class="flyButton">
                               <div ng-include="'../images/everything_else2.svg'" alt="other"></div>
-            Other
+                              Misc
                           </a>
                       </div>
                   </div>
@@ -151,59 +145,58 @@
     </script>
     <!-- inject:js -->
 
-    <script src="/generated/bower-cb3db01a-786a-4446-8660-8d6e371a8c0b.js"></script>
+<script src="/generated/bower-85e80e06-1042-46eb-a53e-32c8ead1e154.js"></script>
 
-    <script src="/scripts/app.js"></script>
+<script src="/scripts/app.js"></script>
 
-    <script src="/scripts/config.js"></script>
+<script src="/scripts/config.js"></script>
 
-    <script src="/scripts/controllers/about.js"></script>
+<script src="/scripts/shared/authInterceptor.js"></script>
 
-    <script src="/scripts/controllers/home.js"></script>
+<script src="/scripts/shared/contact.js"></script>
 
-    <script src="/scripts/controllers/login.js"></script>
+<script src="/scripts/shared/fileReader.js"></script>
 
-    <script src="/scripts/controllers/multiLayout.js"></script>
+<script src="/scripts/shared/imageUploadService.js"></script>
 
-    <script src="/scripts/controllers/nav.js"></script>
+<script src="/scripts/shared/interface.js"></script>
 
-    <script src="/scripts/controllers/newListing.js"></script>
+<script src="/scripts/shared/listingDataService.js"></script>
 
-    <script src="/scripts/controllers/settings.js"></script>
+<script src="/scripts/shared/listingMap.js"></script>
 
-    <script src="/scripts/controllers/singleListing.js"></script>
+<script src="/scripts/shared/ngFileSelect.js"></script>
 
-    <script src="/scripts/controllers/view_post.js"></script>
+<script src="/scripts/shared/swal-forms.js"></script>
 
-    <script src="/scripts/controllers/view_sub.js"></script>
+<script src="/scripts/shared/thumbnailFilter.js"></script>
 
-    <script src="/scripts/shared/authInterceptor.js"></script>
+<script src="/scripts/shared/userDataService.js"></script>
 
-    <script src="/scripts/shared/contact.js"></script>
+<script src="/scripts/shared/userService.js"></script>
 
-    <script src="/scripts/shared/fileReader.js"></script>
+<script src="/scripts/controllers/about.js"></script>
 
-    <script src="/scripts/shared/imageUploadService.js"></script>
+<script src="/scripts/controllers/home.js"></script>
 
-    <script src="/scripts/shared/interface.js"></script>
+<script src="/scripts/controllers/login.js"></script>
 
-    <script src="/scripts/shared/listingDataService.js"></script>
+<script src="/scripts/controllers/multiLayout.js"></script>
 
-    <script src="/scripts/shared/listingMap.js"></script>
+<script src="/scripts/controllers/nav.js"></script>
 
-    <script src="/scripts/shared/ngFileSelect.js"></script>
+<script src="/scripts/controllers/newListing.js"></script>
 
-    <script src="/scripts/shared/swal-forms.js"></script>
+<script src="/scripts/controllers/settings.js"></script>
 
-    <script src="/scripts/shared/thumbnailFilter.js"></script>
+<script src="/scripts/controllers/singleListing.js"></script>
 
-    <script src="/scripts/shared/userDataService.js"></script>
+<script src="/scripts/controllers/view_post.js"></script>
 
-    <script src="/scripts/shared/userService.js"></script>
+<script src="/scripts/controllers/view_sub.js"></script>
 
-    <script src="/scripts/shared/yiw1fez.js"></script>
+<!-- endinject -->
 
-    <!-- endinject -->
 
 </body>
 

@@ -1,110 +1,107 @@
 <div id="content-border" ng-controller="NewListingCtrl" ng-init=init()>
-	<div ng-if="isLoading" class="preloader">
-  </div>
-	<md-toolbar layout="row" layout-align="center center">
-	  <div flex><md-button ng-if="!isDataEmpty()" ng-click="deleteSavedData()"><md-icon>delete</md-icon> Clear</md-button></div>
-	  <div flex class="listingTypeTitle">{{newListingFormData.type}}</div>
-		<div flex>
-		</div>
-	</md-toolbar>
-	<div id="newListing">
-		<form name="newListing" role="form">
-			<md-content layout-padding>
-				<div layout="column" layout-align="center center" ng-if="id">
-					<div class="visbilityPanel" layout="column" layout-align="center center">
-						<p>Your listing is currently {{ listing.integrity.visible ? 'Public':'Unlisted' }}</p>
-						<md-switch class="visibilityToggle" ng-cloak ng-model="listing.integrity.visible" aria-label="Visibility">
-							{{ listing.integrity.visible ? 'Public':'Unlisted' }}
-						</md-switch>
-					</div>
-				</div>
-				<md-input-container class="{{field.class}}" ng-repeat="field in newListingFormData">
-					<label>{{ field.displayName }}</label>
-					<span ng-if=field.subField>
-						<textarea ng-if="field.type == 'textarea'"
-											minlength="{{ field.minlength }}"
-											maxlength="{{ field.maxlength }}"
-											ng-required="{{field.required}}"
-											md-no-asterisk
-											name="{{field.name}}"
-											ng-model="listing[field.subField][field.name]"
-											ng-change="save()">
-						</textarea>
-						<input ng-if="field.type != 'textarea'"
-											minlength="{{ field.minlength }}"
-											maxlength="{{ field.maxlength }}"
-											ng-required="{{field.required}}"
-											md-no-asterisk
-											type="{{ field.type }}"
-											name="{{field.name}}"
-											ng-model="listing[field.subField][field.name]"
-											ng-change="save()">
-						</input>
-					</span>
-					<span ng-if=!field.subField>
-						<textarea ng-if="field.type == 'textarea'"
-											minlength="{{ field.minlength }}"
-											maxlength="{{ field.maxlength }}"
-											ng-required="{{field.required}}"
-											md-no-asterisk
-											name="{{field.name}}"
-											ng-model="listing[field.name]"
-											ng-change="save()">
-						</textarea>
-						<input ng-if="field.type != 'textarea'"
-											minlength="{{ field.minlength }}"
-											maxlength="{{ field.maxlength }}"
-											ng-required="{{field.required}}"
-											md-no-asterisk
-											type="{{ field.type }}"
-											name="{{field.name}}"
-											ng-model="listing[field.name]"
-											ng-change="save()">
-						</input>
-					</span>
-					<div ng-messages="newListing[field.name].$error">
-						<div ng-message="required">{{field.displayName}} is required.</div>
-						<div ng-message="maxlength">{{field.displayName}} must be less than {{ field.maxlength }} characters long.</div>
-						<div ng-message="minlength">{{field.displayName}} must be at least {{ field.minlength }} characters long.</div>
-						<div ng-message="number">{{field.displayName}} must be a number.</div>
-					</div>
-				</md-input-container>
-			</md-content>
-				<div class="photoUploadWrapper">
-					<a ng-if="photos.length == 0 && !uploading && !iphone" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
-						<div class="photoUploadTitle">
-							<img src="images/skinnyplus.svg" class="isizeMed"> Add photos
-						</div>
-					</a>
-					<div ng-if="photos.length || uploading">
-						<div class="imageHolder">
-							<a class="photoUploadBox" ng-repeat="image in photos track by $index" target="_blank">
-								<div ng-style="{'background-image':'url(' + image.photo_url  + ')'}" class="scaledImage photoUploadImage"></div>
-								<i class="glyphicon glyphicon-remove deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
-							</a>
-							<div ng-if="uploading" class="photoUploadBox inProgress">
-								<div class="scaledImage photoUploadImage">
-									<div class="spinner">
-										<i class="preloader preloader-small" aria-hidden="true"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="photoUploadMore" ng-if="photos.length && !iphone">
-							<button class="btn btn-default" ng-click="initiatePhotoUpload()">Add more photos</button>
-						</div>
-					</div>
-					<div ng-if="iphone">
-							<input type="file" id="photoUploadInput" required ng-file-select multiple/>
-					</div>
-				</div>
-			</div>
-	</form>
-	<section layout="column">
-      <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish</md-button>
-			<md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish Edits</md-button>
-  </section>
-	<div ng-if="!iphone">
-			<input type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/>
-	</div>
+    <div ng-if="isLoading" class="preloader">
+    </div>
+
+    <div id="newListing">
+        <md-toolbar layout="row" layout-align="center center">
+            <div class="clear-button">
+                <md-button ng-if="!isDataEmpty()" ng-click="deleteSavedData()">
+                    <md-icon>delete</md-icon> Clear</md-button>
+            </div>
+            <div class="listing-type-title">{{newListingFormData.type}}</div>
+        </md-toolbar>
+
+        <div layout="column" layout-align="center center" ng-if="id">
+            <div class="visbilityPanel" layout="column" layout-align="center center">
+                <p>Your listing is currently {{ listing.integrity.visible ? 'Public':'Unlisted' }}</p>
+                <md-switch class="visibilityToggle" ng-cloak ng-model="listing.integrity.visible" aria-label="Visibility">
+                    {{ listing.integrity.visible ? 'Public':'Unlisted' }}
+                </md-switch>
+            </div>
+        </div>
+
+        <form name="newListing" role="form" class="col-md-8 col-md-offset-2">
+            <md-content layout-padding>
+                <md-input-container class="{{field.class}}" ng-repeat="field in newListingFormData">
+                    <label>{{ field.displayName }}</label>
+                    <span ng-if=field.subField>
+                        <textarea ng-if="field.type == 'textarea'"
+                            minlength="{{ field.minlength }}"
+                            maxlength="{{ field.maxlength }}"
+                            ng-required="{{field.required}}"
+                            name="{{field.name}}"
+                            ng-model="listing[field.subField][field.name]"
+                            ng-change="save()">
+                        </textarea>
+                        <input ng-if="field.type != 'textarea'"
+                        minlength="{{ field.minlength }}"
+                        maxlength="{{ field.maxlength }}"
+                        ng-required="{{field.required}}"
+                        type="{{ field.type }}"
+                        name="{{field.name}}"
+                        ng-model="listing[field.subField][field.name]"
+                        ng-change="save()">
+                    </span>
+                    <span ng-if=!field.subField>
+                        <textarea ng-if="field.type == 'textarea'"
+                            minlength="{{ field.minlength }}"
+                            maxlength="{{ field.maxlength }}"
+                            ng-required="{{field.required}}"
+                            name="{{field.name}}"
+                            ng-model="listing[field.name]"
+                            ng-change="save()">
+                        </textarea>
+                        <input ng-if="field.type != 'textarea'"
+                        minlength="{{ field.minlength }}"
+                        maxlength="{{ field.maxlength }}"
+                        ng-required="{{field.required}}"
+                        type="{{ field.type }}"
+                        name="{{field.name}}"
+                        ng-model="listing[field.name]"
+                        ng-change="save()">
+                    </span>
+                    <div ng-messages="newListing[field.name].$error">
+                        <div ng-message="required">{{field.displayName}} is required.</div>
+                        <div ng-message="maxlength">{{field.displayName}} must be less than {{ field.maxlength }} characters long.</div>
+                        <div ng-message="minlength">{{field.displayName}} must be at least {{ field.minlength }} characters long.</div>
+                        <div ng-message="number">{{field.displayName}} must be a number.</div>
+                    </div>
+                </md-input-container>
+                <div class="photoUploadWrapper">
+                    <a ng-if="photos.length == 0 && !uploading && !iphone" href="" class="photoUpload" ng-click="initiatePhotoUpload()">
+                        <div class="photoUploadTitle">
+                            <img src="images/skinnyplus.svg" class="isizeMed"> Add photos
+                        </div>
+                    </a>
+                    <div ng-if="photos.length || uploading">
+                        <div class="imageHolder">
+                            <a class="photoUploadBox" ng-repeat="image in photos track by $index" target="_blank">
+                                <div ng-style="{'background-image':'url(' + image.photo_url  + ')'}" class="scaledImage photoUploadImage"></div>
+                                <i class="glyphicon glyphicon-remove deleteImage" ng-click="deletePhoto($index)" aria-hidden="true"></i>
+                            </a>
+                            <div ng-if="uploading" class="photoUploadBox inProgress">
+                                <div class="scaledImage photoUploadImage">
+                                    <div class="spinner">
+                                        <i class="preloader preloader-small" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="photoUploadMore" ng-if="photos.length && !iphone">
+                            <button class="btn btn-default" ng-click="initiatePhotoUpload()">Add more photos</button>
+                        </div>
+                    </div>
+                    <input type="file" id="photoUploadInput" ng-file-select multiple ng-style="{'visibility': iphone ? 'shown':'hidden'}" />
+                </div>
+                <div class="buttons">
+                    <md-button class="md-raised md-primary" ng-show="!id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish</md-button>
+                    <md-button class="md-raised md-warn" ng-show="id" ng-disabled="newListing.$invalid || dataLoading || uploading" ng-click="submit()">Publish Edits</md-button>
+                </div>
+            </md-content>
+
+        </form>
+    </div>
+
+    <!-- <input ng-if="!iphone" type="file" id="photoUploadInput" required ng-file-select multiple style="visibility:hidden"/> -->
 </div>
+>>>>>>> master

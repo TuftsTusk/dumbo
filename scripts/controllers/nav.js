@@ -15,11 +15,15 @@ angular.module('dumboApp')
 		};
 
 		$scope.$on('SEARCH_TERM', function(event, query) {
-			$scope.searchInput = query;
+			if (query){
+                $scope.searchInput = decodeURIComponent(query);
+            }else{
+                query = '';
+            }
 		});
 		$scope.search = function(input){
 			if (input != ''){
-				$location.path('/listing/search/' + input + ($scope.listingType ? '/type/' + $scope.listingType : ''));
+				$location.path('/listing/search/' + encodeURIComponent(input) + ($scope.listingType ? '/type/' + $scope.listingType : ''));
 			}
 		};
 

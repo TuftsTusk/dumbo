@@ -52,12 +52,12 @@
 			</div>
 			<div class="panel-body">
 				<fieldset class="formGroup">
-					<label ng-if="editing">What is your address?</label>
+					<label ng-if="editing">Your address</label>
 					<label ng-if="!editing">Address</label>
 					<input ng-blur="save()" g-places-autocomplete force-selection="true" ng-disabled="!editing" class="formInput" required name="location" type="text" ng-model="listingData.geotag.address" placeholder="Your address">
 				</fieldset>
 				<fieldset class="formGroup">
-					<label ng-if="editing">How many bedrooms are in the house?</label>
+					<label ng-if="editing">Total number of tenants</label>
 					<label ng-if="!editing">Total number of bedrooms</label>
 					<input ng-blur="save()" ng-disabled="!editing" class="formInput" required name="num_occupants" ng-model="apt.num_occupants" type="number">
 				</fieldset>
