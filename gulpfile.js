@@ -41,7 +41,7 @@ gulp.task('injectDepedencies', ['cleanGenerated','fonts'], injectDepedencies);
 function injectVendorAndApp(appStream) {
     var target = gulp.src('./index.html');
     var js = gulp.src(wiredep({
-        exclude: ['bower_components/angular-google-maps' ]
+        exclude: ['bower_components/angular-google-maps','bower_components/angular-google-places-autocomplete' ]
     }).js);
     var css = gulp.src(wiredep().css);
 
