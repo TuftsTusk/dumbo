@@ -27,11 +27,15 @@ angular.module('dumboApp')
                 }
             }, function (result) {
                 $scope.listing.error = true;
-                ngToast.create({
-    							className: 'danger',
-    							content: "Sorry we were unable to complete your request. Please check the link and try again.",
-    							timeout: 2000
-    						});
+                if (!result || result.status != '403'){
+                    ngToast.create({
+						className: 'danger',
+						content: JSON.stringify(result),
+						timeout: 2000
+					});
+                    $location.path('/');
+                }
+
             })
     };
 
