@@ -14,7 +14,7 @@
   },
   "production": {
     "EnvironmentConfig": {
-      "api": "https://tuftstusk.herokuapp.com",
+      "api": "https://api.tuskmarketplace.com",
       "locked": false,
       "production": true
     }
