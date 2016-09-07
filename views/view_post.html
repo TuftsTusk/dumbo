@@ -28,7 +28,7 @@
           <md-card-content>
             <div class="col-md-6" ng-if="listing.type != 'MiscListing'">
               <table class="table table-hover table-condensed table-striped">
-                <tr ng-if="listing.isbn">
+                <tr ng-if="listing.isbn && listing.isbn != 'UNK'">
                   <td class="title">ISBN</td>
                   <td>{{listing.isbn}}</td>
                 </tr>
