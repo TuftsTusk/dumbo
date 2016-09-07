@@ -40,7 +40,9 @@ gulp.task('injectDepedencies', ['cleanGenerated','fonts'], injectDepedencies);
 
 function injectVendorAndApp(appStream) {
     var target = gulp.src('./index.html');
-    var js = gulp.src(wiredep().js);
+    var js = gulp.src(wiredep({
+        exclude: ['bower_components/angular-google-maps' ]
+    }).js);
     var css = gulp.src(wiredep().css);
 
     var vendorStream = js.pipe(concat('bower-'+ uuid.v4() +'.js'))
