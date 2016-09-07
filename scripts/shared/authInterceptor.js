@@ -5,10 +5,10 @@ angular.module('dumboApp')
           var host = EnvironmentConfig.api;
           var logout = '/me/logout';
           var http = $injector.get('$http');
-          if (rejection.status === 403) {
+          var prevUrl = $location.path();
+          if (rejection.status === 403 && prevUrl != '/login/existinguser') {
             http.post(host + logout).then(function(){
               userService.setLoggedOut();
-              var prevUrl = $location.path();
               $location.path('/login/existinguser').search('returnTo', prevUrl);
               ngToast.create({
                 className: 'info',
