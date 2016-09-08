@@ -195,7 +195,8 @@ app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
 
 
 app.constant("LISTING", {
-	"MAXSUMMARYLENGTH": "200"
+	"MAXSUMMARYLENGTH": "200",
+    "LISTINGS_PER_PAGE":"10"
 })
 
 app.config(['$httpProvider', function($httpProvider) {

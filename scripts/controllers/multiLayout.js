@@ -84,6 +84,12 @@ angular.module('dumboApp')
 				.then(function success(request){
 					$scope.listings = request.data;
 					$scope.listings.error = false;
+                    //If loaded less than maximum number of listings per page, no more exist
+                    if (request.data.length < LISTING.LISTINGS_PER_PAGE){
+                        $scope.morePagesInitially = false;
+                    } else {
+                        $scope.morePagesInitially = true;
+                    }
 
 					//add markers
 					if ($scope.listingType == 'SubletListing'){
@@ -116,7 +122,8 @@ angular.module('dumboApp')
             for (var i=0; i<request.data.length; i++){
                 $scope.listings.push(request.data[i]);
             }
-            if (request.data.length == 0){
+            //If loaded less than maximum number of listings per page, no more exist
+            if (request.data.length < LISTING.LISTINGS_PER_PAGE){
                 $scope.morePages = false;
             }
             $scope.nextPageLoading = false;
