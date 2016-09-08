@@ -38,19 +38,16 @@ angular.module('dumboApp').controller('LoginCtrl',
             swal.withForm({
                 title: "Create a new password",
                 text: "Enter your new password:",
+                type:'input',
                 showCancelButton: true,
                 closeOnConfirm: false,
                 animation: "slide-from-top",
                 confirmButtonText: "Reset Password",
                 showLoaderOnConfirm: true,
-                formFields: [
-                    { id: 'password', placeholder:'Password', type:'password' },
-                    { id: 'confirmpass', placeholder:'Password confirmation', type:'password' }
-                ]
             },
-            function() {
-                var password = this.swalForm.password;
-                var confirmpass = this.swalForm.confirmpass;
+            function(newPassword) {
+                var password = newPassword;
+                var confirmpass = newPassword;
                 if (password === false || confirmpass === false) return false;
                 if (password === "") {
                     swal.showInputError("Please enter a password");
