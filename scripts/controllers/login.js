@@ -100,7 +100,7 @@ angular.module('dumboApp').controller('LoginCtrl',
                         swal("Please check your email", "We emailed you a link to reset your password" , "success");
                     },
                     function failure(res) {
-                        SweetAlert.swal("I'm sorry I can't do that", res.data.message, "error");
+                        SweetAlert.swal("Something went wrong. Please check the email address and try again.", res.data.message, "error");
                     }
                 );
             });
