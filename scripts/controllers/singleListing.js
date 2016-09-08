@@ -181,7 +181,7 @@ angular.module('dumboApp')
                         if (!result || result.status != '403'){
                             ngToast.create({
         						className: 'danger',
-        						content: JSON.stringify(result),
+                                content: "Invalid listing. Please check the URL and try again later.",
         						timeout: 2000
         					});
                             $location.path('/');
