@@ -24,6 +24,8 @@ angular.module('dumboApp')
 	$scope.LISTING = LISTING;
 	$scope.searchTerm = $routeParams.searchTerm;
 	$scope.myListings = $route.current.$$route.myListings;
+    $scope.pageNum = 1;
+    $scope.morePages = true;
 
 	$rootScope.$broadcast('SEARCH_TERM', $scope.searchTerm);
 
@@ -63,15 +65,6 @@ angular.module('dumboApp')
 				options: {}
 			}
 		};
-
-		$scope.clickListing = function(listing, type){
-			if (type != 'SubletListing'){
-				return;
-			}
-			var marker = $scope.map.markers.find(function (o) { return o.id == listing._id; });
-			$scope.map.window.listing = listing;
-			$scope.map.markersEvents.click(null, null, marker);
-		}
 
 		uiGmapGoogleMapApi.then(function(maps) {
 			$timeout(function(){
@@ -114,6 +107,30 @@ angular.module('dumboApp')
 		//update UI for searching
 		$scope.searchInput = $scope.searchTerm;
 	};
+
+    $scope.nextPage = function(){
+        $scope.nextPageLoading = true;
+        $scope.pageNum += 1;
+        listingDataService.getListingsByType($scope.listingType, $scope.searchTerm, $scope.pageNum)
+        .then(function success(request){
+            for (var i=0; i<request.data.length; i++){
+                $scope.listings.push(request.data[i]);
+            }
+            if (request.data.length == 0){
+                $scope.morePages = false;
+            }
+            $scope.nextPageLoading = false;
+        });
+    }
+
+    $scope.clickListing = function(listing, type){
+        if (type != 'SubletListing'){
+            return;
+        }
+        var marker = $scope.map.markers.find(function (o) { return o.id == listing._id; });
+        $scope.map.window.listing = listing;
+        $scope.map.markersEvents.click(null, null, marker);
+    }
 
 	$scope.viewListing = function(uid, type){
 		if (type == 'SubletListing'){

@@ -58,6 +58,9 @@
           </md-grid-tile-footer>
         </md-grid-tile>
       </md-grid-list>
-    </div>
-
+      <div ng-if="data.listing.type != 'SubletListing' && !listings.error && morePages && !searchTerm" layout="col" layout-align="center center">
+          <md-button ng-if="!nextPageLoading" class="md-raised md-primary" ng-click="nextPage()">Load More</md-button>
+          <md-progress-circular ng-if="nextPageLoading" md-mode="indeterminate"></md-progress-circular>
+      </div>
+  </div>
 </div>
