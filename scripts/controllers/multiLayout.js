@@ -24,6 +24,8 @@ angular.module('dumboApp')
 	$scope.LISTING = LISTING;
 	$scope.searchTerm = $routeParams.searchTerm;
 	$scope.myListings = $route.current.$$route.myListings;
+    $scope.pageNum = 1;
+    $scope.morePages = true;
 
 	$rootScope.$broadcast('SEARCH_TERM', $scope.searchTerm);
 
@@ -64,15 +66,6 @@ angular.module('dumboApp')
 			}
 		};
 
-		$scope.clickListing = function(listing, type){
-			if (type != 'SubletListing'){
-				return;
-			}
-			var marker = $scope.map.markers.find(function (o) { return o.id == listing._id; });
-			$scope.map.window.listing = listing;
-			$scope.map.markersEvents.click(null, null, marker);
-		}
-
 		uiGmapGoogleMapApi.then(function(maps) {
 			$timeout(function(){
 				$scope.mapLoaded = true;
@@ -91,6 +84,12 @@ angular.module('dumboApp')
 				.then(function success(request){
 					$scope.listings = request.data;
 					$scope.listings.error = false;
+                    //If loaded less than maximum number of listings per page, no more exist
+                    if (request.data.length < LISTING.LISTINGS_PER_PAGE){
+                        $scope.morePagesInitially = false;
+                    } else {
+                        $scope.morePagesInitially = true;
+                    }
 
 					//add markers
 					if ($scope.listingType == 'SubletListing'){
@@ -114,6 +113,31 @@ angular.module('dumboApp')
 		//update UI for searching
 		$scope.searchInput = $scope.searchTerm;
 	};
+
+    $scope.nextPage = function(){
+        $scope.nextPageLoading = true;
+        $scope.pageNum += 1;
+        listingDataService.getListingsByType($scope.listingType, $scope.searchTerm, $scope.pageNum)
+        .then(function success(request){
+            for (var i=0; i<request.data.length; i++){
+                $scope.listings.push(request.data[i]);
+            }
+            //If loaded less than maximum number of listings per page, no more exist
+            if (request.data.length < LISTING.LISTINGS_PER_PAGE){
+                $scope.morePages = false;
+            }
+            $scope.nextPageLoading = false;
+        });
+    }
+
+    $scope.clickListing = function(listing, type){
+        if (type != 'SubletListing'){
+            return;
+        }
+        var marker = $scope.map.markers.find(function (o) { return o.id == listing._id; });
+        $scope.map.window.listing = listing;
+        $scope.map.markersEvents.click(null, null, marker);
+    }
 
 	$scope.viewListing = function(uid, type){
 		if (type == 'SubletListing'){
