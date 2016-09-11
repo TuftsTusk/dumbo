@@ -22,7 +22,7 @@ angular.module('dumboApp')
 	$scope.listingDisplayType = listingMap.getListingTypeByType($scope.listingType);
 	$scope.listingTypeName = ($scope.listingType) ? $scope.listingDisplayType : 'All';
 	$scope.LISTING = LISTING;
-	$scope.searchTerm = $routeParams.searchTerm;
+	$scope.searchTerm = $routeParams.searchTerm ? decodeURIComponent($routeParams.searchTerm) : null;
 	$scope.myListings = $route.current.$$route.myListings;
     $scope.pageNum = 1;
     $scope.morePages = true;
