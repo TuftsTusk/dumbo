@@ -174,7 +174,7 @@ app.config(['ngToastProvider', function(ngToast) {
 }]);
 
 
-app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
+app.run(function($rootScope, $location, EnvironmentConfig, ngToast, $window) {
 	$rootScope.$on( "$routeChangeStart", function(event, next, current) {
 		$rootScope.loaded = false;
 		if (EnvironmentConfig.locked){
@@ -191,6 +191,9 @@ app.run(function($rootScope, $location, EnvironmentConfig, ngToast) {
 	$rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
 		$rootScope.loaded = true;
 	});
+    $rootScope.$on('$viewContentLoaded', function (){
+        $window.ga('send', 'pageview', {page: $location.url()});
+    })
 });
 
 
