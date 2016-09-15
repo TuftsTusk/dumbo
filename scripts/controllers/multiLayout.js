@@ -15,7 +15,8 @@ angular.module('dumboApp')
 		uiGmapIsReady,
 		$timeout,
 		$window,
-		$rootScope) {
+		$rootScope,
+    userService) {
 	$scope.listings = {};
 	$scope.listings.error = true;
 	$scope.listingType = $route.current.$$route.listingType || $routeParams.listingType;
@@ -26,6 +27,10 @@ angular.module('dumboApp')
 	$scope.myListings = $route.current.$$route.myListings;
     $scope.pageNum = 1;
     $scope.morePages = true;
+
+  $scope.isLoggedIn = function() {
+    return userService.isLoggedIn();
+  }
 
 	$rootScope.$broadcast('SEARCH_TERM', $scope.searchTerm);
 
