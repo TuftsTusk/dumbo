@@ -9,7 +9,7 @@
         options="map.window.options"
         closeClick="map.window.closeClick()"
         templateParameter="map.window">
-            <div>{{map.window.listing.listing.geotag.address}}</div>
+            <div>{{map.window.listing.listing.geotag.address || 'Address hidden'}}</div>
         </ui-gmap-window>
         <ui-gmap-markers models="map.markers"
         coords="'self'"
@@ -19,6 +19,9 @@
       </ui-gmap-google-map>
     </div>
     <div ng-if="!listings.error" class="fastScroll" ng-class="{ 'scrollable-sublet col-lg-6 col-md-6 col-sm-6 col-xs-12 row-no-padding-left-desktop': (listingType=='SubletListing'), 'scrollable-other': (listingType!='SubletListing'), 'col-xs-6 row-no-padding-left': Math.abs(window.orientation) ==90 }">
+      <div class="md-warn md-hue-3" ng-if="listingType=='SubletListing' && !isLoggedIn()" layout="row" layout-align="center center">
+        <div class="label label-warning" style="font-size:12pt">Please <a href="#/login/existinguser">login</a> to view complete addresses</div>
+      </div>
       <md-grid-list class="gridList"
             md-cols-xs="1" md-cols-sm="{{(listingType=='SubletListing') ? 1:2}}" md-cols-md="{{(listingType=='SubletListing') ? 2:4}}" md-cols-gt-md="{{(listingType=='SubletListing') ? 2:4}}"
             md-row-height-gt-md="1:1" md-row-height="5:4"
@@ -40,7 +43,7 @@
               <span class="label label-primary priceLabel pull-right">${{data.listing.price}}</span>
             </span>
             <span ng-show="data.listing.type == 'SubletListing'" ng-cloak>
-              <span class="listingTitle"> {{data.listing.geotag.address}} </span>
+              <span class="listingTitle"> {{data.listing.geotag.address || 'Address hidden'}} </span>
               <ng-pluralize class="label priceLabel pull-left" count="data.listing.bedrooms.length"
                             when="{ '1':'{} Room','other': '{} Rooms'}"></ng-pluralize>
               <span class="label label-primary priceLabel pull-right">${{data.listing.bedrooms.getMinimumRent().rent}}{{(data.listing.bedrooms.rentValuesSame()) ? '':'+'}}</span>
